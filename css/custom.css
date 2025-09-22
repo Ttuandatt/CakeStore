@@ -1,0 +1,64 @@
+body {
+    background: url("../img/bg.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+form {
+    width: 100%;
+    max-width: 550px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    font-size: 1.1rem;
+}
+
+.form-control {
+    height: 50px;
+    font-size: 1rem;
+    background-color: #f2f2f2; /* hơi tối hơn nền trắng */
+    border: 1px solid #ddd;
+}
+
+.form-control:focus {
+    background-color: #eaeaea; /* tối thêm khi focus */
+    border-color: #E88F2A;
+    box-shadow: 0 0 0 0.2rem rgba(232, 143, 42, 0.25);
+}
+
+button.btn {
+    height: 50px;
+    font-size: 1.1rem;
+    background-color: #E88F2A !important;
+    border: none;
+}
+
+button.btn:hover {
+    background-color: #d77f22 !important; /* màu cam đậm hơn khi hover */
+}
+
+a {
+    color: #E88F2A;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    color: #d77f22;
+}
+
+/* Checkbox màu cam */
+.form-check-input:checked {
+    background-color: #E88F2A;
+    border-color: #E88F2A;
+}
+
+.form-check-input:focus {
+    border-color: #E88F2A;
+    box-shadow: 0 0 0 0.2rem rgba(232, 143, 42, 0.25);
+}
+
