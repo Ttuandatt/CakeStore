@@ -366,3 +366,8 @@ h6,
   color: white; /* cho chữ dễ đọc nếu bg tối */
   border: none; /* bỏ viền nếu muốn */
 }
+
+.card-img-top {
+  height: 220px;      /* chiều cao bạn mong muốn */
+  object-fit: cover;  /* giữ tỉ lệ, cắt cho vừa */
+}
