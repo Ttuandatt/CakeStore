@@ -339,3 +339,30 @@ h6,
     width: 14px;
     height: 14px;
 }
+
+.media-title a {
+    font-size: 30px; /* bạn chỉnh theo ý, ví dụ 24px */
+    font-weight: bold; /* tùy chọn nếu muốn đậm hơn */
+}
+
+.bg-custom {
+    background: url("../img/bg.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.media {
+  display: flex;
+  align-items: center;   /* căn giữa theo chiều dọc */
+}
+
+.media-body {
+  margin-left: 20px;     /* tạo khoảng cách giữa ảnh và text */
+  text-align: left;      /* căn text về bên trái */
+}
+
+.card.cake-card {
+  background: url("../img/bg.jpg") no-repeat center center;
+  background-size: cover;
+  color: white; /* cho chữ dễ đọc nếu bg tối */
+  border: none; /* bỏ viền nếu muốn */
+}
