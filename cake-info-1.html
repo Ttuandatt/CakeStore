@@ -131,117 +131,73 @@
   </nav>
   <!-- Navbar End -->
 
-  <!-- Birthday Cakes Section -->
-  <div class="container my-5">
-    <div class="row g-4"> <!-- g-4 tạo khoảng cách giữa các card -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
-      <!-- Cake 1 -->
-      <div class="col-md-3 col-sm-6">
-        <div class="card h-100 text-center">
-          <img src="img/bdcake-1.jpg" class="card-img-top" alt="Birthday Cake 1">
-          <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.1</a></h6>
-            <p class="mb-3 flex-grow-1">Delicious custom birthday cake with high-quality ingredients, perfect for
-              celebrations.</p>
-            <h5 class="fw-semibold">$45.99</h5>
-            <!-- Nút Read More -->
-            <button class="btn btn-primary mt-2" onclick="window.location.href='cake-info-1.html'">
-              <i class="#"></i>Read More
-            </button>
-
-            <!-- Nút Add to cart -->
-            <button class="btn btn-primary mt-2">
-              <i class="fas fa-shopping-cart me-2"></i>Add to cart
-            </button>
-          </div>
+<div class="container mt-5">
+    <div class="row">
+        <!-- Product Images -->
+        <div class="col-md-4 mb-4">
+            <img src="img/bdcake-1.jpg" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage">
         </div>
-      </div>
 
-      <!-- Cake 2 -->
-      <div class="col-md-3 col-sm-6">
-        <div class="card h-100 text-center">
-          <img src="img/bdcake-2.jpg" class="card-img-top" alt="Birthday Cake 2">
-          <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.2</a></h6>
-            <p class="mb-3 flex-grow-1">Delicious custom birthday cake with high-quality ingredients, perfect for
-              celebrations.</p>
-            <h5 class="fw-semibold">$45.99</h5>
-            <!-- Nút Read More -->
-            <button class="btn btn-primary mt-2">
-              <i class="#"></i>Read More
-            </button>
-
-            <!-- Nút Add to cart -->
-            <button class="btn btn-primary mt-2">
-              <i class="fas fa-shopping-cart me-2"></i>Add to cart
-            </button>
-          </div>
+        <!-- Product Details -->
+        <div class="col-md-6">
+            <h2 class="mb-3">Premium Wireless Headphones</h2>
+            <p class="text-muted mb-4">SKU: WH1000XM4</p>
+            <div class="mb-3">
+                <span class="h4 me-2">$349.99</span>
+                <span class="text-muted"><s>$399.99</s></span>
+            </div>
+            <div class="mb-3">
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-fill text-warning"></i>
+                <i class="bi bi-star-half text-warning"></i>
+                <span class="ms-2">4.5 (120 reviews)</span>
+            </div>
+            <p class="mb-4">Experience premium sound quality and industry-leading noise cancellation with these wireless
+                headphones. Perfect for music lovers and frequent travelers.</p>
+            <div class="mb-4">
+                <h5>Color:</h5>
+                <div class="btn-group" role="group" aria-label="Color selection">
+                    <input type="radio" class="btn-check" name="color" id="black" autocomplete="off" checked>
+                    <label class="btn btn-outline-dark" for="black">Black</label>
+                    <input type="radio" class="btn-check" name="color" id="silver" autocomplete="off">
+                    <label class="btn btn-outline-secondary" for="silver">Silver</label>
+                    <input type="radio" class="btn-check" name="color" id="blue" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="blue">Blue</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="quantity" class="form-label">Quantity:</label>
+                <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px;">
+            </div>
+            <button class="btn btn-primary btn-lg mb-3 me-2">
+                    <i class="bi bi-cart-plus"></i> Add to Cart
+                </button>
+            
+            <div class="mt-4">
+                <h5>Key Features:</h5>
+                <ul>
+                    <li>Industry-leading noise cancellation</li>
+                    <li>30-hour battery life</li>
+                    <li>Touch sensor controls</li>
+                    <li>Speak-to-chat technology</li>
+                </ul>
+            </div>
         </div>
-      </div>
-
-      <!-- Cake 3 -->
-      <div class="col-md-3 col-sm-6">
-        <div class="card h-100 text-center">
-          <img src="img/bdcake-3.jpg" class="card-img-top" alt="Birthday Cake 3">
-          <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.3</a></h6>
-            <p class="mb-3 flex-grow-1">Delicious custom birthday cake with high-quality ingredients, perfect for
-              celebrations.</p>
-            <h5 class="fw-semibold">$45.99</h5>
-            <!-- Nút Read More -->
-            <button class="btn btn-primary mt-2">
-              <i class="#"></i>Read More
-            </button>
-
-            <!-- Nút Add to cart -->
-            <button class="btn btn-primary mt-2">
-              <i class="fas fa-shopping-cart me-2"></i>Add to cart
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Cake 4 -->
-      <div class="col-md-3 col-sm-6">
-        <div class="card h-100 text-center">
-          <img src="img/bdcake-4.jpg" class="card-img-top" alt="Birthday Cake 4">
-          <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.4</a></h6>
-            <p class="mb-3 flex-grow-1">Delicious custom birthday cake with high-quality ingredients, perfect for
-              celebrations.</p>
-            <h5 class="fw-semibold">$45.99</h5>
-            <!-- Nút Read More -->
-            <button class="btn btn-primary mt-2">
-              <i class="#"></i>Read More
-            </button>
-
-            <!-- Nút Add to cart -->
-            <button class="btn btn-primary mt-2">
-              <i class="fas fa-shopping-cart me-2"></i>Add to cart
-            </button>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
+</div>
 
-  <!-- Pagination -->
-  <div class="d-flex justify-content-center mt-4">
-    <nav aria-label="Cake list pages">
-      <ul class="pagination">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-          <a class="page-link" href="#">Next</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function changeImage(event, src) {
+            document.getElementById('mainImage').src = src;
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+</script>
 
   <!-- Footer Start -->
   <div class="container-fluid bg-img text-secondary" style="margin-top: 90px">
