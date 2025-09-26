@@ -26,15 +26,15 @@
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
   <!-- Customized Bootstrap Stylesheet -->
-  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
   <!-- Template Stylesheet -->
-  <link href="css/style.css" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet" />
 
   <style>
     /* Container bọc ngoài có ảnh nền */
     .card-wrapper {
-      background: url("img/bg.jpg") no-repeat center center;
+      background: url("../img/bg.jpg") no-repeat center center;
       background-size: cover;
       padding: 40px;
     }
@@ -72,7 +72,7 @@
       </div>
       <div class="col-lg-4 text-center bg-primary border-inner py-3">
         <div class="d-inline-flex align-items-center justify-content-center">
-          <a href="index.html" class="navbar-brand">
+          <a href="../index.html" class="navbar-brand">
             <h1 class="m-0 text-uppercase text-white">
               <i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>CakeZone
             </h1>
@@ -101,7 +101,7 @@
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto mx-lg-auto py-0">
-          <a href="index.html" class="nav-item nav-link active">Home</a>
+          <a href="../index.html" class="nav-item nav-link active">Home</a>
           <a href="about.html" class="nav-item nav-link">About Us</a>
           <a href="menu.html" class="nav-item nav-link">Menu & Pricing</a>
           <a href="team.html" class="nav-item nav-link">Master Chefs</a>
@@ -123,13 +123,20 @@
   </nav>
   <!-- Navbar End -->
 
-  
+
   <!-- Birthday Cakes Section -->
   <div class="container my-5 position-relative">
+    <div class="position-relative">
+      <!-- Nút Back -->
+      <a href="birthday-cake-1.html" class="btn btn-outline-primary position-absolute m-3"
+        style="top: -40px; left: -360px; z-index: 1000;">
+        ← Back
+      </a>
+    </div>
     <!-- Menu 3 gạch -->
     <div class="dropdown position-absolute" style="top: -20px; right: -60px;">
-      <button class="btn btn-dark dropdown-toggle" type="button" id="menuDropdown"
-        data-bs-toggle="dropdown" aria-expanded="false">
+      <button class="btn btn-dark dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown"
+        aria-expanded="false">
         <i class="fas fa-bars"></i>
       </button>
       <ul class="dropdown-menu" aria-labelledby="menuDropdown">
@@ -140,12 +147,12 @@
     </div>
     <!-- Grid bánh -->
     <div class="row g-4 mt-5">
-      <!-- Cake 5 -->
+      <!-- Cake 1 -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 text-center">
-          <img src="img/bdcake-5.jpg" class="card-img-top" alt="Birthday Cake 5">
+          <img src="../img/wdcake-1.jpg" class="card-img-top" alt="Wedding Cake 1">
           <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.5</a></h6>
+            <h6 class="fw-bold"><a href="#">Wedding Cake No.1</a></h6>
             <p class="mb-3 flex-grow-1">
               Delicious custom birthday cake with high-quality ingredients, perfect for celebrations.
             </p>
@@ -156,12 +163,12 @@
         </div>
       </div>
 
-      <!-- Cake 6 -->
+      <!-- Cake 2 -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 text-center">
-          <img src="img/bdcake-6.jpg" class="card-img-top" alt="Birthday Cake 6">
+          <img src="../img/wdcake-2.jpg" class="card-img-top" alt="Wedding Cake 2">
           <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.6</a></h6>
+            <h6 class="fw-bold"><a href="#">Wedding Cake No.2</a></h6>
             <p class="mb-3 flex-grow-1">
               Delicious custom birthday cake with high-quality ingredients, perfect for celebrations.
             </p>
@@ -172,12 +179,12 @@
         </div>
       </div>
 
-      <!-- Cake 7 -->
+      <!-- Cake 3 -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 text-center">
-          <img src="img/bdcake-7.jpg" class="card-img-top" alt="Birthday Cake 7">
+          <img src="../img/wdcake-3.jpg" class="card-img-top" alt="Wedding Cake 3">
           <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.7</a></h6>
+            <h6 class="fw-bold"><a href="#">Wedding Cake No.3</a></h6>
             <p class="mb-3 flex-grow-1">Delicious custom birthday cake with high-quality ingredients, perfect for
               celebrations.</p>
             <h5 class="fw-semibold">$45.99</h5>
@@ -187,13 +194,13 @@
         </div>
       </div>
 
-      <!-- Cake 8 -->
+      <!-- Cake 4 -->
       <div class="col-md-3 col-sm-6">
         <div class="card h-100 text-center">
-          <img src="img/bdcake-8.jpg" class="card-img-top" alt="Birthday Cake 8">
+          <img src="../img/wdcake-4.jpg" class="card-img-top" alt="Wedding Cake 4">
           <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.8</a></h6>
-            <p class="mb-3 flex-grow-1">Delicious custom birthday cake with high-quality ingredients, perfect for
+            <h6 class="fw-bold"><a href="#">Wedding Cake No.4</a></h6>
+            <p class="mb-3 flex-grow-1">Delicious custom wedding cake with high-quality ingredients, perfect for
               celebrations.</p>
             <h5 class="fw-semibold">$45.99</h5>
             <button class="btn btn-primary mt-2">Read More</button>
@@ -209,13 +216,13 @@
     <nav aria-label="Cake list pages">
       <ul class="pagination">
         <li class="page-item disabled">
-          <a class="page-link" href="birthday-cake-1.html">Previous</a>
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
         </li>
-        <li class="page-item"><a class="page-link" href="birthday-cake-1.html">1</a></li>
-        <li class="page-item active"><a class="page-link" href="birthday-cake-2.html">2</a></li>
+        <li class="page-item active"><a class="page-link" href="birthday-cake-1.html">1</a></li>
+        <li class="page-item"><a class="page-link" href="birthday-cake-2.html">2</a></li>
         <li class="page-item"><a class="page-link" href="birthday-cake-3.html">3</a></li>
         <li class="page-item">
-          <a class="page-link" href="birthday-cake-3.html">Next</a>
+          <a class="page-link" href="wedding-cake-2.html">Next</a>
         </li>
       </ul>
     </nav>
@@ -228,7 +235,7 @@
         <div class="col-lg-4 col-md-6 mb-lg-n5">
           <div
             class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary border-inner p-4">
-            <a href="index.html" class="navbar-brand">
+            <a href="../index.html" class="navbar-brand">
               <h1 class="m-0 text-uppercase text-white">
                 <i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>CakeZone
               </h1>
@@ -267,7 +274,7 @@
             <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
               <h4 class="text-primary text-uppercase mb-4">Quick Links</h4>
               <div class="d-flex flex-column justify-content-start">
-                <a class="text-secondary mb-2" href="index.html"><i
+                <a class="text-secondary mb-2" href="../index.html"><i
                     class="bi bi-arrow-right text-primary me-2"></i>Home</a>
                 <a class="text-secondary mb-2" href="about.html"><i
                     class="bi bi-arrow-right text-primary me-2"></i>About
