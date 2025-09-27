@@ -149,92 +149,99 @@
     </nav>
     <!-- Navbar End -->
 
-    <!-- Cart Start -->
-    <div class="cart-container">
-      <div class="position-relative">
-        <!-- Nút Back -->
-        <a
-          href="birthday-cake-1.html"
-          class="btn btn-outline-primary position-absolute m-3"
-          style="top: -40px; left: -360px; z-index: 1000"
-        >
-          ← Back
-        </a>
-      </div>
-      <table>
-        <thead>
+    <div class="container py-5">
+    <h2 class="mb-4 text-center text-uppercase fw-bold">Danh sách đơn hàng</h2>
+
+    <div class="table-responsive shadow-sm rounded">
+      <table class="table table-bordered align-middle text-center mb-0">
+        <thead class="table-dark">
           <tr>
-            <th>Sản Phẩm</th>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
             <th>Giá</th>
             <th>Số lượng</th>
-            <th>Tổng</th>
-            <th>Xóa</th>
+            <th>Thành tiền</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>
-              <div class="product-cell">
-                <img src="../img/bdcake-1.jpg" alt="Birthday Cake 1" />
-                <span class="product-name">Bánh Kem Socola No.1</span>
-              </div>
-            </td>
-            <td>280,000₫</td>
-            <td>
-              <div class="quantity">
-                <button>-</button>
-                <input type="text" value="1" />
-                <button>+</button>
-              </div>
-            </td>
-            <td>280,000₫</td>
-            <td><span class="delete-btn">🗑️</span></td>
+            <td><img src="../img/cake1.jpg" class="order-img"></td>
+            <td>Bánh sinh nhật Socola</td>
+            <td>350,000₫</td>
+            <td>1</td>
+            <td>350,000₫</td>
           </tr>
-
           <tr>
-            <td>
-              <div class="product-cell">
-                <img src="../img/bdcake-2.jpg" alt="Birthday Cake 2" />
-                <span class="product-name">Bánh Kem Socola No.2</span>
-              </div>
-            </td>
-            <td>320,000₫</td>
-            <td>
-              <div class="quantity">
-                <button>-</button>
-                <input type="text" value="2" />
-                <button>+</button>
-              </div>
-            </td>
-            <td>640,000₫</td>
-            <td><span class="delete-btn">🗑️</span></td>
+            <td><img src="../img/cake2.jpg" class="order-img"></td>
+            <td>Bánh kem Dâu tây</td>
+            <td>280,000₫</td>
+            <td>2</td>
+            <td>560,000₫</td>
+          </tr>
+          <tr>
+            <td><img src="../img/cake3.jpg" class="order-img"></td>
+            <td>Bánh Red Velvet</td>
+            <td>400,000₫</td>
+            <td>1</td>
+            <td>400,000₫</td>
           </tr>
         </tbody>
       </table>
-
-      <div class="cart-total">
-        <span>Tổng</span>
-        <strong>118,000₫</strong>
-      </div>
-
-      <div class="cart-actions">
-        <button
-          class="btn"
-          onclick="window.location.href='birthday-cake-1-logged.html'"
-        >
-          Tiếp tục mua hàng
-        </button>
-        <button class="btn">Cập nhật giỏ hàng</button>
-        <button
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#paymentSuccess"
-        >
-          Thanh toán
-        </button>
-      </div>
     </div>
-    <!-- Cart End -->
+
+    <!-- Tổng cộng -->
+    <div class="text-end mt-3">
+      <h4 class="fw-bold">Tổng cộng: <span class="text-danger">1,310,000₫</span></h4>
+    </div>
+  </div>    
+
+
+
+  <div class="container py-5">
+    <h2 class="mb-4 text-center text-uppercase fw-bold">Danh sách đơn hàng</h2>
+
+    <div class="table-responsive shadow-sm rounded">
+      <table class="table table-bordered align-middle text-center mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="../img/cake1.jpg" class="order-img"></td>
+            <td>Bánh sinh nhật Socola</td>
+            <td>350,000₫</td>
+            <td>1</td>
+            <td>350,000₫</td>
+          </tr>
+          <tr>
+            <td><img src="../img/cake2.jpg" class="order-img"></td>
+            <td>Bánh kem Dâu tây</td>
+            <td>280,000₫</td>
+            <td>2</td>
+            <td>560,000₫</td>
+          </tr>
+          <tr>
+            <td><img src="../img/cake3.jpg" class="order-img"></td>
+            <td>Bánh Red Velvet</td>
+            <td>400,000₫</td>
+            <td>1</td>
+            <td>400,000₫</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tổng cộng -->
+    <div class="text-end mt-3">
+      <h4 class="fw-bold">Tổng cộng: <span class="text-danger">1,310,000₫</span></h4>
+    </div>
+  </div>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-img text-secondary" style="margin-top: 90px">
@@ -364,34 +371,6 @@
     </div>
     <!-- Footer End -->
 
-    <!-- Popup Thanh toán thành công -->
-    <div
-      class="modal fade"
-      id="paymentSuccess"
-      tabindex="-1"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content text-center p-4">
-          <div class="modal-body">
-            <i
-              class="bi bi-check-circle-fill text-success"
-              style="font-size: 4rem"
-            ></i>
-            <h3 class="mt-3">Thanh toán thành công!</h3>
-            <p>Bạn sẽ được chuyển đến trang danh sách đơn hàng...</p>
-            <button
-              type="button"
-              class="btn btn-primary mt-3"
-              data-bs-dismiss="modal"
-              onclick="window.location.href='order-list.html'"
-            >
-              OK
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"
@@ -408,7 +387,5 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-
-    
   </body>
 </html>

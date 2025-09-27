@@ -248,3 +248,20 @@ td {
   background-color: #cf7d21 !important;
   border-color: #cf7d21 !important;
 }
+
+.modal-content {
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.4s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
