@@ -1,0 +1,250 @@
+/* Tổng thể */
+.cart-container {
+    max-width: 1300px;
+    /* rộng hơn */
+    margin: 50px auto;
+    font-size: 18px;
+}
+
+/* Bảng giỏ hàng */
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    table-layout: fixed;
+    /* cột cân đối */
+}
+
+.cart-table th {
+    background: #2b2825;;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.cart-table td {
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+    font-size: 18px;
+}
+
+/* Thông tin sản phẩm */
+.product-info {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.product-info img {
+    width: 160px;
+    height: auto;
+    border-radius: 6px;
+}
+
+.product-name {
+    color: #a3c14a;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+/* Số lượng */
+.quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* canh giữa */
+    gap: 12px;
+    height: 100%;
+}
+
+.quantity button,
+.quantity input {
+    height: 55px;
+    /* đồng nhất */
+    line-height: 55px;
+    font-size: 22px;
+}
+
+.quantity button {
+    background: #2b2825;;
+    color: white;
+    border: none;
+    width: 55px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.quantity input {
+    width: 65px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* Xóa */
+.delete {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* Ghi chú */
+.note {
+    color: #666;
+    margin: 15px 0;
+    font-size: 18px;
+}
+
+/* Tổng tiền */
+.cart-total {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 24px;
+    margin: 15px 0;
+}
+
+.cart-total strong {
+    margin-left: 15px;
+}
+
+/* Thông tin vận chuyển */
+.shipping-note {
+    font-size: 16px;
+    font-style: italic;
+    color: #444;
+    text-align: right;
+    margin-bottom: 25px;
+}
+
+/* Nút hành động */
+.cart-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.btn {
+    background: #2b2825;;
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 6px;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fafafa;
+    margin: 0;
+    padding: 0;
+}
+
+/* Bảng giỏ hàng */
+table {
+    width: 100%; /* choán toàn bộ chiều ngang */
+    max-width: 1400px; /* bạn có thể chỉnh 1200px, 1400px... tùy ý */
+    margin: 40px auto;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background: #2b2825;;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+}
+
+td {
+    padding: 20px;
+    text-align: center;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+}
+
+/* Cột sản phẩm (ảnh + tên) */
+.product-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.product-cell img {
+    width: 100px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-name {
+    font-weight: bold;
+    color: #6B8E23;
+}
+
+/* Quantity */
+.quantity {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.quantity button {
+    background: #2b2825;;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.quantity button:hover {
+    background: #4a2914;
+}
+
+.quantity input {
+    width: 45px;
+    text-align: center;
+    font-size: 16px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Nút xóa */
+.delete-btn {
+    cursor: pointer;
+    font-size: 20px;
+    color: #d9534f;
+    transition: 0.2s;
+}
+
+.delete-btn:hover {
+    color: #b52b27;
+}
+
+/* Nút Sign Up và các nút btn-primary khác thành màu #e88f2a */
+.btn-primary {
+  background-color: #e88f2a !important;
+  border-color: #e88f2a !important;
+}
+
+/* Khi hover chuyển sang màu đậm hơn */
+.btn-primary:hover {
+  background-color: #cf7d21 !important;
+  border-color: #cf7d21 !important;
+}
