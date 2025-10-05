@@ -152,15 +152,13 @@
     <!-- Cart Start -->
     <div class="cart-container">
       <div class="position-relative">
-        <!-- Nút Back -->
-        <a
-          href="birthday-cake-1.html"
-          class="btn btn-outline-primary position-absolute m-3"
-          style="top: -40px; left: -360px; z-index: 1000"
-        >
-          ← Back
-        </a>
+      <!-- Nút Back -->
+      <a href="../index.html" class="btn btn-outline-primary position-absolute m-3"
+        style="top: -40px; left: -360px; z-index: 1000;">
+        ← Back
+      </a>
       </div>
+    </div>
       <table>
         <thead>
           <tr>
@@ -217,14 +215,14 @@
         <strong>118,000₫</strong>
       </div>
 
-      <div class="cart-actions">
+      <div class="cart-actions" style="margin-left:-90px;">
         <button
           class="btn"
-          onclick="window.location.href='birthday-cake-1-logged.html'"
+          data-bs-toggle="modal"
+          data-bs-target="#paymentSuccess"
         >
           Tiếp tục mua hàng
         </button>
-        <button class="btn">Cập nhật giỏ hàng</button>
         <button
           class="btn"
           data-bs-toggle="modal"
