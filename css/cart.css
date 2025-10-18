@@ -99,11 +99,12 @@
 
 /* Tổng tiền */
 .cart-total {
-    display: flex;
-    justify-content: flex-end;
-    font-size: 24px;
-    margin: 15px 0;
+  display: flex;
+  flex-direction: column; /* Đặt các phần tử con theo chiều dọc */
+  align-items: center; /* Căn giữa nội dung */
+  gap: 15px; /* Tạo khoảng cách giữa “Tổng” và nút */
 }
+
 
 .cart-total strong {
     margin-left: 15px;
@@ -266,3 +267,40 @@ td {
   }
 }
 
+
+
+.cart-info {
+  width: 65.5%;
+  margin: 30px auto 10px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.cart-info .form-control {
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.cart-info label {
+  margin-bottom: 6px;
+  display: block;
+  color: #333;
+}
+
+
+/* Đổ bóng cho bảng giỏ hàng */
+table {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25); /* đậm hơn và rộng hơn */
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Đổ bóng cho form thông tin giao hàng */
+.cart-info {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25); /* tương tự bảng */
+  border-radius: 12px;
+  background-color: #fff;
+  padding: 25px;
+}

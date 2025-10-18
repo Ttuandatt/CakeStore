@@ -137,8 +137,8 @@
                 />
               </a>
               <div class="dropdown-menu dropdown-menu-end m-0">
-                <a href="profile.html" class="dropdown-item">Thông tin</a>
-                <a href="orders.html" class="dropdown-item">Đơn hàng</a>
+                <a href="user-profile.html" class="dropdown-item">Thông tin</a>
+                <a href="order-list.html" class="dropdown-item">Đơn hàng</a>
                 <div class="dropdown-divider"></div>
                 <a href="../index.html" class="dropdown-item">Đăng xuất</a>
               </div>
@@ -152,86 +152,105 @@
     <!-- Cart Start -->
     <div class="cart-container">
       <div class="position-relative">
-      <!-- Nút Back -->
-      <a href="../index.html" class="btn btn-outline-primary position-absolute m-3"
-        style="top: -40px; left: -360px; z-index: 1000;">
-        ← Back
-      </a>
+        <!-- Nút Back -->
+        <a
+          href="../index.html"
+          class="btn btn-outline-primary position-absolute m-3"
+          style="top: -40px; left: -360px; z-index: 1000"
+        >
+          ← Back
+        </a>
       </div>
     </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Sản Phẩm</th>
-            <th>Giá</th>
-            <th>Số lượng</th>
-            <th>Tổng</th>
-            <th>Xóa</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <div class="product-cell">
-                <img src="../img/bdcake-1.jpg" alt="Birthday Cake 1" />
-                <span class="product-name">Bánh Kem Socola No.1</span>
-              </div>
-            </td>
-            <td>280,000₫</td>
-            <td>
-              <div class="quantity">
-                <button>-</button>
-                <input type="text" value="1" />
-                <button>+</button>
-              </div>
-            </td>
-            <td>280,000₫</td>
-            <td><span class="delete-btn">🗑️</span></td>
-          </tr>
+    <table>
+      <thead>
+        <tr>
+          <th>Sản Phẩm</th>
+          <th>Giá</th>
+          <th>Số lượng</th>
+          <th>Tổng</th>
+          <th>Xóa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <img src="../img/bdcake-1.jpg" alt="Birthday Cake 1" />
+              <span class="product-name">Bánh Kem Socola No.1</span>
+            </div>
+          </td>
+          <td>280,000₫</td>
+          <td>
+            <div class="quantity">
+              <button>-</button>
+              <input type="text" value="1" />
+              <button>+</button>
+            </div>
+          </td>
+          <td>280,000₫</td>
+          <td><span class="delete-btn">🗑️</span></td>
+        </tr>
 
-          <tr>
-            <td>
-              <div class="product-cell">
-                <img src="../img/bdcake-2.jpg" alt="Birthday Cake 2" />
-                <span class="product-name">Bánh Kem Socola No.2</span>
-              </div>
-            </td>
-            <td>320,000₫</td>
-            <td>
-              <div class="quantity">
-                <button>-</button>
-                <input type="text" value="2" />
-                <button>+</button>
-              </div>
-            </td>
-            <td>640,000₫</td>
-            <td><span class="delete-btn">🗑️</span></td>
-          </tr>
-        </tbody>
-      </table>
+        <tr>
+          <td>
+            <div class="product-cell">
+              <img src="../img/bdcake-2.jpg" alt="Birthday Cake 2" />
+              <span class="product-name">Bánh Kem Socola No.2</span>
+            </div>
+          </td>
+          <td>320,000₫</td>
+          <td>
+            <div class="quantity">
+              <button>-</button>
+              <input type="text" value="2" />
+              <button>+</button>
+            </div>
+          </td>
+          <td>640,000₫</td>
+          <td><span class="delete-btn">🗑️</span></td>
+        </tr>
+      </tbody>
+    </table>
 
-      <div class="cart-total">
-        <span>Tổng</span>
+    <!-- Form nhập thông tin giao hàng -->
+    <div class="cart-info">
+      <h5 class="mt-4 mb-3 text-uppercase">Thông tin giao hàng</h5>
+      <div class="form-group mb-3">
+        <label for="address" class="form-label fw-bold">Địa chỉ:</label>
+        <input
+          type="text"
+          id="address"
+          class="form-control"
+          placeholder="Nhập địa chỉ giao hàng"
+          required
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="phone" class="form-label fw-bold">Số điện thoại:</label>
+        <input
+          type="tel"
+          id="phone"
+          class="form-control"
+          placeholder="Nhập số điện thoại liên hệ"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="cart-total">
+      <div>
+        <span style="margin-left: 1265px;">Tổng</span>
         <strong>118,000₫</strong>
       </div>
 
-      <div class="cart-actions" style="margin-left:-90px;">
-        <button
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#paymentSuccess"
-        >
-          Tiếp tục mua hàng
-        </button>
-        <button
-          class="btn"
-          data-bs-toggle="modal"
-          data-bs-target="#paymentSuccess"
-        >
+      <div class="cart-actions" style="margin-left: -90px">
+        <button class="btn" data-bs-toggle="modal" data-bs-target="#paymentSuccess" style="margin-left: 1350px;">
           Thanh toán
         </button>
       </div>
     </div>
+
     <!-- Cart End -->
 
     <!-- Footer Start -->
@@ -407,6 +426,69 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const rows = document.querySelectorAll("tbody tr");
+
+        rows.forEach((row) => {
+          const minusBtn = row.querySelector(".quantity button:first-child");
+          const plusBtn = row.querySelector(".quantity button:last-child");
+          const input = row.querySelector(".quantity input");
+          const priceCell = row.querySelector("td:nth-child(2)");
+          const totalCell = row.querySelector("td:nth-child(4)");
+
+          // Lấy giá ban đầu (chuyển "280,000₫" -> 280000)
+          const basePrice = parseInt(
+            priceCell.textContent.replace(/[^\d]/g, "")
+          );
+
+          // Hàm cập nhật tổng từng dòng
+          function updateRowTotal() {
+            const quantity = parseInt(input.value);
+            const total = basePrice * quantity;
+            totalCell.textContent = total.toLocaleString("vi-VN") + "₫";
+            updateCartTotal();
+          }
+
+          // Nút trừ
+          minusBtn.addEventListener("click", () => {
+            let val = parseInt(input.value);
+            if (val > 1) {
+              input.value = val - 1;
+              updateRowTotal();
+            }
+          });
+
+          // Nút cộng
+          plusBtn.addEventListener("click", () => {
+            let val = parseInt(input.value);
+            input.value = val + 1;
+            updateRowTotal();
+          });
+
+          // Nếu người dùng nhập trực tiếp
+          input.addEventListener("change", () => {
+            let val = parseInt(input.value);
+            if (isNaN(val) || val < 1) input.value = 1;
+            updateRowTotal();
+          });
+        });
+
+        // Cập nhật tổng giỏ hàng
+        function updateCartTotal() {
+          const totalCells = document.querySelectorAll(
+            "tbody tr td:nth-child(4)"
+          );
+          let grandTotal = 0;
+          totalCells.forEach((cell) => {
+            grandTotal += parseInt(cell.textContent.replace(/[^\d]/g, ""));
+          });
+          document.querySelector(".cart-total strong").textContent =
+            grandTotal.toLocaleString("vi-VN") + "₫";
+        }
+
+        updateCartTotal();
+      });
+    </script>
   </body>
 </html>
