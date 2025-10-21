@@ -44,7 +44,7 @@
         background: #fff;
         border-radius: 10px;
         padding: 30px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
       }
 
       .profile-header {
@@ -96,6 +96,7 @@
       .btn-edit:hover {
         background-color: #e67e00;
       }
+      
     </style>
   </head>
 
@@ -133,11 +134,12 @@
       </div>
     </div>
 
-    <!-- Navbar -->
+    <!-- Navbar Start -->
     <nav
       class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0"
     >
       <div class="container-fluid">
+        <!-- Nút toggle cho mobile -->
         <button
           class="navbar-toggler"
           type="button"
@@ -148,23 +150,68 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
+          <!-- Các menu đang có -->
           <div class="navbar-nav ms-auto mx-lg-auto py-0">
-            <a href="../index.html" class="nav-item nav-link">Home</a>
+            <a href="loggedin.html" class="nav-item nav-link active">Home</a>
             <a href="about.html" class="nav-item nav-link">About Us</a>
             <a href="menu.html" class="nav-item nav-link">Menu & Pricing</a>
             <a href="team.html" class="nav-item nav-link">Master Chefs</a>
+            <div class="nav-item dropdown">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-bs-toggle="dropdown"
+                >Pages</a
+              >
+              <div class="dropdown-menu m-0">
+                <a href="service.html" class="dropdown-item">Our Service</a>
+                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+              </div>
+            </div>
             <a href="contact.html" class="nav-item nav-link">Contact Us</a>
           </div>
-          <div class="navbar-nav ms-auto">
-            <a href="login.html" class="nav-item nav-link">Login</a>
-            <a href="signup.html" class="nav-item nav-link">Signup</a>
+
+          <!-- Shopping cart + Avatar menu bên phải -->
+          <div class="navbar-nav ms-3">
+            <!-- Shopping cart -->
+            <a href="cart.html" class="nav-link me-3">
+              <img
+                src="../img/shopping-cart-white.png"
+                alt="Cart"
+                style="width: 40px; height: 40px; object-fit: cover"
+              />
+            </a>
+
+            <!-- Avatar -->
+            <div class="nav-item dropdown">
+              <a href="#" class="nav-link" data-bs-toggle="dropdown">
+                <img
+                  src="../img/human_white.png"
+                  alt="User"
+                  style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 0%;
+                    object-fit: cover;
+                  "
+                />
+              </a>
+              <div class="dropdown-menu dropdown-menu-end m-0">
+                <a href="profile.html" class="dropdown-item">Thông tin</a>
+                <a href="orders.html" class="dropdown-item">Đơn hàng</a>
+                <div class="dropdown-divider"></div>
+                <a href="../index.html" class="dropdown-item">Đăng xuất</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </nav>
+    <!-- Navbar End -->
 
-    <!-- Nút Back -->
+    
     <div class="container my-5 position-relative">
+      <!-- Nút Home -->
       <a
         href="loggedin.html"
         class="btn btn-outline-primary position-absolute m-3"
@@ -172,11 +219,11 @@
       >
         ← Home
       </a>
+      <h2 class="text-center mb-4">Thông tin cá nhân</h2>
 
       <!-- Nội dung chính -->
       <div class="profile-container">
-      
-
+        
         <div class="profile-info">
           <div><span>Full Name:</span> <span>Nguyễn Văn A</span></div>
           <div><span>Email:</span> <span>nguyenvana@example.com</span></div>
