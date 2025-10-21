@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>CakeZone - Cake Shop Website Template</title>
+    <title>CakeZone - User Profile</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="Free HTML Templates" name="keywords" />
-    <meta content="Free HTML Templates" name="description" />
+    <meta content="User Profile, Cake Shop" name="keywords" />
+    <meta content="User profile page for CakeZone customers" name="description" />
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon" />
 
-    <!-- Google Web Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
 
-    <!-- Icon Font Stylesheet -->
+    <!-- Icons -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
       rel="stylesheet"
@@ -28,18 +28,79 @@
       rel="stylesheet"
     />
 
-    <!-- Libraries Stylesheet -->
+    <!-- Libraries -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
 
-    <!-- Customized Bootstrap Stylesheet -->
+    <!-- Bootstrap -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Template Stylesheet -->
+    <!-- Custom CSS -->
     <link href="../css/style.css" rel="stylesheet" />
+
+    <style>
+      .profile-container {
+        max-width: 900px;
+        margin: 60px auto;
+        background: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .profile-header img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        border: 3px solid #ff8c00;
+      }
+
+      .profile-header h4 {
+        margin-top: 15px;
+        color: #ff8c00;
+        font-weight: bold;
+      }
+
+      .profile-info {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .profile-info div {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+      }
+
+      .profile-info div span:first-child {
+        font-weight: 600;
+      }
+
+      .btn-edit {
+        display: block;
+        margin: 30px auto 0;
+        background-color: #ff8c00;
+        color: white;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+      }
+
+      .btn-edit:hover {
+        background-color: #e67e00;
+      }
+    </style>
   </head>
 
   <body>
-    <!-- Topbar Start -->
+    <!-- Topbar -->
     <div class="container-fluid px-0 d-none d-lg-block">
       <div class="row gx-0">
         <div class="col-lg-4 text-center bg-secondary py-3">
@@ -71,14 +132,12 @@
         </div>
       </div>
     </div>
-    <!-- Topbar End -->
 
-    <!-- Navbar Start -->
+    <!-- Navbar -->
     <nav
       class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0"
     >
       <div class="container-fluid">
-        <!-- Nút toggle cho mobile -->
         <button
           class="navbar-toggler"
           type="button"
@@ -89,370 +148,50 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
-          <!-- Các menu đang có -->
           <div class="navbar-nav ms-auto mx-lg-auto py-0">
-            <a href="loggedin.html" class="nav-item nav-link active">Home</a>
-            <a href="about-logged.html" class="nav-item nav-link">About Us</a>
-            <a href="menu-logged.html" class="nav-item nav-link"
-              >Menu & Pricing</a
-            >
-            <a href="team-logged.html" class="nav-item nav-link">Master Chefs</a>
-            <div class="nav-item dropdown">
-              <a
-                href="#"
-                class="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-                >Pages</a
-              >
-              <div class="dropdown-menu m-0">
-                <a href="service.html" class="dropdown-item">Our Service</a>
-              </div>
-            </div>
-            <a href="contact-logged.html" class="nav-item nav-link">Contact Us</a>
+            <a href="../index.html" class="nav-item nav-link">Home</a>
+            <a href="about.html" class="nav-item nav-link">About Us</a>
+            <a href="menu.html" class="nav-item nav-link">Menu & Pricing</a>
+            <a href="team.html" class="nav-item nav-link">Master Chefs</a>
+            <a href="contact.html" class="nav-item nav-link">Contact Us</a>
           </div>
-
-          <!-- Shopping cart + Avatar menu bên phải -->
-          <div class="navbar-nav ms-3">
-            <!-- Shopping cart -->
-            <a href="cart.html" class="nav-link me-3">
-              <img
-                src="../img/shopping-cart-white.png"
-                alt="Cart"
-                style="width: 40px; height: 40px; object-fit: cover"
-              />
-            </a>
-
-            <!-- Avatar -->
-            <div class="nav-item dropdown">
-              <a href="#" class="nav-link" data-bs-toggle="dropdown">
-                <img
-                  src="../img/human_white.png"
-                  alt="User"
-                  style="
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 0%;
-                    object-fit: cover;
-                  "
-                />
-              </a>
-              <div class="dropdown-menu dropdown-menu-end m-0">
-                <a href="profile.html" class="dropdown-item">Thông tin</a>
-                <a href="orders.html" class="dropdown-item">Đơn hàng</a>
-                <div class="dropdown-divider"></div>
-                <a href="../index.html" class="dropdown-item">Đăng xuất</a>
-              </div>
-            </div>
+          <div class="navbar-nav ms-auto">
+            <a href="login.html" class="nav-item nav-link">Login</a>
+            <a href="signup.html" class="nav-item nav-link">Signup</a>
           </div>
         </div>
       </div>
     </nav>
-    <!-- Navbar End -->
 
-    <div class="wrapper">
-        <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
-            <!--
-        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+    <!-- Nút Back -->
+    <div class="container my-5 position-relative">
+      <a
+        href="loggedin.html"
+        class="btn btn-outline-primary position-absolute m-3"
+        style="top: -40px; left: -360px; z-index: 1000"
+      >
+        ← Home
+      </a>
 
-        Tip 2: you can also add an image using data-image tag
-    -->
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
-                    </a>
-                </div>
-                <ul class="nav">
-                    <li>
-                        <a class="nav-link" href="dashboard.html">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./user.html">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>User Profile</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="./table.html">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>Table List</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./typography.html">
-                            <i class="nc-icon nc-paper-2"></i>
-                            <p>Typography</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./icons.html">
-                            <i class="nc-icon nc-atom"></i>
-                            <p>Icons</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./maps.html">
-                            <i class="nc-icon nc-pin-3"></i>
-                            <p>Maps</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./notifications.html">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
-                    <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="upgrade.html">
-                            <i class="nc-icon nc-alien-33"></i>
-                            <p>Upgrade to PRO</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+      <!-- Nội dung chính -->
+      <div class="profile-container">
+      
+
+        <div class="profile-info">
+          <div><span>Full Name:</span> <span>Nguyễn Văn A</span></div>
+          <div><span>Email:</span> <span>nguyenvana@example.com</span></div>
+          <div><span>Phone:</span> <span>+84 912 345 678</span></div>
+          <div><span>Address:</span> <span>123 Lê Lợi, TP.HCM</span></div>
+          <div><span>Orders:</span> <span>12 completed</span></div>
         </div>
-        <div class="main-panel">
-            <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#pablo"> Table List </a>
-                    <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                        <span class="navbar-toggler-bar burger-lines"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                        <ul class="nav navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-palette"></i>
-                                    <span class="d-lg-none">Dashboard</span>
-                                </a>
-                            </li>
-                            <li class="dropdown nav-item">
-                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                                    <i class="nc-icon nc-planet"></i>
-                                    <span class="notification">5</span>
-                                    <span class="d-lg-none">Notification</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Notification 1</a>
-                                    <a class="dropdown-item" href="#">Notification 2</a>
-                                    <a class="dropdown-item" href="#">Notification 3</a>
-                                    <a class="dropdown-item" href="#">Notification 4</a>
-                                    <a class="dropdown-item" href="#">Another notification</a>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <i class="nc-icon nc-zoom-split"></i>
-                                    <span class="d-lg-block">&nbsp;Search</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Account</span>
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="no-icon">Dropdown</span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                    <div class="divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#pablo">
-                                    <span class="no-icon">Log out</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- End Navbar -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="card strpied-tabled-with-hover">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Striped Table with Hover</h4>
-                                    <p class="card-category">Here is a subtitle for this table</p>
-                                </div>
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover table-striped">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Philip Chaney</td>
-                                                <td>$38,735</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Doris Greene</td>
-                                                <td>$63,542</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Kärnten</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Mason Porter</td>
-                                                <td>$78,615</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="card card-plain table-plain-bg">
-                                <div class="card-header ">
-                                    <h4 class="card-title">Table on Plain Background</h4>
-                                    <p class="card-category">Here is a subtitle for this table</p>
-                                </div>
-                                <div class="card-body table-full-width table-responsive">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Salary</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Dakota Rice</td>
-                                                <td>$36,738</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Minerva Hooper</td>
-                                                <td>$23,789</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Sage Rodriguez</td>
-                                                <td>$56,142</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Philip Chaney</td>
-                                                <td>$38,735</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Doris Greene</td>
-                                                <td>$63,542</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Kärnten</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Mason Porter</td>
-                                                <td>$78,615</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav>
-                        <ul class="footer-menu">
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-center">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                        </p>
-                    </nav>
-                </div>
-            </footer>
-        </div>
+
+        <button class="btn-edit" onclick="window.location.href='edit-info.html'">
+          <i class="fas fa-edit me-2"></i>Edit Profile
+        </button>
+      </div>
     </div>
 
-    <!-- Footer Start -->
+    <!-- Footer -->
     <div class="container-fluid bg-img text-secondary" style="margin-top: 90px">
       <div class="container">
         <div class="row gx-5">
@@ -462,16 +201,12 @@
             >
               <a href="../index.html" class="navbar-brand">
                 <h1 class="m-0 text-uppercase text-white">
-                  <i class="fa fa-birthday-cake fs-1 text-dark me-3"></i
-                  >CakeZone
+                  <i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>CakeZone
                 </h1>
               </a>
               <p class="mt-3">
-                Lorem diam sit erat dolor elitr et, diam lorem justo labore amet
-                clita labore stet eos magna sit. Elitr dolor eirmod duo tempor
-                lorem, elitr clita ipsum sea. Nonumy rebum et takimata ea
-                takimata amet gubergren, erat rebum magna lorem stet eos. Diam
-                amet et kasd eos duo dolore no.
+                We create the most delicious custom cakes for birthdays and
+                special celebrations.
               </p>
             </div>
           </div>
@@ -491,55 +226,31 @@
                   <i class="bi bi-telephone text-primary me-2"></i>
                   <p class="mb-0">+012 345 67890</p>
                 </div>
-                <div class="d-flex mt-4">
-                  <a
-                    class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2"
-                    href="#"
-                    ><i class="fab fa-twitter fw-normal"></i
-                  ></a>
-                  <a
-                    class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2"
-                    href="#"
-                    ><i class="fab fa-facebook-f fw-normal"></i
-                  ></a>
-                  <a
-                    class="btn btn-lg btn-primary btn-lg-square border-inner rounded-0 me-2"
-                    href="#"
-                    ><i class="fab fa-linkedin-in fw-normal"></i
-                  ></a>
-                </div>
               </div>
+
               <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                 <h4 class="text-primary text-uppercase mb-4">Quick Links</h4>
                 <div class="d-flex flex-column justify-content-start">
-                  <a class="text-secondary mb-2" href="#"
+                  <a class="text-secondary mb-2" href="../index.html"
                     ><i class="bi bi-arrow-right text-primary me-2"></i>Home</a
                   >
-                  <a class="text-secondary mb-2" href="about-logged.html"
+                  <a class="text-secondary mb-2" href="about.html"
                     ><i class="bi bi-arrow-right text-primary me-2"></i>About
                     Us</a
                   >
-                  <a class="text-secondary mb-2" href="#"
-                    ><i class="bi bi-arrow-right text-primary me-2"></i>Our
-                    Services</a
+                  <a class="text-secondary mb-2" href="menu.html"
+                    ><i class="bi bi-arrow-right text-primary me-2"></i>Menu &
+                    Pricing</a
                   >
-                  <a class="text-secondary mb-2" href="#"
-                    ><i class="bi bi-arrow-right text-primary me-2"></i>Meet The
-                    Team</a
-                  >
-                  <a class="text-secondary mb-2" href="#"
-                    ><i class="bi bi-arrow-right text-primary me-2"></i>Latest
-                    Blog</a
-                  >
-                  <a class="text-secondary" href="#"
+                  <a class="text-secondary mb-2" href="contact.html"
                     ><i class="bi bi-arrow-right text-primary me-2"></i>Contact
                     Us</a
                   >
                 </div>
               </div>
+
               <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
                 <h4 class="text-primary text-uppercase mb-4">Newsletter</h4>
-                <p>Amet justo diam dolor rebum lorem sit stet sea justo kasd</p>
                 <form action="">
                   <div class="input-group">
                     <input
@@ -556,44 +267,11 @@
         </div>
       </div>
     </div>
-    <div
-      class="container-fluid text-secondary py-4"
-      style="background: #111111"
-    >
-      <div class="container text-center">
-        <p class="mb-0">
-          &copy;
-          <a class="text-white border-bottom" href="#">Your Site Name</a>. All
-          Rights Reserved.
 
-          <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-          Designed by
-          <a class="text-white border-bottom" href="https://htmlcodex.com"
-            >HTML Codex</a
-          >
-        </p>
-        <br />Distributed By:
-        <a class="border-bottom" href="https://themewagon.com" target="_blank"
-          >ThemeWagon</a
-        >
-      </div>
-    </div>
-    <!-- Footer End -->
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary border-inner py-3 fs-4 back-to-top"
-      ><i class="bi bi-arrow-up"></i
-    ></a>
-
-    <!-- JavaScript Libraries -->
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
   </body>
 </html>

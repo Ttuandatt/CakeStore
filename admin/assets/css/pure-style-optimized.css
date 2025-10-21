@@ -110,3 +110,6 @@ body {
 .material-icons.category:before { content: "📁"; }
 .material-icons.payments:before { content: "💰"; }
 .material-icons.receipt_long:before { content: "📝"; }
+.material-icons.chef:before { content: "👨"; }
+
+
