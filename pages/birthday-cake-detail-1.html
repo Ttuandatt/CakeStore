@@ -62,46 +62,47 @@
       .card a:hover {
         color: #007bff;
       }
-       /* Popup overlay */
-  .login-popup {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-  }
 
-  .login-popup-content {
-    background: white;
-    padding: 25px 35px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    max-width: 350px;
-  }
+      /* Popup overlay */
+      .login-popup {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
 
-  .login-popup-content h5 {
-    color: #ff8c00;
-    margin-bottom: 10px;
-  }
+      .login-popup-content {
+        background: white;
+        padding: 25px 35px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        max-width: 350px;
+      }
 
-  .popup-buttons {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
+      .login-popup-content h5 {
+        color: #ff8c00;
+        margin-bottom: 10px;
+      }
 
-  .btn-secondary {
-    background-color: #ccc;
-    color: #333;
-    border: none;
-  }
+      .popup-buttons {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .btn-secondary {
+        background-color: #ccc;
+        color: #333;
+        border: none;
+      }
     </style>
   </head>
 
@@ -187,38 +188,44 @@
 
       <!-- Product Details -->
       <div class="col-md-6">
-        <h2 class="mb-3">Premium Wireless Headphones</h2>
-        <p class="text-muted mb-4">SKU: WH1000XM4</p>
+        <h2 class="mb-3">Decadent Chocolate Birthday Cake</h2>
+        <p class="text-muted mb-4">SKU: BDC-002</p>
+
         <div class="mb-3">
-          <span class="h4 me-2">$349.99</span>
+          <span class="h4 me-2">$49.99</span>
         </div>
-        <div class="mb-3"></div>
+
         <p class="mb-4">
-          Experience premium sound quality and industry-leading noise
-          cancellation with these wireless headphones. Perfect for music
-          lovers and frequent travelers.
+          Indulge in the rich, velvety taste of our Decadent Chocolate Birthday Cake!
+          Crafted with layers of moist chocolate sponge, creamy chocolate ganache,
+          and topped with chocolate curls, this cake is a chocolate lover's dream.
+          Perfect for birthdays, celebrations, or any occasion that calls for a luxurious treat.
         </p>
 
-        <div class="mb-4">
-          <label for="quantity" class="form-label">Quantity:</label>
-          <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px" />
-        </div>
-
-        <!-- ✅ Danh sách thông tin sản phẩm -->
         <ul class="mb-4">
-          <li>
-            <strong>Nguyên liệu:</strong> Bột mì, trứng gà, đường, sữa
-            tươi, kem tươi
+          <li><strong>Ingredients:</strong> Wheat flour, eggs, sugar, cocoa powder, chocolate ganache, butter, cream
           </li>
-          <li>
-            <strong>Màu sắc:</strong> Hồng pastel, trắng kem, vàng nhạt
-          </li>
-          <li><strong>Kích cỡ:</strong> 6 inch, 8 inch, 10 inch</li>
+          <li><strong>Flavors:</strong> Rich chocolate with creamy ganache layers</li>
+          <li><strong>Colors:</strong> Dark brown, light chocolate accents</li>
+          <li><strong>Sizes Available:</strong> 6 inch, 8 inch, 10 inch</li>
+          <li><strong>Special Feature:</strong> Decorated with chocolate curls and cocoa dusting, customizable message
+            on top</li>
         </ul>
 
-        <button id="addToCartBtn" class="btn btn-primary btn-lg mb-3 me-2" style="margin-top: 93px">
-          <i class="bi bi-cart-plus"></i> Add to Cart
-        </button>
+        <div class="mb-4 d-flex align-items-center gap-3">
+          <div>
+            <label for="quantity" class="form-label">Quantity:</label>
+            <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px" />
+          </div>
+          <button id="addToCartBtn" class="btn btn-primary btn-lg mt-4">
+            <i class="bi bi-cart-plus"></i> Add to Cart
+          </button>
+        </div>
+
+
+
+
+
       </div>
     </div>
   </div>
@@ -339,7 +346,7 @@
       <h5>Đăng nhập để tiếp tục</h5>
       <p>Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.</p>
       <div class="popup-buttons">
-        <button class="btn btn-primary" onclick="window.location.href='login.html'">
+        <button class="btn btn-primary" onclick="window.location.href='login-cart.html'">
           Đăng nhập
         </button>
         <button class="btn btn-secondary" onclick="closeLoginPopup()">Hủy</button>
@@ -348,39 +355,39 @@
   </div>
 
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const addToCartBtn = document.getElementById("addToCartBtn");
-    const modalEl = document.getElementById("cartSuccessModal");
-    const modalOkBtn = document.getElementById("modalOkBtn");
-    const successModal = new bootstrap.Modal(modalEl);
+    document.addEventListener("DOMContentLoaded", () => {
+      const addToCartBtn = document.getElementById("addToCartBtn");
+      const modalEl = document.getElementById("cartSuccessModal");
+      const modalOkBtn = document.getElementById("modalOkBtn");
+      const successModal = new bootstrap.Modal(modalEl);
 
-    // Giả lập trạng thái đăng nhập
-    const isLoggedIn = false;
+      // Giả lập trạng thái đăng nhập
+      const isLoggedIn = false;
 
-    addToCartBtn.addEventListener("click", (event) => {
-      event.preventDefault(); // chặn hành động mặc định
-      if (!isLoggedIn) {
-        // nếu chưa đăng nhập → hiện popup yêu cầu đăng nhập
-        openLoginPopup();
-      } else {
-        // nếu đã đăng nhập → hiện modal "Thêm thành công"
-        successModal.show();
-      }
+      addToCartBtn.addEventListener("click", (event) => {
+        event.preventDefault(); // chặn hành động mặc định
+        if (!isLoggedIn) {
+          // nếu chưa đăng nhập → hiện popup yêu cầu đăng nhập
+          openLoginPopup();
+        } else {
+          // nếu đã đăng nhập → hiện modal "Thêm thành công"
+          successModal.show();
+        }
+      });
+
+      modalOkBtn.addEventListener("click", () => {
+        successModal.hide();
+      });
     });
 
-    modalOkBtn.addEventListener("click", () => {
-      successModal.hide();
-    });
-  });
+    function openLoginPopup() {
+      document.getElementById("loginPopup").style.display = "flex";
+    }
 
-  function openLoginPopup() {
-    document.getElementById("loginPopup").style.display = "flex";
-  }
-
-  function closeLoginPopup() {
-    document.getElementById("loginPopup").style.display = "none";
-  }
-</script>
+    function closeLoginPopup() {
+      document.getElementById("loginPopup").style.display = "none";
+    }
+  </script>
 
 </body>
 
