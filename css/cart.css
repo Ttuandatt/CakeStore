@@ -230,12 +230,6 @@ td {
     color: #b52b27;
 }
 
-/* Nút Sign Up và các nút btn-primary khác thành màu #e88f2a */
-.btn-primary {
-  background-color: #e88f2a !important;
-  border-color: #e88f2a !important;
-}
-
 /* Khi hover chuyển sang màu đậm hơn */
 .btn-primary:hover {
   background-color: #cf7d21 !important;

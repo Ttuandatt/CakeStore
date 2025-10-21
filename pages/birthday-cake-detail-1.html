@@ -30,6 +30,7 @@
 
   <!-- Template Stylesheet -->
   <link href="../css/style.css" rel="stylesheet" />
+  <link href="../css/cart.css" rel="stylesheet" />
 
   <!DOCTYPE html>
   <html lang="en">
@@ -188,45 +189,43 @@
 
       <!-- Product Details -->
       <div class="col-md-6">
-        <h2 class="mb-3">Decadent Chocolate Birthday Cake</h2>
-        <p class="text-muted mb-4">SKU: BDC-002</p>
+        <h2 class="mb-3">Bánh Sinh Nhật Socola Vừa Ngọt</h2>
+        <p class="text-muted mb-4">SKU: CHC-001</p>
 
         <div class="mb-3">
-          <span class="h4 me-2">$49.99</span>
+          <span class="h4 me-2">$45.99</span>
         </div>
 
         <p class="mb-4">
-          Indulge in the rich, velvety taste of our Decadent Chocolate Birthday Cake!
-          Crafted with layers of moist chocolate sponge, creamy chocolate ganache,
-          and topped with chocolate curls, this cake is a chocolate lover's dream.
-          Perfect for birthdays, celebrations, or any occasion that calls for a luxurious treat.
+          Thưởng thức hương vị socola nguyên chất hòa quyện cùng lớp kem tươi mịn màng,
+          trang trí bằng những quả dâu tây tươi mọng nước.
+          Chiếc bánh hoàn hảo cho những buổi tiệc sinh nhật nhỏ, ấm cúng và ngọt ngào.
         </p>
 
         <ul class="mb-4">
-          <li><strong>Ingredients:</strong> Wheat flour, eggs, sugar, cocoa powder, chocolate ganache, butter, cream
-          </li>
-          <li><strong>Flavors:</strong> Rich chocolate with creamy ganache layers</li>
-          <li><strong>Colors:</strong> Dark brown, light chocolate accents</li>
-          <li><strong>Sizes Available:</strong> 6 inch, 8 inch, 10 inch</li>
-          <li><strong>Special Feature:</strong> Decorated with chocolate curls and cocoa dusting, customizable message
-            on top</li>
+          <li><strong>Thành phần:</strong> Bột mì, trứng, đường, bột cacao, socola nguyên chất, bơ, kem tươi, dâu tây
+            tươi</li>
+          <li><strong>Hương vị:</strong> Socola đậm đà, xen lẫn vị béo nhẹ của kem tươi</li>
+          <li><strong>Màu sắc:</strong> Nâu socola, điểm đỏ tươi từ dâu tây</li>
+          <li><strong>Kích cỡ có sẵn:</strong> 6 inch, 8 inch, 10 inch</li>
+          <li><strong>Đặc biệt:</strong> Trang trí bằng dâu tây tươi, có thể thêm chữ chúc mừng theo yêu cầu</li>
         </ul>
 
         <div class="mb-4 d-flex align-items-center gap-3">
           <div>
-            <label for="quantity" class="form-label">Quantity:</label>
-            <input type="number" class="form-control" id="quantity" value="1" min="1" style="width: 80px" />
+            <label for="quantity" class="form-label">Số lượng:</label>
+            <div class="quantity">
+              <button>-</button>
+              <input type="text" value="1" />
+              <button>+</button>
+            </div>
           </div>
-          <button id="addToCartBtn" class="btn btn-primary btn-lg mt-4">
-            <i class="bi bi-cart-plus"></i> Add to Cart
-          </button>
         </div>
-
-
-
-
-
+        <button id="addToCartBtn" class="btn btn-primary btn-lg mt-4">
+            <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+          </button>
       </div>
+
     </div>
   </div>
 

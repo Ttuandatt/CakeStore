@@ -31,30 +31,6 @@
   <!-- Template Stylesheet -->
   <link href="../css/style.css" rel="stylesheet" />
 
-  <style>
-    /* Container bọc ngoài có ảnh nền */
-    .card-wrapper {
-      background: url("../img/bg.jpg") no-repeat center center;
-      background-size: cover;
-      padding: 40px;
-    }
-
-    /* Card vẫn giữ nền trắng */
-    .card {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .card a {
-      text-decoration: none;
-      color: #333;
-    }
-
-    .card a:hover {
-      color: #007bff;
-    }
-  </style>
 </head>
 
 <body>
@@ -123,92 +99,258 @@
   </nav>
   <!-- Navbar End -->
 
-  
   <!-- Birthday Cakes Section -->
   <div class="container my-5 position-relative">
     <div class="position-relative">
       <!-- Nút Back -->
       <a href="../index.html" class="btn btn-outline-primary position-absolute m-3"
-        style="top: -40px; left: -360px; z-index: 1000;">
+        style="top: -90px; left: -318px; z-index: 1000">
         ← Back
       </a>
     </div>
+
     <!-- Menu 3 gạch -->
-    <div class="dropdown position-absolute" style="top: -20px; right: -60px;">
-      <button class="btn btn-dark dropdown-toggle" type="button" id="menuDropdown"
-        data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="dropdown position-absolute" style="top: -90px; right: -60px">
+      <button class="btn btn-dark dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown"
+        aria-expanded="false">
         <i class="fas fa-bars"></i>
       </button>
       <ul class="dropdown-menu" aria-labelledby="menuDropdown">
-        <li><a class="dropdown-item" href="birthday-cake-1.html">Birthday Cake</a></li>
-        <li><a class="dropdown-item" href="wedding-cake-1.html">Wedding Cake</a></li>
-        <li><a class="dropdown-item" href="custom-cake-1.html">Custom Cake</a></li>
+        <li>
+          <a class="dropdown-item" href="birthday-cake-1.html">Birthday Cake</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="wedding-cake-1.html">Wedding Cake</a>
+        </li>
+        <li>
+          <a class="dropdown-item" href="custom-cake-1.html">Snack Cake</a>
+        </li>
       </ul>
     </div>
-    <!-- Grid bánh -->
-    <div class="row g-4 mt-5">
-      <!-- Cake 5 -->
-      <div class="col-md-3 col-sm-6">
-        <div class="card h-100 text-center">
-          <img src="../img/bdcake-5.jpg" class="card-img-top" alt="Birthday Cake 5">
-          <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.5</a></h6>
-            <p class="mb-3 flex-grow-1">
-              Delicious custom birthday cake with high-quality ingredients, perfect for celebrations.
-            </p>
-            <h5 class="fw-semibold">$45.99</h5>
-            <button class="btn btn-primary mt-2">Read More</button>
-            <button class="btn btn-primary mt-2"><i class="fas fa-shopping-cart me-2"></i>Add to cart</button>
-          </div>
+    <!-- Dropdown Sắp xếp -->
+    <div class="dropdown position-absolute" style="top: -90px; right: 55px">
+      <select class="form-select" style="width: 150px;">
+        <option>Mặc định</option>
+        <option>Giá tăng dần</option>
+        <option>Giá giảm dần</option>
+        <option>Tên A-Z</option>
+        <option>Tên Z-A</option>
+      </select>
+    </div>
+
+    <div class="dropdown position-absolute" style="top: -90px; right: 220px">
+      <select class="form-select" style="width: 120px;">
+        <option value="Số lượng">Số lượng</option>
+        <option value="8">8</option>
+        <option value="12">12</option>
+        <option value="16">16</option>
+      </select>
+    </div>
+
+
+
+    <!-- Main content: Advanced Search + Cake list -->
+    <div class="position-relative">
+      <!-- Advanced Search Section (đưa ra ngoài để nằm dưới nút Back) -->
+      <div class="card p-4 shadow-sm advanced-search position-absolute" style="top: 0; left: -300px;">
+        <h5 class="text-primary mb-3">
+          <i class="fas fa-search me-2"></i>Advanced Search
+        </h5>
+
+        <div class="mb-3">
+          <label for="searchName" class="form-label fw-semibold">Search by Name</label>
+          <input type="text" id="searchName" class="form-control" placeholder="Enter cake name..." />
+        </div>
+
+        <div class="mb-3">
+          <select class="form-select mb-2">
+            <option>All Categories</option>
+            <option>Birthday</option>
+            <option>Wedding</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="priceRange" class="form-label fw-semibold">Price Range:
+            <span id="priceValue" class="text-success fw-bold">0 ₫ - 5,000,000 ₫</span>
+          </label>
+          <input type="range" class="form-range" min="0" max="5000000" step="10000" id="priceRange" />
+        </div>
+
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary">
+            <i class="fas fa-filter me-2"></i>Filter
+          </button>
         </div>
       </div>
 
-      <!-- Cake 6 -->
-      <div class="col-md-3 col-sm-6">
-        <div class="card h-100 text-center">
-          <img src="../img/bdcake-6.jpg" class="card-img-top" alt="Birthday Cake 6">
-          <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.6</a></h6>
-            <p class="mb-3 flex-grow-1">
-              Delicious custom birthday cake with high-quality ingredients, perfect for celebrations.
-            </p>
-            <h5 class="fw-semibold">$45.99</h5>
-            <button class="btn btn-primary mt-2">Read More</button>
-            <button class="btn btn-primary mt-2"><i class="fas fa-shopping-cart me-2"></i>Add to cart</button>
-          </div>
-        </div>
-      </div>
 
-      <!-- Cake 7 -->
-      <div class="col-md-3 col-sm-6">
-        <div class="card h-100 text-center">
-          <img src="../img/bdcake-7.jpg" class="card-img-top" alt="Birthday Cake 7">
-          <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.7</a></h6>
-            <p class="mb-3 flex-grow-1">Delicious custom birthday cake with high-quality ingredients, perfect for
-              celebrations.</p>
-            <h5 class="fw-semibold">$45.99</h5>
-            <button class="btn btn-primary mt-2">Read More</button>
-            <button class="btn btn-primary mt-2"><i class="fas fa-shopping-cart me-2"></i>Add to cart</button>
-          </div>
-        </div>
-      </div>
+      <!-- Cake Grid -->
+      <div class="main-content">
+        <div class="cake-list">
+          <div class="cake-page d-flex flex-column">
 
-      <!-- Cake 8 -->
-      <div class="col-md-3 col-sm-6">
-        <div class="card h-100 text-center">
-          <img src="../img/bdcake-8.jpg" class="card-img-top" alt="Birthday Cake 8">
-          <div class="card-body d-flex flex-column">
-            <h6 class="fw-bold"><a href="#">Birthday Cake No.8</a></h6>
-            <p class="mb-3 flex-grow-1">Delicious custom birthday cake with high-quality ingredients, perfect for
-              celebrations.</p>
-            <h5 class="fw-semibold">$45.99</h5>
-            <button class="btn btn-primary mt-2">Read More</button>
-            <button class="btn btn-primary mt-2"><i class="fas fa-shopping-cart me-2"></i>Add to cart</button>
+
+            <!-- Hàng 2: Advanced Search + Cake list -->
+            <div class="d-flex align-items-start gap-4 flex-wrap">
+              <!-- Danh sách bánh -->
+              <div class="cake-list flex-grow-1">
+                <div class="row g-4">
+  <!-- Cake 9 -->
+  <div class="col-md-3 col-sm-6">
+    <div class="card h-100 text-center">
+      <img src="../img/bdcake-9.jpg" class="card-img-top" alt="Birthday Cake 9" />
+      <div class="card-body d-flex flex-column">
+        <h6 class="fw-bold"><a href="#">Bánh Sinh Nhật Matcha Kem Tươi</a></h6>
+        <p class="mb-3 flex-grow-1">
+          Bánh bông lan hương matcha Nhật Bản, phủ kem tươi nhẹ nhàng, trang trí bằng vụn hạnh nhân và lá bạc hà thơm mát.
+        </p>
+        <h5 class="fw-semibold">$47.99</h5>
+        <button class="btn btn-primary mt-2">Read More</button>
+        <button class="btn btn-primary mt-2">
+          <i class="fas fa-shopping-cart me-2"></i>Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cake 10 -->
+  <div class="col-md-3 col-sm-6">
+    <div class="card h-100 text-center">
+      <img src="../img/bdcake-10.jpg" class="card-img-top" alt="Birthday Cake 10" />
+      <div class="card-body d-flex flex-column">
+        <h6 class="fw-bold"><a href="#">Bánh Sinh Nhật Kem Phô Mai Việt Quất</a></h6>
+        <p class="mb-3 flex-grow-1">
+          Lớp bánh mềm mịn, xen kẽ kem phô mai béo ngậy và mứt việt quất chua ngọt, mang lại hương vị tinh tế và quyến rũ.
+        </p>
+        <h5 class="fw-semibold">$53.49</h5>
+        <button class="btn btn-primary mt-2">Read More</button>
+        <button class="btn btn-primary mt-2">
+          <i class="fas fa-shopping-cart me-2"></i>Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cake 11 -->
+  <div class="col-md-3 col-sm-6">
+    <div class="card h-100 text-center">
+      <img src="../img/bdcake-11.jpg" class="card-img-top" alt="Birthday Cake 11" />
+      <div class="card-body d-flex flex-column">
+        <h6 class="fw-bold"><a href="#">Bánh Sinh Nhật Oreo Kem Sữa</a></h6>
+        <p class="mb-3 flex-grow-1">
+          Kết hợp giữa bánh bông lan sô-cô-la, lớp kem sữa ngọt dịu và vụn bánh Oreo giòn tan – món quà ngọt ngào cho mọi lứa tuổi.
+        </p>
+        <h5 class="fw-semibold">$42.99</h5>
+        <button class="btn btn-primary mt-2">Read More</button>
+        <button class="btn btn-primary mt-2">
+          <i class="fas fa-shopping-cart me-2"></i>Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cake 12 -->
+  <div class="col-md-3 col-sm-6">
+    <div class="card h-100 text-center">
+      <img src="../img/bdcake-12.jpg" class="card-img-top" alt="Birthday Cake 12" />
+      <div class="card-body d-flex flex-column">
+        <h6 class="fw-bold"><a href="#">Bánh Sinh Nhật Kem Dừa Hạnh Nhân</a></h6>
+        <p class="mb-3 flex-grow-1">
+          Hương vị dừa nhiệt đới hòa cùng vị bùi béo của hạnh nhân rang, tạo nên chiếc bánh thơm ngon khó cưỡng.
+        </p>
+        <h5 class="fw-semibold">$48.99</h5>
+        <button class="btn btn-primary mt-2">Read More</button>
+        <button class="btn btn-primary mt-2">
+          <i class="fas fa-shopping-cart me-2"></i>Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cake 13 -->
+  <div class="col-md-3 col-sm-6">
+    <div class="card h-100 text-center">
+      <img src="../img/bdcake-13.jpg" class="card-img-top" alt="Birthday Cake 13" />
+      <div class="card-body d-flex flex-column">
+        <h6 class="fw-bold"><a href="#">Bánh Sinh Nhật Trà Sữa Trân Châu</a></h6>
+        <p class="mb-3 flex-grow-1">
+          Sáng tạo độc đáo từ hương vị trà sữa Đài Loan, bánh mềm, kem ngọt nhẹ và topping trân châu dẻo thơm hấp dẫn.
+        </p>
+        <h5 class="fw-semibold">$51.99</h5>
+        <button class="btn btn-primary mt-2">Read More</button>
+        <button class="btn btn-primary mt-2">
+          <i class="fas fa-shopping-cart me-2"></i>Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cake 14 -->
+  <div class="col-md-3 col-sm-6">
+    <div class="card h-100 text-center">
+      <img src="../img/bdcake-14.jpg" class="card-img-top" alt="Birthday Cake 14" />
+      <div class="card-body d-flex flex-column">
+        <h6 class="fw-bold"><a href="#">Bánh Sinh Nhật Dâu Tằm Kem Sữa Chua</a></h6>
+        <p class="mb-3 flex-grow-1">
+          Bánh dâu tằm chua nhẹ kết hợp cùng lớp kem sữa chua tươi, mang lại cảm giác thanh mát và lạ miệng.
+        </p>
+        <h5 class="fw-semibold">$49.49</h5>
+        <button class="btn btn-primary mt-2">Read More</button>
+        <button class="btn btn-primary mt-2">
+          <i class="fas fa-shopping-cart me-2"></i>Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cake 15 -->
+  <div class="col-md-3 col-sm-6">
+    <div class="card h-100 text-center">
+      <img src="../img/bdcake-15.jpg" class="card-img-top" alt="Birthday Cake 15" />
+      <div class="card-body d-flex flex-column">
+        <h6 class="fw-bold"><a href="#">Bánh Sinh Nhật Kem Cà Phê Espresso</a></h6>
+        <p class="mb-3 flex-grow-1">
+          Bánh bông lan hương cà phê espresso Ý, xen lẫn lớp kem cacao ngọt đắng – lựa chọn hoàn hảo cho người yêu cà phê.
+        </p>
+        <h5 class="fw-semibold">$55.99</h5>
+        <button class="btn btn-primary mt-2">Read More</button>
+        <button class="btn btn-primary mt-2">
+          <i class="fas fa-shopping-cart me-2"></i>Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cake 16 -->
+  <div class="col-md-3 col-sm-6">
+    <div class="card h-100 text-center">
+      <img src="../img/bdcake-16.jpg" class="card-img-top" alt="Birthday Cake 16" />
+      <div class="card-body d-flex flex-column">
+        <h6 class="fw-bold"><a href="#">Bánh Sinh Nhật Kem Dâu & Socola Trắng</a></h6>
+        <p class="mb-3 flex-grow-1">
+          Sự kết hợp tinh tế giữa dâu tươi và socola trắng, mang đến vị ngọt thanh và vẻ ngoài sang trọng cho bữa tiệc sinh nhật.
+        </p>
+        <h5 class="fw-semibold">$58.49</h5>
+        <button class="btn btn-primary mt-2">Read More</button>
+        <button class="btn btn-primary mt-2">
+          <i class="fas fa-shopping-cart me-2"></i>Add to cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+              </div>
+            </div>
           </div>
+
+
         </div>
       </div>
     </div>
+  </div>
+
+
   </div>
 
   <!-- Pagination -->
@@ -216,11 +358,17 @@
     <nav aria-label="Cake list pages">
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" href="birthday-cake-1.html">Previous</a>
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
         </li>
-        <li class="page-item"><a class="page-link" href="birthday-cake-1.html">1</a></li>
-        <li class="page-item active"><a class="page-link" href="birthday-cake-2.html">2</a></li>
-        <li class="page-item"><a class="page-link" href="birthday-cake-3.html">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="birthday-cake-1.html">1</a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="birthday-cake-2.html">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="birthday-cake-3.html">3</a>
+        </li>
         <li class="page-item">
           <a class="page-link" href="birthday-cake-3.html">Next</a>
         </li>
@@ -303,11 +451,23 @@
   </div>
   <!-- Footer End -->
 
+
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- Script -->
+  <script>
+    const priceRange = document.getElementById("priceRange");
+    const priceValue = document.getElementById("priceValue");
+
+    priceRange.addEventListener("input", () => {
+      const value = parseInt(priceRange.value).toLocaleString("vi-VN");
+      priceValue.textContent = `0 ₫ - ${value} ₫`;
+    });
+  </script>
 </body>
 
 </html>
