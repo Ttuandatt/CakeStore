@@ -104,9 +104,9 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <!-- Các menu đang có -->
         <div class="navbar-nav ms-auto mx-lg-auto py-0">
-          <a href="loggedin.html" class="nav-item nav-link">Home</a>
+          <a href="loggedin.html" class="nav-item nav-link active">Home</a>
           <a href="about.html" class="nav-item nav-link">About Us</a>
-          <a href="menu.html" class="nav-item nav-link active">Menu & Pricing</a>
+          <a href="menu.html" class="nav-item nav-link">Menu & Pricing</a>
           <a href="team.html" class="nav-item nav-link">Master Chefs</a>
           <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -139,7 +139,7 @@
               <a href="profile.html" class="dropdown-item">Thông tin</a>
               <a href="orders.html" class="dropdown-item">Đơn hàng</a>
               <div class="dropdown-divider"></div>
-              <a href="loggedin.html" class="dropdown-item">Đăng xuất</a>
+              <a href="../index.html" class="dropdown-item">Đăng xuất</a>
             </div>
           </div>
         </div>
@@ -147,11 +147,10 @@
     </div>
   </nav>
   <!-- Navbar End -->
-
   <div class="container mt-5">
     <div class="position-relative">
       <!-- Nút Back -->
-      <a href="birthday-cake-1.html" class="btn btn-outline-primary position-absolute m-3"
+      <a href="birthday-cake-1-logged.html" class="btn btn-outline-primary position-absolute m-3"
         style="top: -40px; left: -360px; z-index: 1000">
         ← Back
       </a>
@@ -197,9 +196,58 @@
           </div>
         </div>
         <button id="addToCartBtn" class="btn btn-primary btn-lg mt-4">
-            <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
-          </button>
+          <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+        </button>
       </div>
+      <!-- Product Description Tabs -->
+      <div class="mt-5">
+        <ul class="nav nav-tabs" id="cakeTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="mo-ta-tab" data-bs-toggle="tab" data-bs-target="#mo-ta" type="button"
+              role="tab" aria-controls="mo-ta" aria-selected="true">
+              MÔ TẢ
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="thong-tin-bo-sung-tab" data-bs-toggle="tab" data-bs-target="#thong-tin-bo-sung"
+              type="button" role="tab" aria-controls="thong-tin-bo-sung" aria-selected="false">
+              THÔNG TIN BỔ SUNG
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content p-3 border border-top-0" id="cakeTabsContent">
+          <!-- Tab MÔ TẢ -->
+          <div class="tab-pane fade show active" id="mo-ta" role="tabpanel" aria-labelledby="mo-ta-tab">
+            <p>Bánh sinh nhật tại CakeZone có độ ngọt vừa phải, thanh mát, dịu nhẹ, tươi ngon 100%.
+              Đặc biệt, bánh tại CakeZone không dùng phụ gia, hương liệu, chất bảo quản.
+              Bánh tươi 100% sản xuất theo quy trình Nhật Bản, đảm bảo vệ sinh an toàn thực phẩm.
+              Các nguyên liệu được nhập khẩu từ các thương hiệu nổi tiếng của nước ngoài,
+              mang đến cho khách hàng những hương vị bánh hào hạng, đẳng cấp.</p>
+
+            <p>CakeZone nhận đặt các loại bánh kem theo yêu cầu cho các dịp sinh nhật, tiệc hội nghị, liên hoan, các dịp
+              kỷ niệm, ngày cưới...</p>
+
+
+            <p>Bánh đi kèm hộp có tên và logo công ty được in trên vỏ hộp.</p>
+            <p>Đồ tặng kèm theo bánh sinh nhật gồm: Dao cắt bánh + Thìa + Đĩa.</p>
+
+            <p>CakeZone nhận chuyển bánh tận nhà, miễn phí trong vòng bán kính 5km trong khu vực TP.HCM với đơn hàng từ
+              300k trở lên và hỗ trợ gửi bánh miễn phí đến cửa hàng CakeZone gần khách hàng nhất!</p>
+          </div>
+
+          <!-- Tab THÔNG TIN BỔ SUNG -->
+          <div class="tab-pane fade" id="thong-tin-bo-sung" role="tabpanel" aria-labelledby="thong-tin-bo-sung-tab">
+            <ul>
+              <li>Kích thước: 16cm, 18cm, 22cm</li>
+              <li>Thành phần: Bột mì, trứng, đường, bột cacao, socola, bơ, kem tươi, dâu tây tươi</li>
+              <li>Xuất xứ: Việt Nam</li>
+              <li>Bảo quản: Ngăn mát tủ lạnh (0°C - 5°C)</li>
+              <li>Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
 
     </div>
   </div>

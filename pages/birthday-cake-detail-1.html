@@ -104,6 +104,28 @@
         color: #333;
         border: none;
       }
+
+      .nav-tabs .nav-link.active {
+        border-color: transparent transparent #e88f2a transparent;
+        color: #e88f2a;
+        font-weight: 600;
+      }
+
+      .nav-tabs .nav-link {
+        color: #333;
+      }
+
+      .nav-tabs .nav-link:hover {
+        color: #e88f2a;
+      }
+
+      .product-image {
+        width: 100%;
+        max-width: 450px;
+        height: auto;
+        border-radius: 12px;
+        object-fit: cover;
+      }
     </style>
   </head>
 
@@ -172,7 +194,6 @@
     </div>
   </nav>
   <!-- Navbar End -->
-
   <div class="container mt-5">
     <div class="position-relative">
       <!-- Nút Back -->
@@ -222,23 +243,63 @@
           </div>
         </div>
         <button id="addToCartBtn" class="btn btn-primary btn-lg mt-4">
-            <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
-          </button>
+          <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+        </button>
       </div>
+      <!-- Product Description Tabs -->
+      <div class="mt-5">
+        <ul class="nav nav-tabs" id="cakeTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="mo-ta-tab" data-bs-toggle="tab" data-bs-target="#mo-ta" type="button"
+              role="tab" aria-controls="mo-ta" aria-selected="true">
+              MÔ TẢ
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="thong-tin-bo-sung-tab" data-bs-toggle="tab" data-bs-target="#thong-tin-bo-sung"
+              type="button" role="tab" aria-controls="thong-tin-bo-sung" aria-selected="false">
+              THÔNG TIN BỔ SUNG
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content p-3 border border-top-0" id="cakeTabsContent">
+          <!-- Tab MÔ TẢ -->
+          <div class="tab-pane fade show active" id="mo-ta" role="tabpanel" aria-labelledby="mo-ta-tab">
+            <p>Bánh sinh nhật tại CakeZone có độ ngọt vừa phải, thanh mát, dịu nhẹ, tươi ngon 100%.
+              Đặc biệt, bánh tại CakeZone không dùng phụ gia, hương liệu, chất bảo quản.
+              Bánh tươi 100% sản xuất theo quy trình Nhật Bản, đảm bảo vệ sinh an toàn thực phẩm.
+              Các nguyên liệu được nhập khẩu từ các thương hiệu nổi tiếng của nước ngoài,
+              mang đến cho khách hàng những hương vị bánh hào hạng, đẳng cấp.</p>
+
+            <p>CakeZone nhận đặt các loại bánh kem theo yêu cầu cho các dịp sinh nhật, tiệc hội nghị, liên hoan, các dịp
+              kỷ niệm, ngày cưới...</p>
+
+
+            <p>Bánh đi kèm hộp có tên và logo công ty được in trên vỏ hộp.</p>
+            <p>Đồ tặng kèm theo bánh sinh nhật gồm: Dao cắt bánh + Thìa + Đĩa.</p>
+
+            <p>CakeZone nhận chuyển bánh tận nhà, miễn phí trong vòng bán kính 5km trong khu vực TP.HCM với đơn hàng từ
+              300k trở lên và hỗ trợ gửi bánh miễn phí đến cửa hàng CakeZone gần khách hàng nhất!</p>
+          </div>
+
+          <!-- Tab THÔNG TIN BỔ SUNG -->
+          <div class="tab-pane fade" id="thong-tin-bo-sung" role="tabpanel" aria-labelledby="thong-tin-bo-sung-tab">
+            <ul>
+              <li>Kích thước: 16cm, 18cm, 22cm</li>
+              <li>Thành phần: Bột mì, trứng, đường, bột cacao, socola, bơ, kem tươi, dâu tây tươi</li>
+              <li>Xuất xứ: Việt Nam</li>
+              <li>Bảo quản: Ngăn mát tủ lạnh (0°C - 5°C)</li>
+              <li>Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
 
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    function changeImage(event, src) {
-      document.getElementById("mainImage").src = src;
-      document
-        .querySelectorAll(".thumbnail")
-        .forEach((thumb) => thumb.classList.remove("active"));
-      event.target.classList.add("active");
-    }
-  </script>
+
 
   <!-- Footer Start -->
   <div class="container-fluid bg-img text-secondary" style="margin-top: 90px">
@@ -322,7 +383,16 @@
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function changeImage(event, src) {
+      document.getElementById("mainImage").src = src;
+      document
+        .querySelectorAll(".thumbnail")
+        .forEach((thumb) => thumb.classList.remove("active"));
+      event.target.classList.add("active");
+    }
+  </script>
   <!-- Bootstrap Modal -->
   <div class="modal fade" id="cartSuccessModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
