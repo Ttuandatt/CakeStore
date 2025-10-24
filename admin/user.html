@@ -1,674 +1,888 @@
 <!DOCTYPE html>
 <html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" type="image/png" href="../img/ryicon.jpg" />
+    <title>BookStore - Quản lý khách hàng</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link href="assets/css/pure-style-optimized.css" rel="stylesheet" />
+    <style>
+      /* Căn giữa cột Trạng thái */
+      td:nth-child(3) {
+        text-align: center;
+        /* Căn giữa ngang */
+        vertical-align: middle;
+        /* Căn giữa dọc */
+      }
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="icon" type="image/png" href="../img/ryicon.jpg" />
-  <title>BookStore - Quản lý khách hàng</title>
-  <link rel="stylesheet" type="text/css"
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
-  <link href="assets/css/pure-style-optimized.css" rel="stylesheet" />
-  <style>
-    /* Căn giữa cột Trạng thái */
-    td:nth-child(3) {
-      text-align: center;
-      /* Căn giữa ngang */
-      vertical-align: middle;
-      /* Căn giữa dọc */
-    }
+      /* Căn giữa các cột STT, Trạng thái, Hành động */
+      td:nth-child(1),
+      td:nth-child(3),
+      td:nth-child(5),
+      th:nth-child(1),
+      th:nth-child(3),
+      th:nth-child(5) {
+        text-align: center;
+        vertical-align: middle;
+      }
 
-    /* Căn giữa các cột STT, Trạng thái, Hành động */
-    td:nth-child(1),
-    td:nth-child(3),
-    td:nth-child(5),
-    th:nth-child(1),
-    th:nth-child(3),
-    th:nth-child(5) {
-      text-align: center;
-      vertical-align: middle;
-    }
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 50px;
+        padding: 4px 10px;
+        min-width: 105px;
+        line-height: 1;
+        /* ✅ Giúp ô không cao quá */
+        vertical-align: middle;
+        /* ✅ Căn giữa so với dòng */
+      }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: 50px;
-      padding: 4px 10px;
-      min-width: 105px;
-      line-height: 1;
-      /* ✅ Giúp ô không cao quá */
-      vertical-align: middle;
-      /* ✅ Căn giữa so với dòng */
-    }
+      .status-badge i {
+        font-size: 16px;
+        line-height: 1;
+        /* ✅ Giúp icon và chữ ngang hàng */
+        position: relative;
+        top: 1px;
+        /* ✅ Nhích icon lên 1px cho cân hơn */
+      }
 
-    .status-badge i {
-      font-size: 16px;
-      line-height: 1;
-      /* ✅ Giúp icon và chữ ngang hàng */
-      position: relative;
-      top: 1px;
-      /* ✅ Nhích icon lên 1px cho cân hơn */
-    }
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f0f2f5;
+        color: #344767;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
 
-    body {
-      font-family: "Roboto", sans-serif;
-      background-color: #f0f2f5;
-      color: #344767;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+      /* ==== Table ==== */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
 
-    /* ==== Table ==== */
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
+      thead {
+        background: linear-gradient(195deg, #2b2825, #2b2825);
+        color: white;
+      }
 
-    thead {
-      background: linear-gradient(195deg, #2b2825, #2b2825);
-      color: white;
-    }
+      th,
+      td {
+        padding: 14px 16px;
+        font-size: 14px;
+        text-align: left;
+        vertical-align: middle;
+        /* Thêm dòng này để căn giữa theo chiều dọc */
+      }
 
-    th,
-    td {
-      padding: 14px 16px;
-      font-size: 14px;
-      text-align: left;
-      vertical-align: middle;
-      /* Thêm dòng này để căn giữa theo chiều dọc */
-    }
-
-    /* Thêm style đặc biệt cho cột Tên và Trạng thái */
-    td:nth-child(2),
+      /* Thêm style đặc biệt cho cột Tên và Trạng thái */
+      td:nth-child(2),
     /* Cột Tên */
     td:nth-child(8)
 
-    /* Cột Trạng thái */
-      {
-      text-align: center;
-    }
-
-    tbody tr:nth-child(even) {
-      background-color: #fafafa;
-    }
-
-    tbody tr:hover {
-      background-color: #f3f4f8;
-      transition: 0.2s;
-    }
-
-    th {
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 0.5px;
-      text-align: center;
-      /* Căn giữa tiêu đề cột */
-    }
-
-    /* Căn giữa tiêu đề cho cột Tên và Trạng thái */
-    th:nth-child(2),
-    th:nth-child(8) {
-      text-align: center;
-    }
-
-    /* ==== Status Badge ==== */
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: 50px;
-      padding: 5px 12px;
-      min-width: 110px;
-      justify-content: center;
-    }
-
-    .status-active {
-      background-color: rgba(76, 175, 80, 0.1);
-      color: #2e7d32;
-      border: 1px solid #81c784;
-    }
-
-    .status-locked {
-      background-color: rgba(244, 67, 54, 0.1);
-      color: #c62828;
-      border: 1px solid #ef9a9a;
-    }
-
-    .material-icons-round {
-      margin-right: 5px;
-      color: #2e7d32;
-      font-size: 18px;
-      vertical-align: middle;
-    }
-
-    .material-icons-round-locked {
-      margin-right: 5px;
-      color: #c62828;
-      font-size: 18px;
-      vertical-align: middle;
-    }
-
-    /* ==== Actions ==== */
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 6px 10px;
-      border-radius: 6px;
-      border: none;
-      color: white;
-      font-size: 13px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .btn-edit {
-      background-color: #1976d2;
-    }
-
-    .btn-edit:hover {
-      background-color: #2196f3;
-    }
-
-    .btn-delete {
-      background-color: #e88f2a;
-    }
-
-    .btn-delete:hover {
-      background-color: #e88f2a;
-    }
-
-    /* Biểu tượng trạng thái hoạt động (chấm tròn xanh) */
-    .status-icon {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      vertical-align: middle;
-    }
-
-    .status-icon.active {
-      background-color: #4caf50;
-      /* xanh lá */
-    }
-
-    /* Biểu tượng khóa */
-    .lock-icon {
-      color: #c62828;
-      /* đỏ */
-      font-size: 20px;
-      vertical-align: middle;
-    }
-
-    .btn-view {
-      background-color: #0288d1;
-      /* xanh dương */
-    }
-
-    .btn-view:hover {
-      background-color: #03a9f4;
-    }
-
-    /* Icon con mắt màu trắng */
-    .btn-view .material-icons-round {
-      color: white !important;
-    }
-
-    /* Nút Khóa màu đỏ */
-    .btn-delete {
-      background-color: #c62828;
-      /* đỏ */
-    }
-
-    .btn-delete:hover {
-      background-color: #e53935;
-      /* đỏ nhạt hơn khi hover */
-    }
-
-    /* Icon khóa trong nút Khóa màu trắng */
-    .btn-delete .material-icons-round {
-      color: white !important;
-    }
-
-    /* ==== Popup xác nhận ==== */
-    .popup-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.4);
-      display: none;
-      /* Ẩn mặc định */
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
-    }
-
-    .popup-box {
-      background: white;
-      padding: 20px 25px;
-      border-radius: 8px;
-      text-align: center;
-      width: 350px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      animation: popupFade 0.2s ease-in-out;
-    }
-
-    .popup-box h3 {
-      margin-bottom: 10px;
-      color: #333;
-    }
-
-    .popup-box p {
-      font-size: 14px;
-      margin-bottom: 20px;
-      color: #555;
-    }
-
-    .popup-actions {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .popup-btn {
-      padding: 6px 14px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: 0.2s;
-    }
-
-    .popup-btn.ok {
-      background-color: #c62828;
-      color: white;
-    }
-
-    .popup-btn.ok:hover {
-      background-color: #e53935;
-    }
-
-    .popup-btn.cancel {
-      background-color: #ccc;
-    }
-
-    .popup-btn.cancel:hover {
-      background-color: #b0b0b0;
-    }
-
-    @keyframes popupFade {
-      from {
-        opacity: 0;
-        transform: scale(0.9);
+    /* Cột Trạng thái */ {
+        text-align: center;
       }
 
-      to {
-        opacity: 1;
-        transform: scale(1);
+      tbody tr:nth-child(even) {
+        background-color: #fafafa;
       }
-    }
 
-    /* Nút Mở khóa màu xanh lá */
-    .btn-unlock {
-      background-color: #2e7d32;
-      /* xanh lá */
-    }
+      tbody tr:hover {
+        background-color: #f3f4f8;
+        transition: 0.2s;
+      }
 
-    .btn-unlock:hover {
-      background-color: #43a047;
-      /* xanh lá nhạt khi hover */
-    }
+      th {
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        text-align: center;
+        /* Căn giữa tiêu đề cột */
+      }
 
-    /* Icon mở khóa màu trắng */
-    .btn-unlock .material-icons-round {
-      color: white !important;
-    }
+      /* Căn giữa tiêu đề cho cột Tên và Trạng thái */
+      th:nth-child(2),
+      th:nth-child(8) {
+        text-align: center;
+      }
 
-    /* Nút OK màu xanh lá khi mở khóa */
-    .popup-btn.ok.unlock {
-      background-color: #2e7d32;
-      /* xanh lá */
-    }
+      /* ==== Status Badge ==== */
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        border-radius: 50px;
+        padding: 5px 12px;
+        min-width: 110px;
+        justify-content: center;
+      }
 
-    .popup-btn.ok.unlock:hover {
-      background-color: #43a047;
-      /* xanh lá nhạt */
-    }
-  </style>
-</head>
+      .status-active {
+        background-color: rgba(76, 175, 80, 0.1);
+        color: #2e7d32;
+        border: 1px solid #81c784;
+      }
 
-<body>
-  <!-- SIDEBAR (Giữ nguyên như index.html) -->
-  <aside style="position: fixed; top: 0; left: 0; z-index: 1000; width: 250px; height: 100vh; background: linear-gradient(195deg, #2b2825, #2b2825); color: white; transition: all 0.3s ease; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.15);" id="sidenav-main">
-  <div style="padding: 1.5em 1rem;">
-    <a href="../pages/loggedin.html" target="_blank" style="display: flex; align-items: center; font-weight: 600; color: white; text-decoration: none;">
-      <span style="margin-left: 0.25rem; font-weight: 700;">CAKE ZONE</span>
-    </a>
-  </div>
-  <hr style="width: 100%; border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0;">
-  <div style="width: 100%; overflow-y: auto; height: 75vh;">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-      <li style="margin: 0.25rem 0;">
-        <a href="index.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none; background: linear-gradient(195deg,#e88f2a,#e88f2a); box-shadow: 0 4px 20px rgba(0,0,0,0.14),0 7px 10px -5px rgba(233,30,99,0.4);">
-          <i class="material-icons" style="font-size:20px; margin-right:10px;">dashboard</i> Tổng quan
+      .status-locked {
+        background-color: rgba(244, 67, 54, 0.1);
+        color: #c62828;
+        border: 1px solid #ef9a9a;
+      }
+
+      .material-icons-round {
+        margin-right: 5px;
+        color: #2e7d32;
+        font-size: 18px;
+        vertical-align: middle;
+      }
+
+      .material-icons-round-locked {
+        margin-right: 5px;
+        color: #c62828;
+        font-size: 18px;
+        vertical-align: middle;
+      }
+
+      /* ==== Actions ==== */
+      .actions {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: none;
+        color: white;
+        font-size: 13px;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .btn-edit {
+        background-color: #1976d2;
+      }
+
+      .btn-edit:hover {
+        background-color: #2196f3;
+      }
+
+      .btn-delete {
+        background-color: #e88f2a;
+      }
+
+      .btn-delete:hover {
+        background-color: #e88f2a;
+      }
+
+      /* Biểu tượng trạng thái hoạt động (chấm tròn xanh) */
+      .status-icon {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        vertical-align: middle;
+      }
+
+      .status-icon.active {
+        background-color: #4caf50;
+        /* xanh lá */
+      }
+
+      /* Biểu tượng khóa */
+      .lock-icon {
+        color: #c62828;
+        /* đỏ */
+        font-size: 20px;
+        vertical-align: middle;
+      }
+
+      .btn-view {
+        background-color: #0288d1;
+        /* xanh dương */
+      }
+
+      .btn-view:hover {
+        background-color: #03a9f4;
+      }
+
+      /* Icon con mắt màu trắng */
+      .btn-view .material-icons-round {
+        color: white !important;
+      }
+
+      /* Nút Khóa màu đỏ */
+      .btn-delete {
+        background-color: #c62828;
+        /* đỏ */
+      }
+
+      .btn-delete:hover {
+        background-color: #e53935;
+        /* đỏ nhạt hơn khi hover */
+      }
+
+      /* Icon khóa trong nút Khóa màu trắng */
+      .btn-delete .material-icons-round {
+        color: white !important;
+      }
+
+      /* ==== Popup xác nhận ==== */
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: none;
+        /* Ẩn mặc định */
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+      }
+
+      .popup-box {
+        background: white;
+        padding: 20px 25px;
+        border-radius: 8px;
+        text-align: center;
+        width: 350px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        animation: popupFade 0.2s ease-in-out;
+      }
+
+      .popup-box h3 {
+        margin-bottom: 10px;
+        color: #333;
+      }
+
+      .popup-box p {
+        font-size: 14px;
+        margin-bottom: 20px;
+        color: #555;
+      }
+
+      .popup-actions {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .popup-btn {
+        padding: 6px 14px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.2s;
+      }
+
+      .popup-btn.ok {
+        background-color: #c62828;
+        color: white;
+      }
+
+      .popup-btn.ok:hover {
+        background-color: #e53935;
+      }
+
+      .popup-btn.cancel {
+        background-color: #ccc;
+      }
+
+      .popup-btn.cancel:hover {
+        background-color: #b0b0b0;
+      }
+
+      @keyframes popupFade {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      /* Nút Mở khóa màu xanh lá */
+      .btn-unlock {
+        background-color: #2e7d32;
+        /* xanh lá */
+      }
+
+      .btn-unlock:hover {
+        background-color: #43a047;
+        /* xanh lá nhạt khi hover */
+      }
+
+      /* Icon mở khóa màu trắng */
+      .btn-unlock .material-icons-round {
+        color: white !important;
+      }
+
+      /* Nút OK màu xanh lá khi mở khóa */
+      .popup-btn.ok.unlock {
+        background-color: #2e7d32;
+        /* xanh lá */
+      }
+
+      .popup-btn.ok.unlock:hover {
+        background-color: #43a047;
+        /* xanh lá nhạt */
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- SIDEBAR (Giữ nguyên như index.html) -->
+    <aside
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 250px;
+        height: 100vh;
+        background: linear-gradient(195deg, #2b2825, #2b2825);
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.15);
+      "
+      id="sidenav-main"
+    >
+      <div style="padding: 1.5em 1rem">
+        <a
+          href="../pages/loggedin.html"
+          target="_blank"
+          style="
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+          "
+        >
+          <span style="margin-left: 0.25rem; font-weight: 700">CAKE ZONE</span>
         </a>
-      </li>
+      </div>
+      <hr
+        style="
+          width: 100%;
+          border: none;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          margin: 1rem 0;
+        "
+      />
+      <div style="width: 100%; overflow-y: auto; height: 75vh">
+        <ul style="list-style: none; padding: 0; margin: 0">
+          <li style="margin: 0.25rem 0">
+            <a
+              href="index.html"
+              style="
+                display: flex;
+                align-items: center;
+                padding: 0.75rem 1rem;
+                color: white;
+                border-radius: 0.375rem;
+                text-decoration: none;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14),
+                  0 7px 10px -5px rgba(233, 30, 99, 0.4);
+              "
+            >
+              <i
+                class="material-icons"
+                style="font-size: 20px; margin-right: 10px"
+                >dashboard</i
+              >
+              Tổng quan
+            </a>
+          </li>
 
-      <!-- Quản lý khách hàng có submenu -->
-                <li style="margin: 0.25rem 0;">
-                    <a href="javascript:void(0);" onclick="toggleSubMenu()"
-                        style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none;">
-                        <span style="display: flex; align-items: center;">
-                            <i class="material-icons" style="font-size:20px; margin-right:10px;">weekend</i> Khách hàng
-                        </span>
-                        <i class="material-icons" id="submenu-arrow"
-                            style="font-size:18px; transition: transform 0.3s;">expand_more</i>
-                    </a>
-                    <ul id="submenu" style="list-style:none; padding-left:2rem; margin:0; display:none;">
-                        <li style="margin: 0.25rem 0;">
-                            <a href="user.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">Danh
-                                sách khách hàng</a>
-                        </li>
-                        <li style="margin: 0.25rem 0;">
-                            <a href="order.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">Quản
-                                lý đơn hàng</a>
-                        </li>
-                    </ul>
-                </li>
+          <!-- Quản lý khách hàng có submenu -->
+          <li style="margin: 0.25rem 0">
+            <a
+              href="javascript:void(0);"
+              onclick="toggleSubMenu()"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0.75rem 1rem;
+                color: white;
+                border-radius: 0.375rem;
+                text-decoration: none;
+              "
+            >
+              <span style="display: flex; align-items: center">
+                <i
+                  class="material-icons"
+                  style="font-size: 20px; margin-right: 10px"
+                  >weekend</i
+                >
+                Khách hàng
+              </span>
+              <i
+                class="material-icons"
+                id="submenu-arrow"
+                style="font-size: 18px; transition: transform 0.3s"
+                >expand_more</i
+              >
+            </a>
+            <ul
+              id="submenu"
+              style="
+                list-style: none;
+                padding-left: 2rem;
+                margin: 0;
+                display: none;
+              "
+            >
+              <li style="margin: 0.25rem 0">
+                <a
+                  href="user.html"
+                  style="
+                    display: block;
+                    padding: 0.5rem 0.75rem;
+                    color: white;
+                    border-radius: 0.375rem;
+                    text-decoration: none;
+                    background: linear-gradient(195deg, #e88f2a, #e88f2a);
+                  "
+                  >Danh sách khách hàng</a
+                >
+              </li>
+              <li style="margin: 0.25rem 0">
+                <a
+                  href="order.html"
+                  style="
+                    display: block;
+                    padding: 0.5rem 0.75rem;
+                    color: white;
+                    border-radius: 0.375rem;
+                    text-decoration: none;
+                  "
+                  >Quản lý đơn hàng</a
+                >
+              </li>
+            </ul>
+          </li>
 
-                <!-- Quản lý sản phẩm có submenu -->
-                <li style="margin: 0.25rem 0;">
-                    <a href="javascript:void(0);" onclick="toggleSubMenu('product-submenu', 'product-arrow')"
-                        style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none;">
-                        <span style="display: flex; align-items: center;">
-                            <i class="material-icons" style="font-size:20px; margin-right:10px;">table_view</i> Sản phẩm
-                        </span>
-                        <i class="material-icons" id="product-arrow"
-                            style="font-size:18px; transition: transform 0.3s;">expand_more</i>
-                    </a>
+          <!-- Quản lý sản phẩm có submenu -->
+          <li style="margin: 0.25rem 0">
+            <a
+              href="javascript:void(0);"
+              onclick="toggleSubMenu('product-submenu', 'product-arrow')"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0.75rem 1rem;
+                color: white;
+                border-radius: 0.375rem;
+                text-decoration: none;
+              "
+            >
+              <span style="display: flex; align-items: center">
+                <i
+                  class="material-icons"
+                  style="font-size: 20px; margin-right: 10px"
+                  >table_view</i
+                >
+                Sản phẩm
+              </span>
+              <i
+                class="material-icons"
+                id="product-arrow"
+                style="font-size: 18px; transition: transform 0.3s"
+                >expand_more</i
+              >
+            </a>
 
-                    <ul id="product-submenu" style="list-style:none; padding-left:2rem; margin:0; display:none;">
-                        <li style="margin: 0.25rem 0;">
-                            <a href="products.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                                Danh sách sản phẩm
-                            </a>
-                        </li>
-                        <li style="margin: 0.25rem 0;">
-                            <a href="phieunhap.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                                Quản lý nhập
-                            </a>
-                        </li>
-                        <li style="margin: 0.25rem 0;">
-                            <a href="giaban.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                                Quản lý giá bán
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+            <ul
+              id="product-submenu"
+              style="
+                list-style: none;
+                padding-left: 2rem;
+                margin: 0;
+                display: none;
+              "
+            >
+              <li style="margin: 0.25rem 0">
+                <a
+                  href="products.html"
+                  style="
+                    display: block;
+                    padding: 0.5rem 0.75rem;
+                    color: white;
+                    border-radius: 0.375rem;
+                    text-decoration: none;
+                  "
+                >
+                  Danh sách sản phẩm
+                </a>
+              </li>
+              <li style="margin: 0.25rem 0">
+                <a
+                  href="phieunhap.html"
+                  style="
+                    display: block;
+                    padding: 0.5rem 0.75rem;
+                    color: white;
+                    border-radius: 0.375rem;
+                    text-decoration: none;
+                  "
+                >
+                  Quản lý nhập
+                </a>
+              </li>
+              <li style="margin: 0.25rem 0">
+                <a
+                  href="giaban.html"
+                  style="
+                    display: block;
+                    padding: 0.5rem 0.75rem;
+                    color: white;
+                    border-radius: 0.375rem;
+                    text-decoration: none;
+                  "
+                >
+                  Quản lý giá bán
+                </a>
+              </li>
+            </ul>
+          </li>
 
+          <!-- Quản lý đầu bếp có submenu -->
+          <li style="margin: 0.25rem 0">
+            <a
+              href="javascript:void(0);"
+              onclick="toggleSubMenu('chef-submenu', 'chef-arrow')"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0.75rem 1rem;
+                color: white;
+                border-radius: 0.375rem;
+                text-decoration: none;
+              "
+            >
+              <span style="display: flex; align-items: center">
+                <i
+                  class="material-icons"
+                  style="font-size: 20px; margin-right: 10px"
+                  >table_view</i
+                >
+                Đầu bếp
+              </span>
+              <i
+                class="material-icons"
+                id="chef-arrow"
+                style="font-size: 18px; transition: transform 0.3s"
+                >expand_more</i
+              >
+            </a>
 
-                <!-- Quản lý đầu bếp có submenu -->
-                <li style="margin: 0.25rem 0;">
-                    <a href="javascript:void(0);" onclick="toggleSubMenu('chef-submenu', 'chef-arrow')"
-                        style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none;">
-                        <span style="display: flex; align-items: center;">
-                            <i class="material-icons" style="font-size:20px; margin-right:10px;">table_view</i> Đầu bếp
-                        </span>
-                        <i class="material-icons" id="chef-arrow"
-                            style="font-size:18px; transition: transform 0.3s;">expand_more</i>
-                    </a>
+            <ul
+              id="chef-submenu"
+              style="
+                list-style: none;
+                padding-left: 2rem;
+                margin: 0;
+                display: none;
+              "
+            >
+              <li style="margin: 0.25rem 0">
+                <a
+                  href="chef.html"
+                  style="
+                    display: block;
+                    padding: 0.5rem 0.75rem;
+                    color: white;
+                    border-radius: 0.375rem;
+                    text-decoration: none;
+                  "
+                >
+                  Danh sách đầu bếp
+                </a>
+              </li>
+              <li style="margin: 0.25rem 0">
+                <a
+                  href="salary.html"
+                  style="
+                    display: block;
+                    padding: 0.5rem 0.75rem;
+                    color: white;
+                    border-radius: 0.375rem;
+                    text-decoration: none;
+                  "
+                >
+                  Quản lý lương
+                </a>
+              </li>
+            </ul>
+          </li>
 
-                    <ul id="chef-submenu" style="list-style:none; padding-left:2rem; margin:0; display:none;">
-                        <li style="margin: 0.25rem 0;">
-                            <a href="chef.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                                Danh sách đầu bếp
-                            </a>
-                        </li>
-                        <li style="margin: 0.25rem 0;">
-                            <a href="salary.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                                Quản lý lương
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+          <!-- Nút Đăng xuất ngay dưới menu Đầu bếp -->
+          <li style="margin-top: 1rem; text-align: center">
+            <a
+              href="../index.html"
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                gap: 8px;
+                background: linear-gradient(195deg, #2b2825, #2b2825);
+                color: white;
+                padding: 0.625rem 1.5rem;
+                font-size: 0.875rem;
+                border-radius: 0.25rem;
+                text-decoration: none;
+                width: 80%;
+              "
+            >
+              <i class="material-icons" style="font-size: 18px">logout</i>
+              <span>Đăng xuất</span>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-                <!-- Nút Đăng xuất ngay dưới menu Đầu bếp -->
-                <li style="margin-top: 1rem; text-align: center;">
-                    <a href="../index.html" style="
-                        display: flex;
-                        align-items: center;
-                        justify-content: left;
-                        gap: 8px;
-                        background: linear-gradient(195deg, #2b2825, #2b2825);
-                        color: white;
-                        padding: 0.625rem 1.5rem;
-                        font-size: 0.875rem;
-                        border-radius: 0.25rem;
-                        text-decoration: none;
-                        width: 80%;
-                    ">
-                        <i class="material-icons" style="font-size:18px;">logout</i>
-                        <span>Đăng xuất</span>
-                    </a>
-                </li>
-    </ul>
-  </div>
+      <div style="position: absolute; width: 100%; bottom: 0; padding: 1rem">
+        <a
+          href="../index.html"
+          style="
+            display: inline-block;
+            background: linear-gradient(195deg, #e88f2a, #e88f2a);
+            color: white;
+            padding: 0.625rem 1.5rem;
+            font-size: 0.875rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            width: 100%;
+            text-align: center;
+          "
+          >Đăng xuất</a
+        >
+      </div>
+    </aside>
 
-  <div style="position: absolute; width: 100%; bottom: 0; padding: 1rem;">
-    <a href="../index.html" style="display: inline-block; background: linear-gradient(195deg, #e88f2a, #e88f2a); color: white; padding: 0.625rem 1.5rem; font-size: 0.875rem; border-radius: 0.25rem; text-decoration: none; width: 100%; text-align: center;">Đăng xuất</a>
-  </div>
-</aside>
-
-  <!-- MAIN -->
-  <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem">
-    <nav style="
+    <!-- MAIN -->
+    <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem">
+      <nav
+        style="
           margin-bottom: 1.5rem;
           padding: 0.75rem 1.5rem;
           border-radius: 0.75rem;
           box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
             0 2px 4px -1px rgba(0, 0, 0, 0.06);
           background-color: white;
-        ">
-      <ol style="list-style: none; margin: 0; padding: 0">
-        <li style="color: #2b2825; font-size: 1rem; font-weight: 600">
-          Quản lý khách hàng
-        </li>
-      </ol>
-    </nav>
+        "
+      >
+        <ol style="list-style: none; margin: 0; padding: 0">
+          <li style="color: #2b2825; font-size: 1rem; font-weight: 600">
+            Quản lý khách hàng
+          </li>
+        </ol>
+      </nav>
 
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Tên</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Nguyễn Văn A<br /></td>
-            <td>
-              <span class="status-icon active"></span>
-            </td>
-            <td>
-              <div class="actions">
-                <button class="btn btn-view">
-                  <i class="material-icons-round">visibility</i>Xem chi tiết
-                </button>
-                <button class="btn btn-delete">
-                  <i class="material-icons-round">lock</i>Khóa
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Trần Thị B<br /></td>
-            <td>
-              <span class="status-icon active"></span>
-            </td>
-            <td>
-              <div class="actions">
-                <button class="btn btn-view">
-                  <i class="material-icons-round">visibility</i>Xem chi tiết
-                </button>
-                <button class="btn btn-delete">
-                  <i class="material-icons-round">lock</i>Khóa
-                </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Lê Văn C<br /></td>
-            <td><i class="material-icons-round lock-icon">lock</i></td>
-            <td>
-              <div class="actions">
-                <button class="btn btn-view">
-                  <i class="material-icons-round">visibility</i>Xem chi tiết
-                </button>
-                <button class="btn btn-delete">
-                  <i class="material-icons-round">lock</i>Khóa
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
-  <script>
-    // Lấy tất cả các nút có class .btn-edit
-    const editButtons = document.querySelectorAll(".btn-edit");
-    const deletebuttons = document.querySelectorAll(".btn-delete");
-    // Gắn sự kiện click cho từng nút
-    editButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        window.location.href = "edit-user.html";
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tên</th>
+              <th>Trạng thái</th>
+              <th>Hành động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Nguyễn Văn A<br /></td>
+              <td>
+                <span class="status-icon active"></span>
+              </td>
+              <td>
+                <div class="actions">
+                  <button class="btn btn-view">
+                    <i class="material-icons-round">visibility</i>Xem chi tiết
+                  </button>
+                  <button class="btn btn-delete">
+                    <i class="material-icons-round">lock</i>Khóa
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Trần Thị B<br /></td>
+              <td>
+                <span class="status-icon active"></span>
+              </td>
+              <td>
+                <div class="actions">
+                  <button class="btn btn-view">
+                    <i class="material-icons-round">visibility</i>Xem chi tiết
+                  </button>
+                  <button class="btn btn-delete">
+                    <i class="material-icons-round">lock</i>Khóa
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Lê Văn C<br /></td>
+              <td><i class="material-icons-round lock-icon">lock</i></td>
+              <td>
+                <div class="actions">
+                  <button class="btn btn-view">
+                    <i class="material-icons-round">visibility</i>Xem chi tiết
+                  </button>
+                  <button class="btn btn-delete">
+                    <i class="material-icons-round">lock</i>Khóa
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <script>
+      // Lấy tất cả các nút có class .btn-edit
+      const editButtons = document.querySelectorAll(".btn-edit");
+      const deletebuttons = document.querySelectorAll(".btn-delete");
+      // Gắn sự kiện click cho từng nút
+      editButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          window.location.href = "edit-user.html";
+        });
       });
-    });
-  </script>
+    </script>
 
-  <!-- Popup xác nhận -->
-  <div id="confirmPopup" class="popup-overlay">
-    <div class="popup-box">
-      <h3>Xác nhận khóa người dùng</h3>
-      <p>Bạn có chắc chắn muốn khóa người dùng này không?</p>
-      <div class="popup-actions">
-        <button id="confirmOk" class="popup-btn ok">OK</button>
-        <button id="confirmCancel" class="popup-btn cancel">Hủy</button>
+    <!-- Popup xác nhận -->
+    <div id="confirmPopup" class="popup-overlay">
+      <div class="popup-box">
+        <h3>Xác nhận khóa người dùng</h3>
+        <p>Bạn có chắc chắn muốn khóa người dùng này không?</p>
+        <div class="popup-actions">
+          <button id="confirmOk" class="popup-btn ok">OK</button>
+          <button id="confirmCancel" class="popup-btn cancel">Hủy</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script>
-    const popup = document.getElementById("confirmPopup");
-    const okBtn = document.getElementById("confirmOk");
-    const cancelBtn = document.getElementById("confirmCancel");
+    <script>
+      const popup = document.getElementById("confirmPopup");
+      const okBtn = document.getElementById("confirmOk");
+      const cancelBtn = document.getElementById("confirmCancel");
 
-    let currentRow = null;
-    let currentAction = ""; // "lock" hoặc "unlock"
+      let currentRow = null;
+      let currentAction = ""; // "lock" hoặc "unlock"
 
-    // Hàm gắn sự kiện cho các nút
-    function attachButtonEvents() {
-      // 1️⃣ Khóa / Mở khóa
-      const buttons = document.querySelectorAll(".btn-delete, .btn-unlock");
-      buttons.forEach((button) => {
-        button.addEventListener("click", (e) => {
-          e.preventDefault();
-          currentRow = button.closest("tr");
+      // Hàm gắn sự kiện cho các nút
+      function attachButtonEvents() {
+        // 1️⃣ Khóa / Mở khóa
+        const buttons = document.querySelectorAll(".btn-delete, .btn-unlock");
+        buttons.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            e.preventDefault();
+            currentRow = button.closest("tr");
 
-          if (button.classList.contains("btn-unlock")) {
-            // Mở khóa
-            currentAction = "unlock";
-            popup.querySelector("h3").textContent =
-              "Xác nhận mở khóa người dùng";
-            popup.querySelector("p").textContent =
-              "Bạn có chắc chắn muốn mở khóa người dùng này không?";
-            okBtn.textContent = "OK";
-            okBtn.classList.remove("ok");
-            okBtn.classList.add("ok", "unlock"); // xanh lá
-          } else {
-            // Khóa
-            currentAction = "lock";
-            popup.querySelector("h3").textContent =
-              "Xác nhận khóa người dùng";
-            popup.querySelector("p").textContent =
-              "Bạn có chắc chắn muốn khóa người dùng này không?";
-            okBtn.textContent = "OK";
-            okBtn.classList.remove("unlock");
-            okBtn.classList.add("ok"); // đỏ
-          }
+            if (button.classList.contains("btn-unlock")) {
+              // Mở khóa
+              currentAction = "unlock";
+              popup.querySelector("h3").textContent =
+                "Xác nhận mở khóa người dùng";
+              popup.querySelector("p").textContent =
+                "Bạn có chắc chắn muốn mở khóa người dùng này không?";
+              okBtn.textContent = "OK";
+              okBtn.classList.remove("ok");
+              okBtn.classList.add("ok", "unlock"); // xanh lá
+            } else {
+              // Khóa
+              currentAction = "lock";
+              popup.querySelector("h3").textContent =
+                "Xác nhận khóa người dùng";
+              popup.querySelector("p").textContent =
+                "Bạn có chắc chắn muốn khóa người dùng này không?";
+              okBtn.textContent = "OK";
+              okBtn.classList.remove("unlock");
+              okBtn.classList.add("ok"); // đỏ
+            }
 
-          popup.style.display = "flex";
+            popup.style.display = "flex";
+          });
         });
-      });
 
-      // 2️⃣ Xem chi tiết
-      const viewButtons = document.querySelectorAll(".btn-view");
-      viewButtons.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const userName = btn
-            .closest("tr")
-            .querySelector("td:nth-child(2)")
-            .textContent.trim();
+        // 2️⃣ Xem chi tiết
+        const viewButtons = document.querySelectorAll(".btn-view");
+        viewButtons.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const userName = btn
+              .closest("tr")
+              .querySelector("td:nth-child(2)")
+              .textContent.trim();
 
-          // Tạo tên file theo tên user
-          // Ví dụ: "Nguyễn Văn A" → "user-detail-nguyenvana.html"
-          const fileName =
-            "user-detail-" +
-            userName
-              .normalize("NFD") // bỏ dấu tiếng Việt
-              .replace(/[\u0300-\u036f]/g, "")
-              .toLowerCase()
-              .replace(/\s+/g, ""); // bỏ khoảng trắng
+            // Tạo tên file theo tên user
+            // Ví dụ: "Nguyễn Văn A" → "user-detail-nguyenvana.html"
+            const fileName =
+              "user-detail-" +
+              userName
+                .normalize("NFD") // bỏ dấu tiếng Việt
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .replace(/\s+/g, ""); // bỏ khoảng trắng
 
-          window.location.href = `${fileName}.html`;
+            window.location.href = `${fileName}.html`;
+          });
         });
-      });
-    }
+      }
 
-    // Khi nhấn OK trong popup
-    okBtn.addEventListener("click", () => {
-      popup.style.display = "none";
-      if (!currentRow) return;
+      // Khi nhấn OK trong popup
+      okBtn.addEventListener("click", () => {
+        popup.style.display = "none";
+        if (!currentRow) return;
 
-      const statusCell = currentRow.querySelector("td:nth-child(3)");
-      const actionCell = currentRow.querySelector(".actions");
+        const statusCell = currentRow.querySelector("td:nth-child(3)");
+        const actionCell = currentRow.querySelector(".actions");
 
-      if (currentAction === "lock") {
-        // 🔒 Khóa người dùng
-        statusCell.innerHTML = `<i class="material-icons-round lock-icon">lock</i>`;
-        actionCell.innerHTML = `
+        if (currentAction === "lock") {
+          // 🔒 Khóa người dùng
+          statusCell.innerHTML = `<i class="material-icons-round lock-icon">lock</i>`;
+          actionCell.innerHTML = `
         <button class="btn btn-view">
           <i class="material-icons-round">visibility</i>Xem chi tiết
         </button>
@@ -676,10 +890,10 @@
           <i class="material-icons-round">lock_open</i>Mở khóa
         </button>
       `;
-      } else if (currentAction === "unlock") {
-        // 🔓 Mở khóa người dùng
-        statusCell.innerHTML = `<span class="status-icon active"></span>`;
-        actionCell.innerHTML = `
+        } else if (currentAction === "unlock") {
+          // 🔓 Mở khóa người dùng
+          statusCell.innerHTML = `<span class="status-icon active"></span>`;
+          actionCell.innerHTML = `
         <button class="btn btn-view">
           <i class="material-icons-round">visibility</i>Xem chi tiết
         </button>
@@ -687,56 +901,55 @@
           <i class="material-icons-round">lock</i>Khóa
         </button>
       `;
-      }
+        }
 
-      // Gắn lại sự kiện cho các nút mới
+        // Gắn lại sự kiện cho các nút mới
+        attachButtonEvents();
+
+        currentRow = null;
+        currentAction = "";
+      });
+
+      // Khi nhấn Hủy
+      cancelBtn.addEventListener("click", () => {
+        popup.style.display = "none";
+        currentRow = null;
+        currentAction = "";
+      });
+
+      // Gọi lúc đầu
       attachButtonEvents();
+    </script>
 
-      currentRow = null;
-      currentAction = "";
-    });
+    <script>
+      // Duyệt qua tất cả các hàng trong bảng
+      document.querySelectorAll("tbody tr").forEach((row) => {
+        const statusCell = row.querySelector("td:nth-child(3)");
+        const lockIcon = statusCell.querySelector(".lock-icon");
+        const lockButton = row.querySelector(".btn-delete i");
+        const lockButtonText = row.querySelector(".btn-delete");
 
-    // Khi nhấn Hủy
-    cancelBtn.addEventListener("click", () => {
-      popup.style.display = "none";
-      currentRow = null;
-      currentAction = "";
-    });
+        // Nếu có biểu tượng khóa (tức là bị khóa)
+        if (lockIcon) {
+          // Đổi icon trên nút
+          lockButton.textContent = "lock_open";
+          // Đổi chữ trên nút
+          lockButtonText.lastChild.textContent = "Mở khóa";
+          // Thay class đổi màu nút
+          lockButtonText.classList.remove("btn-delete");
+          lockButtonText.classList.add("btn-unlock");
+        }
+      });
+    </script>
 
-    // Gọi lúc đầu
-    attachButtonEvents();
-  </script>
-
-  <script>
-    // Duyệt qua tất cả các hàng trong bảng
-    document.querySelectorAll("tbody tr").forEach((row) => {
-      const statusCell = row.querySelector("td:nth-child(3)");
-      const lockIcon = statusCell.querySelector(".lock-icon");
-      const lockButton = row.querySelector(".btn-delete i");
-      const lockButtonText = row.querySelector(".btn-delete");
-
-      // Nếu có biểu tượng khóa (tức là bị khóa)
-      if (lockIcon) {
-        // Đổi icon trên nút
-        lockButton.textContent = "lock_open";
-        // Đổi chữ trên nút
-        lockButtonText.lastChild.textContent = "Mở khóa";
-        // Thay class đổi màu nút
-        lockButtonText.classList.remove("btn-delete");
-        lockButtonText.classList.add("btn-unlock");
+    <script>
+      function toggleSubMenu() {
+        const submenu = document.getElementById("submenu");
+        const arrow = document.getElementById("submenu-arrow");
+        const isOpen = submenu.style.display === "block";
+        submenu.style.display = isOpen ? "none" : "block";
+        arrow.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
       }
-    });
-  </script>
-
-  <script>
-    function toggleSubMenu() {
-      const submenu = document.getElementById('submenu');
-      const arrow = document.getElementById('submenu-arrow');
-      const isOpen = submenu.style.display === 'block';
-      submenu.style.display = isOpen ? 'none' : 'block';
-      arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
-    }
-  </script>
-</body>
-
+    </script>
+  </body>
 </html>
