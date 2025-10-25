@@ -374,15 +374,17 @@
 
   <!-- MAIN -->
   <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem;">
-    <nav
-      style="margin-bottom: 1.5rem; background:white; padding:1rem 1.5rem; border-radius:0.75rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-      <span style="color:#2b2825; font-weight:600;">Quản lý đơn hàng</span>
-    </nav>
 
     <!-- Search Form -->
     <div class="search-form">
       <h3 style="margin-top: 0; color: #344767; margin-bottom: 1.5rem;">Tra cứu đơn hàng</h3>
       <div class="form-row">
+        <div class="form-col">
+          <div class="form-group">
+            <label class="form-label" for="from-date">Từ khóa</label>
+            <input type="text" id="keyword" class="form-control" placeholder="Nhập từ khóa...">
+          </div>
+        </div>
         <div class="form-col">
           <div class="form-group">
             <label class="form-label" for="from-date">Từ ngày</label>
@@ -397,13 +399,12 @@
         </div>
         <div class="form-col">
           <div class="form-group">
-            <label class="form-label" for="order-status">Tình trạng đơn hàng</label>
+            <label class="form-label" for="order-status">Trạng thái</label>
             <select id="order-status" class="form-control">
               <option value="">Tất cả trạng thái</option>
-              <option value="pending">Đã đặt</option>
               <option value="processing">Đang xử lý</option>
-              <option value="delivering">Đang giao</option>
-              <option value="completed">Hoàn tất</option>
+              <option value="delivering">Đang giao hàng</option>
+              <option value="completed">Đã giao hàng</option>
               <option value="cancelled">Đã hủy</option>
             </select>
           </div>

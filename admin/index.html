@@ -1,551 +1,1168 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="../img/ryicon.jpg">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" type="image/png" href="../img/ryicon.jpg" />
     <title>BookStore</title>
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
     <link href="assets/css/pure-style-optimized.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      aside ul li a:hover,
+      aside li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.2s ease;
+        color: white;
+      }
 
-</head>
+      .logout-btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background: linear-gradient(195deg, #202021, #202021);
+        color: white;
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        border-radius: 0.25rem;
+        text-decoration: none;
+        width: 100%;
+        margin: 0 auto;
+        transition: all 0.3s ease;
+      }
 
-<body
-    style="font-family: 'Roboto', sans-serif; background-color: #f0f2f5; color: #344767; line-height: 1.6; overflow-x: hidden;">
+      .logout-btn:hover {
+        background: linear-gradient(195deg, #2c2c2e, #2c2c2e);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body
+    style="
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f2f5;
+      color: #344767;
+      line-height: 1.6;
+      overflow-x: hidden;
+    "
+  >
+    <!-- SIDEBAR -->
     <aside
-        style="position: fixed; top: 0; left: 0; z-index: 1000; width: 250px; height: 100vh; background: linear-gradient(195deg, #2b2825, #2b2825); color: white; transition: all 0.3s ease; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.15);"
-        id="sidenav-main">
-        <div style="padding: 1.5em 1rem;">
-            <a href="../pages/loggedin.html" target="_blank"
-                style="display: flex; align-items: center; font-weight: 600; color: white; text-decoration: none;">
-                <span style="margin-left: 0.25rem; font-weight: 700;">CAKE ZONE</span>
-            </a>
-        </div>
-        <hr style="width: 100%; border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0;">
-        <div style="width: 100%; overflow-y: auto; height: 75vh;">
-            <ul style="list-style: none; padding: 0; margin: 0;">
-                <li style="margin: 0.25rem 0;">
-                    <a href="index.html"
-                        style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none; background: linear-gradient(195deg,#e88f2a,#e88f2a); box-shadow: 0 4px 20px rgba(0,0,0,0.14),0 7px 10px -5px rgba(233,30,99,0.4);">
-                        <i class="material-icons" style="font-size:20px; margin-right:10px;"></i> Tổng quan
-                    </a>
-                </li>
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 250px;
+        height: 100vh;
+        background: linear-gradient(195deg, #202021, #202021);
+        color: white;
+        box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+      "
+    >
+      <div style="padding: 1.5em 1rem">
+        <a
+          href="#"
+          style="
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+          "
+        >
+          <span>TRUNG TÂM ĐIỀU KHIỂN</span>
+        </a>
+      </div>
+      <hr
+        style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0"
+      />
+      <ul style="list-style: none; padding: 0; margin: 0">
+        <li>
+          <a
+            href="index.html"
+            style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+              background: linear-gradient(195deg, #e88f2a, #e88f2a);
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
+            0 7px 10px -5px rgba(240, 163, 74, 0.6);
+            "
+            ><i class="material-icons" style="margin-right: 10px"></i>Tổng
+            quan</a
+          >
+        </li>
+        <li>
+          <a
+            href="user.html"
+            style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản
+            lý khách hàng</a
+          >
+        </li>
+        <li>
+          <a
+            href="chef.html"
+            style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "
+            ><i class="material-icons" style="margin-right: 10px">person</i>Quản
+            lý đầu bếp</a
+          >
+        </li>
+        <li>
+          <a
+            href="products.html"
+            style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "
+            ><i class="material-icons" style="margin-right: 10px">table_view</i
+            >Quản lý sản phẩm</a
+          >
+        </li>
+        <li>
+          <a
+            href="order.html"
+            style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "
+            ><i class="material-icons" style="margin-right: 10px">weekend</i
+            >Quản lý đơn hàng</a
+          >
+        </li>
+        
+        <li>
+          <a
+            href="category.html"
+            style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "
+            ><i class="material-icons" style="margin-right: 10px">category</i
+            >Quản lý danh mục</a
+          >
+        </li>
+        <li>
+          <a
+            href="phieunhap.html"
+            style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "
+            ><i class="material-icons" style="margin-right: 10px">inventory_2</i
+            >Quản lý nhập hàng</a
+          >
+        </li>
+        <li>
+          <a
+            href="giaban.html"
+            style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "
+            ><i class="material-icons" style="margin-right: 10px"
+              >attach_money</i
+            >Quản lý giá bán</a
+          >
+        </li>
+        <li>
+          <a
+            href="tonkho.html"
+            style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "
+            ><i class="material-icons" style="margin-right: 10px">inventory</i
+            >Quản lý tồn kho</a
+          >
+        </li>
 
-                <!-- Quản lý khách hàng có submenu -->
-                <li style="margin: 0.25rem 0;">
-                    <a href="javascript:void(0);" onclick="toggleSubMenu()"
-                        style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none;">
-                        <span style="display: flex; align-items: center;">
-                            <i class="material-icons" style="font-size:20px; margin-right:10px;"></i> Khách hàng
-                        </span>
-                        <i class="material-icons" id="submenu-arrow"
-                            style="font-size:18px; transition: transform 0.3s;">expand_more</i>
-                    </a>
-                    <ul id="submenu" style="list-style:none; padding-left:2rem; margin:0; display:none;">
-                        <li style="margin: 0.25rem 0;">
-                            <a href="user.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">Danh
-                                sách khách hàng</a>
-                        </li>
-                        <li style="margin: 0.25rem 0;">
-                            <a href="order.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">Quản
-                                lý đơn hàng</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <!-- Quản lý sản phẩm có submenu -->
-                <li style="margin: 0.25rem 0;">
-                    <a href="javascript:void(0);" onclick="toggleSubMenu('product-submenu', 'product-arrow')"
-                        style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none;">
-                        <span style="display: flex; align-items: center;">
-                            <i class="material-icons" style="font-size:20px; margin-right:10px;"></i> Sản phẩm
-                        </span>
-                        <i class="material-icons" id="product-arrow"
-                            style="font-size:18px; transition: transform 0.3s;">expand_more</i>
-                    </a>
-
-                    <ul id="product-submenu" style="list-style:none; padding-left:2rem; margin:0; display:none;">
-                        <li style="margin: 0.25rem 0;">
-                            <a href="products.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                                Danh sách sản phẩm
-                            </a>
-                        </li>
-                        <li style="margin: 0.25rem 0;">
-                            <a href="phieunhap.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                                Quản lý nhập
-                            </a>
-                        </li>
-                        <li style="margin: 0.25rem 0;">
-                            <a href="giaban.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                                Quản lý giá bán
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-
-                <!-- Quản lý đầu bếp có submenu -->
-                <li style="margin: 0.25rem 0;">
-                    <a href="javascript:void(0);" onclick="toggleSubMenu('chef-submenu', 'chef-arrow')"
-                        style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none;">
-                        <span style="display: flex; align-items: center;">
-                            <i class="material-icons" style="font-size:20px; margin-right:10px;"></i> Nhân viên
-                        </span>
-                        <i class="material-icons" id="chef-arrow"
-                            style="font-size:18px; transition: transform 0.3s;">expand_more</i>
-                    </a>
-
-                    <ul id="chef-submenu" style="list-style:none; padding-left:2rem; margin:0; display:none;">
-                        <li style="margin: 0.25rem 0;">
-                            <a href="chef.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                                Danh sách nhân viên
-                            </a>
-                        </li>
-                        <li style="margin: 0.25rem 0;">
-                            <a href="salary.html"
-                                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                                Quản lý lương
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <!-- Nút Đăng xuất ngay dưới menu Đầu bếp -->
-                <li style="margin-top: 1rem; text-align: center;">
-                    <a href="../index.html" style="
-                        display: flex;
-                        align-items: center;
-                        justify-content: left;
-                        gap: 8px;
-                        background: linear-gradient(195deg, #2b2825, #2b2825);
-                        color: white;
-                        padding: 0.625rem 1.5rem;
-                        font-size: 0.875rem;
-                        border-radius: 0.25rem;
-                        text-decoration: none;
-                        width: 80%;
-                    ">
-                        <i class="material-icons" style="font-size:18px;">logout</i>
-                        <span>Đăng xuất</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-
-
+        <!-- Đăng xuất -->
+        <li style="text-align:left;">
+          <a href="../index.html" class="logout-btn">
+            <i class="material-icons">logout</i><span>Đăng xuất</span>
+          </a>
+        </li>
+      </ul>
     </aside>
 
-    <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem;">
-        <nav
-            style="margin-bottom: 1.5rem; padding: 0.75rem 1.5rem; border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); background-color: white;">
-            <div style="width: 100%; padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto;">
-                <nav aria-label="breadcrumb">
-                    <ol style="display: flex; list-style: none; padding: 0; margin: 0;">
-                        <li style="display: flex; align-items: center;"><a href="javascript:;"
-                                style="color: #e88f2a; text-decoration: none;">
-                                <p style="margin: 0;"><b>Tổng quan</b></p>
-                            </a></li>
-                        <li style="display: flex; align-items: center; color: #344767; font-size: 0.875rem;"
-                            aria-current="page">
-                        </li>
-                    </ol>
-                </nav>
-            </div>
-        </nav>
+    <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem">
+      <h1 style="margin-bottom: 1rem">Tổng quan</h1>
 
+      <div
+        style="
+          width: 100%;
+          padding-right: 15px;
+          padding-left: 15px;
+          margin-right: auto;
+          margin-left: auto;
+          padding-top: 1.5rem;
+          padding-bottom: 1.5rem;
+        "
+      >
         <div
-            style="width: 100%; padding-right: 15px; padding-left: 15px; margin-right: auto; margin-left: auto; padding-top: 1.5rem; padding-bottom: 1.5rem;">
-            <div style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px;">
-                <div style="flex: 0 0 100%; max-width: 100%; padding-right: 15px; padding-left: 15px;">
-                    <h1
-                        style="text-align: center; margin-bottom: 1.5rem; font-weight: 300; color: #344767; margin-top: 1.25rem;">
-                        Xin chào, Admin</h1>
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+          "
+        >
+          <div
+            style="
+              flex: 0 0 100%;
+              max-width: 100%;
+              padding-right: 15px;
+              padding-left: 15px;
+            "
+          >
+            <h1
+              style="
+                text-align: center;
+                margin-bottom: 1.5rem;
+                font-weight: 300;
+                color: #202021;
+                margin-top: 1.25rem;
+              "
+            >
+              Xin chào, Admin
+            </h1>
 
+            <!-- Thẻ thống kê tổng quan -->
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 1rem;
+                margin-bottom: 1.5rem;
+              "
+            >
+              <div
+                style="
+                  flex: 1;
+                  min-width: 200px;
+                  background: linear-gradient(195deg, #42a5f5, #478ed1);
+                  color: white;
+                  border-radius: 0.75rem;
+                  padding: 1rem 1.25rem;
+                  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+                "
+              >
+                <h4 style="margin: 0; font-weight: 500">Lượt truy cập</h4>
+                <p
+                  style="
+                    margin: 0.25rem 0 0;
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                  "
+                >
+                  12,450
+                </p>
+              </div>
 
-                    <!-- Thẻ thống kê tổng quan -->
-                    <div style="
-                        display: flex;
-                        justify-content: space-between;
-                        flex-wrap: wrap;
-                        gap: 1rem;
-                        margin-bottom: 1.5rem;
-                        ">
-                        <div style="
-                            flex: 1;
-                            min-width: 200px;
-                            background: linear-gradient(195deg, #42a5f5, #478ed1);
-                            color: white;
-                            border-radius: 0.75rem;
-                            padding: 1rem 1.25rem;
-                            box-shadow: 0 4px 20px rgba(0,0,0,0.14);
-                        ">
-                            <h4 style="margin: 0; font-weight: 500;">Lượt truy cập</h4>
-                            <p style="margin: 0.25rem 0 0; font-size: 1.25rem; font-weight: 700;">12,450</p>
-                        </div>
+              <div
+                style="
+                  flex: 1;
+                  min-width: 200px;
+                  background: linear-gradient(195deg, #66bb6a, #43a047);
+                  color: white;
+                  border-radius: 0.75rem;
+                  padding: 1rem 1.25rem;
+                  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+                "
+              >
+                <h4 style="margin: 0; font-weight: 500">Số khách hàng</h4>
+                <p
+                  style="
+                    margin: 0.25rem 0 0;
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                  "
+                >
+                  320
+                </p>
+                <a
+                  href="user.html"
+                  style="color: white; text-decoration: underline"
+                  >View Customer</a
+                >
+                <span style="font-size: 1.25rem">›</span>
+              </div>
 
-                        <div style="
-                            flex: 1;
-                            min-width: 200px;
-                            background: linear-gradient(195deg, #66bb6a, #43a047);
-                            color: white;
-                            border-radius: 0.75rem;
-                            padding: 1rem 1.25rem;
-                            box-shadow: 0 4px 20px rgba(0,0,0,0.14);
-                        ">
-                            <h4 style="margin: 0; font-weight: 500;">Số khách hàng</h4>
-                            <p style="margin: 0.25rem 0 0; font-size: 1.25rem; font-weight: 700;">320</p>
-                            <a href="user.html" style="color: white; text-decoration: underline;">View Customer</a>
-                            <span style="font-size: 1.25rem;">›</span>
-                        </div>
+              <div
+                style="
+                  flex: 1;
+                  min-width: 200px;
+                  background: linear-gradient(195deg, #ffa726, #fb8c00);
+                  color: white;
+                  border-radius: 0.75rem;
+                  padding: 1rem 1.25rem;
+                  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+                "
+              >
+                <h4 style="margin: 0; font-weight: 500">Số nhân viên</h4>
+                <p
+                  style="
+                    margin: 0.25rem 0 0;
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                  "
+                >
+                  25
+                </p>
+                <a
+                  href="user.html"
+                  style="color: white; text-decoration: underline"
+                  >View Staff</a
+                >
+                <span style="font-size: 1.25rem">›</span>
+              </div>
 
-                        <div style="
-                            flex: 1;
-                            min-width: 200px;
-                            background: linear-gradient(195deg, #ffa726, #fb8c00);
-                            color: white;
-                            border-radius: 0.75rem;
-                            padding: 1rem 1.25rem;
-                            box-shadow: 0 4px 20px rgba(0,0,0,0.14);
-                        ">
-                            <h4 style="margin: 0; font-weight: 500;">Số nhân viên</h4>
-                            <p style="margin: 0.25rem 0 0; font-size: 1.25rem; font-weight: 700;">25</p>
-                            <a href="user.html" style="color: white; text-decoration: underline;">View Staff</a>
-                            <span style="font-size: 1.25rem;">›</span>
-                        </div>
-
-                        <div style="
-                            flex: 1;
-                            min-width: 200px;
-                            background: linear-gradient(195deg, #ef5350, #e53935);
-                            color: white;
-                            border-radius: 0.75rem;
-                            padding: 1rem 1.25rem;
-                            box-shadow: 0 4px 20px rgba(0,0,0,0.14);
-                        ">
-                            <h4 style="margin: 0; font-weight: 500;">Doanh thu quý</h4>
-                            <p style="margin: 0.25rem 0 0; font-size: 1.25rem; font-weight: 700;">₫540,000,000</p>
-                        </div>
-                    </div>
-
-
-                    <!-- Dashboard Chart -->
-                    <div style="background: white; border-radius: 0.75rem; padding: 1.5rem; 
-                    box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 1.5rem;">
-                        <h4 style="margin-bottom: 1rem; font-weight: 700; color: #333;">Top bán chạy</h4>
-                        <canvas id="dashboardChart" height="100"></canvas>
-                    </div>
-
-
-
-
-                    User Statistics Table
-                    <div
-                        style="display: flex; flex-wrap: wrap; margin-right: -15px; margin-left: -15px; margin-top: 1.5rem;">
-                        <div style="flex: 0 0 100%; max-width: 100%; padding-right: 15px; padding-left: 15px;">
-                            <div
-                                style="position: relative; display: flex; flex-direction: column; min-width: 0; word-wrap: break-word; background-color: white; background-clip: border-box; border: 0 solid rgba(0, 0, 0, 0.125); border-radius: 0.75rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); margin-bottom: 1.5rem;">
-                                <div style="display: flex; align-items: center; padding: 1.5rem;">
-                                    <h2
-                                        style="margin: 0; font-weight: 600; margin-bottom: 0.5rem; text-align: center; width: 100%;">
-                                        Thống kê 5 người dùng có mức mua hàng cao nhất</h2>
-                                </div>
-                                <div style="flex: 1 1 auto; padding: 1.5rem;">
-                                    <div
-                                        style="display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;">
-                                        <table
-                                            style="width: 100%; margin-bottom: 0; color: #2b2825; border-collapse: collapse; background-color: white;">
-                                            <thead>
-                                                <tr style="background-color: #f8f9fa;">
-                                                    <th
-                                                        style="padding: 0.75rem 1rem; vertical-align: middle; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #6c757d; background-color: #f8f9fa; font-size: 12px; text-transform: uppercase; text-align: center;">
-                                                        STT</th>
-                                                    <th
-                                                        style="padding: 0.75rem 1rem; vertical-align: middle; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #6c757d; background-color: #f8f9fa; font-size: 12px; text-transform: uppercase; text-align: left;">
-                                                        Tên khách hàng</th>
-                                                    <th
-                                                        style="padding: 0.75rem 1rem; vertical-align: middle; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #6c757d; background-color: #f8f9fa; font-size: 12px; text-transform: uppercase; text-align: left;">
-                                                        Email</th>
-                                                    <th
-                                                        style="padding: 0.75rem 1rem; vertical-align: middle; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #6c757d; background-color: #f8f9fa; font-size: 12px; text-transform: uppercase; text-align: left;">
-                                                        Số điện thoại</th>
-                                                    <th
-                                                        style="padding: 0.75rem 1rem; vertical-align: middle; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #6c757d; background-color: #f8f9fa; font-size: 12px; text-transform: uppercase; text-align: left;">
-                                                        Vai trò</th>
-                                                    <th
-                                                        style="padding: 0.75rem 1rem; vertical-align: middle; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #6c757d; background-color: #f8f9fa; font-size: 12px; text-transform: uppercase; text-align: center;">
-                                                        Số đơn hàng</th>
-                                                    <th
-                                                        style="padding: 0.75rem 1rem; vertical-align: middle; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #6c757d; background-color: #f8f9fa; font-size: 12px; text-transform: uppercase; text-align: center;">
-                                                        Tổng tiền</th>
-                                                    <th
-                                                        style="padding: 0.75rem 1rem; vertical-align: middle; border-bottom: 2px solid #dee2e6; font-weight: 600; color: #6c757d; background-color: #f8f9fa; font-size: 12px; text-transform: uppercase; text-align: center;">
-                                                        Chi tiết</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr style="border-bottom: 1px solid #f0f2f5;">
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        1
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        Nguyễn
-                                                        Văn A</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        admin@example.com</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        0987654321</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        <span
-                                                            style="display: inline-block; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 600; border-radius: 0.25rem; background-color: #007bff; color: white;">Admin</span>
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        15
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        25.000.000 VNĐ</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        <a href="order-detail.html"
-                                                            style="display: inline-block; background-color: #17a2b8; color: white; padding: 0.375rem 0.75rem; font-size: 0.75rem; border-radius: 0.25rem; text-decoration: none;">Xem
-                                                            chi tiết</a>
-                                                    </td>
-                                                </tr>
-                                                <tr style="border-bottom: 1px solid #f0f2f5;">
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        2
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        Trần
-                                                        Thị B</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        khachhang1@example.com</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        0123456789</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        <span
-                                                            style="display: inline-block; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 600; border-radius: 0.25rem; background-color: #17a2b8; color: white;">Khách
-                                                            hàng</span>
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        10
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        18.500.000 VNĐ</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        <a href="order-detail.html"
-                                                            style="display: inline-block; background-color: #17a2b8; color: white; padding: 0.375rem 0.75rem; font-size: 0.75rem; border-radius: 0.25rem; text-decoration: none;">Xem
-                                                            chi tiết</a>
-                                                    </td>
-                                                </tr>
-                                                <tr style="border-bottom: 1px solid #f0f2f5;">
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        3
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        Lê Văn
-                                                        C</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        khachhang2@example.com</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        0912345678</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        <span
-                                                            style="display: inline-block; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 600; border-radius: 0.25rem; background-color: #17a2b8; color: white;">Khách
-                                                            hàng</span>
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        8
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        12.000.000 VNĐ</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        <a href="order-detail.html"
-                                                            style="display: inline-block; background-color: #17a2b8; color: white; padding: 0.375rem 0.75rem; font-size: 0.75rem; border-radius: 0.25rem; text-decoration: none;">Xem
-                                                            chi tiết</a>
-                                                    </td>
-                                                </tr>
-                                                <tr style="border-bottom: 1px solid #f0f2f5;">
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        4
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        Phạm
-                                                        Thị D</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        khachhang3@example.com</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        0909090909</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        <span
-                                                            style="display: inline-block; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 600; border-radius: 0.25rem; background-color: #17a2b8; color: white;">Khách
-                                                            hàng</span>
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        5
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        9.800.000 VNĐ</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        <a href="order-detail.html"
-                                                            style="display: inline-block; background-color: #17a2b8; color: white; padding: 0.375rem 0.75rem; font-size: 0.75rem; border-radius: 0.25rem; text-decoration: none;">Xem
-                                                            chi tiết</a>
-                                                    </td>
-                                                </tr>
-                                                <tr style="border-bottom: 1px solid #f0f2f5;">
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        5
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        Hoàng
-                                                        Văn E</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        khachhang4@example.com</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        0888888888</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: left;">
-                                                        <span
-                                                            style="display: inline-block; padding: 0.25rem 0.5rem; font-size: 0.75rem; font-weight: 600; border-radius: 0.25rem; background-color: #17a2b8; color: white;">Khách
-                                                            hàng</span>
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        3
-                                                    </td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        5.200.000 VNĐ</td>
-                                                    <td
-                                                        style="padding: 1rem; vertical-align: middle; text-align: center;">
-                                                        <a href="order-detail.html"
-                                                            style="display: inline-block; background-color: #17a2b8; color: white; padding: 0.375rem 0.75rem; font-size: 0.75rem; border-radius: 0.25rem; text-decoration: none;">Xem
-                                                            chi tiết</a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              <div
+                style="
+                  flex: 1;
+                  min-width: 200px;
+                  background: linear-gradient(195deg, #ef5350, #e53935);
+                  color: white;
+                  border-radius: 0.75rem;
+                  padding: 1rem 1.25rem;
+                  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+                "
+              >
+                <h4 style="margin: 0; font-weight: 500">Doanh thu quý</h4>
+                <p
+                  style="
+                    margin: 0.25rem 0 0;
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                  "
+                >
+                  ₫540,000,000
+                </p>
+              </div>
             </div>
+
+            <!-- Dashboard Chart -->
+            <div
+              style="
+                background: white;
+                border-radius: 0.75rem;
+                padding: 1.5rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                margin-bottom: 1.5rem;
+              "
+            >
+              <h4 style="margin-bottom: 1rem; font-weight: 700; color: #333">
+                Top bán chạy
+              </h4>
+              <canvas id="dashboardChart" height="100"></canvas>
+            </div>
+
+            User Statistics Table
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                margin-right: -15px;
+                margin-left: -15px;
+                margin-top: 1.5rem;
+              "
+            >
+              <div
+                style="
+                  flex: 0 0 100%;
+                  max-width: 100%;
+                  padding-right: 15px;
+                  padding-left: 15px;
+                "
+              >
+                <div
+                  style="
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    min-width: 0;
+                    word-wrap: break-word;
+                    background-color: white;
+                    background-clip: border-box;
+                    border: 0 solid rgba(0, 0, 0, 0.125);
+                    border-radius: 0.75rem;
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                    margin-bottom: 1.5rem;
+                  "
+                >
+                  <div
+                    style="display: flex; align-items: center; padding: 1.5rem"
+                  >
+                    <h2
+                      style="
+                        margin: 0;
+                        font-weight: 600;
+                        margin-bottom: 0.5rem;
+                        text-align: center;
+                        width: 100%;
+                      "
+                    >
+                      Thống kê 5 người dùng có mức mua hàng cao nhất
+                    </h2>
+                  </div>
+                  <div style="flex: 1 1 auto; padding: 1.5rem">
+                    <div
+                      style="
+                        display: block;
+                        width: 100%;
+                        overflow-x: auto;
+                        -webkit-overflow-scrolling: touch;
+                      "
+                    >
+                      <table
+                        style="
+                          width: 100%;
+                          margin-bottom: 0;
+                          color: #202021;
+                          border-collapse: collapse;
+                          background-color: white;
+                        "
+                      >
+                        <thead>
+                          <tr style="background-color: #f8f9fa">
+                            <th
+                              style="
+                                padding: 0.75rem 1rem;
+                                vertical-align: middle;
+                                border-bottom: 2px solid #dee2e6;
+                                font-weight: 600;
+                                color: #6c757d;
+                                background-color: #f8f9fa;
+                                font-size: 12px;
+                                text-transform: uppercase;
+                                text-align: center;
+                              "
+                            >
+                              STT
+                            </th>
+                            <th
+                              style="
+                                padding: 0.75rem 1rem;
+                                vertical-align: middle;
+                                border-bottom: 2px solid #dee2e6;
+                                font-weight: 600;
+                                color: #6c757d;
+                                background-color: #f8f9fa;
+                                font-size: 12px;
+                                text-transform: uppercase;
+                                text-align: left;
+                              "
+                            >
+                              Tên khách hàng
+                            </th>
+                            <th
+                              style="
+                                padding: 0.75rem 1rem;
+                                vertical-align: middle;
+                                border-bottom: 2px solid #dee2e6;
+                                font-weight: 600;
+                                color: #6c757d;
+                                background-color: #f8f9fa;
+                                font-size: 12px;
+                                text-transform: uppercase;
+                                text-align: left;
+                              "
+                            >
+                              Email
+                            </th>
+                            <th
+                              style="
+                                padding: 0.75rem 1rem;
+                                vertical-align: middle;
+                                border-bottom: 2px solid #dee2e6;
+                                font-weight: 600;
+                                color: #6c757d;
+                                background-color: #f8f9fa;
+                                font-size: 12px;
+                                text-transform: uppercase;
+                                text-align: left;
+                              "
+                            >
+                              Số điện thoại
+                            </th>
+                            <th
+                              style="
+                                padding: 0.75rem 1rem;
+                                vertical-align: middle;
+                                border-bottom: 2px solid #dee2e6;
+                                font-weight: 600;
+                                color: #6c757d;
+                                background-color: #f8f9fa;
+                                font-size: 12px;
+                                text-transform: uppercase;
+                                text-align: left;
+                              "
+                            >
+                              Vai trò
+                            </th>
+                            <th
+                              style="
+                                padding: 0.75rem 1rem;
+                                vertical-align: middle;
+                                border-bottom: 2px solid #dee2e6;
+                                font-weight: 600;
+                                color: #6c757d;
+                                background-color: #f8f9fa;
+                                font-size: 12px;
+                                text-transform: uppercase;
+                                text-align: center;
+                              "
+                            >
+                              Số đơn hàng
+                            </th>
+                            <th
+                              style="
+                                padding: 0.75rem 1rem;
+                                vertical-align: middle;
+                                border-bottom: 2px solid #dee2e6;
+                                font-weight: 600;
+                                color: #6c757d;
+                                background-color: #f8f9fa;
+                                font-size: 12px;
+                                text-transform: uppercase;
+                                text-align: center;
+                              "
+                            >
+                              Tổng tiền
+                            </th>
+                            <th
+                              style="
+                                padding: 0.75rem 1rem;
+                                vertical-align: middle;
+                                border-bottom: 2px solid #dee2e6;
+                                font-weight: 600;
+                                color: #6c757d;
+                                background-color: #f8f9fa;
+                                font-size: 12px;
+                                text-transform: uppercase;
+                                text-align: center;
+                              "
+                            >
+                              Chi tiết
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr style="border-bottom: 1px solid #f0f2f5">
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              1
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              Nguyễn Văn A
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              admin@example.com
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              0987654321
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              <span
+                                style="
+                                  display: inline-block;
+                                  padding: 0.25rem 0.5rem;
+                                  font-size: 0.75rem;
+                                  font-weight: 600;
+                                  border-radius: 0.25rem;
+                                  background-color: #007bff;
+                                  color: white;
+                                "
+                                >Admin</span
+                              >
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              15
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              25.000.000 VNĐ
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              <a
+                                href="order-detail.html"
+                                style="
+                                  display: inline-block;
+                                  background-color: #17a2b8;
+                                  color: white;
+                                  padding: 0.375rem 0.75rem;
+                                  font-size: 0.75rem;
+                                  border-radius: 0.25rem;
+                                  text-decoration: none;
+                                "
+                                >Xem chi tiết</a
+                              >
+                            </td>
+                          </tr>
+                          <tr style="border-bottom: 1px solid #f0f2f5">
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              2
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              Trần Thị B
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              khachhang1@example.com
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              0123456789
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              <span
+                                style="
+                                  display: inline-block;
+                                  padding: 0.25rem 0.5rem;
+                                  font-size: 0.75rem;
+                                  font-weight: 600;
+                                  border-radius: 0.25rem;
+                                  background-color: #17a2b8;
+                                  color: white;
+                                "
+                                >Khách hàng</span
+                              >
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              10
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              18.500.000 VNĐ
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              <a
+                                href="order-detail.html"
+                                style="
+                                  display: inline-block;
+                                  background-color: #17a2b8;
+                                  color: white;
+                                  padding: 0.375rem 0.75rem;
+                                  font-size: 0.75rem;
+                                  border-radius: 0.25rem;
+                                  text-decoration: none;
+                                "
+                                >Xem chi tiết</a
+                              >
+                            </td>
+                          </tr>
+                          <tr style="border-bottom: 1px solid #f0f2f5">
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              3
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              Lê Văn C
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              khachhang2@example.com
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              0912345678
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              <span
+                                style="
+                                  display: inline-block;
+                                  padding: 0.25rem 0.5rem;
+                                  font-size: 0.75rem;
+                                  font-weight: 600;
+                                  border-radius: 0.25rem;
+                                  background-color: #17a2b8;
+                                  color: white;
+                                "
+                                >Khách hàng</span
+                              >
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              8
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              12.000.000 VNĐ
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              <a
+                                href="order-detail.html"
+                                style="
+                                  display: inline-block;
+                                  background-color: #17a2b8;
+                                  color: white;
+                                  padding: 0.375rem 0.75rem;
+                                  font-size: 0.75rem;
+                                  border-radius: 0.25rem;
+                                  text-decoration: none;
+                                "
+                                >Xem chi tiết</a
+                              >
+                            </td>
+                          </tr>
+                          <tr style="border-bottom: 1px solid #f0f2f5">
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              4
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              Phạm Thị D
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              khachhang3@example.com
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              0909090909
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              <span
+                                style="
+                                  display: inline-block;
+                                  padding: 0.25rem 0.5rem;
+                                  font-size: 0.75rem;
+                                  font-weight: 600;
+                                  border-radius: 0.25rem;
+                                  background-color: #17a2b8;
+                                  color: white;
+                                "
+                                >Khách hàng</span
+                              >
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              5
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              9.800.000 VNĐ
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              <a
+                                href="order-detail.html"
+                                style="
+                                  display: inline-block;
+                                  background-color: #17a2b8;
+                                  color: white;
+                                  padding: 0.375rem 0.75rem;
+                                  font-size: 0.75rem;
+                                  border-radius: 0.25rem;
+                                  text-decoration: none;
+                                "
+                                >Xem chi tiết</a
+                              >
+                            </td>
+                          </tr>
+                          <tr style="border-bottom: 1px solid #f0f2f5">
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              5
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              Hoàng Văn E
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              khachhang4@example.com
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              0888888888
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: left;
+                              "
+                            >
+                              <span
+                                style="
+                                  display: inline-block;
+                                  padding: 0.25rem 0.5rem;
+                                  font-size: 0.75rem;
+                                  font-weight: 600;
+                                  border-radius: 0.25rem;
+                                  background-color: #17a2b8;
+                                  color: white;
+                                "
+                                >Khách hàng</span
+                              >
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              3
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              5.200.000 VNĐ
+                            </td>
+                            <td
+                              style="
+                                padding: 1rem;
+                                vertical-align: middle;
+                                text-align: center;
+                              "
+                            >
+                              <a
+                                href="order-detail.html"
+                                style="
+                                  display: inline-block;
+                                  background-color: #17a2b8;
+                                  color: white;
+                                  padding: 0.375rem 0.75rem;
+                                  font-size: 0.75rem;
+                                  border-radius: 0.25rem;
+                                  text-decoration: none;
+                                "
+                                >Xem chi tiết</a
+                              >
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </main>
 
     <script>
-        function toggleSubMenu(submenuId = 'submenu', arrowId = 'submenu-arrow') {
-            const submenu = document.getElementById(submenuId);
-            const arrow = document.getElementById(arrowId);
+      function toggleSubMenu(submenuId = "submenu", arrowId = "submenu-arrow") {
+        const submenu = document.getElementById(submenuId);
+        const arrow = document.getElementById(arrowId);
 
-            if (submenu.style.display === 'none' || submenu.style.display === '') {
-                submenu.style.display = 'block';
-                arrow.style.transform = 'rotate(180deg)';
-            } else {
-                submenu.style.display = 'none';
-                arrow.style.transform = 'rotate(0deg)';
-            }
+        if (submenu.style.display === "none" || submenu.style.display === "") {
+          submenu.style.display = "block";
+          arrow.style.transform = "rotate(180deg)";
+        } else {
+          submenu.style.display = "none";
+          arrow.style.transform = "rotate(0deg)";
         }
+      }
     </script>
 
     <script>
-        const ctx = document.getElementById('dashboardChart').getContext('2d');
+      const ctx = document.getElementById("dashboardChart").getContext("2d");
 
-        const dashboardChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Birthday cake no.1', 'Wedding cake no.2', 'Birthday cake no.2', 'Birthday cake no.3', 'Wedding cake no.1'],
-                datasets: [{
-                    label: 'Thống kê hệ thống',
-                    data: [24000000, 12000000, 20000000, 15000000, 11000000],
-                    backgroundColor: [
-                        'rgba(73, 163, 241, 0.8)',
-                        'rgba(66, 66, 74, 0.8)',
-                        'rgba(102, 187, 106, 0.8)',
-                        'rgba(38, 198, 218, 0.8)',
-                        'rgba(255, 202, 40, 0.8)'
-                    ],
-                    borderRadius: 6,
-                    borderWidth: 1
-                }]
+      const dashboardChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: [
+            "Birthday cake no.1",
+            "Wedding cake no.2",
+            "Birthday cake no.2",
+            "Birthday cake no.3",
+            "Wedding cake no.1",
+          ],
+          datasets: [
+            {
+              label: "Thống kê hệ thống",
+              data: [24000000, 12000000, 20000000, 15000000, 11000000],
+              backgroundColor: [
+                "rgba(73, 163, 241, 0.8)",
+                "rgba(66, 66, 74, 0.8)",
+                "rgba(102, 187, 106, 0.8)",
+                "rgba(38, 198, 218, 0.8)",
+                "rgba(255, 202, 40, 0.8)",
+              ],
+              borderRadius: 6,
+              borderWidth: 1,
             },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function (value, index, values) {
-                                if (value >= 1000000) return value / 1000000 + 'M';
-                                return value;
-                            }
-                        }
-                    }
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function (value, index, values) {
+                  if (value >= 1000000) return value / 1000000 + "M";
+                  return value;
                 },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: function (context) {
-                                if (context.raw >= 1000000)
-                                    return context.raw.toLocaleString('vi-VN') + ' VNĐ';
-                                return context.raw;
-                            }
-                        }
-                    }
-                }
-            }
-        });
+              },
+            },
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  if (context.raw >= 1000000)
+                    return context.raw.toLocaleString("vi-VN") + " VNĐ";
+                  return context.raw;
+                },
+              },
+            },
+          },
+        },
+      });
     </script>
-
-
-
-</body>
-
+  </body>
 </html>
