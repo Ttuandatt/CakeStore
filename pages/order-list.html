@@ -56,7 +56,7 @@
       </div>
       <div class="col-lg-4 text-center bg-primary border-inner py-3">
         <div class="d-inline-flex align-items-center justify-content-center">
-          <a href="../index.html" class="navbar-brand">
+          <a href="loggedin.html" class="navbar-brand">
             <h1 class="m-0 text-uppercase text-white">
               <i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>CakeZone
             </h1>
@@ -87,18 +87,11 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <!-- Các menu đang có -->
         <div class="navbar-nav ms-auto mx-lg-auto py-0">
-          <a href="../index.html" class="nav-item nav-link active">Home</a>
-          <a href="about.html" class="nav-item nav-link">About Us</a>
-          <a href="menu.html" class="nav-item nav-link">Menu & Pricing</a>
-          <a href="team.html" class="nav-item nav-link">Master Chefs</a>
-          <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-            <div class="dropdown-menu m-0">
-              <a href="service.html" class="dropdown-item">Our Service</a>
-              <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-            </div>
-          </div>
-          <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+          <a href="loggedin.html" class="nav-item nav-link active">Home</a>
+          <a href="about-logged.html" class="nav-item nav-link">About Us</a>
+          <a href="birthday-cake-1-logged.html" class="nav-item nav-link">Menu & Pricing</a>
+          <a href="team-logged.html" class="nav-item nav-link">Master Chefs</a>
+          <a href="contact-logged.html" class="nav-item nav-link">Contact Us</a>
         </div>
 
         <!-- Shopping cart + Avatar menu bên phải -->
@@ -120,7 +113,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-end m-0">
               <a href="user-profile.html" class="dropdown-item">Thông tin</a>
-              <a href="orders.html" class="dropdown-item">Đơn hàng</a>
+              <a href="order-list.html" class="dropdown-item">Đơn hàng</a>
               <div class="dropdown-divider"></div>
               <a href="../index.html" class="dropdown-item">Đăng xuất</a>
             </div>
@@ -131,6 +124,8 @@
   </nav>
   <!-- Navbar End -->
 
+  <!-- Order Details Start -->
+  <!-- Đơn 1 -->
   <div class="container py-5 order-box">
     <h2 class="mb-4 text-center text-uppercase fw-bold">Chi tiết đơn hàng</h2>
 
@@ -138,9 +133,11 @@
       Thông tin khách hàng
     </h5>
     <div class="d-flex flex-column gap-2">
-      <div><strong>Họ tên:</strong> Nguyễn Văn A</div>
+      <div><strong>Họ tên người nhận:</strong> Nguyễn Văn A</div>
       <div><strong>Số điện thoại:</strong> 0901 234 567</div>
       <div><strong>Địa chỉ giao hàng:</strong> 123 Nguyễn Trãi, Quận 5, TP.HCM</div>
+      <div><strong>Trạng thái:</strong> <span class="text-warning">Đang giao hàng</span></div>
+
     </div>
 
     <div class="table-responsive shadow-sm rounded">
@@ -156,21 +153,21 @@
         </thead>
         <tbody>
           <tr>
-            <td><img src="../img/cake1.jpg" class="order-img"></td>
+            <td><img src="../img/bdcake-1.jpg" class="order-img" style="width: 80px; height: 80px;"></td>
             <td>Bánh sinh nhật Socola</td>
             <td>350,000₫</td>
             <td>1</td>
             <td>350,000₫</td>
           </tr>
           <tr>
-            <td><img src="../img/cake2.jpg" class="order-img"></td>
+            <td><img src="../img/bdcake-2.jpg" class="order-img" style="width: 80px; height: 80px;"></td>
             <td>Bánh kem Dâu tây</td>
             <td>280,000₫</td>
             <td>2</td>
             <td>560,000₫</td>
           </tr>
           <tr>
-            <td><img src="../img/cake3.jpg" class="order-img"></td>
+            <td><img src="../img/bdcake-3.jpg" class="order-img" style="width: 80px; height: 80px;"></td>
             <td>Bánh Red Velvet</td>
             <td>400,000₫</td>
             <td>1</td>
@@ -186,8 +183,7 @@
     </div>
   </div>
 
-
-
+  <!-- Đơn 2 -->
   <div class="container py-5 order-box">
     <h2 class="mb-4 text-center text-uppercase fw-bold">Chi tiết đơn hàng</h2>
 
@@ -195,9 +191,10 @@
       Thông tin khách hàng
     </h5>
     <div class="d-flex flex-column gap-2">
-      <div><strong>Họ tên:</strong> Trần Văn B</div>
+      <div><strong>Họ tên người nhận:</strong> Trần Văn B</div>
       <div><strong>Số điện thoại:</strong> 0892 204 897</div>
       <div><strong>Địa chỉ giao hàng:</strong> 234 Lê Lợi, Phường Sài Gòn, TP.HCM</div>
+      <div><strong>Trạng thái:</strong> <span class="text-success">Đã giao hàng</span></div>
     </div>
 
     <div class="table-responsive shadow-sm rounded">
@@ -213,21 +210,21 @@
         </thead>
         <tbody>
           <tr>
-            <td><img src="../img/cake1.jpg" class="order-img"></td>
+            <td><img src="../img/bdcake-4.jpg" class="order-img" style="width: 80px; height: 80px;"></td>
             <td>Bánh sinh nhật Socola</td>
             <td>350,000₫</td>
             <td>1</td>
             <td>350,000₫</td>
           </tr>
           <tr>
-            <td><img src="../img/cake2.jpg" class="order-img"></td>
+            <td><img src="../img/bdcake-5.jpg" class="order-img" style="width: 80px; height: 80px;"></td>
             <td>Bánh kem Dâu tây</td>
             <td>280,000₫</td>
             <td>2</td>
             <td>560,000₫</td>
           </tr>
           <tr>
-            <td><img src="../img/cake3.jpg" class="order-img"></td>
+            <td><img src="../img/bdcake-6.jpg" class="order-img" style="width: 80px; height: 80px;"></td>
             <td>Bánh Red Velvet</td>
             <td>400,000₫</td>
             <td>1</td>
@@ -242,6 +239,73 @@
       <h4 class="fw-bold">Tổng cộng: <span class="text-danger">1,310,000₫</span></h4>
     </div>
   </div>
+
+  <!-- Đơn 3 -->
+  <div class="container py-5 order-box">
+    <h2 class="mb-4 text-center text-uppercase fw-bold">Chi tiết đơn hàng</h2>
+
+    <h5 class="text-primary text-uppercase fw-bold mb-3">
+      Thông tin khách hàng
+    </h5>
+    <div class="d-flex flex-column gap-2">
+      <div><strong>Họ tên người nhận:</strong> Trần Văn B</div>
+      <div><strong>Số điện thoại:</strong> 0892 204 897</div>
+      <div><strong>Địa chỉ giao hàng:</strong> 234 Lê Lợi, Phường Sài Gòn, TP.HCM</div>
+      <div>
+      <div><strong>Trạng thái:</strong> <span class="text-warning">Đang giao hàng</span></div>
+      <br>
+        <button class="btn btn-danger btn-sm cancel-btn">
+          Hủy đơn
+        </button>
+      </div>
+
+
+    </div>
+
+    <div class="table-responsive shadow-sm rounded">
+      <table class="table table-bordered align-middle text-center mb-0">
+        <thead class="table-dark">
+          <tr>
+            <th>Ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><img src="../img/bdcake-4.jpg" class="order-img" style="width: 80px; height: 80px;"></td>
+            <td>Bánh sinh nhật Socola</td>
+            <td>350,000₫</td>
+            <td>1</td>
+            <td>350,000₫</td>
+          </tr>
+          <tr>
+            <td><img src="../img/bdcake-5.jpg" class="order-img" style="width: 80px; height: 80px;"></td>
+            <td>Bánh kem Dâu tây</td>
+            <td>280,000₫</td>
+            <td>2</td>
+            <td>560,000₫</td>
+          </tr>
+          <tr>
+            <td><img src="../img/bdcake-6.jpg" class="order-img" style="width: 80px; height: 80px;"></td>
+            <td>Bánh Red Velvet</td>
+            <td>400,000₫</td>
+            <td>1</td>
+            <td>400,000₫</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tổng cộng -->
+    <div class="text-end mt-3">
+      <h4 class="fw-bold">Tổng cộng: <span class="text-danger">1,310,000₫</span></h4>
+    </div>
+  </div>
+
+  <!-- Order Details End -->
 
   <!-- Footer Start -->
   <div class="container-fluid bg-img text-secondary" style="margin-top: 90px">
@@ -250,7 +314,7 @@
         <div class="col-lg-4 col-md-6 mb-lg-n5">
           <div
             class="d-flex flex-column align-items-center justify-content-center text-center h-100 bg-primary border-inner p-4">
-            <a href="../index.html" class="navbar-brand">
+            <a href="loggedin.html" class="navbar-brand">
               <h1 class="m-0 text-uppercase text-white">
                 <i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>CakeZone
               </h1>
@@ -292,16 +356,15 @@
             <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
               <h4 class="text-primary text-uppercase mb-4">Quick Links</h4>
               <div class="d-flex flex-column justify-content-start">
-                <a class="text-secondary mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                <a class="text-secondary mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>About
+                <a class="text-secondary mb-2" href="loggedin.html"><i
+                    class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                <a class="text-secondary mb-2" href="about-logged.html"><i
+                    class="bi bi-arrow-right text-primary me-2"></i>About
                   Us</a>
-                <a class="text-secondary mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Our
-                  Services</a>
-                <a class="text-secondary mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Meet The
-                  Team</a>
-                <a class="text-secondary mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Latest
-                  Blog</a>
-                <a class="text-secondary" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Contact
+                <a class="text-secondary mb-2" href="team-logged.html"><i
+                    class="bi bi-arrow-right text-primary me-2"></i>Master Chefs</a>
+                <a class="text-secondary" href="contact-logged.html"><i
+                    class="bi bi-arrow-right text-primary me-2"></i>Contact
                   Us</a>
               </div>
             </div>
@@ -351,6 +414,59 @@
 
   <!-- Template Javascript -->
   <script src="js/main.js"></script>
+
+
+  <!-- Modal xác nhận hủy đơn -->
+  <div class="modal fade" id="cancelConfirmModal" tabindex="-1" aria-labelledby="cancelConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="cancelConfirmLabel">Xác nhận hủy đơn</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body">
+          Bạn có chắc chắn muốn hủy đơn hàng này không?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="button" class="btn btn-danger" id="confirmCancelBtn">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const orders = document.querySelectorAll(".order-box");
+
+      orders.forEach(order => {
+        const status = order.querySelector(".order-status");
+        const cancelBtn = order.querySelector(".cancel-btn");
+
+        // Hiển thị nút nếu trạng thái là "Đang xử lý"
+        if (status && status.textContent.includes("Đang xử lý")) {
+          cancelBtn.style.display = "inline-block";
+        }
+
+        // Khi nhấn "Hủy đơn" → mở modal xác nhận
+        cancelBtn.addEventListener("click", function () {
+          const modal = new bootstrap.Modal(document.getElementById("cancelConfirmModal"));
+          modal.show();
+
+          document.getElementById("confirmCancelBtn").onclick = function () {
+            modal.hide();
+            status.textContent = "Đã hủy";
+            status.classList.remove("text-warning");
+            status.classList.add("text-danger");
+            cancelBtn.remove();
+            alert("Đơn hàng đã được hủy thành công!");
+          };
+        });
+      });
+    });
+
+  </script>
+
+
 </body>
 
 </html>
