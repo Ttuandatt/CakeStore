@@ -156,6 +156,26 @@
       background-color: #f44336;
     }
 
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: linear-gradient(195deg, #202021, #202021);
+      color: white;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      width: 100%;
+      margin: 0 auto;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: linear-gradient(195deg, #2c2c2e, #2c2c2e);
+      cursor: pointer;
+    }
+
     /* Add button */
     .btn-add {
       display: inline-flex;
@@ -319,6 +339,122 @@
       background-color: rgba(255, 0, 0, 0.8);
       transition: 0.3s;
     }
+
+    .action-bar {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .search-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-box {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+      width: 220px;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-box:focus {
+      border-color: #ff9800;
+    }
+
+    .category-dropdown {
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .search-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-box {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+      width: 220px;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-box:focus {
+      border-color: #ff9800;
+    }
+
+    .category-dropdown {
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-search {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-search:hover {
+      background-color: #e68900;
+    }
+
+    .btn-refresh {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-refresh:hover {
+      background-color: #e68900;
+    }
+
+    .highlight {
+      animation: highlightFade 1.2s ease;
+      background-color: #fff8e1 !important;
+    }
+
+    @keyframes highlightFade {
+      from {
+        background-color: #fff3cd;
+      }
+
+      to {
+        background-color: transparent;
+      }
+    }
   </style>
 </head>
 
@@ -375,7 +511,7 @@
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px">person</i>Quản
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản
           lý đầu bếp</a>
       </li>
       <li>
@@ -388,7 +524,7 @@
               background: linear-gradient(195deg, #e88f2a, #e88f2a);
               box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
                 0 7px 10px -5px rgba(240, 163, 74, 0.6);
-            "><i class="material-icons" style="margin-right: 10px">table_view</i>Quản lý sản phẩm</a>
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý sản phẩm</a>
       </li>
       <li>
         <a href="order.html" style="
@@ -397,7 +533,7 @@
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px">weekend</i>Quản lý đơn hàng</a>
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý đơn hàng</a>
       </li>
 
       <li>
@@ -407,7 +543,7 @@
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px">category</i>Quản lý danh mục</a>
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý danh mục</a>
       </li>
       <li>
         <a href="phieunhap.html" style="
@@ -416,7 +552,7 @@
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px">inventory_2</i>Quản lý nhập hàng</a>
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nhập hàng</a>
       </li>
       <li>
         <a href="giaban.html" style="
@@ -425,7 +561,7 @@
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px">attach_money</i>Quản lý giá bán</a>
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý giá bán</a>
       </li>
       <li>
         <a href="tonkho.html" style="
@@ -434,7 +570,7 @@
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px">inventory</i>Quản lý tồn kho</a>
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý tồn kho</a>
       </li>
 
       <!-- Đăng xuất -->
@@ -453,7 +589,24 @@
       <button class="btn-add">
         <i class="material-icons-round">add_box</i> Thêm sản phẩm
       </button>
+
+      <div class="search-section" style="margin-top: 20px;">
+        <input type="text" id="searchInput" placeholder="Nhập từ khóa" class="search-box" />
+        <select id="categoryFilter" class="category-dropdown">
+          <option value="">Loại bánh</option>
+          <option value="sinhnhat">Bánh sinh nhật</option>
+          <option value="cuoi">Bánh cưới</option>
+          <option value="anvat">Bánh ăn vặt</option>
+        </select>
+        <button id="searchBtn" class="btn-search">
+          <i class="material-icons-round">search</i> Tìm kiếm
+        </button>
+        <button id="refreshBtn" class="btn-refresh">
+          <i class="material-icons-round">refresh</i> Làm mới
+        </button>
+      </div>
     </div>
+
 
     <table>
       <thead>
@@ -947,6 +1100,60 @@
       previewImg.src = "";
       newImageInput.value = "";
       imageContainer.style.display = "none";
+    });
+  </script>
+
+  <script>
+    // === TÌM KIẾM SẢN PHẨM ===
+    document.getElementById("searchBtn").addEventListener("click", function () {
+      const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
+      const category = document.getElementById("categoryFilter").value;
+      const rows = document.querySelectorAll("table tbody tr");
+
+      rows.forEach((row) => {
+        const productName = row.children[1]?.textContent.trim().toLowerCase() || "";
+        const productCategory = row.getAttribute("data-category");
+        const matchesKeyword = !keyword || productName.includes(keyword);
+        const matchesCategory = !category || productCategory === category;
+
+        if (matchesKeyword && matchesCategory) {
+          row.style.display = "";
+          row.classList.add("highlight");
+        } else {
+          row.style.display = "none";
+          row.classList.remove("highlight");
+        }
+      });
+
+      const visibleRows = Array.from(rows).filter((r) => r.style.display !== "none");
+      if (visibleRows.length === 0) {
+        alert("Không tìm thấy sản phẩm phù hợp!");
+      }
+    });
+
+    // === CHO PHÉP NHẤN ENTER ĐỂ TÌM KIẾM ===
+    document.getElementById("searchInput").addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        document.getElementById("searchBtn").click();
+      }
+    });
+
+    // === LÀM MỚI DANH SÁCH SẢN PHẨM ===
+    document.getElementById("refreshBtn").addEventListener("click", function () {
+      const rows = document.querySelectorAll("table tbody tr");
+      const searchInput = document.getElementById("searchInput");
+      const categoryFilter = document.getElementById("categoryFilter");
+
+      // Xóa giá trị tìm kiếm
+      searchInput.value = "";
+      categoryFilter.value = "";
+
+      // Hiển thị lại toàn bộ sản phẩm
+      rows.forEach((row) => {
+        row.style.display = "";
+        row.classList.remove("highlight");
+      });
     });
   </script>
 
