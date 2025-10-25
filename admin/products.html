@@ -1,252 +1,330 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link rel="icon" type="image/png" href="../img/ryicon.jpg" />
-    <title>BookStore - Quản lý sản phẩm</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"
-    />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
-      rel="stylesheet"
-    />
-    <link href="assets/css/pure-style-optimized.css" rel="stylesheet" />
 
-    <style>
-      body {
-        font-family: "Roboto", sans-serif;
-        background-color: #f0f2f5;
-        color: #344767;
-        line-height: 1.6;
-        overflow-x: hidden;
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" type="image/png" href="../img/ryicon.jpg" />
+  <title>BookStore - Quản lý sản phẩm</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+
+  <!-- Optional main css -->
+  <link href="assets/css/pure-style-optimized.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: #f0f2f5;
+      color: #344767;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar (kept simple) */
+    aside {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 250px;
+      height: 100vh;
+      background: linear-gradient(195deg, #202021, #202021);
+      color: white;
+      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+    }
+
+    main {
+      margin-left: 250px;
+      min-height: 100vh;
+      padding: 1.5rem;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    thead {
+      background: linear-gradient(195deg, #2b2825, #2b2825);
+      color: white;
+    }
+
+    th,
+    td {
+      padding: 12px 10px;
+      font-size: 14px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: middle;
+    }
+
+    th {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    tbody tr:hover {
+      background-color: #f3f4f8;
+      transition: 0.2s;
+    }
+
+    /* Status badge */
+    .status {
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    .status-dangban {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .status-hethang {
+      background-color: #fff8e1;
+      color: #f9a825;
+    }
+
+    .status-ngungban {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+
+    .status-cell {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    /* Actions buttons */
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.12s ease, background-color 0.18s ease;
+    }
+
+    .btn i {
+      font-size: 18px;
+      margin-right: 6px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-edit {
+      background-color: #1976d2;
+    }
+
+    .btn-edit:hover {
+      background-color: #2196f3;
+    }
+
+    .btn-delete {
+      background-color: #d32f2f;
+    }
+
+    .btn-delete:hover {
+      background-color: #f44336;
+    }
+
+    /* Add button */
+    .btn-add {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(195deg, #ff9800, #f57c00);
+      color: white;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(255, 152, 0, 0.3);
+    }
+
+    .btn-add:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Small responsive image */
+    .prod-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Hiệu ứng mờ dần khi xóa */
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.45);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 24px;
+      border-radius: 10px;
+      width: 450px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
       }
 
-      /* ==== Table ==== */
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      to {
+        opacity: 1;
+        transform: scale(1);
       }
+    }
 
-      thead {
-        background: linear-gradient(195deg, #e88f2a, #e88f2a);
-        color: white;
-      }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
 
-      th,
-      td {
-        padding: 14px 16px;
-        font-size: 14px;
-        border-bottom: 1px solid #e0e0e0;
-      }
+    .modal-header h3 {
+      margin: 0;
+      font-size: 18px;
+    }
 
-      th {
-        text-transform: uppercase;
-        font-size: 12px;
-        letter-spacing: 0.5px;
-        text-align: center; /* ✅ Căn giữa tiêu đề */
-      }
+    .modal-close {
+      cursor: pointer;
+      font-size: 22px;
+      color: #999;
+    }
 
-      td {
-        vertical-align: middle;
-      }
+    .modal-close:hover {
+      color: #000;
+    }
 
-      tbody tr:nth-child(even) {
-        background-color: #fafafa;
-      }
+    .modal input {
+      width: 100%;
+      padding: 8px 10px;
+      margin: 6px 0 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
 
-      tbody tr:hover {
-        background-color: #f3f4f8;
-        transition: 0.2s;
-      }
+    .modal button {
+      background-color: #1976d2;
+      color: #fff;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
 
-      /* ✅ Căn giữa cột “Tên” và “Thao tác” */
-      td:nth-child(2),
-      th:nth-child(2),
-      td:last-child,
-      th:last-child {
-        text-align: center;
-      }
+    .modal button:hover {
+      background-color: #2196f3;
+    }
 
-      /* ==== Actions ==== */
-      .actions {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-      }
+    .modal select {
+      width: 100%;
+      padding: 8px 10px;
+      margin: 6px 0 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background-color: #fff;
+      cursor: pointer;
+    }
 
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 4px;
-        padding: 6px 10px;
-        border-radius: 6px;
-        border: none;
-        color: white;
-        font-size: 13px;
-        cursor: pointer;
-        transition: 0.2s;
-      }
+    #confirmDeleteModal .modal-content button {
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 8px 16px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
 
-      .btn-edit {
-        background-color: #1976d2;
-      }
-      .btn-edit:hover {
-        background-color: #2196f3;
-      }
+    #confirmDeleteModal .modal-content button:hover {
+      opacity: 0.85;
+    }
 
-      .btn-delete {
-        background-color: #e53935;
-      }
-      .btn-delete:hover {
-        background-color: #ef5350;
-      }
+    #addProductModal textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      resize: none;
+    }
 
-      /* ==== Add Button ==== */
-      .btn-add {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: linear-gradient(195deg, #ff9800, #f57c00);
-        color: white;
-        padding: 10px 18px;
-        font-size: 14px;
-        font-weight: 600;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-        box-shadow: 0 3px 6px rgba(255, 152, 0, 0.3);
-        transition: all 0.2s ease;
-      }
+    #addProductModal button {
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 10px 16px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
 
-      .btn-add:hover {
-        background: linear-gradient(195deg, #ffa726, #fb8c00);
-        transform: translateY(-2px);
-        box-shadow: 0 6px 10px rgba(255, 152, 0, 0.4);
-      }
+    #addProductModal button:hover {
+      opacity: 0.85;
+    }
 
-      /* ==== Table ==== */
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      }
+    #deleteImageBtn:hover {
+      background-color: rgba(255, 0, 0, 0.8);
+      transition: 0.3s;
+    }
+  </style>
+</head>
 
-      thead {
-        background: linear-gradient(195deg, #2b2825, #2b2825);
-        color: white;
-      }
-
-      th,
-      td {
-        padding: 14px 16px;
-        font-size: 14px;
-        text-align: left;
-        vertical-align: middle;
-        /* Thêm dòng này để căn giữa theo chiều dọc */
-      }
-
-      /* ==== Sidebar hover ==== */
-      aside ul li a:hover,
-      aside li a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        transition: background-color 0.2s ease;
-        color: white;
-      }
-
-      .logout-btn {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        background: linear-gradient(195deg, #202021, #202021);
-        color: white;
-        padding: 0.75rem 1rem;
-        font-size: 0.875rem;
-        border-radius: 0.25rem;
-        text-decoration: none;
-        width: 100%;
-        margin: 0 auto;
-        transition: all 0.3s ease;
-      }
-
-      .logout-btn:hover {
-        background: linear-gradient(195deg, #2c2c2e, #2c2c2e);
-        cursor: pointer;
-      }
-
-      /* --- Badge (giữ nguyên, chỉ chỉnh nếu cần) --- */
-  .status {
-    font-weight: 600;
-    padding: 6px 12px;
-    border-radius: 6px;
-    display: inline-block;
-  }
-  .status-dangban {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-  }
-  .status-hethang {
-    background-color: #fff8e1;
-    color: #f9a825;
-  }
-  .status-ngungban {
-    background-color: #ffebee;
-    color: #c62828;
-  }
-
-  /* --- Mới: căn giữa ô chứa badge --- */
-  td.status-cell {
-    text-align: center;        /* căn giữa ngang */
-    vertical-align: middle;    /* căn giữa dọc */
-    /* nếu cần, đảm bảo ô có đủ khoảng để badge */
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-  /* Căn giữa toàn bộ bảng */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center; /* căn giữa nội dung các ô */
-  vertical-align: middle;
-}
-
-/* Thêm viền nhẹ và khoảng cách */
-th, td {
-  padding: 12px 8px;
-  border-bottom: 1px solid #ddd;
-}
-
-/* Căn giữa cả phần tiêu đề */
-th {
-  font-weight: 600;
-}
-
-
-/* Badge trạng thái (vẫn giữ đẹp và căn giữa) */
-.status-cell {
-  text-align: center;
-  vertical-align: middle;
-}
-
-    </style>
-  </head>
-
-  <body>
-    <!-- SIDEBAR -->
-    <aside
-      style="
+<body>
+  <!-- SIDEBAR -->
+  <aside style="
         position: fixed;
         top: 0;
         left: 0;
@@ -256,72 +334,52 @@ th {
         background: linear-gradient(195deg, #202021, #202021);
         color: white;
         box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
-      "
-    >
-      <div style="padding: 1.5em 1rem">
-        <a
-          href="#"
-          style="
+      ">
+    <div style="padding: 1.5em 1rem">
+      <a href="#" style="
             display: flex;
             align-items: center;
             font-weight: 700;
             color: white;
             text-decoration: none;
-          "
-        >
-          <span>TRUNG TÂM ĐIỀU KHIỂN</span>
-        </a>
-      </div>
-      <hr
-        style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0"
-      />
-      <ul style="list-style: none; padding: 0; margin: 0">
-        <li>
-          <a
-            href="index.html"
-            style="
+          ">
+        <span>TRUNG TÂM ĐIỀU KHIỂN</span>
+      </a>
+    </div>
+    <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0" />
+    <ul style="list-style: none; padding: 0; margin: 0">
+      <li>
+        <a href="index.html" style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "
-            ><i class="material-icons" style="margin-right: 10px"></i>Tổng
-            quan</a
-          >
-        </li>
-        <li>
-          <a
-            href="user.html"
-            style="
+            "><i class="material-icons" style="margin-right: 10px"></i>Tổng
+          quan</a>
+      </li>
+      <li>
+        <a href="user.html" style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "
-            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý
-            khách hàng</a
-          >
-        </li>
-        <li>
-          <a
-            href="chef.html"
-            style="
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý
+          khách hàng</a>
+      </li>
+      <li>
+        <a href="chef.html" style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "
-            ><i class="material-icons" style="margin-right: 10px">person</i>Quản
-            lý đầu bếp</a
-          >
-        </li>
-        <li>
-          <a
-            href="products.html"
-            style="
+            "><i class="material-icons" style="margin-right: 10px">person</i>Quản
+          lý đầu bếp</a>
+      </li>
+      <li>
+        <a href="products.html" style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
@@ -330,262 +388,569 @@ th {
               background: linear-gradient(195deg, #e88f2a, #e88f2a);
               box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
                 0 7px 10px -5px rgba(240, 163, 74, 0.6);
-            "
-            ><i class="material-icons" style="margin-right: 10px">table_view</i
-            >Quản lý sản phẩm</a
-          >
-        </li>
-        <li>
-          <a
-            href="order.html"
-            style="
+            "><i class="material-icons" style="margin-right: 10px">table_view</i>Quản lý sản phẩm</a>
+      </li>
+      <li>
+        <a href="order.html" style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "
-            ><i class="material-icons" style="margin-right: 10px">weekend</i
-            >Quản lý đơn hàng</a
-          >
-        </li>
+            "><i class="material-icons" style="margin-right: 10px">weekend</i>Quản lý đơn hàng</a>
+      </li>
 
-        <li>
-          <a
-            href="category.html"
-            style="
+      <li>
+        <a href="category.html" style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "
-            ><i class="material-icons" style="margin-right: 10px">category</i
-            >Quản lý danh mục</a
-          >
-        </li>
-        <li>
-          <a
-            href="phieunhap.html"
-            style="
+            "><i class="material-icons" style="margin-right: 10px">category</i>Quản lý danh mục</a>
+      </li>
+      <li>
+        <a href="phieunhap.html" style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "
-            ><i class="material-icons" style="margin-right: 10px">inventory_2</i
-            >Quản lý nhập hàng</a
-          >
-        </li>
-        <li>
-          <a
-            href="giaban.html"
-            style="
+            "><i class="material-icons" style="margin-right: 10px">inventory_2</i>Quản lý nhập hàng</a>
+      </li>
+      <li>
+        <a href="giaban.html" style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "
-            ><i class="material-icons" style="margin-right: 10px"
-              >attach_money</i
-            >Quản lý giá bán</a
-          >
-        </li>
-        <li>
-          <a
-            href="tonkho.html"
-            style="
+            "><i class="material-icons" style="margin-right: 10px">attach_money</i>Quản lý giá bán</a>
+      </li>
+      <li>
+        <a href="tonkho.html" style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "
-            ><i class="material-icons" style="margin-right: 10px">inventory</i
-            >Quản lý tồn kho</a
-          >
-        </li>
+            "><i class="material-icons" style="margin-right: 10px">inventory</i>Quản lý tồn kho</a>
+      </li>
 
-        <!-- Đăng xuất -->
-        <li style="text-align: left">
-          <a href="../index.html" class="logout-btn">
-            <i class="material-icons">logout</i><span>Đăng xuất</span>
-          </a>
-        </li>
-      </ul>
-    </aside>
+      <!-- Đăng xuất -->
+      <li style="text-align: left">
+        <a href="../index.html" class="logout-btn">
+          <i class="material-icons">logout</i><span>Đăng xuất</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
 
-    <!-- MAIN -->
-    <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem">
-      <h1 style="margin-bottom: 1.5rem">Quản lý sản phẩm</h1>
+  <main>
+    <h1 style="margin-bottom:1.2rem;">Quản lý sản phẩm</h1>
 
-      <!-- Button Add Product -->
-      <div style="margin-bottom: 1.2rem; text-align: left">
-        <button
-          class="btn-add"
-          onclick="window.location.href='add-product.html'"
-        >
-          <i class="material-icons-round">add_box</i> Thêm sản phẩm
-        </button>
+    <div style="margin-bottom:12px; text-align:left;">
+      <button class="btn-add">
+        <i class="material-icons-round">add_box</i> Thêm sản phẩm
+      </button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tên sản phẩm</th>
+          <th>Hình ảnh</th>
+          <th>Giá sản phẩm</th>
+          <th>Số lượng</th>
+          <th>Trạng thái</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Row 1 -->
+        <tr>
+          <td>1</td>
+          <td>Bánh kem socola hạnh nhân</td>
+          <td><img class="prod-img" src="../img/bdcake-1.jpg" alt="bdcake-1"></td>
+          <td>180.000đ</td>
+          <td>25</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 2 -->
+        <tr>
+          <td>2</td>
+          <td>Bánh kem dâu tây phủ kem bơ</td>
+          <td><img class="prod-img" src="../img/bdcake-2.jpg" alt="bdcake-2"></td>
+          <td>160.000đ</td>
+          <td>18</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 3 -->
+        <tr>
+          <td>3</td>
+          <td>Bánh tiramisu Ý</td>
+          <td><img class="prod-img" src="../img/bdcake-3.jpg" alt="bdcake-3"></td>
+          <td>220.000đ</td>
+          <td>12</td>
+          <td class="status-cell">Hết hàng</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 4 -->
+        <tr>
+          <td>4</td>
+          <td>Bánh mousse xoài lạnh</td>
+          <td><img class="prod-img" src="../img/bdcake-4.jpg" alt="bdcake-4"></td>
+          <td>170.000đ</td>
+          <td>15</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 5 -->
+        <tr>
+          <td>5</td>
+          <td>Bánh red velvet kem phô mai</td>
+          <td><img class="prod-img" src="../img/bdcake-5.jpg" alt="bdcake-5"></td>
+          <td>210.000đ</td>
+          <td>10</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 6 -->
+        <tr>
+          <td>6</td>
+          <td>Bánh kem vani hạt dẻ</td>
+          <td><img class="prod-img" src="../img/bdcake-6.jpg" alt="bdcake-6"></td>
+          <td>150.000đ</td>
+          <td>20</td>
+          <td class="status-cell">Ngưng bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 7 -->
+        <tr>
+          <td>7</td>
+          <td>Bánh phô mai việt quất</td>
+          <td><img class="prod-img" src="../img/bdcake-7.jpg" alt="bdcake-7"></td>
+          <td>230.000đ</td>
+          <td>8</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 8 -->
+        <tr>
+          <td>8</td>
+          <td>Bánh matcha phủ kem trắng</td>
+          <td><img class="prod-img" src="../img/bdcake-8.jpg" alt="bdcake-8"></td>
+          <td>190.000đ</td>
+          <td>13</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 9 -->
+        <tr>
+          <td>9</td>
+          <td>Bánh kem caramel phủ hạt óc chó</td>
+          <td><img class="prod-img" src="../img/bdcake-9.jpg" alt="bdcake-9"></td>
+          <td>240.000đ</td>
+          <td>9</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+
+  <!-- Modal chỉnh sửa -->
+  <div class="modal" id="editModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Chỉnh sửa sản phẩm</h3>
+        <span class="modal-close" id="closeModal">&times;</span>
+      </div>
+      <form id="editForm">
+        <input type="hidden" id="editRowIndex" />
+
+        <label>Tên sản phẩm:</label>
+        <input type="text" id="editName" required />
+
+        <label>Giá sản phẩm:</label>
+        <input type="text" id="editPrice" required />
+
+        <label>Số lượng:</label>
+        <input type="number" id="editQty" required />
+
+        <label>Trạng thái:</label>
+        <select id="editStatus" required>
+          <option value="Đang bán">Đang bán</option>
+          <option value="Hết hàng">Hết hàng</option>
+          <option value="Ngừng bán">Ngừng bán</option>
+        </select>
+
+        <button type="submit">Lưu thay đổi</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Popup xác nhận xóa -->
+  <div class="modal" id="confirmDeleteModal">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-header">
+        <h3>Xác nhận xóa</h3>
+        <span class="modal-close" id="closeDeleteModal">&times;</span>
+      </div>
+      <p>Bạn có chắc chắn muốn xóa sản phẩm này không?</p>
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+        <button id="cancelDelete" style="background-color: #777;">Hủy</button>
+        <button id="confirmDelete" style="background-color: #e53935;">Xóa</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup thêm sản phẩm -->
+  <div class="modal" id="addProductModal">
+    <div class="modal-content" style="width: 800px; max-width: 90%;">
+      <div class="modal-header">
+        <h3>Thêm sản phẩm</h3>
+        <span class="modal-close" id="closeAddModal">&times;</span>
       </div>
 
-      <table>
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Tên sản phẩm</th>
-            <th>Hình ảnh</th>
-            <th>Giá sản phẩm</th>
-            <th>Số lượng</th>
-            <th>Trạng thái</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-    <td>1</td>
-    <td>Bánh kem socola hạnh nhân</td>
-    <td>
-      <img src="../img/bdcake-1.jpg" alt="Bánh kem socola hạnh nhân" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
-    </td>
-    <td>180.000đ</td>
-    <td>25</td>
-    <td>Đang bán</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>Bánh kem dâu tây phủ kem bơ</td>
-    <td>
-      <img src="../img/bdcake-2.jpg" alt="Bánh kem dâu tây phủ kem bơ" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
-    </td>
-    <td>160.000đ</td>
-    <td>18</td>
-    <td>Đang bán</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Bánh tiramisu Ý</td>
-    <td>
-      <img src="../img/bdcake-3.jpg" alt="Bánh tiramisu Ý" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
-    </td>
-    <td>220.000đ</td>
-    <td>12</td>
-    <td>Hết hàng</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>Bánh mousse xoài lạnh</td>
-    <td>
-      <img src="../img/bdcake-4.jpg" alt="Bánh mousse xoài lạnh" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
-    </td>
-    <td>170.000đ</td>
-    <td>15</td>
-    <td>Đang bán</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>Bánh red velvet kem phô mai</td>
-    <td>
-      <img src="../img/bdcake-5.jpg" alt="Bánh red velvet kem phô mai" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
-    </td>
-    <td>210.000đ</td>
-    <td>10</td>
-    <td>Đang bán</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>Bánh kem vani hạt dẻ</td>
-    <td>
-      <img src="../img/bdcake-6.jpg" alt="Bánh kem vani hạt dẻ" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
-    </td>
-    <td>150.000đ</td>
-    <td>20</td>
-    <td>Ngưng bán</td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td>Bánh phô mai việt quất</td>
-    <td>
-      <img src="../img/bdcake-7.jpg" alt="Bánh phô mai việt quất" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
-    </td>
-    <td>230.000đ</td>
-    <td>8</td>
-    <td>Đang bán</td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>Bánh matcha phủ kem trắng</td>
-    <td>
-      <img src="../img/bdcake-8.jpg" alt="Bánh matcha phủ kem trắng" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
-    </td>
-    <td>190.000đ</td>
-    <td>13</td>
-    <td>Đang bán</td>
-  </tr>
-  <tr>
-    <td>9</td>
-    <td>Bánh kem caramel phủ hạt óc chó</td>
-    <td>
-      <img src="../img/bdcake-9.jpg" alt="Bánh kem caramel phủ hạt óc chó" style="width:80px; height:80px; object-fit:cover; border-radius:8px;">
-    </td>
-    <td>240.000đ</td>
-    <td>9</td>
-    <td>Đang bán</td>
-  </tr>
-        </tbody>
-      </table>
-    </main>
+      <form id="addProductForm" style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <!-- Cột trái -->
+        <div style="flex: 2; min-width: 200px;">
+          <label>Tên sản phẩm <span style="color:red">*</span></label>
+          <input type="text" id="newName" required placeholder="Nhập tên sản phẩm" />
 
-    <script>
-      const editButtons = document.querySelectorAll(".btn-edit");
-      const deleteButtons = document.querySelectorAll(".btn-delete");
+          <label>Mô tả ngắn</label>
+          <textarea id="newDesc" rows="7" placeholder="Nhập mô tả ngắn về sản phẩm"></textarea>
 
-      editButtons.forEach((btn) =>
-        btn.addEventListener("click", () => {
-          window.location.href = "edit-product.html";
-        })
-      );
+          <label>Thành phần</label>
+          <input type="text" id="newIngredients" required placeholder="Nhập thành phần sản phẩm" />
 
-      deleteButtons.forEach((btn) =>
-        btn.addEventListener("click", () => {
-          alert("Xóa sản phẩm thành công!");
-        })
-      );
-    </script>
+          <label>Hương vị</label>
+          <input type="text" id="newFlavor" required placeholder="Nhập hương vị sản phẩm" />
 
-    <script>
-  // Thay vì gán class .status trực tiếp cho <td>, ta:
-  // - gán class .status-cell cho <td> để căn giữa
-  // - tạo 1 <span class="status ...">text</span> bên trong <td>
-  document.querySelectorAll("table tbody tr").forEach(row => {
-    const statusTd = row.querySelector("td:last-child");
-    if (!statusTd) return;
-    const text = statusTd.textContent.trim();
+          <label>Màu sắc</label>
+          <input type="text" id="newColor" required placeholder="Nhập màu sắc sản phẩm" />
 
-    // Tạo span badge
-    const span = document.createElement("span");
-    span.classList.add("status");
+          <label>Kích cỡ</label>
+          <input type="text" id="newSize" required placeholder="Nhập kích cỡ sản phẩm" />
 
-    if (text === "Đang bán") {
-      span.classList.add("status-dangban");
-      span.textContent = text;
-    } else if (text === "Hết hàng") {
-      span.classList.add("status-hethang");
-      span.textContent = text;
-    } else if (text === "Ngưng bán") {
-      span.classList.add("status-ngungban");
-      span.textContent = text;
-    } else {
-      // Nếu trạng thái khác, giữ nguyên text (không gán màu)
-      span.textContent = text;
+          <label>Đặc biệt</label>
+          <input type="text" id="newSpecial" required placeholder="Nhập điểm đặc biệt của sản phẩm" />
+
+          <label>Danh mục <span style="color:red">*</span></label>
+          <select id="newCategory" required>
+            <option value="">Chọn danh mục</option>
+            <option>Bánh kem</option>
+            <option>Bánh ngọt</option>
+            <option>Bánh mì</option>
+            <option>Khác</option>
+          </select>
+
+        </div>
+
+        <!-- Cột phải -->
+        <div style="flex: 1; min-width: 400px;">
+          <label>Hình ảnh sản phẩm</label>
+          <div id="imagePreview"
+            style="position: relative; border: 2px dashed #ccc; border-radius: 10px; padding: 20px; cursor: pointer; height: 341px;">
+            <i class="material-icons-round" style="font-size: 40px; color: #aaa;">add_photo_alternate</i>
+            <p>Chọn ảnh cho sản phẩm</p>
+            <input type="file" id="newImage" accept="image/*" style="display: none;" />
+
+            <div id="imageContainer" style="position: relative; display: none;">
+              <img id="previewImg" src="" alt="Ảnh sản phẩm"
+                style="margin-top:10px; width:300px; height:200px; object-fit:cover; border-radius:8px;" />
+              <button id="deleteImageBtn" title="Xóa ảnh"
+                style="position: absolute; top: -20px; right: 20px; background-color: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 30px; height: 30px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                <i class="material-icons-round" style="font-size:18px;">delete</i>
+              </button>
+            </div>
+          </div>
+
+          <img id="previewImg" src="" alt=""
+            style="margin-top:20px; width:200px; height:200px; object-fit:cover; border-radius:8px; display:none;" />
+          <label>Mô tả sản phẩm</label>
+          <textarea id="newDesc" rows="14" placeholder="Nhập mô tả chi tiết về sản phẩm"></textarea>
+
+          <label>Giá sản phẩm <span style="color:red">*</span></label>
+          <input type="number" id="newPrice" min="0" required />
+          <p style="font-size: 13px; color: gray;">Đơn vị: VNĐ</p>
+
+
+        </div>
+
+        <div style="width:100%; text-align:right; margin-top:10px;">
+          <button type="button" id="cancelAdd" style="background-color:#777;">Quay về</button>
+          <button type="submit" style="background-color:#e88f2a;">Thêm sản phẩm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Popup thêm sản phẩm thành công -->
+  <div class="modal" id="successModal">
+    <div class="modal-content" style="max-width:400px; text-align:center; padding:30px;">
+      <h3 style="color:#28a745; margin-bottom:15px;">🎉 Thêm sản phẩm thành công!</h3>
+      <p>Sản phẩm mới đã được lưu vào danh sách.</p>
+      <button id="closeSuccessModal"
+        style="margin-top:20px; background-color:#28a745; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer;">Đóng</button>
+    </div>
+  </div>
+
+
+  <script>
+    // ======= CHUYỂN TEXT TRẠNG THÁI THÀNH BADGE =======
+    function applyStatusBadges() {
+      document.querySelectorAll("table tbody tr").forEach((row) => {
+        const statusTd = row.querySelector("td:nth-child(6)");
+        if (!statusTd) return;
+        const text = statusTd.textContent.trim();
+
+        const span = document.createElement("span");
+        span.classList.add("status");
+
+        if (text === "Đang bán") {
+          span.classList.add("status-dangban");
+          span.textContent = text;
+        } else if (text === "Hết hàng") {
+          span.classList.add("status-hethang");
+          span.textContent = text;
+        } else if (text === "Ngừng bán" || text === "Ngưng bán") {
+          span.classList.add("status-ngungban");
+          span.textContent = "Ngừng bán";
+        } else {
+          span.textContent = text;
+        }
+
+        statusTd.innerHTML = "";
+        statusTd.classList.add("status-cell");
+        statusTd.appendChild(span);
+      });
     }
 
-    // Xoá nội dung hiện có của ô và gán lại
-    statusTd.innerHTML = "";
-    statusTd.classList.add("status-cell");
-    statusTd.appendChild(span);
-  });
-</script>
-  </body>
+    applyStatusBadges(); // Gọi khi load trang
+
+
+    // ======= NÚT SỬA MỞ MODAL =======
+    document.querySelectorAll(".btn-edit").forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        const tr = btn.closest("tr");
+        document.getElementById("editRowIndex").value = index;
+        document.getElementById("editName").value = tr.children[1].textContent.trim();
+        document.getElementById("editPrice").value = tr.children[3].textContent.trim();
+        document.getElementById("editQty").value = tr.children[4].textContent.trim();
+        document.getElementById("editStatus").value = tr.children[5].textContent.trim();
+        document.getElementById("editModal").style.display = "flex";
+      });
+    });
+
+
+    // ======= ĐÓNG MODAL =======
+    document.getElementById("closeModal").onclick = () => {
+      document.getElementById("editModal").style.display = "none";
+    };
+    window.onclick = (e) => {
+      if (e.target.id === "editModal")
+        document.getElementById("editModal").style.display = "none";
+    };
+
+
+    // ======= LƯU THAY ĐỔI TRONG MODAL =======
+    document.getElementById("editForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const index = document.getElementById("editRowIndex").value;
+      const rows = document.querySelectorAll("tbody tr");
+      const row = rows[index];
+
+      row.children[1].textContent = document.getElementById("editName").value;
+      row.children[3].textContent = document.getElementById("editPrice").value;
+      row.children[4].textContent = document.getElementById("editQty").value;
+      row.children[5].textContent = document.getElementById("editStatus").value;
+
+      document.getElementById("editModal").style.display = "none";
+
+      // Cập nhật lại hiển thị badge trạng thái
+      applyStatusBadges();
+
+      alert("Cập nhật thành công!");
+    });
+
+
+    // ======= XÓA VỚI POPUP XÁC NHẬN =======
+    let deleteTargetRow = null; // hàng cần xóa tạm
+
+    document.querySelectorAll(".btn-delete").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        deleteTargetRow = btn.closest("tr");
+        document.getElementById("confirmDeleteModal").style.display = "flex";
+      });
+    });
+
+    // Khi nhấn nút "Hủy"
+    document.getElementById("cancelDelete").onclick = () => {
+      document.getElementById("confirmDeleteModal").style.display = "none";
+      deleteTargetRow = null;
+    };
+
+    // Khi nhấn nút đóng (X)
+    document.getElementById("closeDeleteModal").onclick = () => {
+      document.getElementById("confirmDeleteModal").style.display = "none";
+      deleteTargetRow = null;
+    };
+
+    // Khi nhấn nút "Xóa"
+    document.getElementById("confirmDelete").onclick = () => {
+      if (deleteTargetRow) {
+        deleteTargetRow.classList.add("fade-out");
+        setTimeout(() => deleteTargetRow.remove(), 400);
+      }
+      document.getElementById("confirmDeleteModal").style.display = "none";
+    };
+
+    // ======= POPUP THÊM SẢN PHẨM =======
+    const addBtn = document.querySelector(".btn-add");
+    const addModal = document.getElementById("addProductModal");
+    const closeAddModal = document.getElementById("closeAddModal");
+    const cancelAdd = document.getElementById("cancelAdd");
+
+    addBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      addModal.style.display = "flex";
+    });
+
+    closeAddModal.onclick = () => addModal.style.display = "none";
+    cancelAdd.onclick = () => addModal.style.display = "none";
+
+    window.addEventListener("click", (e) => {
+      if (e.target === addModal) addModal.style.display = "none";
+    });
+
+    // Xử lý chọn ảnh
+    document.getElementById("imagePreview").addEventListener("click", () => {
+      document.getElementById("newImage").click();
+    });
+    document.getElementById("newImage").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const preview = document.getElementById("previewImg");
+          preview.src = e.target.result;
+          preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Xử lý nút thêm sản phẩm (demo)
+    document.getElementById("addProductForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      addModal.style.display = "none";
+      document.getElementById("successModal").style.display = "flex";
+
+      e.target.reset();
+      document.getElementById("previewImg").style.display = "none";
+    });
+    // Đóng popup thông báo
+    document.getElementById("closeSuccessModal").addEventListener("click", () => {
+      document.getElementById("successModal").style.display = "none";
+    });
+    window.addEventListener("click", (e) => {
+      const modal = document.getElementById("successModal");
+      if (e.target === modal) modal.style.display = "none";
+    });
+
+  </script>
+
+  <script>
+    const imagePreview = document.getElementById("imagePreview");
+    const newImageInput = document.getElementById("newImage");
+    const previewImg = document.getElementById("previewImg");
+    const imageContainer = document.getElementById("imageContainer");
+    const deleteBtn = document.getElementById("deleteImageBtn");
+
+
+    // Hiển thị ảnh xem trước
+    newImageInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          previewImg.src = ev.target.result;
+          imageContainer.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Nút xóa ảnh
+    deleteBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // tránh click lan sang vùng chọn ảnh
+      previewImg.src = "";
+      newImageInput.value = "";
+      imageContainer.style.display = "none";
+    });
+  </script>
+
+
+</body>
+
 </html>

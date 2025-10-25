@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" type="image/png" href="../img/ryicon.jpg" />
+  <title>BookStore - Quản lý sản phẩm</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
+
+  <!-- Optional main css -->
+  <link href="assets/css/pure-style-optimized.css" rel="stylesheet" />
+
+  <style>
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: #f0f2f5;
+      color: #344767;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar (kept simple) */
+    aside {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 250px;
+      height: 100vh;
+      background: linear-gradient(195deg, #202021, #202021);
+      color: white;
+      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+    }
+
+    main {
+      margin-left: 250px;
+      min-height: 100vh;
+      padding: 1.5rem;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    thead {
+      background: linear-gradient(195deg, #2b2825, #2b2825);
+      color: white;
+    }
+
+    th,
+    td {
+      padding: 12px 10px;
+      font-size: 14px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: middle;
+    }
+
+    th {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    tbody tr:hover {
+      background-color: #f3f4f8;
+      transition: 0.2s;
+    }
+
+    /* Status badge */
+    .status {
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    .status-dangban {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .status-hethang {
+      background-color: #fff8e1;
+      color: #f9a825;
+    }
+
+    .status-ngungban {
+      background-color: #ffebee;
+      color: #c62828;
+    }
+
+    .status-cell {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    /* Actions buttons */
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.12s ease, background-color 0.18s ease;
+    }
+
+    .btn i {
+      font-size: 18px;
+      margin-right: 6px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-edit {
+      background-color: #1976d2;
+    }
+
+    .btn-edit:hover {
+      background-color: #2196f3;
+    }
+
+    .btn-delete {
+      background-color: #d32f2f;
+    }
+
+    .btn-delete:hover {
+      background-color: #f44336;
+    }
+
+    /* Add button */
+    .btn-add {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(195deg, #ff9800, #f57c00);
+      color: white;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(255, 152, 0, 0.3);
+    }
+
+    .btn-add:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Small responsive image */
+    .prod-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- SIDEBAR -->
+  <aside style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 250px;
+        height: 100vh;
+        background: linear-gradient(195deg, #202021, #202021);
+        color: white;
+        box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+      ">
+    <div style="padding: 1.5em 1rem">
+      <a href="#" style="
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+          ">
+        <span>TRUNG TÂM ĐIỀU KHIỂN</span>
+      </a>
+    </div>
+    <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0" />
+    <ul style="list-style: none; padding: 0; margin: 0">
+      <li>
+        <a href="index.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Tổng
+          quan</a>
+      </li>
+      <li>
+        <a href="user.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý
+          khách hàng</a>
+      </li>
+      <li>
+        <a href="chef.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px">person</i>Quản
+          lý đầu bếp</a>
+      </li>
+      <li>
+        <a href="products.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+              background: linear-gradient(195deg, #e88f2a, #e88f2a);
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
+                0 7px 10px -5px rgba(240, 163, 74, 0.6);
+            "><i class="material-icons" style="margin-right: 10px">table_view</i>Quản lý sản phẩm</a>
+      </li>
+      <li>
+        <a href="order.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px">weekend</i>Quản lý đơn hàng</a>
+      </li>
+
+      <li>
+        <a href="category.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px">category</i>Quản lý danh mục</a>
+      </li>
+      <li>
+        <a href="phieunhap.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px">inventory_2</i>Quản lý nhập hàng</a>
+      </li>
+      <li>
+        <a href="giaban.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px">attach_money</i>Quản lý giá bán</a>
+      </li>
+      <li>
+        <a href="tonkho.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px">inventory</i>Quản lý tồn kho</a>
+      </li>
+
+      <!-- Đăng xuất -->
+      <li style="text-align: left">
+        <a href="../index.html" class="logout-btn">
+          <i class="material-icons">logout</i><span>Đăng xuất</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main>
+    <h1 style="margin-bottom:1.2rem;">Quản lý sản phẩm</h1>
+
+    <div style="margin-bottom:12px; text-align:left;">
+      <button class="btn-add" onclick="window.location.href='add-product.html'">
+        <i class="material-icons-round">add_box</i> Thêm sản phẩm
+      </button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Tên sản phẩm</th>
+          <th>Hình ảnh</th>
+          <th>Giá sản phẩm</th>
+          <th>Số lượng</th>
+          <th>Trạng thái</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Row 1 -->
+        <tr>
+          <td>1</td>
+          <td>Bánh kem socola hạnh nhân</td>
+          <td><img class="prod-img" src="../img/bdcake-1.jpg" alt="bdcake-1"></td>
+          <td>180.000đ</td>
+          <td>25</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 2 -->
+        <tr>
+          <td>2</td>
+          <td>Bánh kem dâu tây phủ kem bơ</td>
+          <td><img class="prod-img" src="../img/bdcake-2.jpg" alt="bdcake-2"></td>
+          <td>160.000đ</td>
+          <td>18</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 3 -->
+        <tr>
+          <td>3</td>
+          <td>Bánh tiramisu Ý</td>
+          <td><img class="prod-img" src="../img/bdcake-3.jpg" alt="bdcake-3"></td>
+          <td>220.000đ</td>
+          <td>12</td>
+          <td class="status-cell">Hết hàng</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 4 -->
+        <tr>
+          <td>4</td>
+          <td>Bánh mousse xoài lạnh</td>
+          <td><img class="prod-img" src="../img/bdcake-4.jpg" alt="bdcake-4"></td>
+          <td>170.000đ</td>
+          <td>15</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 5 -->
+        <tr>
+          <td>5</td>
+          <td>Bánh red velvet kem phô mai</td>
+          <td><img class="prod-img" src="../img/bdcake-5.jpg" alt="bdcake-5"></td>
+          <td>210.000đ</td>
+          <td>10</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 6 -->
+        <tr>
+          <td>6</td>
+          <td>Bánh kem vani hạt dẻ</td>
+          <td><img class="prod-img" src="../img/bdcake-6.jpg" alt="bdcake-6"></td>
+          <td>150.000đ</td>
+          <td>20</td>
+          <td class="status-cell">Ngưng bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 7 -->
+        <tr>
+          <td>7</td>
+          <td>Bánh phô mai việt quất</td>
+          <td><img class="prod-img" src="../img/bdcake-7.jpg" alt="bdcake-7"></td>
+          <td>230.000đ</td>
+          <td>8</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 8 -->
+        <tr>
+          <td>8</td>
+          <td>Bánh matcha phủ kem trắng</td>
+          <td><img class="prod-img" src="../img/bdcake-8.jpg" alt="bdcake-8"></td>
+          <td>190.000đ</td>
+          <td>13</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+
+        <!-- Row 9 -->
+        <tr>
+          <td>9</td>
+          <td>Bánh kem caramel phủ hạt óc chó</td>
+          <td><img class="prod-img" src="../img/bdcake-9.jpg" alt="bdcake-9"></td>
+          <td>240.000đ</td>
+          <td>9</td>
+          <td class="status-cell">Đang bán</td>
+          <td>
+            <div class="actions">
+              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <script>
+    // Chuyển text trạng thái thành badge (chọn cột 6)
+    document.querySelectorAll("table tbody tr").forEach((row) => {
+      const statusTd = row.querySelector("td:nth-child(6)");
+      if (!statusTd) return;
+      const text = statusTd.textContent.trim();
+
+      const span = document.createElement("span");
+      span.classList.add("status");
+
+      if (text === "Đang bán") {
+        span.classList.add("status-dangban");
+        span.textContent = text;
+      } else if (text === "Hết hàng") {
+        span.classList.add("status-hethang");
+        span.textContent = text;
+      } else if (text === "Ngưng bán") {
+        span.classList.add("status-ngungban");
+        span.textContent = text;
+      } else {
+        span.textContent = text;
+      }
+
+      statusTd.innerHTML = "";
+      statusTd.classList.add("status-cell");
+      statusTd.appendChild(span);
+    });
+
+    // Gắn sự kiện cho nút Sửa / Xóa
+    function attachActionEvents() {
+      document.querySelectorAll(".btn-edit").forEach((btn) => {
+        btn.removeEventListener && btn.removeEventListener("click", () => {}); // noop
+        btn.addEventListener("click", () => {
+          // ví dụ: chuyển tới edit-product.html
+          window.location.href = "edit-product.html";
+        });
+      });
+
+      document.querySelectorAll(".btn-delete").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          if (confirm("Bạn có chắc muốn xóa sản phẩm này không?")) {
+            // ở đây bạn có thể gọi API xóa, hoặc remove hàng:
+            const tr = btn.closest("tr");
+            if (tr) tr.remove();
+            alert("Sản phẩm đã được xóa!");
+          }
+        });
+      });
+    }
+
+    // gọi khi DOM sẵn sàng
+    attachActionEvents();
+  </script>
+</body>
+
+</html>
