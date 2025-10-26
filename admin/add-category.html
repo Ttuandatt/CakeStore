@@ -8,45 +8,166 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link href="assets/css/pure-style.css" rel="stylesheet" />
+<style>
+  /* ==== Sidebar hover ==== */
+    aside ul li a:hover,
+    aside li a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: background-color 0.2s ease;
+      color: white;
+    }
+
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: linear-gradient(195deg, #202021, #202021);
+      color: white;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      width: 100%;
+      margin: 0 auto;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: linear-gradient(195deg, #2c2c2e, #2c2c2e);
+      cursor: pointer;
+    }
+</style>
 </head>
 
 <body style="font-family:'Roboto',sans-serif;background-color:#f0f2f5;color:#344767;line-height:1.6;overflow-x:hidden;">
 
-  <!-- Sidebar -->
-  <aside style="position:fixed;top:0;left:0;z-index:1000;width:250px;height:100vh;background:linear-gradient(195deg,#42424a,#191919);color:white;box-shadow:0 0 2rem rgba(0,0,0,0.15);">
-    <div style="padding:1.5em 1rem;">
-      <a href="#" style="display:flex;align-items:center;font-weight:700;color:white;text-decoration:none;">
-        <span>TRUNG TÂM ĐIỀU KHIỂN</span>
+  <!-- SIDEBAR -->
+  <aside style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 250px;
+        height: 100vh;
+        background: linear-gradient(195deg, #202021, #202021);
+        color: white;
+        box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+      ">
+    <div style="padding: 1.5em 1rem">
+      <a href="#" style="
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+          ">
+        <span>CAKEZONE ADMIN</span>
       </a>
     </div>
-    <hr style="border-top:1px solid rgba(255,255,255,0.1);margin:1rem 0;">
-    <ul style="list-style:none;padding:0;margin:0;">
-      <li><a href="index.html" style="display:flex;align-items:center;padding:0.75rem 1rem;color:white;text-decoration:none;"><i class="material-icons" style="margin-right:10px;">dashboard</i>Tổng quan</a></li>
-      <li><a href="user.html" style="display:flex;align-items:center;padding:0.75rem 1rem;color:white;text-decoration:none;"><i class="material-icons" style="margin-right:10px;">person</i>Quản lý khách hàng</a></li>
-      <li><a href="order.html" style="display:flex;align-items:center;padding:0.75rem 1rem;color:white;text-decoration:none;"><i class="material-icons" style="margin-right:10px;">weekend</i>Quản lý đơn hàng</a></li>
-      <li><a href="products.html" style="display:flex;align-items:center;padding:0.75rem 1rem;color:white;text-decoration:none;"><i class="material-icons" style="margin-right:10px;">table_view</i>Quản lý sản phẩm</a></li>
-      <li><a href="category.html" style="display:flex;align-items:center;padding:0.75rem 1rem;color:white;text-decoration:none;background:linear-gradient(195deg,#ec407a,#d81b60);box-shadow:0 4px 20px rgba(0,0,0,0.14),0 7px 10px -5px rgba(233,30,99,0.4);"><i class="material-icons" style="margin-right:10px;">category</i>Quản lý danh mục</a></li>
-      <li><a href="phieunhap.html" style="display:flex;align-items:center;padding:0.75rem 1rem;color:white;text-decoration:none;"><i class="material-icons" style="margin-right:10px;">inventory_2</i>Quản lý nhập hàng</a></li>
-      <li><a href="giaban.html" style="display:flex;align-items:center;padding:0.75rem 1rem;color:white;text-decoration:none;"><i class="material-icons" style="margin-right:10px;">attach_money</i>Quản lý giá bán</a></li>
-      <li><a href="tonkho.html" style="display:flex;align-items:center;padding:0.75rem 1rem;color:white;text-decoration:none;"><i class="material-icons" style="margin-right:10px;">inventory</i>Quản lý tồn kho</a></li>
+    <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0" />
+    <ul style="list-style: none; padding: 0; margin: 0">
+      <li>
+        <a href="index.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+              
+            "><i class="material-icons" style="margin-right: 10px"></i>Tổng
+          quan</a>
+      </li>
+      <li>
+        <a href="user.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản
+          lý khách hàng</a>
+      </li>
+      <li>
+        <a href="chef.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản
+          lý đầu bếp</a>
+      </li>
+      <li>
+        <a href="products.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý sản phẩm</a>
+      </li>
+      <li>
+        <a href="order.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý đơn hàng</a>
+      </li>
+
+      <li>
+        <a href="category.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+              background: linear-gradient(195deg, #e88f2a, #e88f2a);
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
+            0 7px 10px -5px rgba(240, 163, 74, 0.6);
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý danh mục</a>
+      </li>
+      <li>
+        <a href="import.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nhập hàng</a>
+      </li>
+      <li>
+        <a href="giaban.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý giá bán</a>
+      </li>
+      <li>
+        <a href="tonkho.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý tồn kho</a>
+      </li>
+
+      <!-- Đăng xuất -->
+      <li style="text-align:left;">
+        <a href="../index.html" class="logout-btn">
+          <i class="material-icons">logout</i><span>Đăng xuất</span>
+        </a>
+      </li>
     </ul>
-    <div style="position:absolute;bottom:0;width:100%;padding:1rem;">
-      <a href="login.html" style="display:inline-block;background:linear-gradient(195deg,#ec407a,#d81b60);color:white;padding:0.625rem 1.5rem;border-radius:0.25rem;text-decoration:none;width:100%;text-align:center;">Đăng xuất</a>
-    </div>
   </aside>
 
   <!-- Main -->
   <main style="margin-left:250px;min-height:100vh;padding:1.5rem;">
-    <nav style="margin-bottom:1.5rem;padding:0.75rem 1.5rem;border-radius:0.75rem;box-shadow:0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06);background-color:white;">
-      <div style="width:100%;padding:0 15px;">
-        <ol style="display:flex;list-style:none;padding:0;margin:0;">
-          <li style="display:flex;align-items:center;color:rgba(52,71,103,0.5);font-size:0.875rem;">
-            <a href="javascript:;" style="color:#e91e63;text-decoration:none;"><b>Thêm danh mục mới</b></a>
-          </li>
-        </ol>
-      </div>
-    </nav>
-
+    <h1 style="margin-bottom: 1rem">Quản lý danh mục</h1>
     <div style="width:100%;padding:1.5rem;">
       <div class="card">
         <div class="card-header">

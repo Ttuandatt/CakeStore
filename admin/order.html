@@ -57,45 +57,38 @@
 
     /* ==== Status badge ==== */
     .status-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
+      display: inline-block;
       font-size: 13px;
       font-weight: 600;
-      border-radius: 50px;
-      padding: 5px 12px;
-      min-width: 110px;
+      border-radius: 6px;
+      padding: 6px 12px;
+      text-align: center;
+      min-width: 90px;
     }
 
     .status-pending {
-      background-color: rgba(255, 193, 7, 0.1);
+      background-color: rgba(255, 193, 7, 0.15);
       color: #f57c00;
-      border: 1px solid #ffd54f;
-    }
-
-    .status-processing {
-      background-color: rgba(33, 150, 243, 0.1);
-      color: #1565c0;
-      border: 1px solid #64b5f6;
     }
 
     .status-delivering {
-      background-color: rgba(3, 169, 244, 0.1);
+      background-color: rgba(3, 169, 244, 0.15);
       color: #0277bd;
-      border: 1px solid #4fc3f7;
     }
 
     .status-completed {
-      background-color: rgba(76, 175, 80, 0.1);
+      background-color: rgba(76, 175, 80, 0.15);
       color: #2e7d32;
-      border: 1px solid #81c784;
     }
 
     .status-cancelled {
-      background-color: rgba(244, 67, 54, 0.1);
+      background-color: rgba(244, 67, 54, 0.15);
       color: #c62828;
-      border: 1px solid #ef9a9a;
+    }
+
+    /* Ẩn icon để giao diện giống ảnh 2 */
+    .status-badge i {
+      display: none;
     }
 
     .material-icons-round {
@@ -123,11 +116,11 @@
     }
 
     .btn-view {
-      background-color: #6a1b9a;
+      background-color: #1976d2;
     }
 
     .btn-view:hover {
-      background-color: #8e24aa;
+      background-color: #1260ad;
     }
 
     /* ==== Search Form ==== */
@@ -178,46 +171,44 @@
     }
 
     .btn-search {
-      background: linear-gradient(195deg, #e88f2a, #e88f2a);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 5px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
     .btn-search:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(233, 30, 99, 0.3);
+      background-color: #e68900;
     }
 
-    .btn-reset {
-      background: #6c757d;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: inline-flex;
+    .btn-refresh {
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-left: 0.5rem;
+      gap: 5px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    .btn-reset:hover {
-      background: #5a6268;
+    .btn-refresh:hover {
+      background-color: #e68900;
     }
 
     .form-actions {
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex;
       margin-top: 1rem;
     }
 
@@ -238,138 +229,193 @@
         margin: 0.25rem 0;
       }
     }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      /* Bắt buộc: giữ cột cân đối */
+    }
+
+    th,
+    td {
+      text-align: center;
+      /* Căn giữa nội dung */
+      vertical-align: middle;
+      /* Căn giữa theo chiều dọc */
+      padding: 12px 8px;
+      word-wrap: break-word;
+      /* Cho văn bản dài tự xuống dòng */
+    }
+
+    thead th {
+      background-color: #2d2d2d;
+      color: white;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    /* Giảm bề ngang 3 cột đầu */
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 5%;
+    }
+
+    /* STT */
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 9%;
+    }
+
+    /* Mã đơn */
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 15%;
+    }
+
+    /* Khách hàng */
+    /* Tăng bề ngang cột Địa chỉ */
+    th:nth-child(4),
+    td:nth-child(4) {
+      width: 25%;
+    }
+
+    /* Địa chỉ */
+
+    /* Các cột còn lại chia đều */
+    th,
+    td {
+      word-wrap: break-word;
+    }
   </style>
 </head>
 
 <body>
   <!-- SIDEBAR -->
-  <aside
-    style="position: fixed; top: 0; left: 0; z-index: 1000; width: 250px; height: 100vh; background: linear-gradient(195deg, #2b2825, #2b2825); color: white; transition: all 0.3s ease; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.15);"
-    id="sidenav-main">
-    <div style="padding: 1.5em 1rem;">
-      <a href="../pages/loggedin.html" target="_blank"
-        style="display: flex; align-items: center; font-weight: 600; color: white; text-decoration: none;">
-        <span style="margin-left: 0.25rem; font-weight: 700;">CAKE ZONE</span>
+  <aside style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 250px;
+        height: 100vh;
+        background: linear-gradient(195deg, #202021, #202021);
+        color: white;
+        box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+      ">
+    <div style="padding: 1.5em 1rem">
+      <a href="#" style="
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+          ">
+        <span>CAKEZONE ADMIN</span>
       </a>
     </div>
-    <hr style="width: 100%; border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0;">
-    <div style="width: 100%; overflow-y: auto; height: 75vh;">
-      <ul style="list-style: none; padding: 0; margin: 0;">
-        <li style="margin: 0.25rem 0;">
-          <a href="index.html"
-            style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none; background: linear-gradient(195deg,#e88f2a,#e88f2a); box-shadow: 0 4px 20px rgba(0,0,0,0.14),0 7px 10px -5px rgba(233,30,99,0.4);">
-            <i class="material-icons" style="font-size:20px; margin-right:10px;">dashboard</i> Tổng quan
-          </a>
-        </li>
+    <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0" />
+    <ul style="list-style: none; padding: 0; margin: 0">
+      <li>
+        <a href="index.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+              
+            "><i class="material-icons" style="margin-right: 10px"></i>Tổng
+          quan</a>
+      </li>
+      <li>
+        <a href="user.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản
+          lý khách hàng</a>
+      </li>
+      <li>
+        <a href="chef.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản
+          lý đầu bếp</a>
+      </li>
+      <li>
+        <a href="products.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý sản phẩm</a>
+      </li>
+      <li>
+        <a href="order.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+              background: linear-gradient(195deg, #e88f2a, #e88f2a);
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
+            0 7px 10px -5px rgba(240, 163, 74, 0.6);
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý đơn hàng</a>
+      </li>
 
-        <!-- Quản lý khách hàng có submenu -->
-        <li style="margin: 0.25rem 0;">
-          <a href="javascript:void(0);" onclick="toggleSubMenu()"
-            style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none;">
-            <span style="display: flex; align-items: center;">
-              <i class="material-icons" style="font-size:20px; margin-right:10px;">weekend</i> Khách hàng
-            </span>
-            <i class="material-icons" id="submenu-arrow"
-              style="font-size:18px; transition: transform 0.3s;">expand_more</i>
-          </a>
-          <ul id="submenu" style="list-style:none; padding-left:2rem; margin:0; display:none;">
-            <li style="margin: 0.25rem 0;">
-              <a href="user.html"
-                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">Danh
-                sách khách hàng</a>
-            </li>
-            <li style="margin: 0.25rem 0;">
-              <a href="order.html"
-                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">Quản
-                lý đơn hàng</a>
-            </li>
-          </ul>
-        </li>
+      <li>
+        <a href="category.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý danh mục</a>
+      </li>
+      <li>
+        <a href="phieunhap.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nhập hàng</a>
+      </li>
+      <li>
+        <a href="giaban.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý giá bán</a>
+      </li>
+      <li>
+        <a href="tonkho.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý tồn kho</a>
+      </li>
 
-        <!-- Quản lý sản phẩm có submenu -->
-        <li style="margin: 0.25rem 0;">
-          <a href="javascript:void(0);" onclick="toggleSubMenu('product-submenu', 'product-arrow')"
-            style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none;">
-            <span style="display: flex; align-items: center;">
-              <i class="material-icons" style="font-size:20px; margin-right:10px;">table_view</i> Sản phẩm
-            </span>
-            <i class="material-icons" id="product-arrow"
-              style="font-size:18px; transition: transform 0.3s;">expand_more</i>
-          </a>
-
-          <ul id="product-submenu" style="list-style:none; padding-left:2rem; margin:0; display:none;">
-            <li style="margin: 0.25rem 0;">
-              <a href="products.html"
-                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                Danh sách sản phẩm
-              </a>
-            </li>
-            <li style="margin: 0.25rem 0;">
-              <a href="phieunhap.html"
-                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                Quản lý nhập
-              </a>
-            </li>
-            <li style="margin: 0.25rem 0;">
-              <a href="giaban.html"
-                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                Quản lý giá bán
-              </a>
-            </li>
-          </ul>
-        </li>
-
-
-        <!-- Quản lý đầu bếp có submenu -->
-        <li style="margin: 0.25rem 0;">
-          <a href="javascript:void(0);" onclick="toggleSubMenu('chef-submenu', 'chef-arrow')"
-            style="display: flex; align-items: center; justify-content: space-between; padding: 0.75rem 1rem; color: white; border-radius: 0.375rem; text-decoration: none;">
-            <span style="display: flex; align-items: center;">
-              <i class="material-icons" style="font-size:20px; margin-right:10px;">table_view</i> Đầu bếp
-            </span>
-            <i class="material-icons" id="chef-arrow"
-              style="font-size:18px; transition: transform 0.3s;">expand_more</i>
-          </a>
-
-          <ul id="chef-submenu" style="list-style:none; padding-left:2rem; margin:0; display:none;">
-            <li style="margin: 0.25rem 0;">
-              <a href="chef.html"
-                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                Danh sách đầu bếp
-              </a>
-            </li>
-            <li style="margin: 0.25rem 0;">
-              <a href="salary.html"
-                style="display:block; padding:0.5rem 0.75rem; color:white; border-radius:0.375rem; text-decoration:none;">
-                Quản lý lương
-              </a>
-            </li>
-          </ul>
-        </li>
-
-        <!-- Nút Đăng xuất ngay dưới menu Đầu bếp -->
-        <li style="margin-top: 1rem; text-align: center;">
-          <a href="../index.html" style="
-                        display: flex;
-                        align-items: center;
-                        justify-content: left;
-                        gap: 8px;
-                        background: linear-gradient(195deg, #2b2825, #2b2825);
-                        color: white;
-                        padding: 0.625rem 1.5rem;
-                        font-size: 0.875rem;
-                        border-radius: 0.25rem;
-                        text-decoration: none;
-                        width: 80%;
-                    ">
-            <i class="material-icons" style="font-size:18px;">logout</i>
-            <span>Đăng xuất</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    
+      <!-- Đăng xuất -->
+      <li style="text-align:left;">
+        <a href="../index.html" class="logout-btn">
+          <i class="material-icons">logout</i><span>Đăng xuất</span>
+        </a>
+      </li>
+    </ul>
   </aside>
 
   <!-- MAIN -->
@@ -411,11 +457,11 @@
         </div>
       </div>
       <div class="form-actions">
-        <button class="btn-search" id="search-btn">
+        <button class="btn-search" id="search-btn" style="margin-right: 10px;">
           <i class="material-icons-round">search</i> Tìm kiếm
         </button>
-        <button class="btn-reset" id="reset-btn">
-          <i class="material-icons-round">refresh</i> Đặt lại
+        <button id="refreshBtn" class="btn-refresh">
+          <i class="material-icons-round">refresh</i> Làm mới
         </button>
       </div>
     </div>
@@ -438,7 +484,7 @@
         <tr>
           <td>1</td>
           <td>#DH101</td>
-          <td>Nguyễn Văn A<br><small style="color:#888;">nguyenvana@example.com</small></td>
+          <td>Nguyễn Văn A</td>
           <td>123 Đường ABC, Quận 1</td>
           <td>0987654321</td>
           <td>01-08-2025</td>
@@ -453,7 +499,7 @@
         <tr>
           <td>2</td>
           <td>#DH102</td>
-          <td>Trần Thị B<br><small style="color:#888;">tranthib@example.com</small></td>
+          <td>Trần Thị B</td>
           <td>456 Đường XYZ, Quận 2</td>
           <td>0123456789</td>
           <td>31-07-2025</td>
@@ -468,7 +514,7 @@
         <tr>
           <td>3</td>
           <td>#DH103</td>
-          <td>Lê Văn C<br><small style="color:#888;">levanc@example.com</small></td>
+          <td>Lê Văn C</td>
           <td>789 Đường DEF, Quận 3</td>
           <td>0912345678</td>
           <td>25-07-2025</td>
@@ -483,7 +529,7 @@
         <tr>
           <td>4</td>
           <td>#DH104</td>
-          <td>Phạm Thị D<br><small style="color:#888;">phamthid@example.com</small></td>
+          <td>Phạm Thị D</td>
           <td>101 Đường OPQ, Quận 4</td>
           <td>0909090909</td>
           <td>20-07-2025</td>

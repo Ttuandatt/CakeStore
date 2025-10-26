@@ -103,13 +103,429 @@ body {
   direction: ltr;
 }
 
-.material-icons.dashboard:before { content: "📊"; }
-.material-icons.person:before { content: "👤"; }
-.material-icons.weekend:before { content: "🛒"; }
-.material-icons.table_view:before { content: "📋"; }
-.material-icons.category:before { content: "📁"; }
-.material-icons.payments:before { content: "💰"; }
-.material-icons.receipt_long:before { content: "📝"; }
-.material-icons.chef:before { content: "👨"; }
+.material-icons.dashboard:before {
+  content: "📊";
+}
+
+.material-icons.person:before {
+  content: "👤";
+}
+
+.material-icons.weekend:before {
+  content: "🛒";
+}
+
+.material-icons.table_view:before {
+  content: "📋";
+}
+
+.material-icons.category:before {
+  content: "📁";
+}
+
+.material-icons.payments:before {
+  content: "💰";
+}
+
+.material-icons.receipt_long:before {
+  content: "📝";
+}
+
+.material-icons.chef:before {
+  content: "👨";
+}
 
 
+
+/* Căn giữa cột Trạng thái */
+td:nth-child(3) {
+  text-align: center;
+  /* Căn giữa ngang */
+  vertical-align: middle;
+  /* Căn giữa dọc */
+}
+
+/* Căn giữa các cột STT, Trạng thái, Hành động */
+td:nth-child(1),
+td:nth-child(3),
+td:nth-child(5),
+th:nth-child(1),
+th:nth-child(3),
+th:nth-child(5) {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 4px 10px;
+  min-width: 105px;
+  line-height: 1;
+  /* ✅ Giúp ô không cao quá */
+  vertical-align: middle;
+  /* ✅ Căn giữa so với dòng */
+}
+
+.status-badge i {
+  font-size: 16px;
+  line-height: 1;
+  /* ✅ Giúp icon và chữ ngang hàng */
+  position: relative;
+  top: 1px;
+  /* ✅ Nhích icon lên 1px cho cân hơn */
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f0f2f5;
+  color: #344767;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ==== Table ==== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+  background: linear-gradient(195deg, #2b2825, #2b2825);
+  color: white;
+}
+
+th,
+td {
+  padding: 14px 16px;
+  font-size: 14px;
+  text-align: left;
+  vertical-align: middle;
+  /* Thêm dòng này để căn giữa theo chiều dọc */
+}
+
+/* Thêm style đặc biệt cho cột Tên và Trạng thái */
+td:nth-child(2),
+/* Cột Tên */
+td:nth-child(8)
+
+/* Cột Trạng thái */
+  {
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+tbody tr:hover {
+  background-color: #f3f4f8;
+  transition: 0.2s;
+}
+
+th {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  /* Căn giữa tiêu đề cột */
+}
+
+/* Căn giữa tiêu đề cho cột Tên và Trạng thái */
+th:nth-child(2),
+th:nth-child(8) {
+  text-align: center;
+}
+
+/* ==== Status Badge ==== */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 5px 12px;
+  min-width: 110px;
+  justify-content: center;
+}
+
+.status-active {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: #2e7d32;
+  border: 1px solid #81c784;
+}
+
+.status-locked {
+  background-color: rgba(244, 67, 54, 0.1);
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.material-icons-round {
+  margin-right: 5px;
+  color: #ffffff;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+.material-icons-round-locked {
+  margin-right: 5px;
+  color: #c62828;
+  font-size: 18px;
+  vertical-align: middle;
+}
+
+/* ==== Actions ==== */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-edit {
+  background-color: #1976d2;
+}
+
+.btn-edit:hover {
+  background-color: #2196f3;
+}
+
+.btn-delete {
+  background-color: #e88f2a;
+}
+
+.btn-delete:hover {
+  background-color: #e88f2a;
+}
+
+/* Biểu tượng trạng thái hoạt động (chấm tròn xanh) */
+.status-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.status-icon.active {
+  background-color: #4caf50;
+  /* xanh lá */
+}
+
+/* Biểu tượng khóa */
+.lock-icon {
+  color: #c62828;
+  /* đỏ */
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.btn-view {
+  background-color: #0288d1;
+  /* xanh dương */
+}
+
+.btn-view:hover {
+  background-color: #03a9f4;
+}
+
+/* Icon con mắt màu trắng */
+.btn-view .material-icons-round {
+  color: white !important;
+}
+
+/* Nút Khóa màu đỏ */
+.btn-delete {
+  background-color: #c62828;
+  /* đỏ */
+}
+
+.btn-delete:hover {
+  background-color: #e53935;
+  /* đỏ nhạt hơn khi hover */
+}
+
+/* Icon khóa trong nút Khóa màu trắng */
+.btn-delete .material-icons-round {
+  color: white !important;
+}
+
+/* ==== Popup xác nhận ==== */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  /* Ẩn mặc định */
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.popup-box {
+  background: white;
+  padding: 20px 25px;
+  border-radius: 8px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  animation: popupFade 0.2s ease-in-out;
+}
+
+.popup-box h3 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.popup-box p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.popup-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.popup-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.popup-btn.ok {
+  background-color: #c62828;
+  color: white;
+}
+
+.popup-btn.ok:hover {
+  background-color: #e53935;
+}
+
+.popup-btn.cancel {
+  background-color: #ccc;
+}
+
+.popup-btn.cancel:hover {
+  background-color: #b0b0b0;
+}
+
+@keyframes popupFade {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Nút Mở khóa màu xanh lá */
+.btn-unlock {
+  background-color: #2e7d32;
+  /* xanh lá */
+}
+
+.btn-unlock:hover {
+  background-color: #43a047;
+  /* xanh lá nhạt khi hover */
+}
+
+/* Icon mở khóa màu trắng */
+.btn-unlock .material-icons-round {
+  color: white !important;
+}
+
+/* Nút OK màu xanh lá khi mở khóa */
+.popup-btn.ok.unlock {
+  background-color: #2e7d32;
+  /* xanh lá */
+}
+
+.popup-btn.ok.unlock:hover {
+  background-color: #43a047;
+  /* xanh lá nhạt */
+}
+
+/* ==== Sidebar hover ==== */
+aside ul li a:hover,
+aside li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s ease;
+  color: white;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(195deg, #202021, #202021);
+  color: white;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  width: 100%;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+  background: linear-gradient(195deg, #2c2c2e, #2c2c2e);
+  cursor: pointer;
+}
+
+/* Căn giữa chấm trạng thái trong cột Trạng thái */
+td:nth-child(4) {
+  position: relative;
+}
+
+.status-icon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #4caf50;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+td:nth-child(4) {
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+}

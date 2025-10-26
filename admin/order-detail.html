@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" type="image/png" href="../img/ryicon.jpg">
   <title>BookStore - Chi tiết đơn hàng</title>
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <link rel="stylesheet" type="text/css"
+    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link href="assets/css/pure-style.css" rel="stylesheet" />
 
@@ -21,13 +23,13 @@
     .card {
       background: white;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       margin-bottom: 1.5rem;
       overflow: hidden;
     }
 
     .card-header {
-      background: linear-gradient(195deg, #ec407a, #d81b60);
+      background: linear-gradient(195deg, #202021, #202021);
       color: white;
       padding: 1rem 1.5rem;
       display: flex;
@@ -55,15 +57,17 @@
     }
 
     .btn-primary {
-      background: linear-gradient(195deg, #ec407a, #d81b60);
+      background: linear-gradient(195deg, #e88f2a, #e88f2a);
     }
+
     .btn-primary:hover {
-      background: linear-gradient(195deg, #f06292, #e91e63);
+      background: linear-gradient(195deg, #be6e12, #be6e12);
     }
 
     .btn-secondary {
       background: #6c757d;
     }
+
     .btn-secondary:hover {
       background: #5a6268;
     }
@@ -113,7 +117,7 @@
       background: white;
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       margin-top: 1rem;
     }
 
@@ -122,7 +126,8 @@
       color: #344767;
     }
 
-    th, td {
+    th,
+    td {
       padding: 14px 16px;
       font-size: 14px;
       text-align: left;
@@ -153,18 +158,40 @@
       text-align: center;
     }
 
-    /* Status badge */
+    /* ==== Status badge ==== */
     .status-badge {
       display: inline-block;
-      padding: 0.25rem 0.75rem;
-      font-size: 0.75rem;
+      font-size: 13px;
       font-weight: 600;
-      border-radius: 0.25rem;
+      border-radius: 6px;
+      padding: 6px 12px;
+      text-align: center;
+      min-width: 90px;
     }
 
-    .status-processing {
-      background-color: #e3f2fd;
-      color: #1976d2;
+    .status-pending {
+      background-color: rgba(255, 193, 7, 0.15);
+      color: #f57c00;
+    }
+
+    .status-delivering {
+      background-color: rgba(3, 169, 244, 0.15);
+      color: #0277bd;
+    }
+
+    .status-completed {
+      background-color: rgba(76, 175, 80, 0.15);
+      color: #2e7d32;
+    }
+
+    .status-cancelled {
+      background-color: rgba(244, 67, 54, 0.15);
+      color: #c62828;
+    }
+
+    /* Ẩn icon để giao diện giống ảnh 2 */
+    .status-badge i {
+      display: none;
     }
 
     /* Form styling */
@@ -189,9 +216,9 @@
     }
 
     .form-control:focus {
-      border-color: #e91e63;
+      border-color: #e88f2a;
       outline: 0;
-      box-shadow: 0 0 0 0.2rem rgba(233, 30, 99, 0.25);
+      box-shadow: 0 0 0 0.2rem rgba(219, 140, 22, 0.25);
     }
 
     /* Select dropdown styling */
@@ -219,7 +246,7 @@
     .summary-total {
       font-weight: 700;
       font-size: 1.2rem;
-      color: #e91e63;
+      color: #e88f2a;
     }
 
     /* Responsive */
@@ -234,40 +261,165 @@
         align-items: flex-start;
       }
     }
+
+    /* ==== Sidebar hover ==== */
+    aside ul li a:hover,
+    aside li a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: background-color 0.2s ease;
+      color: white;
+    }
+
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: linear-gradient(195deg, #202021, #202021);
+      color: white;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      width: 100%;
+      margin: 0 auto;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: linear-gradient(195deg, #2c2c2e, #2c2c2e);
+      cursor: pointer;
+    }
   </style>
 </head>
+
 <body>
   <!-- SIDEBAR -->
-  <aside style="position: fixed; top: 0; left: 0; z-index: 1000; width: 250px; height: 100vh; background: linear-gradient(195deg, #42424a, #191919); color: white; transition: all 0.3s ease; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.15);" id="sidenav-main">
-    <div style="padding: 1.5em 1rem;">
-      <a href="#" target="_blank" style="display: flex; align-items: center; font-weight: 600; color: white; text-decoration: none;">
-        <span style="margin-left: 0.25rem; font-weight: 700;">TRUNG TÂM ĐIỀU KHIỂN</span>
+  <aside style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 250px;
+        height: 100vh;
+        background: linear-gradient(195deg, #202021, #202021);
+        color: white;
+        box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+      ">
+    <div style="padding: 1.5em 1rem">
+      <a href="#" style="
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+          ">
+        <span>CAKEZONE ADMIN</span>
       </a>
     </div>
-    <hr style="width: 100%; border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0;">
-    <div style="width: 100%; overflow-y: auto; height: 75vh;">
-      <ul style="list-style: none; padding: 0; margin: 0;">
-        <li><a href="index.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">dashboard</i>Tổng quan</a></li>
-        <li><a href="user.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">person</i>Quản lý khách hàng</a></li>
-        <li><a href="order.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none; background: linear-gradient(195deg,#ec407a,#d81b60); box-shadow: 0 4px 20px rgba(0,0,0,0.14),0 7px 10px -5px rgba(233,30,99,0.4);"><i class="material-icons" style="font-size:20px; margin-right:10px;">weekend</i>Quản lý đơn hàng</a></li>
-        <li><a href="products.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">table_view</i>Quản lý sản phẩm</a></li>
-        <li><a href="category.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">category</i>Quản lý danh mục</a></li>
-        <li><a href="phieunhap.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">inventory_2</i>Quản lý nhập hàng</a></li>
-        <li><a href="giaban.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">attach_money</i>Quản lý giá bán</a></li>
-        <li><a href="tonkho.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">inventory</i>Quản lý tồn kho</a></li>
-      </ul>
-    </div>
-    <div style="position: absolute; width: 100%; bottom: 0; padding: 1rem;">
-      <a href="login.html" style="display: inline-block; background: linear-gradient(195deg, #ec407a, #d81b60); color: white; padding: 0.625rem 1.5rem; font-size: 0.875rem; border-radius: 0.25rem; text-decoration: none; width: 100%; text-align: center;">Đăng xuất</a>
-    </div>
+    <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0" />
+    <ul style="list-style: none; padding: 0; margin: 0">
+      <li>
+        <a href="index.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+              
+            "><i class="material-icons" style="margin-right: 10px"></i>Tổng
+          quan</a>
+      </li>
+      <li>
+        <a href="user.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản
+          lý khách hàng</a>
+      </li>
+      <li>
+        <a href="chef.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản
+          lý đầu bếp</a>
+      </li>
+      <li>
+        <a href="products.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý sản phẩm</a>
+      </li>
+      <li>
+        <a href="order.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+              background: linear-gradient(195deg, #e88f2a, #e88f2a);
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
+            0 7px 10px -5px rgba(240, 163, 74, 0.6);
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý đơn hàng</a>
+      </li>
+
+      <li>
+        <a href="category.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý danh mục</a>
+      </li>
+      <li>
+        <a href="phieunhap.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nhập hàng</a>
+      </li>
+      <li>
+        <a href="giaban.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý giá bán</a>
+      </li>
+      <li>
+        <a href="tonkho.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý tồn kho</a>
+      </li>
+
+      <!-- Đăng xuất -->
+      <li style="text-align:left;">
+        <a href="../index.html" class="logout-btn">
+          <i class="material-icons">logout</i><span>Đăng xuất</span>
+        </a>
+      </li>
+    </ul>
   </aside>
 
   <!-- MAIN -->
   <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem;">
-    <nav style="margin-bottom: 1.5rem; background:white; padding:1rem 1.5rem; border-radius:0.75rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-      <span style="color:#e91e63; font-weight:600;">Chi tiết đơn hàng</span>
-    </nav>
-
+    <h1 style="margin-bottom: 1rem">Chi tiết đơn hàng</h1>
     <div class="card">
       <div class="card-header">
         <h3 style="margin: 0; font-size: 1.2rem;">Thông tin đơn hàng #DH001</h3>
@@ -311,7 +463,7 @@
             <div class="info-item">
               <div class="info-label">Trạng thái</div>
               <div class="info-value">
-                <span class="status-badge status-processing">Đang xử lý</span>
+                <span class="status-badge status-pending">Đã đặt</span>
               </div>
             </div>
           </div>
@@ -325,10 +477,9 @@
               <label for="statusSelect" class="form-label">Chọn trạng thái mới</label>
               <select class="form-control" id="statusSelect" name="status">
                 <option value="">Chọn trạng thái</option>
-                <option value="pending">Đang chờ xử lý</option>
-                <option value="processing" selected>Đang xử lý</option>
-                <option value="shipped">Đang vận chuyển</option>
-                <option value="delivered">Đã giao</option>
+                <option value="pending">Đang xử lý</option>
+                <option value="shipped">Đang giao hàng</option>
+                <option value="delivered">Đã giao hàng</option>
                 <option value="cancelled">Đã hủy</option>
               </select>
             </div>
@@ -347,7 +498,7 @@
             <thead>
               <tr>
                 <th>STT</th>
-                <th>Mã sản phẩm</th>
+                <th>Hình ảnh</th>
                 <th>Tên sản phẩm</th>
                 <th class="text-center">Số lượng</th>
                 <th class="text-right">Đơn giá</th>
@@ -357,15 +508,17 @@
             <tbody>
               <tr>
                 <td>1</td>
-                <td>SP001</td>
+                <td><img src="../img/bdcake-1.jpg" alt="Hình ảnh sản phẩm 1" class="product-image"
+                    style="width: 80px; height: 80px; object-fit: cover; border-radius: 6px;"></td>
                 <td>Khi hơi thở hóa thinh không</td>
-                <td class="text-center">2</td>
+                <td class="text-center">1</td>
                 <td class="text-right">230,000 VNĐ</td>
                 <td class="text-right">460,000 VNĐ</td>
               </tr>
               <tr>
                 <td>2</td>
-                <td>SP002</td>
+                <td><img src="../img/bdcake-2.jpg" alt="Hình ảnh sản phẩm 2" class="product-image"
+                    style="width: 80px; height: 80px; object-fit: cover; border-radius: 6px;"></td>
                 <td>Tên của đóa hồng</td>
                 <td class="text-center">1</td>
                 <td class="text-right">187,000 VNĐ</td>
@@ -373,9 +526,10 @@
               </tr>
               <tr>
                 <td>3</td>
-                <td>SP003</td>
+                <td><img src="../img/bdcake-3.jpg" alt="Hình ảnh sản phẩm 3" class="product-image"
+                    style="width: 80px; height: 80px; object-fit: cover; border-radius: 6px;"></td>
                 <td>Yêu những điều không hoàn hảo</td>
-                <td class="text-center">3</td>
+                <td class="text-center">2</td>
                 <td class="text-right">300,000 VNĐ</td>
                 <td class="text-right">900,000 VNĐ</td>
               </tr>
@@ -390,7 +544,7 @@
             </div>
             <div class="summary-row">
               <span>Tổng số lượng:</span>
-              <span>6</span>
+              <span>4</span>
             </div>
             <div class="summary-row summary-total">
               <span>Tổng tiền hàng:</span>
@@ -414,17 +568,60 @@
 
   <script>
     // Xử lý cập nhật trạng thái
-    document.getElementById("statusForm").addEventListener("submit", function(e) {
+    document.getElementById("statusForm").addEventListener("submit", function (e) {
       e.preventDefault(); // Ngăn reload
       const selectedStatus = document.getElementById("statusSelect").value;
       if (selectedStatus) {
         alert("✅ Cập nhật trạng thái thành công!");
         // Trong thực tế, bạn sẽ gửi dữ liệu lên server ở đây
-        window.location.href="order.html";
+        window.location.href = "order.html";
       } else {
         alert("⚠️ Vui lòng chọn trạng thái!");
       }
     });
   </script>
+  <script>
+    // === TÍNH "THÀNH TIỀN" VÀ "TỔNG TIỀN HÀNG" TỰ ĐỘNG ===
+    document.addEventListener("DOMContentLoaded", function () {
+      let totalAll = 0;
+
+      // Duyệt qua từng dòng trong bảng sản phẩm
+      const rows = document.querySelectorAll("table tbody tr");
+
+      rows.forEach(row => {
+        const quantityCell = row.querySelector("td:nth-child(4)");
+        const priceCell = row.querySelector("td:nth-child(5)");
+        const totalCell = row.querySelector("td:nth-child(6)");
+
+        if (quantityCell && priceCell && totalCell) {
+          // Lấy số lượng
+          const quantity = parseInt(quantityCell.textContent) || 0;
+
+          // Lấy đơn giá, loại bỏ ký tự không phải số
+          const price = parseInt(priceCell.textContent.replace(/[^\d]/g, "")) || 0;
+
+          // Tính thành tiền
+          const total = quantity * price;
+
+          // Ghi lại vào cột "Thành tiền" (định dạng kiểu VNĐ)
+          totalCell.textContent = total.toLocaleString("vi-VN") + " VNĐ";
+
+          // Cộng dồn vào tổng tiền hàng
+          totalAll += total;
+        }
+      });
+
+      // Định dạng tổng tiền hàng và hiển thị ở phần tổng kết
+      const formattedTotal = totalAll.toLocaleString("vi-VN") + " VNĐ";
+      const totalElement = document.querySelector(".summary-total span:last-child");
+
+      if (totalElement) {
+        totalElement.textContent = formattedTotal;
+      }
+    });
+  </script>
+
+
 </body>
+
 </html>

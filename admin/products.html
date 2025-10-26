@@ -614,6 +614,7 @@
           <th>STT</th>
           <th>Tên sản phẩm</th>
           <th>Hình ảnh</th>
+          <th>Loại sản phẩm</th>
           <th>Giá sản phẩm</th>
           <th>Số lượng</th>
           <th>Trạng thái</th>
@@ -625,6 +626,7 @@
         <tr>
           <td>1</td>
           <td>Bánh kem socola hạnh nhân</td>
+          <td>Bánh sinh nhật</td>
           <td><img class="prod-img" src="../img/bdcake-1.jpg" alt="bdcake-1"></td>
           <td>180.000đ</td>
           <td>25</td>
@@ -641,6 +643,7 @@
         <tr>
           <td>2</td>
           <td>Bánh kem dâu tây phủ kem bơ</td>
+          <td>Bánh sinh nhật</td>
           <td><img class="prod-img" src="../img/bdcake-2.jpg" alt="bdcake-2"></td>
           <td>160.000đ</td>
           <td>18</td>
@@ -657,6 +660,7 @@
         <tr>
           <td>3</td>
           <td>Bánh tiramisu Ý</td>
+          <td>Bánh ăn vặt</td>
           <td><img class="prod-img" src="../img/bdcake-3.jpg" alt="bdcake-3"></td>
           <td>220.000đ</td>
           <td>12</td>
@@ -673,6 +677,7 @@
         <tr>
           <td>4</td>
           <td>Bánh mousse xoài lạnh</td>
+          <td>Bánh ăn vặt</td>
           <td><img class="prod-img" src="../img/bdcake-4.jpg" alt="bdcake-4"></td>
           <td>170.000đ</td>
           <td>15</td>
@@ -689,6 +694,7 @@
         <tr>
           <td>5</td>
           <td>Bánh red velvet kem phô mai</td>
+          <td>Bánh ăn vặt</td>
           <td><img class="prod-img" src="../img/bdcake-5.jpg" alt="bdcake-5"></td>
           <td>210.000đ</td>
           <td>10</td>
@@ -705,6 +711,7 @@
         <tr>
           <td>6</td>
           <td>Bánh kem vani hạt dẻ</td>
+          <td>Bánh sinh nhật</td>
           <td><img class="prod-img" src="../img/bdcake-6.jpg" alt="bdcake-6"></td>
           <td>150.000đ</td>
           <td>20</td>
@@ -721,6 +728,7 @@
         <tr>
           <td>7</td>
           <td>Bánh phô mai việt quất</td>
+          <td>Bánh sinh nhật</td>
           <td><img class="prod-img" src="../img/bdcake-7.jpg" alt="bdcake-7"></td>
           <td>230.000đ</td>
           <td>8</td>
@@ -737,6 +745,7 @@
         <tr>
           <td>8</td>
           <td>Bánh matcha phủ kem trắng</td>
+          <td>Bánh cưới</td>
           <td><img class="prod-img" src="../img/bdcake-8.jpg" alt="bdcake-8"></td>
           <td>190.000đ</td>
           <td>13</td>
@@ -753,6 +762,7 @@
         <tr>
           <td>9</td>
           <td>Bánh kem caramel phủ hạt óc chó</td>
+          <td>Bánh cưới</td>
           <td><img class="prod-img" src="../img/bdcake-9.jpg" alt="bdcake-9"></td>
           <td>240.000đ</td>
           <td>9</td>
@@ -860,31 +870,24 @@
 
         <!-- Cột phải -->
         <div style="flex: 1; min-width: 400px;">
-          <label>Hình ảnh sản phẩm</label>
-          <div id="imagePreview"
-            style="position: relative; border: 2px dashed #ccc; border-radius: 10px; padding: 20px; cursor: pointer; height: 341px;">
-            <i class="material-icons-round" style="font-size: 40px; color: #aaa;">add_photo_alternate</i>
-            <p>Chọn ảnh cho sản phẩm</p>
-            <input type="file" id="newImage" accept="image/*" style="display: none;" />
-
-            <div id="imageContainer" style="position: relative; display: none;">
-              <img id="previewImg" src="" alt="Ảnh sản phẩm"
-                style="margin-top:10px; width:300px; height:200px; object-fit:cover; border-radius:8px;" />
-              <button id="deleteImageBtn" title="Xóa ảnh"
-                style="position: absolute; top: -20px; right: 20px; background-color: rgba(0,0,0,0.6); border: none; border-radius: 50%; width: 30px; height: 30px; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-                <i class="material-icons-round" style="font-size:18px;">delete</i>
-              </button>
+          <div style="flex: 1; display: flex; justify-content: center;">
+            <div class="form-group" style="display: flex; flex-direction: column; align-items: center;">
+              <label for="imageUpload" class="img-upload" id="imagePreview"
+                style="border: 1px dashed #ccc; border-radius: 6px; width: 400px; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #666; cursor: pointer;">
+                <span class="material-icons" style="font-size: 40px;">add_a_photo</span>
+                <span style="font-size: 0.9rem;">Chọn hình ảnh</span>
+              </label>
+              <input type="file" id="imageUpload" accept="image/*" style="display: none;">
             </div>
           </div>
-
+          <br>
           <img id="previewImg" src="" alt=""
             style="margin-top:20px; width:200px; height:200px; object-fit:cover; border-radius:8px; display:none;" />
           <label>Mô tả sản phẩm</label>
-          <textarea id="newDesc" rows="14" placeholder="Nhập mô tả chi tiết về sản phẩm"></textarea>
+          <textarea id="newDesc" rows="15" placeholder="Nhập mô tả chi tiết về sản phẩm"></textarea>
 
           <label>Giá sản phẩm <span style="color:red">*</span></label>
           <input type="number" id="newPrice" min="0" required />
-          <p style="font-size: 13px; color: gray;">Đơn vị: VNĐ</p>
 
 
         </div>
@@ -1082,13 +1085,15 @@
 
 
     // Hiển thị ảnh xem trước
-    newImageInput.addEventListener("change", (e) => {
-      const file = e.target.files[0];
+    // Xem trước ảnh
+    document.getElementById("imageUpload").addEventListener("change", function (event) {
+      const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = (ev) => {
-          previewImg.src = ev.target.result;
-          imageContainer.style.display = "block";
+        reader.onload = function (e) {
+          const preview = document.getElementById("imagePreview");
+          preview.innerHTML = `<img src="${e.target.result}" alt="Ảnh đại diện"
+  style="width: 350px; height: 250px; object-fit: cover; border-radius: 8px;">`;
         };
         reader.readAsDataURL(file);
       }

@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" type="image/png" href="../img/ryicon.jpg" />
-    <title>CakeZone - Quản lý đầu bếp</title>
+    <title>CakeZone - Quản lý khách hàng</title>
     <link
       rel="stylesheet"
       type="text/css"
@@ -360,7 +360,6 @@
         background-color: #43a047;
         /* xanh lá nhạt */
       }
-
       /* ==== Sidebar hover ==== */
       aside ul li a:hover,
       aside li a:hover {
@@ -417,7 +416,7 @@
             text-decoration: none;
           "
         >
-          <span>TRUNG TÂM ĐIỀU KHIỂN</span>
+          <span>CAKEZONE ADMIN</span>
         </a>
       </div>
       <hr
@@ -433,6 +432,7 @@
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
+              
             "
             ><i class="material-icons" style="margin-right: 10px"></i>Tổng
             quan</a
@@ -448,8 +448,8 @@
               color: white;
               text-decoration: none;
             "
-            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý
-            khách hàng</a
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản
+            lý khách hàng</a
           >
         </li>
         <li>
@@ -463,10 +463,10 @@
               text-decoration: none;
               background: linear-gradient(195deg, #e88f2a, #e88f2a);
               box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
-                0 7px 10px -5px rgba(240, 163, 74, 0.6);
+            0 7px 10px -5px rgba(240, 163, 74, 0.6);
             "
-            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý
-            đầu bếp</a
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản
+            lý đầu bếp</a
           >
         </li>
         <li>
@@ -479,7 +479,7 @@
               color: white;
               text-decoration: none;
             "
-            ><i class="material-icons" style="margin-right: 10px">table_view</i
+            ><i class="material-icons" style="margin-right: 10px"></i
             >Quản lý sản phẩm</a
           >
         </li>
@@ -493,11 +493,11 @@
               color: white;
               text-decoration: none;
             "
-            ><i class="material-icons" style="margin-right: 10px">weekend</i
+            ><i class="material-icons" style="margin-right: 10px"></i
             >Quản lý đơn hàng</a
           >
         </li>
-
+        
         <li>
           <a
             href="category.html"
@@ -508,13 +508,13 @@
               color: white;
               text-decoration: none;
             "
-            ><i class="material-icons" style="margin-right: 10px">category</i
+            ><i class="material-icons" style="margin-right: 10px"></i
             >Quản lý danh mục</a
           >
         </li>
         <li>
           <a
-            href="phieunhap.html"
+            href="import.html"
             style="
               display: flex;
               align-items: center;
@@ -522,7 +522,7 @@
               color: white;
               text-decoration: none;
             "
-            ><i class="material-icons" style="margin-right: 10px">inventory_2</i
+            ><i class="material-icons" style="margin-right: 10px"></i
             >Quản lý nhập hàng</a
           >
         </li>
@@ -536,9 +536,7 @@
               color: white;
               text-decoration: none;
             "
-            ><i class="material-icons" style="margin-right: 10px"
-              >attach_money</i
-            >Quản lý giá bán</a
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý giá bán</a
           >
         </li>
         <li>
@@ -551,13 +549,13 @@
               color: white;
               text-decoration: none;
             "
-            ><i class="material-icons" style="margin-right: 10px">inventory</i
+            ><i class="material-icons" style="margin-right: 10px"></i
             >Quản lý tồn kho</a
           >
         </li>
 
         <!-- Đăng xuất -->
-        <li style="text-align: left">
+        <li style="text-align:left;">
           <a href="../index.html" class="logout-btn">
             <i class="material-icons">logout</i><span>Đăng xuất</span>
           </a>
@@ -573,7 +571,8 @@
           <thead>
             <tr>
               <th>STT</th>
-              <th>Tên</th>
+              <th>Họ và tên</th>
+              <th>Vị trí</th>
               <th>Trạng thái</th>
               <th>Hành động</th>
             </tr>
@@ -581,7 +580,8 @@
           <tbody>
             <tr>
               <td>1</td>
-              <td>Nguyễn Văn A<br /></td>
+              <td>John Constatine<br /></td>
+              <td>Đầu bếp chính</td>
               <td>
                 <span class="status-icon active"></span>
               </td>
@@ -599,6 +599,7 @@
             <tr>
               <td>2</td>
               <td>Trần Thị B<br /></td>
+              <td>Đầu bếp chính</td>
               <td>
                 <span class="status-icon active"></span>
               </td>
@@ -616,6 +617,7 @@
             <tr>
               <td>3</td>
               <td>Lê Văn C<br /></td>
+              <td>Đầu bếp phụ</td>
               <td><i class="material-icons-round lock-icon">lock</i></td>
               <td>
                 <div class="actions">
@@ -711,7 +713,7 @@
             // Tạo tên file theo tên user
             // Ví dụ: "Nguyễn Văn A" → "user-detail-nguyenvana.html"
             const fileName =
-              "user-detail-" +
+              "chef-detail-" +
               userName
                 .normalize("NFD") // bỏ dấu tiếng Việt
                 .replace(/[\u0300-\u036f]/g, "")
@@ -728,7 +730,7 @@
         popup.style.display = "none";
         if (!currentRow) return;
 
-        const statusCell = currentRow.querySelector("td:nth-child(3)");
+        const statusCell = currentRow.querySelector("td:nth-child(4)");
         const actionCell = currentRow.querySelector(".actions");
 
         if (currentAction === "lock") {
@@ -774,25 +776,25 @@
     </script>
 
     <script>
-      // Duyệt qua tất cả các hàng trong bảng
-      document.querySelectorAll("tbody tr").forEach((row) => {
-        const statusCell = row.querySelector("td:nth-child(3)");
-        const lockIcon = statusCell.querySelector(".lock-icon");
-        const lockButton = row.querySelector(".btn-delete i");
-        const lockButtonText = row.querySelector(".btn-delete");
+  // Duyệt qua tất cả các hàng trong bảng
+  document.querySelectorAll("tbody tr").forEach((row) => {
+    const statusCell = row.querySelector("td:nth-child(4)"); // ✅ Cột Trạng thái (thay vì 5)
+    const lockIcon = statusCell.querySelector(".lock-icon");
+    const lockButton = row.querySelector(".btn-delete i");
+    const lockButtonText = row.querySelector(".btn-delete");
 
-        // Nếu có biểu tượng khóa (tức là bị khóa)
-        if (lockIcon) {
-          // Đổi icon trên nút
-          lockButton.textContent = "lock_open";
-          // Đổi chữ trên nút
-          lockButtonText.lastChild.textContent = "Mở khóa";
-          // Thay class đổi màu nút
-          lockButtonText.classList.remove("btn-delete");
-          lockButtonText.classList.add("btn-unlock");
-        }
-      });
-    </script>
+    // Nếu có biểu tượng khóa (tức là bị khóa)
+    if (lockIcon) {
+      // Đổi icon trên nút
+      lockButton.textContent = "lock_open";
+      // Đổi chữ trên nút
+      lockButtonText.lastChild.textContent = "Mở khóa";
+      // Thay class đổi màu nút
+      lockButtonText.classList.remove("btn-delete");
+      lockButtonText.classList.add("btn-unlock");
+    }
+  });
+</script>
 
     <script>
       function toggleSubMenu() {
