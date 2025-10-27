@@ -27,7 +27,7 @@
     }
 
     .card-header {
-      background: linear-gradient(195deg, #ec407a, #d81b60);
+      background: linear-gradient(195deg, #202021, #202021);
       color: white;
       padding: 1rem 1.5rem;
     }
@@ -305,37 +305,133 @@
 
 <body>
   <!-- SIDEBAR -->
-<aside style="position: fixed; top: 0; left: 0; z-index: 1000; width: 250px; height: 100vh; background: linear-gradient(195deg, #42424a, #191919); color: white; transition: all 0.3s ease; box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.15);" id="sidenav-main">
-  <div style="padding: 1.5em 1rem;">
-    <a href="#" target="_blank" style="display: flex; align-items: center; font-weight: 600; color: white; text-decoration: none;">
-      <span style="margin-left: 0.25rem; font-weight: 700;">TRUNG TÂM ĐIỀU KHIỂN</span>
-    </a>
-  </div>
-  <hr style="width: 100%; border: none; border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0;">
-  <div style="width: 100%; overflow-y: auto; height: 75vh;">
-    <ul style="list-style: none; padding: 0; margin: 0;">
-      <li><a href="index.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">dashboard</i>Tổng quan</a></li>
-      <li><a href="user.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">person</i>Quản lý khách hàng</a></li>
-      <li><a href="order.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">weekend</i>Quản lý đơn hàng</a></li>
-      <li><a href="products.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">table_view</i>Quản lý sản phẩm</a></li>
-      <li><a href="category.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">category</i>Quản lý danh mục</a></li>
-      <li><a href="phieunhap.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none; background: linear-gradient(195deg,#ec407a,#d81b60); box-shadow: 0 4px 20px rgba(0,0,0,0.14),0 7px 10px -5px rgba(233,30,99,0.4);"><i class="material-icons" style="font-size:20px; margin-right:10px;">inventory_2</i>Quản lý nhập hàng</a></li>
-      <li><a href="giaban.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">attach_money</i>Quản lý giá bán</a></li>
-      <li><a href="tonkho.html" style="display: flex; align-items: center; padding: 0.75rem 1rem; color: white; text-decoration: none;"><i class="material-icons" style="font-size:20px; margin-right:10px;">inventory</i>Quản lý tồn kho</a></li>
+  <aside style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        width: 250px;
+        height: 100vh;
+        background: linear-gradient(195deg, #202021, #202021);
+        color: white;
+        box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+      ">
+    <div style="padding: 1.5em 1rem">
+      <a href="#" style="
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+          ">
+        <span>CAKEZONE ADMIN</span>
+      </a>
+    </div>
+    <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0" />
+    <ul style="list-style: none; padding: 0; margin: 0">
+      <li>
+        <a href="index.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+              
+            "><i class="material-icons" style="margin-right: 10px"></i>Tổng
+          quan</a>
+      </li>
+      <li>
+        <a href="user.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản
+          lý khách hàng</a>
+      </li>
+      <li>
+        <a href="chef.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản
+          lý đầu bếp</a>
+      </li>
+      <li>
+        <a href="products.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý sản phẩm</a>
+      </li>
+      <li>
+        <a href="order.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý đơn hàng</a>
+      </li>
+
+      <li>
+        <a href="category.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý danh mục</a>
+      </li>
+      <li>
+        <a href="import.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+              background: linear-gradient(195deg, #e88f2a, #e88f2a);
+              box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
+            0 7px 10px -5px rgba(240, 163, 74, 0.6);
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nhập hàng</a>
+      </li>
+      <li>
+        <a href="giaban.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý giá bán</a>
+      </li>
+      <li>
+        <a href="tonkho.html" style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý tồn kho</a>
+      </li>
+
+      <!-- Đăng xuất -->
+      <li style="text-align:left;">
+        <a href="../index.html" class="logout-btn">
+          <i class="material-icons">logout</i><span>Đăng xuất</span>
+        </a>
+      </li>
     </ul>
-  </div>
-  <div style="position: absolute; width: 100%; bottom: 0; padding: 1rem;">
-    <a href="login.html" style="display: inline-block; background: linear-gradient(195deg, #ec407a, #d81b60); color: white; padding: 0.625rem 1.5rem; font-size: 0.875rem; border-radius: 0.25rem; text-decoration: none; width: 100%; text-align: center;">Đăng xuất</a>
-  </div>
-</aside>
+  </aside>
 
   <!-- MAIN -->
   <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem;">
-    <nav style="margin-bottom: 1.5rem; background:white; padding:1rem 1.5rem; border-radius:0.75rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-      <span style="color:#e91e63; font-weight:600;">Thêm phiếu nhập hàng</span>
-    </nav>
-
-    <div class="card">
+   <h1 style="margin-bottom: 1rem">Tạo phiếu nhập</h1>
+   <div class="card">
       <div class="card-header">
         <h3 style="margin: 0; font-size: 1.2rem;">Thông tin phiếu nhập</h3>
       </div>
@@ -473,7 +569,7 @@
         </div>
 
         <div class="form-actions">
-          <button type="button" class="btn btn-secondary" onclick="window.location.href='phieunhap.html'">
+          <button type="button" class="btn btn-secondary" onclick="window.location.href='import.html'">
             <i class="material-icons-round">cancel</i> Hủy bỏ
           </button>
           <button type="button" class="btn btn-primary" id="save-import">
@@ -768,7 +864,7 @@
       });
       
       alert('Phiếu nhập đã được lưu thành công!');
-      window.location.href = 'phieunhap.html';
+      window.location.href = 'import.html';
     });
 
     // Initialize on page load
