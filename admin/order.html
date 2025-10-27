@@ -545,72 +545,80 @@
   </main>
 
   <script>
-    // Xử lý nút Xem chi tiết đơn hàng
+    // === Xử lý nút "Tìm kiếm" ===
+    document.getElementById('search-btn').addEventListener('click', function () {
+      const keyword = document.getElementById('keyword').value.trim().toLowerCase();
+      const fromDate = document.getElementById('from-date').value;
+      const toDate = document.getElementById('to-date').value;
+      const status = document.getElementById('order-status').value;
+
+      const rows = document.querySelectorAll('tbody tr');
+
+      rows.forEach(row => {
+        const orderCode = row.cells[1].textContent.trim().toLowerCase();
+        const customer = row.cells[2].textContent.trim().toLowerCase();
+        const address = row.cells[3].textContent.trim().toLowerCase();
+        const phone = row.cells[4].textContent.trim().toLowerCase();
+        const orderDateText = row.cells[5].textContent.trim();
+        const orderStatus = row.cells[7].querySelector('.status-badge').classList[1]; // ví dụ: "status-pending"
+
+        let showRow = true;
+
+        // --- 1. Lọc theo từ khóa ---
+        if (keyword) {
+          const combinedText = orderCode + customer + address + phone;
+          if (!combinedText.includes(keyword)) {
+            showRow = false;
+          }
+        }
+
+        // --- 2. Lọc theo ngày ---
+        // Chuyển "01-08-2025" → "2025-08-01" để so sánh
+        const [day, month, year] = orderDateText.split('-');
+        const orderDate = new Date(`${year}-${month}-${day}`);
+
+        if (fromDate) {
+          const from = new Date(fromDate);
+          if (orderDate < from) showRow = false;
+        }
+
+        if (toDate) {
+          const to = new Date(toDate);
+          if (orderDate > to) showRow = false;
+        }
+
+        // --- 3. Lọc theo trạng thái ---
+        if (status) {
+          if (!orderStatus.includes(status)) showRow = false;
+        }
+
+        // --- 4. Hiển thị hoặc ẩn hàng ---
+        row.style.display = showRow ? '' : 'none';
+      });
+    });
+
+    // === Nút "Làm mới" ===
+    document.getElementById('refreshBtn').addEventListener('click', function () {
+      document.getElementById('keyword').value = '';
+      document.getElementById('from-date').value = '';
+      document.getElementById('to-date').value = '';
+      document.getElementById('order-status').value = '';
+
+      // Hiển thị lại tất cả đơn hàng
+      document.querySelectorAll('tbody tr').forEach(row => {
+        row.style.display = '';
+      });
+    });
+
+    // === Nút "Xem" ===
     document.querySelectorAll('.btn-view').forEach(btn => {
       btn.addEventListener('click', () => {
         window.location.href = 'order-detail.html';
       });
     });
-
-    // Xử lý tìm kiếm đơn hàng
-    document.getElementById('search-btn').addEventListener('click', function () {
-      const fromDate = document.getElementById('from-date').value;
-      const toDate = document.getElementById('to-date').value;
-      const status = document.getElementById('order-status').value;
-
-      // Kiểm tra nếu ngày bắt đầu lớn hơn ngày kết thúc
-      if (fromDate && toDate && fromDate > toDate) {
-        alert('Ngày bắt đầu không thể lớn hơn ngày kết thúc');
-        return;
-      }
-
-      // Ở đây sẽ thực hiện gọi API hoặc lọc dữ liệu
-      alert(`Tìm kiếm đơn hàng:\nTừ ngày: ${fromDate || 'Tất cả'}\nĐến ngày: ${toDate || 'Tất cả'}\nTrạng thái: ${status || 'Tất cả'}`);
-
-      // Trong thực tế, bạn sẽ gửi yêu cầu tìm kiếm đến server hoặc lọc dữ liệu client-side
-      // filterOrders(fromDate, toDate, status);
-    });
-
-    // Xử lý nút Đặt lại
-    document.getElementById('reset-btn').addEventListener('click', function () {
-      document.getElementById('from-date').value = '';
-      document.getElementById('to-date').value = '';
-      document.getElementById('order-status').value = '';
-
-      // Trong thực tế, bạn sẽ tải lại tất cả đơn hàng
-      // loadAllOrders();
-    });
-
-    // Hàm lọc đơn hàng (ví dụ - cần triển khai thực tế)
-    function filterOrders(fromDate, toDate, status) {
-      // Lấy tất cả hàng trong bảng
-      const rows = document.querySelectorAll('tbody tr');
-
-      rows.forEach(row => {
-        let showRow = true;
-        const orderDate = row.cells[5].textContent; // Cột ngày đặt
-        const orderStatus = row.cells[7].querySelector('.status-badge').classList[1]; // Lấy class trạng thái
-
-        // Lọc theo ngày
-        if (fromDate) {
-          // Chuyển đổi định dạng ngày để so sánh
-          // Cần xử lý chuyển đổi ngày từ DD-MM-YYYY sang YYYY-MM-DD
-        }
-
-        if (toDate) {
-          // Tương tự xử lý so sánh ngày
-        }
-
-        // Lọc theo trạng thái
-        if (status && !orderStatus.includes(status)) {
-          showRow = false;
-        }
-
-        // Hiển thị hoặc ẩn hàng
-        row.style.display = showRow ? '' : 'none';
-      });
-    }
   </script>
+
+
 
   <script>
     function toggleSubMenu() {

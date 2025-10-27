@@ -181,7 +181,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: linear-gradient(195deg, #ff9800, #f57c00);
+      background: #ff9800;
       color: white;
       padding: 10px 18px;
       font-size: 14px;
@@ -951,9 +951,9 @@
         const tr = btn.closest("tr");
         document.getElementById("editRowIndex").value = index;
         document.getElementById("editName").value = tr.children[1].textContent.trim();
-        document.getElementById("editPrice").value = tr.children[3].textContent.trim();
-        document.getElementById("editQty").value = tr.children[4].textContent.trim();
-        document.getElementById("editStatus").value = tr.children[5].textContent.trim();
+        document.getElementById("editPrice").value = tr.children[4].textContent.trim();
+        document.getElementById("editQty").value = tr.children[5].textContent.trim();
+        document.getElementById("editStatus").value = tr.children[6].textContent.trim();
         document.getElementById("editModal").style.display = "flex";
       });
     });

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,6 +9,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link href="assets/css/pure-style-optimized.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 
   <style>
     body {
@@ -21,7 +24,7 @@
     .card {
       background: white;
       border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       margin-bottom: 1.5rem;
       overflow: hidden;
     }
@@ -88,32 +91,36 @@
       transition: 0.2s;
     }
 
-    .btn-primary { 
-      background: linear-gradient(195deg, #ec407a, #d81b60); 
-    }
-    .btn-primary:hover { 
-      background: linear-gradient(195deg, #f06292, #e91e63); 
+    .btn-primary {
+      background: #FF9800;
     }
 
-    .btn-secondary { 
-      background: #6c757d; 
-    }
-    .btn-secondary:hover { 
-      background: #5a6268; 
+    .btn-primary:hover {
+      background: #FF9800;
     }
 
-    .btn-success { 
-      background: #28a745; 
-    }
-    .btn-success:hover { 
-      background: #218838; 
+    .btn-secondary {
+      background: #FF9800;
     }
 
-    .btn-danger { 
-      background: #dc3545; 
+    .btn-secondary:hover {
+      background: #FF9800;
     }
-    .btn-danger:hover { 
-      background: #c82333; 
+
+    .btn-success {
+      background: #28a745;
+    }
+
+    .btn-success:hover {
+      background: #218838;
+    }
+
+    .btn-danger {
+      background: #dc3545;
+    }
+
+    .btn-danger:hover {
+      background: #c82333;
     }
 
     .form-actions {
@@ -157,9 +164,9 @@
       justify-content: center;
     }
 
-    .material-icons-round { 
-      font-size: 18px; 
-      vertical-align: middle; 
+    .material-icons-round {
+      font-size: 18px;
+      vertical-align: middle;
     }
 
     .summary-card {
@@ -231,7 +238,7 @@
       border-radius: 0.5rem;
       max-height: 300px;
       overflow-y: auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .select-items div {
@@ -284,22 +291,26 @@
         flex: 100%;
         margin-bottom: 1rem;
       }
-      
+
       .product-row {
         flex-direction: column;
         align-items: stretch;
       }
-      
+
       .form-actions {
         flex-direction: column;
       }
-      
+
       .btn {
         width: 100%;
         justify-content: center;
         margin-bottom: 0.5rem;
       }
     }
+    thead {
+        background: linear-gradient(195deg, #2b2825, #2b2825);
+        color: white;
+      }
   </style>
 </head>
 
@@ -430,202 +441,260 @@
 
   <!-- MAIN -->
   <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem;">
-   <h1 style="margin-bottom: 1rem">Tạo phiếu nhập</h1>
-   <div class="card">
-      <div class="card-header">
-        <h3 style="margin: 0; font-size: 1.2rem;">Thông tin phiếu nhập</h3>
-      </div>
-      <div class="card-body">
-        <div class="form-row">
-          <div class="form-col">
-            <div class="form-group">
-              <label class="form-label" for="import-date">Ngày nhập *</label>
-              <input type="date" id="import-date" class="form-control" required>
-            </div>
-          </div>
-          <div class="form-col">
-            <div class="form-group">
-              <label class="form-label" for="import-code">Mã phiếu nhập</label>
-              <input type="text" id="import-code" class="form-control" value="#PN004" readonly>
-            </div>
-          </div>
-        </div>
+    <h1 style="margin-bottom: 1rem;">Tạo phiếu nhập</h1>
 
-        <div class="form-group">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <label class="form-label">Danh sách sản phẩm nhập</label>
-            <button type="button" class="btn btn-success" id="add-product-btn">
-              <i class="material-icons-round">add</i> Thêm sản phẩm
+    <style>
+      .import-container {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .left-panel,
+      .right-panel {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        flex: 1;
+        min-width: 380px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+
+      .section-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      .search-box input {
+        border-radius: 6px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1rem;
+      }
+
+      th,
+      td {
+        padding: 0.75rem;
+        text-align: center;
+        border-bottom: 1px solid #e5e5e5;
+      }
+
+      th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+      }
+
+      td img {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        object-fit: cover;
+      }
+
+      .btn-action {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.9rem;
+      }
+
+      .form-control {
+        border-radius: 6px;
+      }
+
+      .order-summary {
+        margin-top: 1rem;
+        border-top: 1px solid #eee;
+        padding-top: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .order-summary div {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+      }
+
+      .btn-group {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+    </style>
+
+    <div class="import-container">
+      <!-- LEFT PANEL -->
+      <div class="left-panel">
+        <div class="section-title">Tìm kiếm</div>
+        <div class="search-box mb-3">
+          <div class="input-group" style="display: flex; align-items: center;">
+            <input type="text" class="form-control" placeholder="Tìm kiếm nguyên liệu..." style="max-width: 45%;">
+            <button class="btn btn-primary" type="button" style="margin-left: 6px;">
+              <i class="bi bi-search"></i> Tìm kiếm
+            </button>
+            <button class="btn btn-secondary" type="button" style="margin-left: 6px;">
+              <i class="bi bi-arrow-repeat"></i> Làm mới
             </button>
           </div>
-          
-          <div id="products-container">
-            <!-- Product rows will be added here dynamically -->
-            <div class="product-row">
-              <div class="product-select">
-                <div class="custom-select">
-                  <select class="form-control product-select" style="display: none;">
-                    <option value="">Chọn sản phẩm</option>
-                    <option value="1" data-image="../img/book8.webp" data-author="Chu Lai">Mưa đỏ</option>
-                    <option value="2" data-image="../img/book2.webp" data-author="José Mauro de Vasconcelos">Cây cam ngọt của tôi</option>
-                    <option value="3" data-image="../img/book3.jpg" data-author="Hector Malot">Không gia đình</option>
-                    <option value="4" data-image="../img/book4.webp" data-author="Phùng Quán">Tuổi thơ dữ dội</option>
-                    <option value="5" data-image="../img/book5.webp" data-author="Dale Carnegie">Đắc nhân tâm</option>
-                  </select>
-                  <div class="select-selected">
-                    <div class="product-option">
-                      <div class="product-info">
-                        <div class="product-name">Chọn sản phẩm</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="select-items select-hide">
-                    <div data-value="">
-                      <div class="product-option">
-                        <div class="product-info">
-                          <div class="product-name">Chọn sản phẩm</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-value="1">
-                      <div class="product-option">
-                        <img src="../img/book8.webp" alt="Mưa đỏ" class="product-image">
-                        <div class="product-info">
-                          <div class="product-name">Mưa đỏ</div>
-                          <div class="product-author">Tác giả: Chu Lai</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-value="2">
-                      <div class="product-option">
-                        <img src="../img/book2.webp" alt="Cây cam ngọt của tôi" class="product-image">
-                        <div class="product-info">
-                          <div class="product-name">Cây cam ngọt của tôi</div>
-                          <div class="product-author">Tác giả: José Mauro de Vasconcelos</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-value="3">
-                      <div class="product-option">
-                        <img src="../img/book3.jpg" alt="Không gia đình" class="product-image">
-                        <div class="product-info">
-                          <div class="product-name">Không gia đình</div>
-                          <div class="product-author">Tác giả: Hector Malot</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-value="4">
-                      <div class="product-option">
-                        <img src="../img/book4.webp" alt="Tuổi thơ dữ dội" class="product-image">
-                        <div class="product-info">
-                          <div class="product-name">Tuổi thơ dữ dội</div>
-                          <div class="product-author">Tác giả: Phùng Quán</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div data-value="5">
-                      <div class="product-option">
-                        <img src="../img/book5.webp" alt="Đắc nhân tâm" class="product-image">
-                        <div class="product-info">
-                          <div class="product-name">Đắc nhân tâm</div>
-                          <div class="product-author">Tác giả: Dale Carnegie</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="product-price">
-                <input type="number" class="form-control price-input" placeholder="Giá nhập" min="0">
-              </div>
-              <div class="product-quantity">
-                <input type="number" class="form-control quantity-input" placeholder="Số lượng" min="1" value="1">
-              </div>
-              <div class="product-total">
-                0 VNĐ
-              </div>
-              <div class="product-actions">
-                <button type="button" class="btn btn-danger remove-product">
-                  <i class="material-icons-round">delete</i>
-                </button>
-              </div>
-            </div>
+        </div>
+
+        <br><br>
+        <div class="">Danh sách nguyên liệu</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Hình ảnh</th>
+              <th>Tên SP</th>
+              <th>Tác giả</th>
+              <th>Giá</th>
+              <th>Thêm</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img src="../img/book2.webp" alt="Cây cam ngọt của tôi"></td>
+              <td>Cây cam ngọt của tôi</td>
+              <td>José Mauro de Vasconcelos</td>
+              <td>120.000đ</td>
+              <td><button class="btn btn-sm btn-primary btn-action">+</button></td>
+            </tr>
+            <tr>
+              <td><img src="../img/book3.jpg" alt="Không gia đình"></td>
+              <td>Không gia đình</td>
+              <td>Hector Malot</td>
+              <td>95.000đ</td>
+              <td><button class="btn btn-sm btn-primary btn-action">+</button></td>
+            </tr>
+            <tr>
+              <td><img src="../img/book5.webp" alt="Đắc nhân tâm"></td>
+              <td>Đắc nhân tâm</td>
+              <td>Dale Carnegie</td>
+              <td>150.000đ</td>
+              <td><button class="btn btn-sm btn-primary btn-action">+</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+      <!-- RIGHT PANEL -->
+      <div class="right-panel">
+        <div class="section-title">Informations</div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Note ID</label>
+            <input type="text" class="form-control" value="#PN004" readonly>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Creator ID</label>
+            <input type="text" class="form-control" value="NV001">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Warehouse ID</label>
+            <input type="text" class="form-control" value="WH002">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Supplier ID</label>
+            <input type="text" class="form-control" value="NCC003">
+          </div>
+          <div class="col-md-12">
+            <label class="form-label">Note</label>
+            <textarea class="form-control" rows="2" placeholder="Ghi chú thêm..."></textarea>
           </div>
         </div>
 
-        <div class="summary-card">
-          <div class="summary-row">
-            <span>Tổng số sản phẩm:</span>
-            <span id="total-products">1</span>
-          </div>
-          <div class="summary-row">
-            <span>Tổng số lượng:</span>
-            <span id="total-quantity">1</span>
-          </div>
-          <div class="summary-row summary-total">
-            <span>Tổng giá trị:</span>
-            <span id="total-value">0 VNĐ</span>
-          </div>
+        <div class="section-title mt-4">Order</div>
+        <table>
+          <thead>
+            <tr>
+              <th>Tên SP</th>
+              <th>Số lượng</th>
+              <th>Đơn giá</th>
+              <th>Tổng</th>
+              <th>Xóa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Không gia đình</td>
+              <td><input type="number" value="2" min="1" class="form-control form-control-sm"
+                  style="width: 70px; margin: auto;"></td>
+              <td>95.000đ</td>
+              <td>190.000đ</td>
+              <td><button class="btn btn-sm btn-outline-danger btn-action">x</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="order-summary">
+          <div><span>Tổng sản phẩm:</span><span>1</span></div>
+          <div><span>Tổng số lượng:</span><span>2</span></div>
+          <div><span>Tổng giá trị:</span><strong>190.000đ</strong></div>
         </div>
 
-        <div class="form-actions">
-          <button type="button" class="btn btn-secondary" onclick="window.location.href='import.html'">
-            <i class="material-icons-round">cancel</i> Hủy bỏ
-          </button>
-          <button type="button" class="btn btn-primary" id="save-import">
-            <i class="material-icons-round">save</i> Lưu phiếu nhập
-          </button>
+        <div class="btn-group">
+          <button class="btn btn-secondary">Fix Quantity</button>
+          <button class="btn btn-outline-danger">Remove</button>
+          <button class="btn btn-outline-success">Export</button>
+          <button class="btn btn-primary">Create Import Note</button>
         </div>
       </div>
     </div>
   </main>
 
+
   <script>
     // Custom select functionality
     function initializeCustomSelects() {
       const customSelects = document.querySelectorAll('.custom-select');
-      
+
       customSelects.forEach(select => {
         const selected = select.querySelector('.select-selected');
         const items = select.querySelector('.select-items');
         const originalSelect = select.querySelector('select');
-        
+
         // Set initial selected value
         updateSelected(selected, originalSelect);
-        
+
         // Toggle dropdown
-        selected.addEventListener('click', function(e) {
+        selected.addEventListener('click', function (e) {
           e.stopPropagation();
           closeAllSelect(this);
           this.nextElementSibling.classList.toggle('select-hide');
           this.classList.toggle('select-arrow-active');
         });
-        
+
         // Handle item selection
         items.querySelectorAll('div').forEach(item => {
-          item.addEventListener('click', function() {
+          item.addEventListener('click', function () {
             const value = this.getAttribute('data-value');
             const text = this.querySelector('.product-name').textContent;
             const image = this.querySelector('.product-image')?.src;
             const author = this.querySelector('.product-author')?.textContent;
-            
+
             originalSelect.value = value;
             updateSelected(selected, originalSelect, image, author);
-            
+
             items.classList.add('select-hide');
             selected.classList.remove('select-arrow-active');
           });
         });
       });
-      
+
       // Close dropdown when clicking outside
       document.addEventListener('click', closeAllSelect);
     }
-    
+
     function updateSelected(selectedElement, selectElement, imageUrl, author) {
       const selectedOption = selectElement.options[selectElement.selectedIndex];
       const productOption = selectedElement.querySelector('.product-option');
-      
+
       if (selectElement.value === "") {
         productOption.innerHTML = `
           <div class="product-info">
@@ -642,24 +711,24 @@
         `;
       }
     }
-    
+
     function closeAllSelect(elmnt) {
       const selectItems = document.querySelectorAll('.select-items');
       const selectSelected = document.querySelectorAll('.select-selected');
-      
+
       selectItems.forEach(item => {
         if (elmnt && (elmnt === item || item.contains(elmnt))) return;
         item.classList.add('select-hide');
       });
-      
+
       selectSelected.forEach(selected => {
         if (elmnt && (elmnt === selected || selected.contains(elmnt))) return;
         selected.classList.remove('select-arrow-active');
       });
     }
-    
+
     // Add new product row
-    document.getElementById('add-product-btn').addEventListener('click', function() {
+    document.getElementById('add-product-btn').addEventListener('click', function () {
       const productsContainer = document.getElementById('products-container');
       const productRow = document.createElement('div');
       productRow.className = 'product-row';
@@ -752,25 +821,25 @@
           </button>
         </div>
       `;
-      
+
       productsContainer.appendChild(productRow);
-      
+
       // Initialize custom select for new row
       initializeCustomSelects();
-      
+
       // Add event listeners to new inputs
       const priceInput = productRow.querySelector('.price-input');
       const quantityInput = productRow.querySelector('.quantity-input');
-      
+
       priceInput.addEventListener('input', calculateTotals);
       quantityInput.addEventListener('input', calculateTotals);
-      
+
       // Add event listener to remove button
-      productRow.querySelector('.remove-product').addEventListener('click', function() {
+      productRow.querySelector('.remove-product').addEventListener('click', function () {
         productRow.remove();
         calculateTotals();
       });
-      
+
       calculateTotals();
     });
 
@@ -779,21 +848,21 @@
       let totalProducts = 0;
       let totalQuantity = 0;
       let totalValue = 0;
-      
+
       document.querySelectorAll('.product-row').forEach(row => {
         const price = parseFloat(row.querySelector('.price-input').value) || 0;
         const quantity = parseInt(row.querySelector('.quantity-input').value) || 0;
         const total = price * quantity;
-        
+
         // Update row total
         row.querySelector('.product-total').textContent = formatCurrency(total);
-        
+
         // Update global totals
         totalProducts++;
         totalQuantity += quantity;
         totalValue += total;
       });
-      
+
       document.getElementById('total-products').textContent = totalProducts;
       document.getElementById('total-quantity').textContent = totalQuantity;
       document.getElementById('total-value').textContent = formatCurrency(totalValue);
@@ -801,47 +870,47 @@
 
     // Format currency
     function formatCurrency(amount) {
-      return new Intl.NumberFormat('vi-VN', { 
-        style: 'currency', 
-        currency: 'VND' 
+      return new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
       }).format(amount);
     }
 
     // Save import
-    document.getElementById('save-import').addEventListener('click', function() {
+    document.getElementById('save-import').addEventListener('click', function () {
       const importDate = document.getElementById('import-date').value;
-      
+
       if (!importDate) {
         alert('Vui lòng chọn ngày nhập');
         return;
       }
-      
+
       const products = [];
       let hasErrors = false;
-      
+
       document.querySelectorAll('.product-row').forEach(row => {
         const productSelect = row.querySelector('.product-select select');
         const priceInput = row.querySelector('.price-input');
         const quantityInput = row.querySelector('.quantity-input');
-        
+
         if (!productSelect.value) {
           alert('Vui lòng chọn sản phẩm cho tất cả các dòng');
           hasErrors = true;
           return;
         }
-        
+
         if (!priceInput.value || priceInput.value <= 0) {
           alert('Vui lòng nhập giá nhập hợp lệ cho tất cả sản phẩm');
           hasErrors = true;
           return;
         }
-        
+
         if (!quantityInput.value || quantityInput.value <= 0) {
           alert('Vui lòng nhập số lượng hợp lệ cho tất cả sản phẩm');
           hasErrors = true;
           return;
         }
-        
+
         products.push({
           productId: productSelect.value,
           productName: productSelect.options[productSelect.selectedIndex].text,
@@ -849,33 +918,34 @@
           quantity: parseInt(quantityInput.value)
         });
       });
-      
+
       if (hasErrors) return;
-      
+
       if (products.length === 0) {
         alert('Vui lòng thêm ít nhất một sản phẩm');
         return;
       }
-      
+
       // In a real application, you would send this data to the server
       console.log({
         importDate: importDate,
         products: products
       });
-      
+
       alert('Phiếu nhập đã được lưu thành công!');
       window.location.href = 'import.html';
     });
 
     // Initialize on page load
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       initializeCustomSelects();
       calculateTotals();
-      
+
       // Set today's date as default
       const today = new Date().toISOString().split('T')[0];
       document.getElementById('import-date').value = today;
     });
   </script>
 </body>
+
 </html>

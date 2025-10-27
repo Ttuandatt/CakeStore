@@ -953,7 +953,7 @@ a:hover {
 }
 
 .btn-gradient {
-  background: linear-gradient(195deg, #e88f2a, #e88f2a);
+  background: #ff9800;
   color: white;
   border: none;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
