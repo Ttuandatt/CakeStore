@@ -64,7 +64,7 @@
       padding: 12px 10px;
       font-size: 14px;
       border-bottom: 1px solid #e0e0e0;
-      vertical-align: middle;
+      vertical-align: middle !important
     }
 
     th {
@@ -83,32 +83,48 @@
       transition: 0.2s;
     }
 
-    /* Status badge */
-    .status {
-      font-weight: 600;
-      padding: 6px 12px;
-      border-radius: 6px;
-      display: inline-block;
+    /* Badge trạng thái đồng bộ với order.html */
+    /* Căn giữa dọc cho toàn bộ cột trạng thái */
+    td.status-cell {
+      vertical-align: middle;
+      text-align: center;
     }
 
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      min-width: 80px;
+    }
+
+    /* Căn giữa badge trong ô */
+    td.status-badge {
+      text-align: center;
+      vertical-align: middle !important;
+    }
+
+    /* Màu từng trạng thái */
     .status-dangban {
-      background-color: #e8f5e9;
+      background-color: rgba(76, 175, 80, 0.15);
       color: #2e7d32;
     }
 
     .status-hethang {
-      background-color: #fff8e1;
-      color: #f9a825;
+      background-color: rgba(255, 193, 7, 0.15);
+      color: #f57c00;
     }
 
     .status-ngungban {
-      background-color: #ffebee;
+      background-color: rgba(244, 67, 54, 0.15);
       color: #c62828;
     }
 
-    .status-cell {
-      text-align: center;
-      vertical-align: middle;
+    /* Đảm bảo bảng không chèn khoảng trắng làm lệch badge */
+    td {
+      vertical-align: middle !important;
     }
 
     /* Actions buttons */
@@ -554,15 +570,7 @@
               text-decoration: none;
             "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nhập hàng</a>
       </li>
-      <li>
-        <a href="giaban.html" style="
-              display: flex;
-              align-items: center;
-              padding: 0.75rem 1rem;
-              color: white;
-              text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý giá bán</a>
-      </li>
+
       <li>
         <a href="tonkho.html" style="
               display: flex;
@@ -626,11 +634,14 @@
         <tr>
           <td>1</td>
           <td>Bánh kem socola hạnh nhân</td>
-          <td>Bánh sinh nhật</td>
           <td><img class="prod-img" src="../img/bdcake-1.jpg" alt="bdcake-1"></td>
+          <td>Bánh sinh nhật</td>
           <td>180.000đ</td>
           <td>25</td>
-          <td class="status-cell">Đang bán</td>
+          <td class="status-cell">
+            <div class="status-badge status-dangban">Đang bán</div>
+          </td>
+
           <td>
             <div class="actions">
               <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
@@ -643,11 +654,13 @@
         <tr>
           <td>2</td>
           <td>Bánh kem dâu tây phủ kem bơ</td>
-          <td>Bánh sinh nhật</td>
           <td><img class="prod-img" src="../img/bdcake-2.jpg" alt="bdcake-2"></td>
+          <td>Bánh sinh nhật</td>
           <td>160.000đ</td>
           <td>18</td>
-          <td class="status-cell">Đang bán</td>
+          <td class="status-cell">
+            <div class="status-badge status-dangban">Đang bán</div>
+          </td>
           <td>
             <div class="actions">
               <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
@@ -660,11 +673,13 @@
         <tr>
           <td>3</td>
           <td>Bánh tiramisu Ý</td>
-          <td>Bánh ăn vặt</td>
           <td><img class="prod-img" src="../img/bdcake-3.jpg" alt="bdcake-3"></td>
+          <td>Bánh ăn vặt</td>
           <td>220.000đ</td>
           <td>12</td>
-          <td class="status-cell">Hết hàng</td>
+          <td class="status-cell">
+            <div class="status-badge status-hethang">Hết hàng</div>
+          </td>
           <td>
             <div class="actions">
               <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
@@ -677,11 +692,13 @@
         <tr>
           <td>4</td>
           <td>Bánh mousse xoài lạnh</td>
-          <td>Bánh ăn vặt</td>
           <td><img class="prod-img" src="../img/bdcake-4.jpg" alt="bdcake-4"></td>
+          <td>Bánh ăn vặt</td>
           <td>170.000đ</td>
           <td>15</td>
-          <td class="status-cell">Đang bán</td>
+          <td class="status-cell">
+            <div class="status-badge status-dangban">Đang bán</div>
+          </td>
           <td>
             <div class="actions">
               <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
@@ -694,11 +711,13 @@
         <tr>
           <td>5</td>
           <td>Bánh red velvet kem phô mai</td>
-          <td>Bánh ăn vặt</td>
           <td><img class="prod-img" src="../img/bdcake-5.jpg" alt="bdcake-5"></td>
+          <td>Bánh ăn vặt</td>
           <td>210.000đ</td>
           <td>10</td>
-          <td class="status-cell">Đang bán</td>
+          <td class="status-cell">
+            <div class="status-badge status-dangban">Đang bán</div>
+          </td>
           <td>
             <div class="actions">
               <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
@@ -711,11 +730,13 @@
         <tr>
           <td>6</td>
           <td>Bánh kem vani hạt dẻ</td>
-          <td>Bánh sinh nhật</td>
           <td><img class="prod-img" src="../img/bdcake-6.jpg" alt="bdcake-6"></td>
+          <td>Bánh sinh nhật</td>
           <td>150.000đ</td>
           <td>20</td>
-          <td class="status-cell">Ngưng bán</td>
+          <td class="status-cell">
+            <div class="status-badge status-ngungban">Ngưng bán</div>
+          </td>
           <td>
             <div class="actions">
               <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
@@ -728,11 +749,13 @@
         <tr>
           <td>7</td>
           <td>Bánh phô mai việt quất</td>
-          <td>Bánh sinh nhật</td>
           <td><img class="prod-img" src="../img/bdcake-7.jpg" alt="bdcake-7"></td>
+          <td>Bánh sinh nhật</td>
           <td>230.000đ</td>
           <td>8</td>
-          <td class="status-cell">Đang bán</td>
+          <td class="status-cell">
+            <div class="status-badge status-ngungban">Ngưng bán</div>
+          </td>
           <td>
             <div class="actions">
               <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
@@ -745,11 +768,13 @@
         <tr>
           <td>8</td>
           <td>Bánh matcha phủ kem trắng</td>
-          <td>Bánh cưới</td>
           <td><img class="prod-img" src="../img/bdcake-8.jpg" alt="bdcake-8"></td>
+          <td>Bánh cưới</td>
           <td>190.000đ</td>
           <td>13</td>
-          <td class="status-cell">Đang bán</td>
+          <td class="status-cell">
+            <div class="status-badge status-dangban">Đang bán</div>
+          </td>
           <td>
             <div class="actions">
               <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
@@ -762,11 +787,13 @@
         <tr>
           <td>9</td>
           <td>Bánh kem caramel phủ hạt óc chó</td>
-          <td>Bánh cưới</td>
           <td><img class="prod-img" src="../img/bdcake-9.jpg" alt="bdcake-9"></td>
+          <td>Bánh cưới</td>
           <td>240.000đ</td>
           <td>9</td>
-          <td class="status-cell">Đang bán</td>
+          <td class="status-cell">
+            <div class="status-badge status-dangban">Đang bán</div>
+          </td>
           <td>
             <div class="actions">
               <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
@@ -786,29 +813,52 @@
         <h3>Chỉnh sửa sản phẩm</h3>
         <span class="modal-close" id="closeModal">&times;</span>
       </div>
-      <form id="editForm">
+      <form id="editForm" enctype="multipart/form-data">
         <input type="hidden" id="editRowIndex" />
 
+        <!-- Tên sản phẩm -->
         <label>Tên sản phẩm:</label>
         <input type="text" id="editName" required />
 
+        <!-- Loại sản phẩm -->
+        <label>Loại sản phẩm:</label>
+        <select id="editCategory" required>
+          <option value="">-- Chọn loại sản phẩm --</option>
+          <option value="Bánh sinh nhật">Bánh sinh nhật</option>
+          <option value="Bánh cưới">Bánh cưới</option>
+          <option value="Bánh ăn vặt">Bánh ăn vặt</option>
+        </select>
+
+        <!-- Giá sản phẩm -->
         <label>Giá sản phẩm:</label>
         <input type="text" id="editPrice" required />
 
+        <!-- Số lượng -->
         <label>Số lượng:</label>
         <input type="number" id="editQty" required />
 
+        <!-- Trạng thái -->
         <label>Trạng thái:</label>
         <select id="editStatus" required>
           <option value="Đang bán">Đang bán</option>
           <option value="Hết hàng">Hết hàng</option>
-          <option value="Ngừng bán">Ngừng bán</option>
+          <option value="Ngưng bán">Ngưng bán</option>
         </select>
+
+        <!-- Chọn ảnh -->
+        <label>Ảnh sản phẩm:</label>
+        <input type="file" id="editImage" accept="image/*" />
+        <!-- Hiển thị ảnh hiện tại -->
+        <div id="currentImageContainer" style="margin-top:5px;">
+          <img id="currentImage" src="" alt="Ảnh hiện tại" style="max-width:150px; max-height:150px;" />
+        </div>
 
         <button type="submit">Lưu thay đổi</button>
       </form>
     </div>
   </div>
+
+
 
   <!-- Popup xác nhận xóa -->
   <div class="modal" id="confirmDeleteModal">
@@ -951,13 +1001,16 @@
         const tr = btn.closest("tr");
         document.getElementById("editRowIndex").value = index;
         document.getElementById("editName").value = tr.children[1].textContent.trim();
+        document.getElementById("editCategory").value = tr.children[3].textContent.trim();
         document.getElementById("editPrice").value = tr.children[4].textContent.trim();
         document.getElementById("editQty").value = tr.children[5].textContent.trim();
+
+        // Lấy giá trị trạng thái từ badge
         document.getElementById("editStatus").value = tr.children[6].textContent.trim();
+
         document.getElementById("editModal").style.display = "flex";
       });
     });
-
 
     // ======= ĐÓNG MODAL =======
     document.getElementById("closeModal").onclick = () => {
@@ -968,7 +1021,6 @@
         document.getElementById("editModal").style.display = "none";
     };
 
-
     // ======= LƯU THAY ĐỔI TRONG MODAL =======
     document.getElementById("editForm").addEventListener("submit", (e) => {
       e.preventDefault();
@@ -977,17 +1029,25 @@
       const row = rows[index];
 
       row.children[1].textContent = document.getElementById("editName").value;
-      row.children[3].textContent = document.getElementById("editPrice").value;
-      row.children[4].textContent = document.getElementById("editQty").value;
-      row.children[5].textContent = document.getElementById("editStatus").value;
+      row.children[3].textContent = document.getElementById("editCategory").value;
+      row.children[4].textContent = document.getElementById("editPrice").value;
+      row.children[5].textContent = document.getElementById("editQty").value;
 
+      // ✅ Cập nhật badge trạng thái (thay vì plain text)
+      const newStatus = document.getElementById("editStatus").value;
+      let badgeClass = "";
+      if (newStatus === "Đang bán") badgeClass = "status-dangban";
+      else if (newStatus === "Hết hàng") badgeClass = "status-hethang";
+      else if (newStatus === "Ngừng bán") badgeClass = "status-ngungban";
+
+      row.children[6].innerHTML = `<span class="status-badge ${badgeClass}">${newStatus}</span>`;
+
+      // Đóng modal
       document.getElementById("editModal").style.display = "none";
-
-      // Cập nhật lại hiển thị badge trạng thái
-      applyStatusBadges();
 
       alert("Cập nhật thành công!");
     });
+
 
 
     // ======= XÓA VỚI POPUP XÁC NHẬN =======
@@ -1074,6 +1134,7 @@
       if (e.target === modal) modal.style.display = "none";
     });
 
+
   </script>
 
   <script>
@@ -1159,6 +1220,21 @@
         row.style.display = "";
         row.classList.remove("highlight");
       });
+    });
+  </script>
+  <script>
+    const editImage = document.getElementById('editImage');
+    const currentImage = document.getElementById('currentImage');
+
+    editImage.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          currentImage.src = e.target.result; // preview ảnh mới
+        }
+        reader.readAsDataURL(file);
+      }
     });
   </script>
 

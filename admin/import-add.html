@@ -13,6 +13,109 @@
 
 
   <style>
+    /* ===== POPUP STYLE ===== */
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .popup-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.3s ease;
+      width: 320px;
+    }
+
+    .popup-icon {
+      font-size: 48px;
+      color: #4CAF50;
+      margin-bottom: 1rem;
+    }
+
+    .popup-content h2 {
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    .popup-content p {
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .ingredient-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .ingredient-table thead {
+      background: linear-gradient(195deg, #2b2825, #2b2825);
+      color: #fff;
+    }
+
+    .ingredient-table th,
+    .ingredient-table td {
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 14px;
+      vertical-align: middle;
+    }
+
+    .ingredient-table tbody tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    .ingredient-table tbody tr:hover {
+      background-color: #f2f2f2;
+      transition: background-color 0.2s;
+    }
+
+    /* ====== Nút hành động "+" ====== */
+    .btn-action {
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+      background: linear-gradient(195deg, #ffa726, #fb8c00);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 6px rgba(255, 152, 0, 0.3);
+    }
+
     body {
       font-family: 'Roboto', sans-serif;
       background-color: #f0f2f5;
@@ -307,10 +410,11 @@
         margin-bottom: 0.5rem;
       }
     }
+
     thead {
-        background: linear-gradient(195deg, #2b2825, #2b2825);
-        color: white;
-      }
+      background: linear-gradient(195deg, #2b2825, #2b2825);
+      color: white;
+    }
   </style>
 </head>
 
@@ -411,15 +515,7 @@
             0 7px 10px -5px rgba(240, 163, 74, 0.6);
             "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nhập hàng</a>
       </li>
-      <li>
-        <a href="giaban.html" style="
-              display: flex;
-              align-items: center;
-              padding: 0.75rem 1rem;
-              color: white;
-              text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý giá bán</a>
-      </li>
+
       <li>
         <a href="tonkho.html" style="
               display: flex;
@@ -485,10 +581,6 @@
         border-bottom: 1px solid #e5e5e5;
       }
 
-      th {
-        background-color: #f8f9fa;
-        font-weight: 600;
-      }
 
       td img {
         width: 40px;
@@ -545,37 +637,33 @@
 
         <br><br>
         <div class="">Danh sách nguyên liệu</div>
-        <table>
+        <table class="ingredient-table">
           <thead>
             <tr>
-              <th>Hình ảnh</th>
-              <th>Tên SP</th>
-              <th>Tác giả</th>
+              <th>Nguyên liệu</th>
+              <th>Số lượng</th>
               <th>Giá</th>
               <th>Thêm</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><img src="../img/book2.webp" alt="Cây cam ngọt của tôi"></td>
-              <td>Cây cam ngọt của tôi</td>
-              <td>José Mauro de Vasconcelos</td>
+              <td>Bột mì</td>
+              <td>50 gói</td>
               <td>120.000đ</td>
-              <td><button class="btn btn-sm btn-primary btn-action">+</button></td>
+              <td><button class="btn-action">+</button></td>
             </tr>
             <tr>
-              <td><img src="../img/book3.jpg" alt="Không gia đình"></td>
-              <td>Không gia đình</td>
-              <td>Hector Malot</td>
+              <td>Đường nâu</td>
+              <td>50 gói</td>
               <td>95.000đ</td>
-              <td><button class="btn btn-sm btn-primary btn-action">+</button></td>
+              <td><button class="btn-action">+</button></td>
             </tr>
             <tr>
-              <td><img src="../img/book5.webp" alt="Đắc nhân tâm"></td>
-              <td>Đắc nhân tâm</td>
-              <td>Dale Carnegie</td>
+              <td>Bột cacao</td>
+              <td>100 gói</td>
               <td>150.000đ</td>
-              <td><button class="btn btn-sm btn-primary btn-action">+</button></td>
+              <td><button class="btn-action">+</button></td>
             </tr>
           </tbody>
         </table>
@@ -585,45 +673,42 @@
 
       <!-- RIGHT PANEL -->
       <div class="right-panel">
-        <div class="section-title">Informations</div>
+        <div class="section-title">Thông tin</div>
         <div class="row g-3">
           <div class="col-md-6">
-            <label class="form-label">Note ID</label>
+            <label class="form-label">Mã phiếu nhập</label>
             <input type="text" class="form-control" value="#PN004" readonly>
           </div>
           <div class="col-md-6">
-            <label class="form-label">Creator ID</label>
+            <label class="form-label">Mã nhân viên</label>
             <input type="text" class="form-control" value="NV001">
           </div>
+
           <div class="col-md-6">
-            <label class="form-label">Warehouse ID</label>
-            <input type="text" class="form-control" value="WH002">
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">Supplier ID</label>
+            <label class="form-label">Mã nhà cung cấp</label>
             <input type="text" class="form-control" value="NCC003">
           </div>
           <div class="col-md-12">
             <label class="form-label">Note</label>
-            <textarea class="form-control" rows="2" placeholder="Ghi chú thêm..."></textarea>
+            <textarea class="form-control" rows="3" placeholder="Ghi chú thêm..."></textarea>
           </div>
         </div>
 
-        <div class="section-title mt-4">Order</div>
+        <div class="section-title mt-4"></div>
         <table>
           <thead>
             <tr>
-              <th>Tên SP</th>
+              <th>Nguyên liệu</th>
               <th>Số lượng</th>
-              <th>Đơn giá</th>
+              <th>Giá</th>
               <th>Tổng</th>
               <th>Xóa</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Không gia đình</td>
-              <td><input type="number" value="2" min="1" class="form-control form-control-sm"
+              <td>Đường nâu</td>
+              <td><input type="number" value="0.5" min="1" class="form-control form-control-sm"
                   style="width: 70px; margin: auto;"></td>
               <td>95.000đ</td>
               <td>190.000đ</td>
@@ -639,312 +724,250 @@
         </div>
 
         <div class="btn-group">
-          <button class="btn btn-secondary">Fix Quantity</button>
-          <button class="btn btn-outline-danger">Remove</button>
-          <button class="btn btn-primary">Create Import Note</button>
+          <button class="btn btn-primary">Xóa</button>
+          <button id="save-import" class="btn btn-primary">Tạo phiếu nhập</button>
         </div>
       </div>
     </div>
   </main>
 
+  <!-- POPUP THÀNH CÔNG -->
+  <div id="successPopup" class="popup-overlay">
+    <div class="popup-content">
+      <div class="popup-icon">✅</div>
+      <h2>Thành công!</h2>
+      <p>Phiếu nhập đã được tạo thành công.</p>
+      <button id="closePopupBtn" class="btn btn-primary">Đóng</button>
+    </div>
+  </div>
 
-  <script>
-    // Custom select functionality
-    function initializeCustomSelects() {
-      const customSelects = document.querySelectorAll('.custom-select');
+ <script>
+  // Hàm định dạng giá tiền
+  function formatCurrency(value) {
+    return value.toLocaleString('vi-VN') + 'đ';
+  }
 
-      customSelects.forEach(select => {
-        const selected = select.querySelector('.select-selected');
-        const items = select.querySelector('.select-items');
-        const originalSelect = select.querySelector('select');
+  // Cập nhật tổng số lượng và giá trị
+  function updateSummary() {
+    const rows = document.querySelectorAll('.right-panel tbody tr');
+    let totalProducts = rows.length;
+    let totalQuantity = 0;
+    let totalPrice = 0;
 
-        // Set initial selected value
-        updateSelected(selected, originalSelect);
+    rows.forEach(row => {
+      const qty = parseFloat(row.querySelector('input').value) || 0;
+      const priceText = row.querySelector('td:nth-child(3)').innerText.replace(/[^\d]/g, '');
+      const price = parseFloat(priceText) || 0;
+      totalQuantity += qty;
+      totalPrice += qty * price;
+      row.querySelector('td:nth-child(4)').innerText = formatCurrency(qty * price);
+    });
 
-        // Toggle dropdown
-        selected.addEventListener('click', function (e) {
-          e.stopPropagation();
-          closeAllSelect(this);
-          this.nextElementSibling.classList.toggle('select-hide');
-          this.classList.toggle('select-arrow-active');
-        });
+    document.querySelector('.order-summary div:nth-child(1) span:last-child').innerText = totalProducts;
+    document.querySelector('.order-summary div:nth-child(2) span:last-child').innerText = totalQuantity;
+    document.querySelector('.order-summary div:nth-child(3) strong').innerText = formatCurrency(totalPrice);
+  }
 
-        // Handle item selection
-        items.querySelectorAll('div').forEach(item => {
-          item.addEventListener('click', function () {
-            const value = this.getAttribute('data-value');
-            const text = this.querySelector('.product-name').textContent;
-            const image = this.querySelector('.product-image')?.src;
-            const author = this.querySelector('.product-author')?.textContent;
+  // Thêm sự kiện cho nút "+"
+  document.querySelectorAll('.left-panel .btn-action').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const row = this.closest('tr');
+      const name = row.cells[0].innerText;
+      const priceText = row.cells[2].innerText;
 
-            originalSelect.value = value;
-            updateSelected(selected, originalSelect, image, author);
+      const tbody = document.querySelector('.right-panel tbody');
 
-            items.classList.add('select-hide');
-            selected.classList.remove('select-arrow-active');
-          });
-        });
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', closeAllSelect);
-    }
-
-    function updateSelected(selectedElement, selectElement, imageUrl, author) {
-      const selectedOption = selectElement.options[selectElement.selectedIndex];
-      const productOption = selectedElement.querySelector('.product-option');
-
-      if (selectElement.value === "") {
-        productOption.innerHTML = `
-          <div class="product-info">
-            <div class="product-name">Chọn sản phẩm</div>
-          </div>
-        `;
-      } else {
-        productOption.innerHTML = `
-          ${imageUrl ? `<img src="${imageUrl}" alt="${selectedOption.text}" class="product-image">` : ''}
-          <div class="product-info">
-            <div class="product-name">${selectedOption.text}</div>
-            ${author ? `<div class="product-author">${author}</div>` : ''}
-          </div>
-        `;
+      // Kiểm tra nếu nguyên liệu đã tồn tại
+      const existingRow = Array.from(tbody.querySelectorAll('tr')).find(r => r.cells[0].innerText === name);
+      if (existingRow) {
+        const input = existingRow.querySelector('input');
+        input.value = parseFloat(input.value) + 1;
+        updateSummary();
+        return;
       }
-    }
 
-    function closeAllSelect(elmnt) {
-      const selectItems = document.querySelectorAll('.select-items');
-      const selectSelected = document.querySelectorAll('.select-selected');
-
-      selectItems.forEach(item => {
-        if (elmnt && (elmnt === item || item.contains(elmnt))) return;
-        item.classList.add('select-hide');
-      });
-
-      selectSelected.forEach(selected => {
-        if (elmnt && (elmnt === selected || selected.contains(elmnt))) return;
-        selected.classList.remove('select-arrow-active');
-      });
-    }
-
-    // Add new product row
-    document.getElementById('add-product-btn').addEventListener('click', function () {
-      const productsContainer = document.getElementById('products-container');
-      const productRow = document.createElement('div');
-      productRow.className = 'product-row';
-      productRow.innerHTML = `
-        <div class="product-select">
-          <div class="custom-select">
-            <select class="form-control product-select" style="display: none;">
-              <option value="">Chọn sản phẩm</option>
-              <option value="1" data-image="../img/book8.webp" data-author="Chu Lai">Mưa đỏ</option>
-              <option value="2" data-image="../img/book2.webp" data-author="José Mauro de Vasconcelos">Cây cam ngọt của tôi</option>
-              <option value="3" data-image="../img/book3.jpg" data-author="Hector Malot">Không gia đình</option>
-              <option value="4" data-image="../img/book4.webp" data-author="Phùng Quán">Tuổi thơ dữ dội</option>
-              <option value="5" data-image="../img/book5.webp" data-author="Dale Carnegie">Đắc nhân tâm</option>
-            </select>
-            <div class="select-selected">
-              <div class="product-option">
-                <div class="product-info">
-                  <div class="product-name">Chọn sản phẩm</div>
-                </div>
-              </div>
-            </div>
-            <div class="select-items select-hide">
-              <div data-value="">
-                <div class="product-option">
-                  <div class="product-info">
-                    <div class="product-name">Chọn sản phẩm</div>
-                  </div>
-                </div>
-              </div>
-              <div data-value="1">
-                <div class="product-option">
-                  <img src="../img/book8.webp" alt="Mưa đỏ" class="product-image">
-                  <div class="product-info">
-                    <div class="product-name">Mưa đỏ</div>
-                    <div class="product-author">Tác giả: Chu Lai</div>
-                  </div>
-                </div>
-              </div>
-              <div data-value="2">
-                <div class="product-option">
-                  <img src="../img/book2.webp" alt="Cây cam ngọt của tôi" class="product-image">
-                  <div class="product-info">
-                    <div class="product-name">Cây cam ngọt của tôi</div>
-                    <div class="product-author">Tác giả: José Mauro de Vasconcelos</div>
-                  </div>
-                </div>
-              </div>
-              <div data-value="3">
-                <div class="product-option">
-                  <img src="../img/book3.jpg" alt="Không gia đình" class="product-image">
-                  <div class="product-info">
-                    <div class="product-name">Không gia đình</div>
-                    <div class="product-author">Tác giả: Hector Malot</div>
-                  </div>
-                </div>
-              </div>
-              <div data-value="4">
-                <div class="product-option">
-                  <img src="../img/book4.webp" alt="Tuổi thơ dữ dội" class="product-image">
-                  <div class="product-info">
-                    <div class="product-name">Tuổi thơ dữ dội</div>
-                    <div class="product-author">Tác giả: Phùng Quán</div>
-                  </div>
-                </div>
-              </div>
-              <div data-value="5">
-                <div class="product-option">
-                  <img src="../img/book5.webp" alt="Đắc nhân tâm" class="product-image">
-                  <div class="product-info">
-                    <div class="product-name">Đắc nhân tâm</div>
-                    <div class="product-author">Tác giả: Dale Carnegie</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="product-price">
-          <input type="number" class="form-control price-input" placeholder="Giá nhập" min="0">
-        </div>
-        <div class="product-quantity">
-          <input type="number" class="form-control quantity-input" placeholder="Số lượng" min="1" value="1">
-        </div>
-        <div class="product-total">
-          0 VNĐ
-        </div>
-        <div class="product-actions">
-          <button type="button" class="btn btn-danger remove-product">
-            <i class="material-icons-round">delete</i>
-          </button>
-        </div>
+      // Tạo hàng mới
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${name}</td>
+        <td><input type="number" value="1" min="1" class="form-control form-control-sm" style="width:70px; margin:auto;"></td>
+        <td>${priceText}</td>
+        <td>${priceText}</td>
+        <td><button class="btn btn-sm btn-outline-danger btn-action">x</button></td>
       `;
 
-      productsContainer.appendChild(productRow);
-
-      // Initialize custom select for new row
-      initializeCustomSelects();
-
-      // Add event listeners to new inputs
-      const priceInput = productRow.querySelector('.price-input');
-      const quantityInput = productRow.querySelector('.quantity-input');
-
-      priceInput.addEventListener('input', calculateTotals);
-      quantityInput.addEventListener('input', calculateTotals);
-
-      // Add event listener to remove button
-      productRow.querySelector('.remove-product').addEventListener('click', function () {
-        productRow.remove();
-        calculateTotals();
+      // Gắn sự kiện xóa cho nút mới
+      newRow.querySelector('.btn-action').addEventListener('click', function () {
+        newRow.remove();
+        updateSummary();
       });
 
-      calculateTotals();
+      // Gắn sự kiện thay đổi số lượng
+      newRow.querySelector('input').addEventListener('input', updateSummary);
+
+      tbody.appendChild(newRow);
+      updateSummary();
     });
+  });
 
-    // Calculate totals
-    function calculateTotals() {
-      let totalProducts = 0;
-      let totalQuantity = 0;
-      let totalValue = 0;
+  // Gắn sự kiện xóa ban đầu (cho hàng có sẵn)
+  document.querySelectorAll('.right-panel tbody .btn-action').forEach(btn => {
+    btn.addEventListener('click', function () {
+      this.closest('tr').remove();
+      updateSummary();
+    });
+  });
 
-      document.querySelectorAll('.product-row').forEach(row => {
-        const price = parseFloat(row.querySelector('.price-input').value) || 0;
-        const quantity = parseInt(row.querySelector('.quantity-input').value) || 0;
-        const total = price * quantity;
+  // Gắn sự kiện cập nhật tổng khi thay đổi số lượng
+  document.querySelectorAll('.right-panel tbody input').forEach(input => {
+    input.addEventListener('input', updateSummary);
+  });
 
-        // Update row total
-        row.querySelector('.product-total').textContent = formatCurrency(total);
-
-        // Update global totals
-        totalProducts++;
-        totalQuantity += quantity;
-        totalValue += total;
-      });
-
-      document.getElementById('total-products').textContent = totalProducts;
-      document.getElementById('total-quantity').textContent = totalQuantity;
-      document.getElementById('total-value').textContent = formatCurrency(totalValue);
+  // Xử lý nút "Tạo phiếu nhập"
+  document.getElementById('save-import').addEventListener('click', function () {
+    const rows = document.querySelectorAll('.right-panel tbody tr');
+    if (rows.length === 0) {
+      alert('Vui lòng thêm ít nhất một nguyên liệu trước khi tạo phiếu nhập!');
+      return;
     }
 
-    // Format currency
-    function formatCurrency(amount) {
-      return new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-      }).format(amount);
-    }
+    const items = Array.from(rows).map(r => ({
+      name: r.cells[0].innerText,
+      quantity: parseFloat(r.querySelector('input').value),
+      price: r.cells[2].innerText
+    }));
 
-    // Save import
-    document.getElementById('save-import').addEventListener('click', function () {
-      const importDate = document.getElementById('import-date').value;
+    console.log('Phiếu nhập:', items);
 
-      if (!importDate) {
-        alert('Vui lòng chọn ngày nhập');
-        return;
-      }
+    // Hiển thị popup
+    const popup = document.getElementById('successPopup');
+    popup.style.display = 'flex';
 
-      const products = [];
-      let hasErrors = false;
+    setTimeout(() => {
+      popup.style.display = 'none';
+      window.location.href = 'import.html';
+    }, 2000);
 
-      document.querySelectorAll('.product-row').forEach(row => {
-        const productSelect = row.querySelector('.product-select select');
-        const priceInput = row.querySelector('.price-input');
-        const quantityInput = row.querySelector('.quantity-input');
-
-        if (!productSelect.value) {
-          alert('Vui lòng chọn sản phẩm cho tất cả các dòng');
-          hasErrors = true;
-          return;
-        }
-
-        if (!priceInput.value || priceInput.value <= 0) {
-          alert('Vui lòng nhập giá nhập hợp lệ cho tất cả sản phẩm');
-          hasErrors = true;
-          return;
-        }
-
-        if (!quantityInput.value || quantityInput.value <= 0) {
-          alert('Vui lòng nhập số lượng hợp lệ cho tất cả sản phẩm');
-          hasErrors = true;
-          return;
-        }
-
-        products.push({
-          productId: productSelect.value,
-          productName: productSelect.options[productSelect.selectedIndex].text,
-          price: parseFloat(priceInput.value),
-          quantity: parseInt(quantityInput.value)
-        });
-      });
-
-      if (hasErrors) return;
-
-      if (products.length === 0) {
-        alert('Vui lòng thêm ít nhất một sản phẩm');
-        return;
-      }
-
-      // In a real application, you would send this data to the server
-      console.log({
-        importDate: importDate,
-        products: products
-      });
-
-      alert('Phiếu nhập đã được lưu thành công!');
+    document.getElementById('closePopupBtn').addEventListener('click', () => {
+      popup.style.display = 'none';
       window.location.href = 'import.html';
     });
+  });
 
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', function () {
-      initializeCustomSelects();
-      calculateTotals();
+  // Cập nhật tổng lần đầu
+  updateSummary();
+</script>
+ <script>
+  // ======= THÊM NGUYÊN LIỆU SANG BÊN PHẢI =======
+  document.querySelectorAll(".btn-action").forEach(button => {
+    button.addEventListener("click", function () {
+      const row = this.closest("tr");
+      const name = row.children[0].textContent.trim();
+      const priceText = row.children[2].textContent.trim();
+      const price = parseInt(priceText.replace(/[^\d]/g, ""));
 
-      // Set today's date as default
-      const today = new Date().toISOString().split('T')[0];
-      document.getElementById('import-date').value = today;
+      const rightTableBody = document.querySelector(".right-panel tbody");
+
+      // Kiểm tra nếu nguyên liệu đã tồn tại thì cộng dồn số lượng
+      const existingRow = Array.from(rightTableBody.children).find(r => r.children[0].textContent === name);
+      if (existingRow) {
+        const qtyInput = existingRow.querySelector("input[type='number']");
+        qtyInput.value = parseInt(qtyInput.value) + 1;
+        updateTotals();
+        return;
+      }
+
+      // Tạo hàng mới
+      const newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td>${name}</td>
+        <td><input type="number" value="1" min="1" class="form-control form-control-sm" style="width: 70px; margin: auto;"></td>
+        <td>${price.toLocaleString()}đ</td>
+        <td class="total">${price.toLocaleString()}đ</td>
+        <td><button class="btn btn-sm btn-outline-danger btn-remove">x</button></td>
+      `;
+
+      rightTableBody.appendChild(newRow);
+      updateTotals();
     });
-  </script>
+  });
+
+  // ======= XÓA NGUYÊN LIỆU =======
+  document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btn-remove")) {
+      e.target.closest("tr").remove();
+      updateTotals();
+    }
+  });
+
+  // ======= CẬP NHẬT TỔNG =======
+  document.addEventListener("input", function (e) {
+    if (e.target.type === "number") {
+      const row = e.target.closest("tr");
+      const priceText = row.children[2].textContent.replace(/[^\d]/g, "");
+      const price = parseInt(priceText);
+      const qty = parseInt(e.target.value) || 0;
+      row.querySelector(".total").textContent = (price * qty).toLocaleString() + "đ";
+      updateTotals();
+    }
+  });
+
+  function updateTotals() {
+    const rows = document.querySelectorAll(".right-panel tbody tr");
+    let totalItems = 0;
+    let totalQty = 0;
+    let totalPrice = 0;
+
+    rows.forEach(row => {
+      totalItems++;
+      const qty = parseInt(row.querySelector("input[type='number']").value) || 0;
+      const totalText = row.querySelector(".total").textContent.replace(/[^\d]/g, "");
+      totalQty += qty;
+      totalPrice += parseInt(totalText);
+    });
+
+    document.querySelector(".order-summary div:nth-child(1) span:last-child").textContent = totalItems;
+    document.querySelector(".order-summary div:nth-child(2) span:last-child").textContent = totalQty;
+    document.querySelector(".order-summary div:nth-child(3) strong").textContent = totalPrice.toLocaleString() + "đ";
+  }
+
+  // ======= TẠO PHIẾU NHẬP =======
+  document.getElementById('save-import').addEventListener('click', function () {
+    const rows = document.querySelectorAll(".right-panel tbody tr");
+    if (rows.length === 0) {
+      alert("Vui lòng thêm ít nhất một nguyên liệu trước khi tạo phiếu nhập!");
+      return;
+    }
+
+    const products = Array.from(rows).map(row => ({
+      name: row.children[0].textContent,
+      quantity: parseInt(row.querySelector("input").value),
+      price: row.children[2].textContent,
+      total: row.children[3].textContent
+    }));
+
+    console.log("Dữ liệu phiếu nhập:", products);
+
+    // Hiển thị popup thành công
+    const popup = document.getElementById("successPopup");
+    popup.style.display = "flex";
+
+    // Tự động đóng sau 2 giây
+    setTimeout(() => {
+      popup.style.display = "none";
+      window.location.href = "import.html";
+    }, 2000);
+
+    // Nếu người dùng nhấn nút "Đóng"
+    document.getElementById("closePopupBtn").addEventListener("click", () => {
+      popup.style.display = "none";
+      window.location.href = "import.html";
+    });
+  });
+</script>
+
+
+
 </body>
 
 </html>
