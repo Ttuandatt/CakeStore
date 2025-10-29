@@ -109,6 +109,18 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
+    .btn-add{
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      width: 28px;
+      height: 28px;
+      line-height: 28px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
 
     .btn-action:hover {
       background: linear-gradient(195deg, #ffa726, #fb8c00);
@@ -651,19 +663,19 @@
               <td>Bột mì</td>
               <td>50 gói</td>
               <td>120.000đ</td>
-              <td><button class="btn-action">+</button></td>
+              <td><button class="btn-add">+</button></td>
             </tr>
             <tr>
               <td>Đường nâu</td>
               <td>50 gói</td>
               <td>95.000đ</td>
-              <td><button class="btn-action">+</button></td>
+              <td><button class="btn-add">+</button></td>
             </tr>
             <tr>
               <td>Bột cacao</td>
               <td>100 gói</td>
               <td>150.000đ</td>
-              <td><button class="btn-action">+</button></td>
+              <td><button class="btn-add">+</button></td>
             </tr>
           </tbody>
         </table>
@@ -708,7 +720,7 @@
           <tbody>
             <tr>
               <td>Đường nâu</td>
-              <td><input type="number" value="0.5" min="1" class="form-control form-control-sm"
+              <td><input type="number" value="10" min="1" class="form-control form-control-sm"
                   style="width: 70px; margin: auto;"></td>
               <td>95.000đ</td>
               <td>190.000đ</td>
@@ -742,231 +754,137 @@
   </div>
 
  <script>
-  // Hàm định dạng giá tiền
-  function formatCurrency(value) {
-    return value.toLocaleString('vi-VN') + 'đ';
+  // ---------------------------
+  // HÀM ĐỊNH DẠNG TIỀN
+  // ---------------------------
+  function formatCurrency(num) {
+    return num.toLocaleString('vi-VN') + 'đ';
   }
 
-  // Cập nhật tổng số lượng và giá trị
-  function updateSummary() {
-    const rows = document.querySelectorAll('.right-panel tbody tr');
-    let totalProducts = rows.length;
-    let totalQuantity = 0;
-    let totalPrice = 0;
-
-    rows.forEach(row => {
-      const qty = parseFloat(row.querySelector('input').value) || 0;
-      const priceText = row.querySelector('td:nth-child(3)').innerText.replace(/[^\d]/g, '');
-      const price = parseFloat(priceText) || 0;
-      totalQuantity += qty;
-      totalPrice += qty * price;
-      row.querySelector('td:nth-child(4)').innerText = formatCurrency(qty * price);
-    });
-
-    document.querySelector('.order-summary div:nth-child(1) span:last-child').innerText = totalProducts;
-    document.querySelector('.order-summary div:nth-child(2) span:last-child').innerText = totalQuantity;
-    document.querySelector('.order-summary div:nth-child(3) strong').innerText = formatCurrency(totalPrice);
-  }
-
-  // Thêm sự kiện cho nút "+"
-  document.querySelectorAll('.left-panel .btn-action').forEach(btn => {
-    btn.addEventListener('click', function () {
-      const row = this.closest('tr');
-      const name = row.cells[0].innerText;
-      const priceText = row.cells[2].innerText;
-
-      const tbody = document.querySelector('.right-panel tbody');
-
-      // Kiểm tra nếu nguyên liệu đã tồn tại
-      const existingRow = Array.from(tbody.querySelectorAll('tr')).find(r => r.cells[0].innerText === name);
-      if (existingRow) {
-        const input = existingRow.querySelector('input');
-        input.value = parseFloat(input.value) + 1;
-        updateSummary();
-        return;
-      }
-
-      // Tạo hàng mới
-      const newRow = document.createElement('tr');
-      newRow.innerHTML = `
-        <td>${name}</td>
-        <td><input type="number" value="1" min="1" class="form-control form-control-sm" style="width:70px; margin:auto;"></td>
-        <td>${priceText}</td>
-        <td>${priceText}</td>
-        <td><button class="btn btn-sm btn-outline-danger btn-action">x</button></td>
-      `;
-
-      // Gắn sự kiện xóa cho nút mới
-      newRow.querySelector('.btn-action').addEventListener('click', function () {
-        newRow.remove();
-        updateSummary();
-      });
-
-      // Gắn sự kiện thay đổi số lượng
-      newRow.querySelector('input').addEventListener('input', updateSummary);
-
-      tbody.appendChild(newRow);
-      updateSummary();
-    });
-  });
-
-  // Gắn sự kiện xóa ban đầu (cho hàng có sẵn)
-  document.querySelectorAll('.right-panel tbody .btn-action').forEach(btn => {
-    btn.addEventListener('click', function () {
-      this.closest('tr').remove();
-      updateSummary();
-    });
-  });
-
-  // Gắn sự kiện cập nhật tổng khi thay đổi số lượng
-  document.querySelectorAll('.right-panel tbody input').forEach(input => {
-    input.addEventListener('input', updateSummary);
-  });
-
-  // Xử lý nút "Tạo phiếu nhập"
-  document.getElementById('save-import').addEventListener('click', function () {
-    const rows = document.querySelectorAll('.right-panel tbody tr');
-    if (rows.length === 0) {
-      alert('Vui lòng thêm ít nhất một nguyên liệu trước khi tạo phiếu nhập!');
-      return;
-    }
-
-    const items = Array.from(rows).map(r => ({
-      name: r.cells[0].innerText,
-      quantity: parseFloat(r.querySelector('input').value),
-      price: r.cells[2].innerText
-    }));
-
-    console.log('Phiếu nhập:', items);
-
-    // Hiển thị popup
-    const popup = document.getElementById('successPopup');
-    popup.style.display = 'flex';
-
-    setTimeout(() => {
-      popup.style.display = 'none';
-      window.location.href = 'import.html';
-    }, 2000);
-
-    document.getElementById('closePopupBtn').addEventListener('click', () => {
-      popup.style.display = 'none';
-      window.location.href = 'import.html';
-    });
-  });
-
-  // Cập nhật tổng lần đầu
-  updateSummary();
-</script>
- <script>
-  // ======= THÊM NGUYÊN LIỆU SANG BÊN PHẢI =======
-  document.querySelectorAll(".btn-action").forEach(button => {
-    button.addEventListener("click", function () {
-      const row = this.closest("tr");
-      const name = row.children[0].textContent.trim();
-      const priceText = row.children[2].textContent.trim();
-      const price = parseInt(priceText.replace(/[^\d]/g, ""));
-
-      const rightTableBody = document.querySelector(".right-panel tbody");
-
-      // Kiểm tra nếu nguyên liệu đã tồn tại thì cộng dồn số lượng
-      const existingRow = Array.from(rightTableBody.children).find(r => r.children[0].textContent === name);
-      if (existingRow) {
-        const qtyInput = existingRow.querySelector("input[type='number']");
-        qtyInput.value = parseInt(qtyInput.value) + 1;
-        updateTotals();
-        return;
-      }
-
-      // Tạo hàng mới
-      const newRow = document.createElement("tr");
-      newRow.innerHTML = `
-        <td>${name}</td>
-        <td><input type="number" value="1" min="1" class="form-control form-control-sm" style="width: 70px; margin: auto;"></td>
-        <td>${price.toLocaleString()}đ</td>
-        <td class="total">${price.toLocaleString()}đ</td>
-        <td><button class="btn btn-sm btn-outline-danger btn-remove">x</button></td>
-      `;
-
-      rightTableBody.appendChild(newRow);
-      updateTotals();
-    });
-  });
-
-  // ======= XÓA NGUYÊN LIỆU =======
-  document.addEventListener("click", function (e) {
-    if (e.target.classList.contains("btn-remove")) {
-      e.target.closest("tr").remove();
-      updateTotals();
-    }
-  });
-
-  // ======= CẬP NHẬT TỔNG =======
-  document.addEventListener("input", function (e) {
-    if (e.target.type === "number") {
-      const row = e.target.closest("tr");
-      const priceText = row.children[2].textContent.replace(/[^\d]/g, "");
-      const price = parseInt(priceText);
-      const qty = parseInt(e.target.value) || 0;
-      row.querySelector(".total").textContent = (price * qty).toLocaleString() + "đ";
-      updateTotals();
-    }
-  });
-
+  // ---------------------------
+  // HÀM CẬP NHẬT TỔNG
+  // ---------------------------
   function updateTotals() {
-    const rows = document.querySelectorAll(".right-panel tbody tr");
-    let totalItems = 0;
-    let totalQty = 0;
-    let totalPrice = 0;
+    const rows = document.querySelectorAll('.right-panel tbody tr');
+    let totalItems = 0, totalQty = 0, totalPrice = 0;
 
     rows.forEach(row => {
       totalItems++;
-      const qty = parseInt(row.querySelector("input[type='number']").value) || 0;
-      const totalText = row.querySelector(".total").textContent.replace(/[^\d]/g, "");
+      const qtyInput = row.querySelector('input[type="number"]');
+      const qty = parseFloat(qtyInput.value) || 0;
+      const price = parseInt(row.getAttribute('data-price')) || 0;
+      const rowTotal = qty * price;
+
+      // Cập nhật ô tổng
+      row.querySelector('.total').textContent = formatCurrency(rowTotal);
+
       totalQty += qty;
-      totalPrice += parseInt(totalText);
+      totalPrice += rowTotal;
     });
 
-    document.querySelector(".order-summary div:nth-child(1) span:last-child").textContent = totalItems;
-    document.querySelector(".order-summary div:nth-child(2) span:last-child").textContent = totalQty;
-    document.querySelector(".order-summary div:nth-child(3) strong").textContent = totalPrice.toLocaleString() + "đ";
+    // Cập nhật tóm tắt
+    document.querySelector('.order-summary div:nth-child(1) span:last-child').textContent = totalItems;
+    document.querySelector('.order-summary div:nth-child(2) span:last-child').textContent = totalQty;
+    document.querySelector('.order-summary div:nth-child(3) strong').textContent = formatCurrency(totalPrice);
   }
 
-  // ======= TẠO PHIẾU NHẬP =======
-  document.getElementById('save-import').addEventListener('click', function () {
-    const rows = document.querySelectorAll(".right-panel tbody tr");
+  // ---------------------------
+  // XỬ LÝ THÊM NGUYÊN LIỆU
+  // ---------------------------
+  document.querySelector('.left-panel').addEventListener('click', e => {
+    const btn = e.target.closest('.btn-add');
+    if (!btn) return;
+
+    const row = btn.closest('tr');
+    const name = row.children[0].innerText.trim();
+    const price = parseInt(row.children[2].innerText.replace(/[^\d]/g, '')) || 0;
+
+    const rightTbody = document.querySelector('.right-panel tbody');
+    const existing = Array.from(rightTbody.querySelectorAll('tr'))
+      .find(r => r.children[0].innerText.trim() === name);
+
+    if (existing) {
+      const qtyInput = existing.querySelector('input[type="number"]');
+      qtyInput.value = parseFloat(qtyInput.value) + 1;
+      updateTotals();
+      return;
+    }
+
+    const newRow = document.createElement('tr');
+    newRow.setAttribute('data-price', price);
+    newRow.innerHTML = `
+      <td>${name}</td>
+      <td><input type="number" min="0.1" step="0.1" value="1" class="form-control form-control-sm" style="width: 70px; margin: auto;"></td>
+      <td>${formatCurrency(price)}</td>
+      <td class="total">${formatCurrency(price)}</td>
+      <td><button class="btn btn-sm btn-outline-danger btn-action">x</button></td>
+    `;
+    rightTbody.appendChild(newRow);
+    updateTotals();
+  });
+
+  // ---------------------------
+  // XỬ LÝ XÓA / NHẬP SỐ LƯỢNG TRONG BẢNG PHẢI
+  // ---------------------------
+  const rightPanel = document.querySelector('.right-panel tbody');
+
+  rightPanel.addEventListener('click', e => {
+    const btn = e.target.closest('.btn-action');
+    if (btn) {
+      btn.closest('tr').remove();
+      updateTotals();
+    }
+  });
+
+  rightPanel.addEventListener('input', e => {
+    if (e.target.matches('input[type="number"]')) {
+      const input = e.target;
+      if (parseFloat(input.value) < 0.1) input.value = 0.1;
+      updateTotals();
+    }
+  });
+
+  // ---------------------------
+  // NÚT "TẠO PHIẾU NHẬP"
+  // ---------------------------
+  document.getElementById('save-import').addEventListener('click', () => {
+    const rows = document.querySelectorAll('.right-panel tbody tr');
     if (rows.length === 0) {
       alert("Vui lòng thêm ít nhất một nguyên liệu trước khi tạo phiếu nhập!");
       return;
     }
 
     const products = Array.from(rows).map(row => ({
-      name: row.children[0].textContent,
-      quantity: parseInt(row.querySelector("input").value),
-      price: row.children[2].textContent,
-      total: row.children[3].textContent
+      name: row.children[0].textContent.trim(),
+      quantity: parseFloat(row.querySelector('input').value),
+      price: parseInt(row.getAttribute('data-price')),
+      total: row.querySelector('.total').textContent
     }));
-
     console.log("Dữ liệu phiếu nhập:", products);
 
-    // Hiển thị popup thành công
     const popup = document.getElementById("successPopup");
     popup.style.display = "flex";
 
-    // Tự động đóng sau 2 giây
+    document.getElementById("closePopupBtn").onclick = () => {
+      popup.style.display = "none";
+      window.location.href = "import.html";
+    };
+
     setTimeout(() => {
       popup.style.display = "none";
       window.location.href = "import.html";
     }, 2000);
-
-    // Nếu người dùng nhấn nút "Đóng"
-    document.getElementById("closePopupBtn").addEventListener("click", () => {
-      popup.style.display = "none";
-      window.location.href = "import.html";
-    });
   });
+
+  // ---------------------------
+  // KHỞI TẠO KHI LOAD
+  // ---------------------------
+  document.querySelectorAll('.right-panel tbody tr').forEach(row => {
+    const priceText = row.children[2].innerText.replace(/[^\d]/g, '');
+    row.setAttribute('data-price', priceText);
+  });
+  updateTotals();
 </script>
-
-
 
 </body>
 
