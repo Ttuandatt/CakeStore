@@ -11,6 +11,15 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link href="assets/css/pure-style.css" rel="stylesheet" />
   <style>
+    select.form-control {
+      appearance: auto;
+      /* Cho phép trình duyệt hiện mũi tên mặc định */
+      -webkit-appearance: auto;
+      -moz-appearance: auto;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
     /* Simple styling for password toggle */
     .password-field {
       position: relative;
@@ -105,12 +114,17 @@
       margin-bottom: 0.4rem;
     }
 
-    .form-control {
+    input.form-control,
+    textarea.form-control,
+    select.form-control {
       padding: 0.5rem 0.75rem;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 1rem;
+      width: 100%;
+      background-color: #fff;
     }
+
 
     .img-upload {
       display: flex;
@@ -285,7 +299,7 @@
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý tồn kho</a>
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nguyên liệu</a>
       </li>
 
       <!-- Đăng xuất -->
@@ -321,15 +335,24 @@
             <input type="email" id="email" class="form-control" value="nguyenvana@example.com" required>
           </div>
 
-          <!-- Mật khẩu + Vị trí -->
+          <div class="form-group" style="position: relative;">
+            <label for="password">Mật khẩu <span style="color: #e88f2a;">*</span></label>
+            <input type="password" id="password" class="form-control" value="123456" required>
+            <button type="button" class="toggle-password" onclick="togglePassword()"
+              style="position: absolute; right: 10px; top: 55px; background: none; border: none; cursor: pointer;">
+              <i class="material-icons" id="eyeIcon">visibility_off</i>
+            </button>
+          </div>
+
+          <!-- Giới tính + Vị trí -->
           <div class="form-row" style="display: flex; gap: 1rem;">
-            <div class="form-group" style="flex: 1; position: relative;">
-              <label for="password">Mật khẩu <span style="color: #e88f2a;">*</span></label>
-              <input type="password" id="password" class="form-control" value="123456" required>
-              <button type="button" class="toggle-password" onclick="togglePassword()"
-                style="position: absolute; right: 10px; top: 55px; background: none; border: none; cursor: pointer;">
-                <i class="material-icons" id="eyeIcon">visibility_off</i>
-              </button>
+            <div class="form-group" style="flex: 1;">
+              <label for="gender">Giới tính</label>
+              <select id="gender" class="form-control">
+                <option value="nam" selected>Nam</option>
+                <option value="nu">Nữ</option>
+                <option value="khac">Khác</option>
+              </select>
             </div>
 
             <div class="form-group" style="flex: 1;">
@@ -357,6 +380,7 @@
             </button>
           </div>
         </div>
+
 
         <!-- Cột phải: Ảnh -->
         <div style="flex: 1; display: flex; justify-content: center;">

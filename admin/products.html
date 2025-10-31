@@ -16,6 +16,19 @@
   <link href="assets/css/pure-style-optimized.css" rel="stylesheet" />
 
   <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
     body {
       font-family: "Roboto", sans-serif;
       background-color: #f0f2f5;
@@ -351,6 +364,28 @@
       opacity: 0.85;
     }
 
+    #editProductModal textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      resize: none;
+    }
+
+    #editProductModal button {
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 10px 16px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    #editProductModal button:hover {
+      opacity: 0.85;
+    }
+
     #deleteImageBtn:hover {
       background-color: rgba(255, 0, 0, 0.8);
       transition: 0.3s;
@@ -578,7 +613,7 @@
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý tồn kho</a>
+            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nguyên liệu</a>
       </li>
 
       <!-- Đăng xuất -->
@@ -805,76 +840,6 @@
     </table>
   </main>
 
-
-  <!-- Modal chỉnh sửa -->
-  <div class="modal" id="editModal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3>Chỉnh sửa sản phẩm</h3>
-        <span class="modal-close" id="closeModal">&times;</span>
-      </div>
-      <form id="editForm" enctype="multipart/form-data">
-        <input type="hidden" id="editRowIndex" />
-
-        <!-- Tên sản phẩm -->
-        <label>Tên sản phẩm:</label>
-        <input type="text" id="editName" required />
-
-        <!-- Loại sản phẩm -->
-        <label>Loại sản phẩm:</label>
-        <select id="editCategory" required>
-          <option value="">-- Chọn loại sản phẩm --</option>
-          <option value="Bánh sinh nhật">Bánh sinh nhật</option>
-          <option value="Bánh cưới">Bánh cưới</option>
-          <option value="Bánh ăn vặt">Bánh ăn vặt</option>
-        </select>
-
-        <!-- Giá sản phẩm -->
-        <label>Giá sản phẩm:</label>
-        <input type="text" id="editPrice" required />
-
-        <!-- Số lượng -->
-        <label>Số lượng:</label>
-        <input type="number" id="editQty" required />
-
-        <!-- Trạng thái -->
-        <label>Trạng thái:</label>
-        <select id="editStatus" required>
-          <option value="Đang bán">Đang bán</option>
-          <option value="Hết hàng">Hết hàng</option>
-          <option value="Ngưng bán">Ngưng bán</option>
-        </select>
-
-        <!-- Chọn ảnh -->
-        <label>Ảnh sản phẩm:</label>
-        <input type="file" id="editImage" accept="image/*" />
-        <!-- Hiển thị ảnh hiện tại -->
-        <div id="currentImageContainer" style="margin-top:5px;">
-          <img id="currentImage" src="../img/bdcake-1.jpg" alt="Ảnh hiện tại" style="max-width:150px; max-height:150px;" />
-        </div>
-
-        <button type="submit">Lưu thay đổi</button>
-      </form>
-    </div>
-  </div>
-
-
-
-  <!-- Popup xác nhận xóa -->
-  <div class="modal" id="confirmDeleteModal">
-    <div class="modal-content" style="width: 400px;">
-      <div class="modal-header">
-        <h3>Xác nhận xóa</h3>
-        <span class="modal-close" id="closeDeleteModal">&times;</span>
-      </div>
-      <p>Bạn có chắc chắn muốn xóa sản phẩm này không?</p>
-      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
-        <button id="cancelDelete" style="background-color: #777;">Hủy</button>
-        <button id="confirmDelete" style="background-color: #e53935;">Xóa</button>
-      </div>
-    </div>
-  </div>
-
   <!-- Popup thêm sản phẩm -->
   <div class="modal" id="addProductModal">
     <div class="modal-content" style="width: 800px; max-width: 90%;">
@@ -932,9 +897,11 @@
           </div>
           <br>
           <img id="previewImg" src="" alt=""
-            style="margin-top:20px; width:200px; height:200px; object-fit:cover; border-radius:8px; display:none;" />
+            style="margin-top:50px; width:200px; height:200px; object-fit:cover; border-radius:8px; display:none;" />
           <label>Mô tả sản phẩm</label>
-          <textarea id="newDesc" rows="15" placeholder="Nhập mô tả chi tiết về sản phẩm"></textarea>
+          <textarea id="newDesc" rows="11" placeholder="Nhập mô tả chi tiết về sản phẩm"></textarea>
+          <label>Thông tin bổ sung</label>
+          <textarea id="newAdditionalInfo" rows="2" placeholder="Nhập thông tin bổ sung về sản phẩm"></textarea>
 
           <label>Giá sản phẩm <span style="color:red">*</span></label>
           <input type="number" id="newPrice" min="0" required />
@@ -961,6 +928,98 @@
     </div>
   </div>
 
+
+  <!-- Popup sửa sản phẩm -->
+  <div class="modal" id="editProductModal">
+    <div class="modal-content" style="width: 800px; max-width: 90%;">
+      <div class="modal-header">
+        <h3>Sửa sản phẩm</h3>
+        <span class="modal-close" id="closeEditModal">&times;</span>
+      </div>
+
+      <form id="editProductForm" style="display: flex; gap: 20px; flex-wrap: wrap;">
+        <!-- Cột trái -->
+        <div style="flex: 2; min-width: 200px;">
+          <label>Tên sản phẩm <span style="color:red">*</span></label>
+          <input type="text" id="editName" required placeholder="Nhập tên sản phẩm" />
+
+          <label>Mô tả ngắn</label>
+          <textarea id="editDesc" rows="7" placeholder="Nhập mô tả ngắn về sản phẩm"></textarea>
+
+          <label>Thành phần</label>
+          <input type="text" id="editIngredients" required placeholder="Nhập thành phần sản phẩm" />
+
+          <label>Hương vị</label>
+          <input type="text" id="editFlavor" required placeholder="Nhập hương vị sản phẩm" />
+
+          <label>Màu sắc</label>
+          <input type="text" id="editColor" required placeholder="Nhập màu sắc sản phẩm" />
+
+          <label>Kích cỡ</label>
+          <input type="text" id="editSize" required placeholder="Nhập kích cỡ sản phẩm" />
+
+          <label>Đặc biệt</label>
+          <input type="text" id="editSpecial" required placeholder="Nhập điểm đặc biệt của sản phẩm" />
+
+          <label>Danh mục <span style="color:red">*</span></label>
+          <select id="editCategory" required>
+            <option value="">Chọn danh mục</option>
+            <option>Bánh kem</option>
+            <option>Bánh ngọt</option>
+            <option>Bánh mì</option>
+            <option>Khác</option>
+          </select>
+        </div>
+
+        <!-- Cột phải -->
+        <div style="flex: 1; min-width: 400px;">
+          <div style="flex: 1; display: flex; justify-content: center;">
+            <div class="form-group" style="display: flex; flex-direction: column; align-items: center;">
+              <label for="editImageUpload" class="img-upload" id="editImagePreview"
+                style="border: 1px dashed #ccc; border-radius: 6px; width: 400px; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #666; cursor: pointer;">
+                <span class="material-icons" style="font-size: 40px;">add_a_photo</span>
+                <span style="font-size: 0.9rem;">Chọn hình ảnh</span>
+              </label>
+              <input type="file" id="editImageUpload" accept="image/*" style="display: none;">
+            </div>
+          </div>
+
+          <br>
+          <img id="editPreviewImg" src="" alt=""
+            style="margin-top:50px; width:200px; height:200px; object-fit:cover; border-radius:8px; display:none;" />
+
+          <label>Mô tả sản phẩm</label>
+          <textarea id="editDetailDesc" rows="11" placeholder="Nhập mô tả chi tiết về sản phẩm"></textarea>
+
+          <label>Thông tin bổ sung</label>
+          <textarea id="editAdditionalInfo" rows="2" placeholder="Nhập thông tin bổ sung về sản phẩm"></textarea>
+
+          <label>Giá sản phẩm <span style="color:red">*</span></label>
+          <input type="number" id="editPrice" min="0" required />
+        </div>
+
+        <div style="width:100%; text-align:right; margin-top:10px;">
+          <button type="button" id="cancelEdit" style="background-color:#777;">Quay về</button>
+          <button type="submit" style="background-color:#e88f2a;">Lưu thay đổi</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Popup xác nhận xóa -->
+  <div class="modal" id="confirmDeleteModal">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-header">
+        <h3>Xác nhận xóa</h3>
+        <span class="modal-close" id="closeDeleteModal">&times;</span>
+      </div>
+      <p>Bạn có chắc chắn muốn xóa sản phẩm này không?</p>
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+        <button id="cancelDelete" style="background-color: #777;">Hủy</button>
+        <button id="confirmDelete" style="background-color: #e53935;">Xóa</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     // ======= CHUYỂN TEXT TRẠNG THÁI THÀNH BADGE =======
@@ -992,66 +1051,12 @@
       });
     }
 
-    applyStatusBadges(); // Gọi khi load trang
+    applyStatusBadges();
+  </script>
 
-
-    // ======= NÚT SỬA MỞ MODAL =======
-    document.querySelectorAll(".btn-edit").forEach((btn, index) => {
-      btn.addEventListener("click", () => {
-        const tr = btn.closest("tr");
-        document.getElementById("editRowIndex").value = index;
-        document.getElementById("editName").value = tr.children[1].textContent.trim();
-        document.getElementById("editCategory").value = tr.children[3].textContent.trim();
-        document.getElementById("editPrice").value = tr.children[4].textContent.trim();
-        document.getElementById("editQty").value = tr.children[5].textContent.trim();
-
-        // Lấy giá trị trạng thái từ badge
-        document.getElementById("editStatus").value = tr.children[6].textContent.trim();
-
-        document.getElementById("editModal").style.display = "flex";
-      });
-    });
-
-    // ======= ĐÓNG MODAL =======
-    document.getElementById("closeModal").onclick = () => {
-      document.getElementById("editModal").style.display = "none";
-    };
-    window.onclick = (e) => {
-      if (e.target.id === "editModal")
-        document.getElementById("editModal").style.display = "none";
-    };
-
-    // ======= LƯU THAY ĐỔI TRONG MODAL =======
-    document.getElementById("editForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-      const index = document.getElementById("editRowIndex").value;
-      const rows = document.querySelectorAll("tbody tr");
-      const row = rows[index];
-
-      row.children[1].textContent = document.getElementById("editName").value;
-      row.children[3].textContent = document.getElementById("editCategory").value;
-      row.children[4].textContent = document.getElementById("editPrice").value;
-      row.children[5].textContent = document.getElementById("editQty").value;
-
-      // ✅ Cập nhật badge trạng thái (thay vì plain text)
-      const newStatus = document.getElementById("editStatus").value;
-      let badgeClass = "";
-      if (newStatus === "Đang bán") badgeClass = "status-dangban";
-      else if (newStatus === "Hết hàng") badgeClass = "status-hethang";
-      else if (newStatus === "Ngừng bán") badgeClass = "status-ngungban";
-
-      row.children[6].innerHTML = `<span class="status-badge ${badgeClass}">${newStatus}</span>`;
-
-      // Đóng modal
-      document.getElementById("editModal").style.display = "none";
-
-      alert("Cập nhật thành công!");
-    });
-
-
-
+  <script>
     // ======= XÓA VỚI POPUP XÁC NHẬN =======
-    let deleteTargetRow = null; // hàng cần xóa tạm
+    let deleteTargetRow = null;
 
     document.querySelectorAll(".btn-delete").forEach((btn) => {
       btn.addEventListener("click", () => {
@@ -1060,19 +1065,16 @@
       });
     });
 
-    // Khi nhấn nút "Hủy"
     document.getElementById("cancelDelete").onclick = () => {
       document.getElementById("confirmDeleteModal").style.display = "none";
       deleteTargetRow = null;
     };
 
-    // Khi nhấn nút đóng (X)
     document.getElementById("closeDeleteModal").onclick = () => {
       document.getElementById("confirmDeleteModal").style.display = "none";
       deleteTargetRow = null;
     };
 
-    // Khi nhấn nút "Xóa"
     document.getElementById("confirmDelete").onclick = () => {
       if (deleteTargetRow) {
         deleteTargetRow.classList.add("fade-out");
@@ -1080,7 +1082,9 @@
       }
       document.getElementById("confirmDeleteModal").style.display = "none";
     };
+  </script>
 
+  <script>
     // ======= POPUP THÊM SẢN PHẨM =======
     const addBtn = document.querySelector(".btn-add");
     const addModal = document.getElementById("addProductModal");
@@ -1099,10 +1103,11 @@
       if (e.target === addModal) addModal.style.display = "none";
     });
 
-    // Xử lý chọn ảnh
+    // Xử lý chọn ảnh (thêm)
     document.getElementById("imagePreview").addEventListener("click", () => {
       document.getElementById("newImage").click();
     });
+
     document.getElementById("newImage").addEventListener("change", function () {
       const file = this.files[0];
       if (file) {
@@ -1116,125 +1121,85 @@
       }
     });
 
-    // Xử lý nút thêm sản phẩm (demo)
+    // Nút thêm sản phẩm
     document.getElementById("addProductForm").addEventListener("submit", (e) => {
       e.preventDefault();
       addModal.style.display = "none";
       document.getElementById("successModal").style.display = "flex";
-
       e.target.reset();
       document.getElementById("previewImg").style.display = "none";
     });
+
     // Đóng popup thông báo
     document.getElementById("closeSuccessModal").addEventListener("click", () => {
       document.getElementById("successModal").style.display = "none";
     });
+
     window.addEventListener("click", (e) => {
       const modal = document.getElementById("successModal");
       if (e.target === modal) modal.style.display = "none";
     });
-
-
   </script>
 
   <script>
-    const imagePreview = document.getElementById("imagePreview");
-    const newImageInput = document.getElementById("newImage");
-    const previewImg = document.getElementById("previewImg");
-    const imageContainer = document.getElementById("imageContainer");
-    const deleteBtn = document.getElementById("deleteImageBtn");
+    // ======= POPUP SỬA SẢN PHẨM =======
+    const editModal = document.getElementById("editProductModal");
+    const closeEditModal = document.getElementById("closeEditModal");
+    const cancelEdit = document.getElementById("cancelEdit");
 
+    // Khi nhấn nút sửa
+    document.querySelectorAll(".btn-edit").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const row = this.closest("tr");
+        const name = row.querySelector(".product-name")?.innerText || "";
+        const price = row.querySelector(".product-price")?.innerText.replace(/[^\d]/g, "") || "";
+        const category = row.querySelector(".product-category")?.innerText || "";
+        const imgSrc = row.querySelector(".product-img img")?.src || "";
 
-    // Hiển thị ảnh xem trước
-    // Xem trước ảnh
-    document.getElementById("imageUpload").addEventListener("change", function (event) {
-      const file = event.target.files[0];
+        // Gán dữ liệu vào form sửa
+        document.getElementById("editName").value = name;
+        document.getElementById("editPrice").value = price;
+        document.getElementById("editCategory").value = category;
+
+        const preview = document.getElementById("editPreviewImg");
+        preview.src = imgSrc;
+        preview.style.display = imgSrc ? "block" : "none";
+
+        // Hiển thị popup
+        editModal.style.display = "flex";
+      });
+    });
+
+    // Đóng popup
+    closeEditModal.onclick = () => editModal.style.display = "none";
+    cancelEdit.onclick = () => editModal.style.display = "none";
+    window.addEventListener("click", (e) => {
+      if (e.target === editModal) editModal.style.display = "none";
+    });
+
+    // Chọn ảnh trong popup sửa
+    document.getElementById("editImagePreview").addEventListener("click", () => {
+      document.getElementById("editImageUpload").click();
+    });
+
+    document.getElementById("editImageUpload").addEventListener("change", function () {
+      const file = this.files[0];
       if (file) {
         const reader = new FileReader();
         reader.onload = function (e) {
-          const preview = document.getElementById("imagePreview");
-          preview.innerHTML = `<img src="${e.target.result}" alt="Ảnh đại diện"
-  style="width: 350px; height: 250px; object-fit: cover; border-radius: 8px;">`;
+          const preview = document.getElementById("editPreviewImg");
+          preview.src = e.target.result;
+          preview.style.display = "block";
         };
         reader.readAsDataURL(file);
       }
     });
 
-    // Nút xóa ảnh
-    deleteBtn.addEventListener("click", (e) => {
-      e.stopPropagation(); // tránh click lan sang vùng chọn ảnh
-      previewImg.src = "";
-      newImageInput.value = "";
-      imageContainer.style.display = "none";
-    });
-  </script>
-
-  <script>
-    // === TÌM KIẾM SẢN PHẨM ===
-    document.getElementById("searchBtn").addEventListener("click", function () {
-      const keyword = document.getElementById("searchInput").value.trim().toLowerCase();
-      const category = document.getElementById("categoryFilter").value;
-      const rows = document.querySelectorAll("table tbody tr");
-
-      rows.forEach((row) => {
-        const productName = row.children[1]?.textContent.trim().toLowerCase() || "";
-        const productCategory = row.getAttribute("data-category");
-        const matchesKeyword = !keyword || productName.includes(keyword);
-        const matchesCategory = !category || productCategory === category;
-
-        if (matchesKeyword && matchesCategory) {
-          row.style.display = "";
-          row.classList.add("highlight");
-        } else {
-          row.style.display = "none";
-          row.classList.remove("highlight");
-        }
-      });
-
-      const visibleRows = Array.from(rows).filter((r) => r.style.display !== "none");
-      if (visibleRows.length === 0) {
-        alert("Không tìm thấy sản phẩm phù hợp!");
-      }
-    });
-
-    // === CHO PHÉP NHẤN ENTER ĐỂ TÌM KIẾM ===
-    document.getElementById("searchInput").addEventListener("keypress", function (e) {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        document.getElementById("searchBtn").click();
-      }
-    });
-
-    // === LÀM MỚI DANH SÁCH SẢN PHẨM ===
-    document.getElementById("refreshBtn").addEventListener("click", function () {
-      const rows = document.querySelectorAll("table tbody tr");
-      const searchInput = document.getElementById("searchInput");
-      const categoryFilter = document.getElementById("categoryFilter");
-
-      // Xóa giá trị tìm kiếm
-      searchInput.value = "";
-      categoryFilter.value = "";
-
-      // Hiển thị lại toàn bộ sản phẩm
-      rows.forEach((row) => {
-        row.style.display = "";
-        row.classList.remove("highlight");
-      });
-    });
-  </script>
-  <script>
-    const editImage = document.getElementById('editImage');
-    const currentImage = document.getElementById('currentImage');
-
-    editImage.addEventListener('change', function () {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          currentImage.src = e.target.result; // preview ảnh mới
-        }
-        reader.readAsDataURL(file);
-      }
+    // Lưu thay đổi (demo)
+    document.getElementById("editProductForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      editModal.style.display = "none";
+      alert("Đã lưu thay đổi sản phẩm!");
     });
   </script>
 
