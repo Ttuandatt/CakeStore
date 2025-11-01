@@ -547,3 +547,15 @@ body {
   }
 }
 
+
+.back-btn {
+  transform: translateX(clamp(-40px, -5vw, -80px)); /* responsive dịch sang trái */
+  transition: transform 0.3s ease;
+}
+
+.back-btn:hover {
+  transform: translateX(clamp(-40px, -5vw, -80px)) scale(1.05);
+  background-color: #ff8c00;
+  color: white;
+  border-color: #ff8c00;
+}

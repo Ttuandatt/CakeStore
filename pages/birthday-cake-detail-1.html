@@ -173,36 +173,38 @@
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto mx-lg-auto py-0">
-          <a href="index.html" class="nav-item nav-link active">Home</a>
-          <a href="about.html" class="nav-item nav-link">About Us</a>
-          <a href="menu.html" class="nav-item nav-link">Menu & Pricing</a>
-          <a href="team.html" class="nav-item nav-link">Master Chefs</a>
-          <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-            <div class="dropdown-menu m-0">
-              <a href="service.html" class="dropdown-item">Our Service</a>
-              <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-            </div>
-          </div>
-          <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+          <a href="../index.html" class="nav-item nav-link">Trang chủ</a>
+          <a href="about.html" class="nav-item nav-link">Giới thiệu</a>
+          <a href="birthday-cake-1.html" class="nav-item nav-link active">Sản phẩm</a>
+          <a href="team.html" class="nav-item nav-link">Đầu bếp chính</a>
+          <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
         </div>
         <div class="navbar-nav ms-auto">
-          <a href="login.html" class="nav-item nav-link">Login</a>
-          <a href="signup.html" class="nav-item nav-link">Signup</a>
+          <a href="login.html" class="nav-item nav-link">Đăng nhập</a>
+          <a href="signup.html" class="nav-item nav-link">Đăng ký</a>
         </div>
       </div>
     </div>
   </nav>
   <!-- Navbar End -->
   <div class="container mt-5">
-    <div class="position-relative">
-      <!-- Nút Back -->
-      <a href="javascript:history.back()" class="btn btn-outline-primary position-absolute m-3"
-        style="top: -40px; left: -360px; z-index: 1000">
-        ← Back
-      </a>
-    </div>
     <div class="row">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item mb-0">
+            <a href="../index.html" class="text-decoration-none text-primary fw-semibold">
+              <i class="bi bi-house-door-fill me-1"></i> Trang chủ
+            </a>
+          </li>
+          <li class="breadcrumb-item mb-0">
+            <a href="../index.html" class="text-decoration-none text-primary fw-semibold">
+              Bánh sinh nhật
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Chi tiết</li>
+        </ol>
+      </nav>
       <!-- Product Images -->
       <div class="col-md-4 mb-4">
         <img src="../img/bdcake-1.jpg" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage" />
@@ -211,7 +213,6 @@
       <!-- Product Details -->
       <div class="col-md-6">
         <h2 class="mb-3">Bánh Sinh Nhật Socola Vừa Ngọt</h2>
-        <p class="text-muted mb-4">SKU: CHC-001</p>
 
         <div class="mb-3">
           <span class="h4 me-2">$45.99</span>
@@ -323,7 +324,7 @@
           <div class="row gx-5">
             <div class="col-lg-4 col-md-12 pt-5 mb-5">
               <h4 class="text-primary text-uppercase mb-4">
-                Get In Touch
+                Liên hệ
               </h4>
               <div class="d-flex mb-2">
                 <i class="bi bi-geo-alt text-primary me-2"></i>
@@ -348,25 +349,25 @@
             </div>
             <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
               <h4 class="text-primary text-uppercase mb-4">
-                Quick Links
+                Truy cập nhanh
               </h4>
               <div class="d-flex flex-column justify-content-start">
                 <a class="text-secondary mb-2" href="../index.html"><i
-                    class="bi bi-arrow-right text-primary me-2"></i>Home</a>
-                <a class="text-secondary mb-2" href="about.html"><i
-                    class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                <a class="text-secondary mb-2" href="birthday-cake-1.html"><i class="bi bi-arrow-right text-primary me-2"></i>Menu
-                  & Pricing</a>
+                    class="bi bi-arrow-right text-primary me-2"></i>Trang chủ</a>
+                <a class="text-secondary mb-2" href="about.html"><i class="bi bi-arrow-right text-primary me-2"></i>Giới
+                  thiệu</a>
+                <a class="text-secondary mb-2" href="birthday-cake-1.html"><i
+                    class="bi bi-arrow-right text-primary me-2"></i>Sản phẩm</a>
                 <a class="text-secondary mb-2" href="contact.html"><i
-                    class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
+                    class="bi bi-arrow-right text-primary me-2"></i>Liên hệ</a>
               </div>
             </div>
             <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-              <h4 class="text-primary text-uppercase mb-4">Newsletter</h4>
+              <h4 class="text-primary text-uppercase mb-4">Thông báo</h4>
               <form action="">
                 <div class="input-group">
-                  <input type="text" class="form-control border-white p-3" placeholder="Your Email" />
-                  <button class="btn btn-primary">Sign Up</button>
+                  <input type="text" class="form-control border-white p-3" placeholder="Email" />
+                  <button class="btn btn-primary">Đăng ký</button>
                 </div>
               </form>
             </div>
