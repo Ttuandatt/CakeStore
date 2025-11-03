@@ -167,6 +167,7 @@
   <!-- Navbar Start -->
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark shadow-sm py-3 py-lg-0 px-3 px-lg-0">
     <div class="container-fluid">
+      <!-- Nút toggle cho mobile -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -179,9 +180,31 @@
           <a href="team.html" class="nav-item nav-link">Đầu bếp chính</a>
           <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
         </div>
-        <div class="navbar-nav ms-auto">
-          <a href="login.html" class="nav-item nav-link">Đăng nhập</a>
-          <a href="signup.html" class="nav-item nav-link">Đăng ký</a>
+
+        <!-- Shopping cart + Avatar menu bên phải -->
+        <div class="navbar-nav ms-3">
+          <!-- Shopping cart -->
+          <a href="cart.html" class="nav-link me-3">
+            <img src="../img/shopping-cart-white.png" alt="Cart" style="width: 40px; height: 40px; object-fit: cover" />
+          </a>
+
+          <!-- Avatar -->
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link" data-bs-toggle="dropdown">
+              <img src="../img/human_white.png" alt="User" style="
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 0%;
+                    object-fit: cover;
+                  " />
+            </a>
+            <div class="dropdown-menu dropdown-menu-end m-0">
+              <a href="profile.html" class="dropdown-item">Thông tin</a>
+              <a href="order-list.html" class="dropdown-item">Đơn hàng</a>
+              <div class="dropdown-divider"></div>
+              <a href="../index.html" class="dropdown-item">Đăng xuất</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -200,8 +223,8 @@
             </a>
           </li>
           <li class="breadcrumb-item mb-0">
-            <a href="birthday-cake-1.html" class="text-decoration-none text-primary fw-semibold">
-              Bánh sinh nhật
+            <a href="wedding-cake-1.html" class="text-decoration-none text-primary fw-semibold">
+              Bánh cưới
             </a>
           </li>
           <li class="breadcrumb-item active" aria-current="page">Chi tiết</li>
@@ -209,12 +232,12 @@
       </nav>
       <!-- Product Images -->
       <div class="col-md-4 mb-4">
-        <img src="../img/bdcake-1.jpg" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage" />
+        <img src="../img/wdcake-1.jpg" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage" />
       </div>
 
       <!-- Product Details -->
       <div class="col-md-6">
-        <h2 class="mb-3">Bánh Sinh Nhật Socola Vừa Ngọt</h2>
+        <h2 class="mb-3">Bánh Cưới Vừa Ngọt</h2>
 
         <div class="mb-3">
           <span class="h4 me-2">$45.99</span>
@@ -418,7 +441,7 @@
       <h5>Đăng nhập để tiếp tục</h5>
       <p>Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.</p>
       <div class="popup-buttons">
-        <button class="btn btn-primary" onclick="redirectToLogin()">
+        <button class="btn btn-primary" onclick="window.location.href='login-cart.html'">
           Đăng nhập
         </button>
         <button class="btn btn-secondary" onclick="closeLoginPopup()">Hủy</button>
@@ -460,41 +483,6 @@
       document.getElementById("loginPopup").style.display = "none";
     }
   </script>
-  <script>
-    function redirectToLogin() {
-      // Lấy URL hiện tại
-      const currentURL = window.location.href;
-      // Chuyển hướng đến trang đăng nhập, kèm theo redirect URL
-      window.location.href = "login.html?redirect=" + encodeURIComponent(currentURL);
-    }
-
-    function closeLoginPopup() {
-      document.getElementById("loginPopup").style.display = "none";
-    }
-  </script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Lấy query param "redirect"
-      const params = new URLSearchParams(window.location.search);
-      const redirectURL = params.get("redirect");
-
-      // Giả lập hành động đăng nhập thành công (ví dụ khi bấm nút đăng nhập)
-      document.getElementById("loginButton").addEventListener("click", (event) => {
-        event.preventDefault();
-
-        // TODO: Kiểm tra tài khoản ở đây
-        alert("Đăng nhập thành công!");
-
-        // Nếu có redirect URL → quay lại đó, ngược lại thì về trang chủ
-        if (redirectURL) {
-          window.location.href = redirectURL;
-        } else {
-          window.location.href = "index.html";
-        }
-      });
-    });
-  </script>
-
 
 </body>
 
