@@ -1,104 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login Page</title>
+    <!-- MDB CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- MDB CSS -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.css" rel="stylesheet" />
+    <!-- Font Awesome (icons) -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Font Awesome (icons) -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/custom.css" />
 
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="../css/custom.css" />
+    <style>
+      /* Ghi đè màu checkbox khi được chọn */
+      .form-check-input:checked {
+        background-color: #e88f2a !important;
+        border-color: #e88f2a !important;
+      }
 
-  <style>
-    /* Ghi đè màu checkbox khi được chọn */
-    .form-check-input:checked {
-      background-color: #e88f2a !important;
-      border-color: #e88f2a !important;
-    }
+      /* Nếu muốn cả hiệu ứng focus cũng đổi */
+      .form-check-input:focus {
+        box-shadow: 0 0 0 0.25rem rgba(232, 143, 42, 0.25) !important;
+        border-color: #e88f2a !important;
+      }
+    </style>
+  </head>
 
-    /* Nếu muốn cả hiệu ứng focus cũng đổi */
-    .form-check-input:focus {
-      box-shadow: 0 0 0 0.25rem rgba(232, 143, 42, 0.25) !important;
-      border-color: #e88f2a !important;
-    }
-  </style>
-</head>
+  <body>
+    <form>
+      <!-- Email input -->
+      <div class="mb-4">
+        Username
+        <label class="form-label" for="form2Example1"></label>
+        <input type="text" id="form2Example1" class="form-control" />
+      </div>
 
-<body>
-  <form>
-    <!-- Email input -->
-    <div class="mb-4">Username
-      <label class="form-label" for="form2Example1"></label>
-      <input type="text" id="form2Example1" class="form-control" />
-    </div>
+      <!-- Password input -->
+      <div class="mb-4">
+        <label class="form-label" for="form2Example2">Password</label>
+        <input type="password" id="form2Example2" class="form-control" />
+      </div>
 
-    <!-- Password input -->
-    <div class="mb-4">
-      <label class="form-label" for="form2Example2">Password</label>
-      <input type="password" id="form2Example2" class="form-control" />
-    </div>
-
-    <!-- 2 column grid layout -->
-    <div class="row mb-4">
-      <div class="col d-flex justify-content-start">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="form2Example31" checked />
-          <label class="form-check-label" for="form2Example31">
-            Remember me
-          </label>
+      <!-- 2 column grid layout -->
+      <div class="row mb-4">
+        <div class="col d-flex justify-content-start">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="form2Example31"
+              checked
+            />
+            <label class="form-check-label" for="form2Example31">
+              Remember me
+            </label>
+          </div>
+        </div>
+        <div class="col text-end">
+          <a href="#!">Forgot password?</a>
         </div>
       </div>
-      <div class="col text-end">
-        <a href="#!">Forgot password?</a>
+
+      <!-- Submit button -->
+      <button type="button" class="btn btn-primary btn-block mb-4">
+        Log in
+      </button>
+
+      <!-- Register -->
+      <div class="text-center">
+        <p>Not a member? <a href="signup.html">Register</a></p>
       </div>
-    </div>
 
-    <!-- Submit button -->
-    <button type="button" class="btn btn-primary btn-block mb-4">
-      Log in
-    </button>
+      <!-- Home -->
+      <div class="text-center">
+        <a href="../index.html">Home</a>
+      </div>
+    </form>
 
-    <!-- Register -->
-    <div class="text-center">
-      <p>Not a member? <a href="signup.html">Register</a></p>
-    </div>
+    <!-- MDB JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
 
-    <!-- Home -->
-    <div class="text-center">
-      <a href="../index.html">Home</a>
-    </div>
-  </form>
+    <script>
+  // Lấy URL muốn redirect sau khi login
+  const urlParams = new URLSearchParams(window.location.search);
+  const redirectURL = urlParams.get("redirect") || "../index.html"; // fallback về home
 
+  document.querySelector("button").addEventListener("click", function () {
+    const username = document.getElementById("form2Example1").value.trim();
+    const password = document.getElementById("form2Example2").value.trim();
 
-  <!-- MDB JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.min.js"></script>
-
-  <script>
-  document.querySelector('button').addEventListener('click', function () {
-    const username = document.getElementById('form2Example1').value.trim();
-    const password = document.getElementById('form2Example2').value.trim();
-
-    // Kiểm tra input
     if (!username || !password) {
       alert("Please enter both username and password!");
       return;
     }
 
-    // Kiểm tra username
-    if (username.toLowerCase() === "admin" || username.toLowerCase() === "admin@gmail.com") {
+    // Admin đi trang riêng
+    if (
+      username.toLowerCase() === "admin" ||
+      username.toLowerCase() === "admin@gmail.com"
+    ) {
       window.location.href = "/admin/index.html";
     } else {
-      window.location.href = "loggedin.html";
+      // Thêm "-logged" vào trước ".html"
+      let loggedURL = redirectURL;
+      if (redirectURL.endsWith(".html")) {
+        loggedURL = redirectURL.replace(/\.html$/, "-logged.html");
+      }
+      window.location.href = loggedURL;
     }
   });
 </script>
 
-</body>
-
+  </body>
 </html>

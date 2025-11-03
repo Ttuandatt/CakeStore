@@ -722,12 +722,7 @@
         <div class="row g-5">
           <!-- Nút xem thêm -->
           <div class="text-center mt-5">
-            <button
-              class="btn btn-outline-primary"
-              onclick="window.location.href='pages/birthday-cake-1.html'"
-            >
-              Xem thêm
-            </button>
+            <button class="btn btn-outline-primary">Xem thêm</button>
           </div>
         </div>
       </div>
@@ -935,7 +930,7 @@
                       class="form-control border-white p-3"
                       placeholder="Email"
                     />
-                    <button class="btn btn-primary">Sign Up</button>
+                    <button class="btn btn-primary">Đăng ký</button>
                   </div>
                 </form>
               </div>
@@ -983,6 +978,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         // Map tên tab -> trang tương ứng
@@ -992,24 +988,22 @@
           "tab-3": "pages/snack-cake-1.html",
         };
 
-        // Chỉ redirect khi nhấn nút xem thêm
+        // Xử lý nút xem thêm
         const xemThemBtn = document.querySelector(".btn-outline-primary");
         xemThemBtn.addEventListener("click", () => {
-          const activeTab = document.querySelector("a.nav-link.active");
-          if (!activeTab) return;
+          // Lấy tab active trong tab-class
+          const activeTab = document.querySelector(
+            ".tab-class a.nav-link.active"
+          );
+          if (!activeTab) {
+            alert("Vui lòng chọn tab!"); // Debug nếu chưa thấy active
+            return;
+          }
           const tabId = activeTab.getAttribute("href").replace("#", "");
           const targetPage = tabLinks[tabId];
           if (targetPage) {
             window.location.href = targetPage;
           }
-        });
-
-        // Tab click vẫn hiển thị nội dung tab, không redirect tự động
-        const tabs = document.querySelectorAll('a[data-bs-toggle="pill"]');
-        tabs.forEach((tab) => {
-          tab.addEventListener("click", (e) => {
-            // Không preventDefault nữa, để Bootstrap show tab bình thường
-          });
         });
       });
     </script>

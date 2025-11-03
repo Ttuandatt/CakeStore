@@ -33,29 +33,93 @@
   <link href="../css/cart.css" rel="stylesheet" />
 
   <style>
-    /* Container bọc ngoài có ảnh nền */
-    .card-wrapper {
-      background: url("../img/bg.jpg") no-repeat center center;
-      background-size: cover;
-      padding: 40px;
-    }
+      /* Container bọc ngoài có ảnh nền */
+      .card-wrapper {
+        background: url("img/bg.jpg") no-repeat center center;
+        background-size: cover;
+        padding: 40px;
+        /* tạo khoảng cách cho card nổi bật */
+      }
 
-    /* Card vẫn giữ nền trắng */
-    .card {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
+      /* Card vẫn giữ nền trắng */
+      .card {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
 
-    .card a {
-      text-decoration: none;
-      color: #333;
-    }
+      .card a {
+        text-decoration: none;
+        color: #333;
+      }
 
-    .card a:hover {
-      color: #007bff;
-    }
-  </style>
+      .card a:hover {
+        color: #007bff;
+      }
+
+      /* Popup overlay */
+      .login-popup {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .login-popup-content {
+        background: white;
+        padding: 25px 35px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        max-width: 350px;
+      }
+
+      .login-popup-content h5 {
+        color: #ff8c00;
+        margin-bottom: 10px;
+      }
+
+      .popup-buttons {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .btn-secondary {
+        background-color: #ccc;
+        color: #333;
+        border: none;
+      }
+
+      .nav-tabs .nav-link.active {
+        border-color: transparent transparent #e88f2a transparent;
+        color: #e88f2a;
+        font-weight: 600;
+      }
+
+      .nav-tabs .nav-link {
+        color: #333;
+      }
+
+      .nav-tabs .nav-link:hover {
+        color: #e88f2a;
+      }
+
+      .product-image {
+        width: 100%;
+        max-width: 450px;
+        height: auto;
+        border-radius: 12px;
+        object-fit: cover;
+      }
+    </style>
 </head>
 
 <body>
@@ -102,20 +166,12 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <!-- Các menu đang có -->
         <div class="navbar-nav ms-auto mx-lg-auto py-0">
-          <a href="loggedin.html" class="nav-item nav-link active">Home</a>
-          <a href="about.html" class="nav-item nav-link">About Us</a>
-          <a href="menu.html" class="nav-item nav-link">Menu & Pricing</a>
-          <a href="team.html" class="nav-item nav-link">Master Chefs</a>
-          <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-            <div class="dropdown-menu m-0">
-              <a href="service.html" class="dropdown-item">Our Service</a>
-              <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-            </div>
-          </div>
-          <a href="contact.html" class="nav-item nav-link">Contact Us</a>
+          <a href="../index.html" class="nav-item nav-link">Trang chủ</a>
+          <a href="about.html" class="nav-item nav-link">Giới thiệu</a>
+          <a href="birthday-cake-1.html" class="nav-item nav-link active">Sản phẩm</a>
+          <a href="team.html" class="nav-item nav-link">Đầu bếp chính</a>
+          <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
         </div>
 
         <!-- Shopping cart + Avatar menu bên phải -->
@@ -147,15 +203,25 @@
     </div>
   </nav>
   <!-- Navbar End -->
+    <!-- Product Detail Start -->
   <div class="container mt-5">
-    <div class="position-relative">
-      <!-- Nút Back -->
-      <a href="javascript:history.back()" class="btn btn-outline-primary position-absolute m-3"
-        style="top: -40px; left: -360px; z-index: 1000">
-        ← Back
-      </a>
-    </div>
     <div class="row">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item mb-0">
+            <a href="../index.html" class="text-decoration-none text-primary fw-semibold">
+              <i class="bi bi-house-door-fill me-1"></i> Trang chủ
+            </a>
+          </li>
+          <li class="breadcrumb-item mb-0">
+            <a href="birthday-cake-1-logged.html" class="text-decoration-none text-primary fw-semibold">
+              Bánh sinh nhật
+            </a>
+          </li>
+          <li class="breadcrumb-item active" aria-current="page">Chi tiết</li>
+        </ol>
+      </nav>
       <!-- Product Images -->
       <div class="col-md-4 mb-4">
         <img src="../img/bdcake-1.jpg" alt="Product" class="img-fluid rounded mb-3 product-image" id="mainImage" />
@@ -164,7 +230,6 @@
       <!-- Product Details -->
       <div class="col-md-6">
         <h2 class="mb-3">Bánh Sinh Nhật Socola Vừa Ngọt</h2>
-        <p class="text-muted mb-4">SKU: CHC-001</p>
 
         <div class="mb-3">
           <span class="h4 me-2">$45.99</span>
@@ -251,6 +316,7 @@
 
     </div>
   </div>
+  <!-- Product Detail End -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   <script>
