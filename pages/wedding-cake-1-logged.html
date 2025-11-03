@@ -533,21 +533,47 @@
   </div>
   <!-- Footer End -->
 
-  <!-- POPUP Login Required -->
-  <div id="loginPopup" class="login-popup">
-    <div class="login-popup-content">
-      <h5>Đăng nhập để tiếp tục</h5>
-      <p>Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.</p>
-      <div class="popup-buttons">
-        <button class="btn btn-primary" onclick="redirectToLogin()">
-          Đăng nhập
-        </button>
-        <button class="btn btn-secondary" onclick="closeLoginPopup()">
-          Hủy
-        </button>
+  <!-- Bootstrap Modal -->
+    <div
+      class="modal fade"
+      id="cartSuccessModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center p-4">
+          <div class="modal-body">
+            <i
+              class="bi bi-check-circle-fill text-success"
+              style="font-size: 4rem"
+            ></i>
+            <h3 class="mt-3">Thêm vào giỏ hàng thành công!</h3>
+            <p>Sản phẩm đã được thêm vào giỏ hàng của bạn.</p>
+            <button type="button" class="btn btn-primary mt-3" id="modalOkBtn">
+              OK
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const addToCartBtn = document.getElementById("addToCartBtn");
+        const modalEl = document.getElementById("cartSuccessModal");
+        const modalOkBtn = document.getElementById("modalOkBtn");
+
+        const successModal = new bootstrap.Modal(modalEl);
+
+        addToCartBtn.addEventListener("click", () => {
+          successModal.show(); // Hiện modal khi nhấn Thêm vào giỏ hàng
+        });
+
+        modalOkBtn.addEventListener("click", () => {
+          successModal.hide(); // Ẩn modal khi bấm OK
+        });
+      });
+    </script>
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -584,41 +610,23 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
-      const loginPopup = document.getElementById("loginPopup");
+      const modalEl = document.getElementById("cartSuccessModal");
+      const modalOkBtn = document.getElementById("modalOkBtn");
 
-      // Giả lập trạng thái đăng nhập
-      const isLoggedIn = false;
+      const successModal = new bootstrap.Modal(modalEl);
 
       addToCartBtns.forEach((btn) => {
         btn.addEventListener("click", (event) => {
-          event.preventDefault(); // chặn hành động mặc định
-          console.log("Nút Thêm vào giỏ hàng được click"); // kiểm tra console
-          if (!isLoggedIn) {
-            // hiển thị popup đăng nhập
-            loginPopup.style.display = "flex";
-          } else {
-            alert("Đã thêm vào giỏ hàng!");
-          }
+          event.preventDefault(); // ngăn hành động mặc định
+          // Hiện modal "Thêm vào giỏ hàng thành công"
+          successModal.show();
         });
       });
+
+      modalOkBtn.addEventListener("click", () => {
+        successModal.hide(); // Ẩn modal khi bấm OK
+      });
     });
-
-    function closeLoginPopup() {
-      document.getElementById("loginPopup").style.display = "none";
-    }
-  </script>
-  <script>
-    function redirectToLogin() {
-      // Lấy URL trang hiện tại
-      const currentURL = window.location.href;
-      // Chuyển tới login.html kèm query param redirect
-      window.location.href =
-        "login.html?redirect=" + encodeURIComponent(currentURL);
-    }
-
-    function closeLoginPopup() {
-      document.getElementById("loginPopup").style.display = "none";
-    }
   </script>
 </body>
 

@@ -689,10 +689,7 @@
         <h5>Đăng nhập để tiếp tục</h5>
         <p>Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.</p>
         <div class="popup-buttons">
-          <button
-            class="btn btn-primary"
-            onclick="window.location.href='login-cart.html'"
-          >
+          <button class="btn btn-primary" onclick="redirectToLogin()">
             Đăng nhập
           </button>
           <button class="btn btn-secondary" onclick="closeLoginPopup()">
@@ -735,30 +732,43 @@
         });
     </script>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
-        const loginPopup = document.getElementById("loginPopup");
+    document.addEventListener("DOMContentLoaded", () => {
+      const addToCartBtns = document.querySelectorAll(".add-to-cart-btn");
+      const loginPopup = document.getElementById("loginPopup");
 
-        // Giả lập trạng thái đăng nhập
-        const isLoggedIn = false;
+      // Giả lập trạng thái đăng nhập
+      const isLoggedIn = false;
 
-        addToCartBtns.forEach((btn) => {
-          btn.addEventListener("click", (event) => {
-            event.preventDefault(); // chặn hành động mặc định
-            console.log("Nút Thêm vào giỏ hàng được click"); // kiểm tra console
-            if (!isLoggedIn) {
-              // hiển thị popup đăng nhập
-              loginPopup.style.display = "flex";
-            } else {
-              alert("Đã thêm vào giỏ hàng!");
-            }
-          });
+      addToCartBtns.forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+          event.preventDefault(); // chặn hành động mặc định
+          console.log("Nút Thêm vào giỏ hàng được click"); // kiểm tra console
+          if (!isLoggedIn) {
+            // hiển thị popup đăng nhập
+            loginPopup.style.display = "flex";
+          } else {
+            alert("Đã thêm vào giỏ hàng!");
+          }
         });
       });
+    });
 
-      function closeLoginPopup() {
-        document.getElementById("loginPopup").style.display = "none";
-      }
-    </script>
+    function closeLoginPopup() {
+      document.getElementById("loginPopup").style.display = "none";
+    }
+  </script>
+  <script>
+    function redirectToLogin() {
+      // Lấy URL trang hiện tại
+      const currentURL = window.location.href;
+      // Chuyển tới login.html kèm query param redirect
+      window.location.href =
+        "login.html?redirect=" + encodeURIComponent(currentURL);
+    }
+
+    function closeLoginPopup() {
+      document.getElementById("loginPopup").style.display = "none";
+    }
+  </script>
   </body>
 </html>
