@@ -332,11 +332,22 @@
     <div class="container">
         <div class="edit-container">
             <div class="position-relative">
-                <!-- Nút Back -->
-                <a href="javascript:history.back()" class="btn btn-outline-primary position-absolute m-3"
-                    style="top: -40px; left: -360px; z-index: 1000">
-                    ← Back
-                </a>
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item mb-0">
+                            <a href="../index.html" class="text-decoration-none text-primary fw-semibold">
+                                <i class="bi bi-house-door-fill me-1"></i> Trang chủ
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item mb-0">
+                            <a href="profile.html" class="text-decoration-none text-primary fw-semibold">
+                                Thông tin
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Chỉnh sửa thông tin</li>
+                    </ol>
+                </nav>
             </div>
             <div class="edit-wrapper">
                 <h2>Chỉnh Sửa Thông Tin Tài Khoản</h2>
@@ -344,18 +355,21 @@
                 <form>
                     <div class="mb-3">
                         <label class="form-label">Họ và tên</label>
-                        <input type="text" class="form-control" value="Nguyễn Văn A" placeholder="Nhập họ tên của bạn..."/>
+                        <input type="text" class="form-control" value="Nguyễn Văn A"
+                            placeholder="Nhập họ tên của bạn..." />
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Email</label>
-                        <input type="email" class="form-control" value="nguyenvana@gmail.com" placeholder="Nhập email của bạn..." />
+                        <input type="email" class="form-control" value="nguyenvana@gmail.com"
+                            placeholder="Nhập email của bạn..." />
 
                     </div>
 
                     <div class="mb-3">
                         <label class="form-label">Số điện thoại</label>
-                        <input type="text" class="form-control" value="0192837465" placeholder="Nhập số điện thoại của bạn..."/>
+                        <input type="text" class="form-control" value="0192837465"
+                            placeholder="Nhập số điện thoại của bạn..." />
                     </div>
 
                     <div class="mb-3">

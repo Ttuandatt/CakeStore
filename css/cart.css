@@ -99,10 +99,9 @@
 
 /* Tổng tiền */
 .cart-total {
-  display: flex;
-  flex-direction: column; /* Đặt các phần tử con theo chiều dọc */
-  align-items: center; /* Căn giữa nội dung */
-  gap: 15px; /* Tạo khoảng cách giữa “Tổng” và nút */
+  max-width: 65.5%; /* bằng với form */
+  margin: 0 auto; /* căn giữa trong trang */
+  padding: 20px 0;
 }
 
 
@@ -281,6 +280,7 @@ table {
   box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25); /* đậm hơn và rộng hơn */
   border-radius: 10px;
   overflow: hidden;
+  width: 95.9%;
 }
 
 /* Đổ bóng cho form thông tin giao hàng */

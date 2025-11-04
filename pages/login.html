@@ -115,6 +115,9 @@
       if (redirectURL.endsWith(".html")) {
         loggedURL = redirectURL.replace(/\.html$/, "-logged.html");
       }
+      if(redirectURL.endsWith("index.html")){
+        loggedURL = "loggedin.html";
+      }
       window.location.href = loggedURL;
     }
   });

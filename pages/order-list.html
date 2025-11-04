@@ -85,13 +85,12 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
-        <!-- Các menu đang có -->
         <div class="navbar-nav ms-auto mx-lg-auto py-0">
-          <a href="loggedin.html" class="nav-item nav-link active">Home</a>
-          <a href="about-logged.html" class="nav-item nav-link">About Us</a>
-          <a href="birthday-cake-1-logged.html" class="nav-item nav-link">Menu & Pricing</a>
-          <a href="team-logged.html" class="nav-item nav-link">Master Chefs</a>
-          <a href="contact-logged.html" class="nav-item nav-link">Contact Us</a>
+          <a href="loggedin.html" class="nav-item nav-link">Trang chủ</a>
+          <a href="about-logged.html" class="nav-item nav-link">Giới thiệu</a>
+          <a href="birthday-cake-1-logged.html" class="nav-item nav-link active">Sản phẩm</a>
+          <a href="team-logged.html" class="nav-item nav-link">Đầu bếp</a>
+          <a href="contact-logged.html" class="nav-item nav-link">Liên hệ</a>
         </div>
 
         <!-- Shopping cart + Avatar menu bên phải -->
@@ -112,7 +111,7 @@
                   " />
             </a>
             <div class="dropdown-menu dropdown-menu-end m-0">
-              <a href="user-profile.html" class="dropdown-item">Thông tin</a>
+              <a href="profile.html" class="dropdown-item">Thông tin</a>
               <a href="order-list.html" class="dropdown-item">Đơn hàng</a>
               <div class="dropdown-divider"></div>
               <a href="../index.html" class="dropdown-item">Đăng xuất</a>
@@ -125,8 +124,20 @@
   <!-- Navbar End -->
 
   <!-- Order Details Start -->
+
   <!-- Đơn 1 -->
   <div class="container py-5 order-box">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item mb-0">
+          <a href="loggedin.html" class="text-decoration-none text-primary fw-semibold">
+            <i class="bi bi-house-door-fill me-1"></i> Trang chủ
+          </a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Đơn hàng</li>
+      </ol>
+    </nav>
     <h2 class="mb-4 text-center text-uppercase fw-bold">Chi tiết đơn hàng</h2>
 
     <h5 class="text-primary text-uppercase fw-bold mb-3">
@@ -252,8 +263,8 @@
       <div><strong>Số điện thoại:</strong> 0892 204 897</div>
       <div><strong>Địa chỉ giao hàng:</strong> 234 Lê Lợi, Phường Sài Gòn, TP.HCM</div>
       <div>
-      <div><strong>Trạng thái:</strong> <span class="text-warning">Đang giao hàng</span></div>
-      <br>
+        <div><strong>Trạng thái:</strong> <span class="text-warning">Đang giao hàng</span></div>
+        <br>
         <button class="btn btn-danger btn-sm cancel-btn">
           Hủy đơn
         </button>
