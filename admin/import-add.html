@@ -109,7 +109,8 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-    .btn-add{
+
+    .btn-add {
       background-color: #ff9800;
       color: white;
       border: none;
@@ -528,7 +529,7 @@
             "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nhập hàng</a>
       </li>
 
-      <li>
+      <!-- <li>
         <a href="nguyenlieu.html" style="
               display: flex;
               align-items: center;
@@ -536,7 +537,7 @@
               color: white;
               text-decoration: none;
             "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nguyên liệu</a>
-      </li>
+      </li> -->
 
       <!-- Đăng xuất -->
       <li style="text-align:left;">
@@ -631,116 +632,7 @@
       }
     </style>
 
-    <div class="import-container">
-      <!-- LEFT PANEL -->
-      <div class="left-panel">
-        <div class="section-title">Tìm kiếm</div>
-        <div class="search-box mb-3">
-          <div class="input-group" style="display: flex; align-items: center;">
-            <input type="text" class="form-control" placeholder="Tìm kiếm nguyên liệu..." style="max-width: 45%;">
-            <button class="btn btn-primary" type="button" style="margin-left: 6px;">
-              <i class="bi bi-search"></i> Tìm kiếm
-            </button>
-            <button class="btn btn-secondary" type="button" style="margin-left: 6px;">
-              <i class="bi bi-arrow-repeat"></i> Làm mới
-            </button>
-          </div>
-        </div>
-
-        <br><br>
-        <div class="">Danh sách nguyên liệu</div>
-        <table class="ingredient-table">
-          <thead>
-            <tr>
-              <th>Nguyên liệu</th>
-              <th>Số lượng</th>
-              <th>Giá</th>
-              <th>Thêm</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Bột mì</td>
-              <td>50 gói</td>
-              <td>120.000đ</td>
-              <td><button class="btn-add">+</button></td>
-            </tr>
-            <tr>
-              <td>Đường nâu</td>
-              <td>50 gói</td>
-              <td>95.000đ</td>
-              <td><button class="btn-add">+</button></td>
-            </tr>
-            <tr>
-              <td>Bột cacao</td>
-              <td>100 gói</td>
-              <td>150.000đ</td>
-              <td><button class="btn-add">+</button></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-
-
-      <!-- RIGHT PANEL -->
-      <div class="right-panel">
-        <div class="section-title">Thông tin</div>
-        <div class="row g-3">
-          <div class="col-md-6">
-            <label class="form-label">Mã phiếu nhập</label>
-            <input type="text" class="form-control" value="#PN004" readonly>
-          </div>
-          <div class="col-md-6">
-            <label class="form-label">Mã nhân viên</label>
-            <input type="text" class="form-control" value="NV001">
-          </div>
-
-          <div class="col-md-6">
-            <label class="form-label">Mã nhà cung cấp</label>
-            <input type="text" class="form-control" value="NCC003">
-          </div>
-          <div class="col-md-12">
-            <label class="form-label">Note</label>
-            <textarea class="form-control" rows="3" placeholder="Ghi chú thêm..."></textarea>
-          </div>
-        </div>
-
-        <div class="section-title mt-4"></div>
-        <table>
-          <thead>
-            <tr>
-              <th>Nguyên liệu</th>
-              <th>Số lượng</th>
-              <th>Giá</th>
-              <th>Tổng</th>
-              <th>Xóa</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Đường nâu</td>
-              <td><input type="number" value="10" min="1" class="form-control form-control-sm"
-                  style="width: 70px; margin: auto;"></td>
-              <td>95.000đ</td>
-              <td>190.000đ</td>
-              <td><button class="btn btn-sm btn-outline-danger btn-action">x</button></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="order-summary">
-          <div><span>Tổng sản phẩm:</span><span>1</span></div>
-          <div><span>Tổng số lượng:</span><span>2</span></div>
-          <div><span>Tổng giá trị:</span><strong>190.000đ</strong></div>
-        </div>
-
-        <div class="btn-group">
-          <button class="btn btn-primary">Xóa</button>
-          <button id="save-import" class="btn btn-primary">Tạo phiếu nhập</button>
-        </div>
-      </div>
-    </div>
+    
   </main>
 
   <!-- POPUP THÀNH CÔNG -->
@@ -753,138 +645,138 @@
     </div>
   </div>
 
- <script>
-  // ---------------------------
-  // HÀM ĐỊNH DẠNG TIỀN
-  // ---------------------------
-  function formatCurrency(num) {
-    return num.toLocaleString('vi-VN') + 'đ';
-  }
-
-  // ---------------------------
-  // HÀM CẬP NHẬT TỔNG
-  // ---------------------------
-  function updateTotals() {
-    const rows = document.querySelectorAll('.right-panel tbody tr');
-    let totalItems = 0, totalQty = 0, totalPrice = 0;
-
-    rows.forEach(row => {
-      totalItems++;
-      const qtyInput = row.querySelector('input[type="number"]');
-      const qty = parseFloat(qtyInput.value) || 0;
-      const price = parseInt(row.getAttribute('data-price')) || 0;
-      const rowTotal = qty * price;
-
-      // Cập nhật ô tổng
-      row.querySelector('.total').textContent = formatCurrency(rowTotal);
-
-      totalQty += qty;
-      totalPrice += rowTotal;
-    });
-
-    // Cập nhật tóm tắt
-    document.querySelector('.order-summary div:nth-child(1) span:last-child').textContent = totalItems;
-    document.querySelector('.order-summary div:nth-child(2) span:last-child').textContent = totalQty;
-    document.querySelector('.order-summary div:nth-child(3) strong').textContent = formatCurrency(totalPrice);
-  }
-
-  // ---------------------------
-  // XỬ LÝ THÊM NGUYÊN LIỆU
-  // ---------------------------
-  document.querySelector('.left-panel').addEventListener('click', e => {
-    const btn = e.target.closest('.btn-add');
-    if (!btn) return;
-
-    const row = btn.closest('tr');
-    const name = row.children[0].innerText.trim();
-    const price = parseInt(row.children[2].innerText.replace(/[^\d]/g, '')) || 0;
-
-    const rightTbody = document.querySelector('.right-panel tbody');
-    const existing = Array.from(rightTbody.querySelectorAll('tr'))
-      .find(r => r.children[0].innerText.trim() === name);
-
-    if (existing) {
-      const qtyInput = existing.querySelector('input[type="number"]');
-      qtyInput.value = parseFloat(qtyInput.value) + 1;
-      updateTotals();
-      return;
+  <script>
+    // ---------------------------
+    // HÀM ĐỊNH DẠNG TIỀN
+    // ---------------------------
+    function formatCurrency(num) {
+      return num.toLocaleString('vi-VN') + 'đ';
     }
 
-    const newRow = document.createElement('tr');
-    newRow.setAttribute('data-price', price);
-    newRow.innerHTML = `
+    // ---------------------------
+    // HÀM CẬP NHẬT TỔNG
+    // ---------------------------
+    function updateTotals() {
+      const rows = document.querySelectorAll('.right-panel tbody tr');
+      let totalItems = 0, totalQty = 0, totalPrice = 0;
+
+      rows.forEach(row => {
+        totalItems++;
+        const qtyInput = row.querySelector('input[type="number"]');
+        const qty = parseFloat(qtyInput.value) || 0;
+        const price = parseInt(row.getAttribute('data-price')) || 0;
+        const rowTotal = qty * price;
+
+        // Cập nhật ô tổng
+        row.querySelector('.total').textContent = formatCurrency(rowTotal);
+
+        totalQty += qty;
+        totalPrice += rowTotal;
+      });
+
+      // Cập nhật tóm tắt
+      document.querySelector('.order-summary div:nth-child(1) span:last-child').textContent = totalItems;
+      document.querySelector('.order-summary div:nth-child(2) span:last-child').textContent = totalQty;
+      document.querySelector('.order-summary div:nth-child(3) strong').textContent = formatCurrency(totalPrice);
+    }
+
+    // ---------------------------
+    // XỬ LÝ THÊM NGUYÊN LIỆU
+    // ---------------------------
+    document.querySelector('.left-panel').addEventListener('click', e => {
+      const btn = e.target.closest('.btn-add');
+      if (!btn) return;
+
+      const row = btn.closest('tr');
+      const name = row.children[0].innerText.trim();
+      const price = parseInt(row.children[2].innerText.replace(/[^\d]/g, '')) || 0;
+
+      const rightTbody = document.querySelector('.right-panel tbody');
+      const existing = Array.from(rightTbody.querySelectorAll('tr'))
+        .find(r => r.children[0].innerText.trim() === name);
+
+      if (existing) {
+        const qtyInput = existing.querySelector('input[type="number"]');
+        qtyInput.value = parseFloat(qtyInput.value) + 1;
+        updateTotals();
+        return;
+      }
+
+      const newRow = document.createElement('tr');
+      newRow.setAttribute('data-price', price);
+      newRow.innerHTML = `
       <td>${name}</td>
       <td><input type="number" min="0.1" step="0.1" value="1" class="form-control form-control-sm" style="width: 70px; margin: auto;"></td>
       <td>${formatCurrency(price)}</td>
       <td class="total">${formatCurrency(price)}</td>
       <td><button class="btn btn-sm btn-outline-danger btn-action">x</button></td>
     `;
-    rightTbody.appendChild(newRow);
+      rightTbody.appendChild(newRow);
+      updateTotals();
+    });
+
+    // ---------------------------
+    // XỬ LÝ XÓA / NHẬP SỐ LƯỢNG TRONG BẢNG PHẢI
+    // ---------------------------
+    const rightPanel = document.querySelector('.right-panel tbody');
+
+    rightPanel.addEventListener('click', e => {
+      const btn = e.target.closest('.btn-action');
+      if (btn) {
+        btn.closest('tr').remove();
+        updateTotals();
+      }
+    });
+
+    rightPanel.addEventListener('input', e => {
+      if (e.target.matches('input[type="number"]')) {
+        const input = e.target;
+        if (parseFloat(input.value) < 0.1) input.value = 0.1;
+        updateTotals();
+      }
+    });
+
+    // ---------------------------
+    // NÚT "TẠO PHIẾU NHẬP"
+    // ---------------------------
+    document.getElementById('save-import').addEventListener('click', () => {
+      const rows = document.querySelectorAll('.right-panel tbody tr');
+      if (rows.length === 0) {
+        alert("Vui lòng thêm ít nhất một nguyên liệu trước khi tạo phiếu nhập!");
+        return;
+      }
+
+      const products = Array.from(rows).map(row => ({
+        name: row.children[0].textContent.trim(),
+        quantity: parseFloat(row.querySelector('input').value),
+        price: parseInt(row.getAttribute('data-price')),
+        total: row.querySelector('.total').textContent
+      }));
+      console.log("Dữ liệu phiếu nhập:", products);
+
+      const popup = document.getElementById("successPopup");
+      popup.style.display = "flex";
+
+      document.getElementById("closePopupBtn").onclick = () => {
+        popup.style.display = "none";
+        window.location.href = "import.html";
+      };
+
+      setTimeout(() => {
+        popup.style.display = "none";
+        window.location.href = "import.html";
+      }, 2000);
+    });
+
+    // ---------------------------
+    // KHỞI TẠO KHI LOAD
+    // ---------------------------
+    document.querySelectorAll('.right-panel tbody tr').forEach(row => {
+      const priceText = row.children[2].innerText.replace(/[^\d]/g, '');
+      row.setAttribute('data-price', priceText);
+    });
     updateTotals();
-  });
-
-  // ---------------------------
-  // XỬ LÝ XÓA / NHẬP SỐ LƯỢNG TRONG BẢNG PHẢI
-  // ---------------------------
-  const rightPanel = document.querySelector('.right-panel tbody');
-
-  rightPanel.addEventListener('click', e => {
-    const btn = e.target.closest('.btn-action');
-    if (btn) {
-      btn.closest('tr').remove();
-      updateTotals();
-    }
-  });
-
-  rightPanel.addEventListener('input', e => {
-    if (e.target.matches('input[type="number"]')) {
-      const input = e.target;
-      if (parseFloat(input.value) < 0.1) input.value = 0.1;
-      updateTotals();
-    }
-  });
-
-  // ---------------------------
-  // NÚT "TẠO PHIẾU NHẬP"
-  // ---------------------------
-  document.getElementById('save-import').addEventListener('click', () => {
-    const rows = document.querySelectorAll('.right-panel tbody tr');
-    if (rows.length === 0) {
-      alert("Vui lòng thêm ít nhất một nguyên liệu trước khi tạo phiếu nhập!");
-      return;
-    }
-
-    const products = Array.from(rows).map(row => ({
-      name: row.children[0].textContent.trim(),
-      quantity: parseFloat(row.querySelector('input').value),
-      price: parseInt(row.getAttribute('data-price')),
-      total: row.querySelector('.total').textContent
-    }));
-    console.log("Dữ liệu phiếu nhập:", products);
-
-    const popup = document.getElementById("successPopup");
-    popup.style.display = "flex";
-
-    document.getElementById("closePopupBtn").onclick = () => {
-      popup.style.display = "none";
-      window.location.href = "import.html";
-    };
-
-    setTimeout(() => {
-      popup.style.display = "none";
-      window.location.href = "import.html";
-    }, 2000);
-  });
-
-  // ---------------------------
-  // KHỞI TẠO KHI LOAD
-  // ---------------------------
-  document.querySelectorAll('.right-panel tbody tr').forEach(row => {
-    const priceText = row.children[2].innerText.replace(/[^\d]/g, '');
-    row.setAttribute('data-price', priceText);
-  });
-  updateTotals();
-</script>
+  </script>
 
 </body>
 

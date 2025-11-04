@@ -9,8 +9,51 @@
   <link rel="stylesheet" type="text/css"
     href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet" />
-  <link href="assets/css/pure-style-optimized.css" rel="stylesheet" />
+  <!-- <link href="assets/css/pure-style-optimized.css" rel="stylesheet" /> -->
   <style>
+    .material-icons {
+      font-family: 'Material Icons Round', 'Material Icons', sans-serif;
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+    }
+
+    .actions .btn {
+      display: inline-flex;
+      align-items: center;
+      /* Căn icon và text giữa theo trục dọc */
+      justify-content: center;
+      /* Căn giữa ngang */
+      gap: 5px;
+      /* Khoảng cách nhỏ giữa icon và chữ */
+      min-width: 120px;
+      /* Giữ cùng độ dài */
+    }
+
+    .actions .btn i {
+      line-height: 1;
+      /* Xóa ảnh hưởng khoảng cách mặc định của icon */
+      font-size: 16px;
+      /* Đồng nhất kích thước icon */
+      vertical-align: middle;
+      /* Giúp icon thẳng hàng với text */
+    }
+
+    /* Đảm bảo các nút Hành động có cùng chiều rộng */
+    .actions .btn {
+      min-width: 120px;
+      /* hoặc 130px nếu bạn muốn rộng hơn */
+      justify-content: center;
+      text-align: center;
+    }
+
     /* Căn giữa cột Trạng thái */
     td:nth-child(3) {
       text-align: center;
@@ -372,7 +415,7 @@
       font-size: 0.875rem;
       border-radius: 0.25rem;
       text-decoration: none;
-      width: 100%;
+      width: 87%;
       margin: 0 auto;
       transition: all 0.3s ease;
     }
@@ -482,7 +525,7 @@
               text-decoration: none;
             "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nhập hàng</a>
       </li>
-      <li>
+      <!-- <li>
         <a href="nguyenlieu.html" style="
               display: flex;
               align-items: center;
@@ -490,19 +533,20 @@
               color: white;
               text-decoration: none;
             "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nguyên liệu</a>
-      </li>
+      </li> -->
 
       <!-- Đăng xuất -->
-      <li style="text-align:left;">
+      <li>
         <a href="../index.html" class="logout-btn">
-          <i class="material-icons">logout</i><span>Đăng xuất</span>
+          <i class="material-icons">logout</i>
+          Đăng xuất
         </a>
       </li>
     </ul>
   </aside>
 
   <!-- MAIN -->
-  <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem">
+  <main style="margin-left: 250px; min-height: 100vh;">
     <h1 style="margin-bottom: 1rem">Quản lý khách hàng</h1>
     <div>
       <table>

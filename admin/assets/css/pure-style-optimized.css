@@ -529,3 +529,497 @@ td:nth-child(4) {
   vertical-align: middle;
   position: relative;
 }
+
+
+
+/*products.html*/
+.modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+    }
+
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: #f0f2f5;
+      color: #344767;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Sidebar (kept simple) */
+    aside {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      width: 250px;
+      height: 100vh;
+      background: linear-gradient(195deg, #202021, #202021);
+      color: white;
+      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+    }
+
+    main {
+      margin-left: 250px;
+      min-height: 100vh;
+      padding: 1.5rem;
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
+    }
+
+    thead {
+      background: linear-gradient(195deg, #2b2825, #2b2825);
+      color: white;
+    }
+
+    th,
+    td {
+      padding: 12px 10px;
+      font-size: 14px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: middle !important
+    }
+
+    th {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    tbody tr:hover {
+      background-color: #f3f4f8;
+      transition: 0.2s;
+    }
+
+    /* Badge trạng thái đồng bộ với order.html */
+    /* Căn giữa dọc cho toàn bộ cột trạng thái */
+    td.status-cell {
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+      min-width: 80px;
+    }
+
+    /* Căn giữa badge trong ô */
+    td.status-badge {
+      text-align: center;
+      vertical-align: middle !important;
+    }
+
+    /* Màu từng trạng thái */
+    .status-dangban {
+      background-color: rgba(76, 175, 80, 0.15);
+      color: #2e7d32;
+    }
+
+    .status-hethang {
+      background-color: rgba(255, 193, 7, 0.15);
+      color: #f57c00;
+    }
+
+    .status-ngungban {
+      background-color: rgba(244, 67, 54, 0.15);
+      color: #c62828;
+    }
+
+    /* Đảm bảo bảng không chèn khoảng trắng làm lệch badge */
+    td {
+      vertical-align: middle !important;
+    }
+
+    /* Actions buttons */
+    .actions {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.12s ease, background-color 0.18s ease;
+    }
+
+    .btn i {
+      font-size: 18px;
+      margin-right: 6px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-edit {
+      background-color: #1976d2;
+    }
+
+    .btn-edit:hover {
+      background-color: #2196f3;
+    }
+
+    .btn-delete {
+      background-color: #d32f2f;
+    }
+
+    .btn-delete:hover {
+      background-color: #f44336;
+    }
+
+    .logout-btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      background: linear-gradient(195deg, #202021, #202021);
+      color: white;
+      padding: 0.75rem 1rem;
+      font-size: 0.875rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      width: 100%;
+      margin: 0 auto;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: linear-gradient(195deg, #2c2c2e, #2c2c2e);
+      cursor: pointer;
+    }
+
+    /* Add button */
+    .btn-add {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ff9800;
+      color: white;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(255, 152, 0, 0.3);
+    }
+
+    .btn-add:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Small responsive image */
+    .prod-img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Hiệu ứng mờ dần khi xóa */
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.45);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 24px;
+      border-radius: 10px;
+      width: 450px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .modal-close {
+      cursor: pointer;
+      font-size: 22px;
+      color: #999;
+    }
+
+    .modal-close:hover {
+      color: #000;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 8px 10px;
+      margin: 6px 0 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    .modal button {
+      background-color: #1976d2;
+      color: #fff;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .modal button:hover {
+      background-color: #2196f3;
+    }
+
+    .modal select {
+      width: 100%;
+      padding: 8px 10px;
+      margin: 6px 0 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    #confirmDeleteModal .modal-content button {
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 8px 16px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    #confirmDeleteModal .modal-content button:hover {
+      opacity: 0.85;
+    }
+
+    #addProductModal textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      resize: none;
+    }
+
+    #addProductModal button {
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 10px 16px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    #addProductModal button:hover {
+      opacity: 0.85;
+    }
+
+    #editProductModal textarea {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      resize: none;
+    }
+
+    #editProductModal button {
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      padding: 10px 16px;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    #editProductModal button:hover {
+      opacity: 0.85;
+    }
+
+    #deleteImageBtn:hover {
+      background-color: rgba(255, 0, 0, 0.8);
+      transition: 0.3s;
+    }
+
+    .action-bar {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .search-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-box {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+      width: 220px;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-box:focus {
+      border-color: #ff9800;
+    }
+
+    .category-dropdown {
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .search-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-box {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+      width: 220px;
+      transition: border-color 0.2s ease;
+    }
+
+    .search-box:focus {
+      border-color: #ff9800;
+    }
+
+    .category-dropdown {
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-search {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-search:hover {
+      background-color: #e68900;
+    }
+
+    .btn-refresh {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background-color: #ff9800;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-refresh:hover {
+      background-color: #e68900;
+    }
+
+    .highlight {
+      animation: highlightFade 1.2s ease;
+      background-color: #fff8e1 !important;
+    }
+
+    @keyframes highlightFade {
+      from {
+        background-color: #fff3cd;
+      }
+
+      to {
+        background-color: transparent;
+      }
+    }
