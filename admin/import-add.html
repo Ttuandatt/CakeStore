@@ -10,9 +10,211 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link href="assets/css/pure-style-optimized.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+  <!-- jQuery + DataTables JS -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
 
 
   <style>
+    /* Căn giữa tiêu đề bảng */
+    .ingredient-table th {
+      text-align: center !important;
+      /* 👈 Căn giữa chữ trong tiêu đề */
+      vertical-align: middle !important;
+      /* 👈 Căn giữa theo chiều dọc */
+      font-weight: 600;
+      padding: 10px 12px;
+    }
+
+    /* Căn giữa toàn bộ nội dung các ô dữ liệu */
+    .ingredient-table td {
+      text-align: center !important;
+      vertical-align: middle !important;
+    }
+
+    /* Cho tất cả (tổng + nút) hiển thị theo cột dọc */
+    .summary-action {
+      display: flex;
+      flex-direction: column;
+      /* 👈 chuyển từ hàng ngang sang dọc */
+      align-items: flex-start;
+      /* căn trái */
+      gap: 8px;
+      /* khoảng cách giữa các phần */
+      margin-top: 15px;
+    }
+
+    /* Giữ format các dòng tổng */
+    .order-summary div {
+      display: flex;
+      justify-content: space-between;
+      width: 250px;
+      /* có thể tăng/giảm cho đẹp */
+      margin-bottom: 4px;
+    }
+
+    /* Căn nút sang trái cùng cột */
+    .btn-group {
+      align-self: flex-start;
+    }
+
+
+    /* Giới hạn chiều cao bảng phiếu nhập */
+    .receipt-table-container {
+      height: 200px;
+      /* điều chỉnh theo ý, ví dụ 250–350px */
+      overflow-y: auto;
+      border-radius: 10px;
+      border: 1px solid #eee;
+    }
+
+    /* Cải thiện scrollbar */
+    .receipt-table-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .receipt-table-container::-webkit-scrollbar-thumb {
+      background: #ccc;
+      border-radius: 4px;
+    }
+
+    .receipt-table-container::-webkit-scrollbar-thumb:hover {
+      background: #aaa;
+    }
+
+
+    /* ======= 1️⃣ HÀNG TRÊN: Hiển thị số sản phẩm & Ô tìm kiếm ======= */
+    .dataTables_length,
+    .dataTables_filter {
+      display: flex;
+      align-items: center;
+    }
+
+    .dataTables_length {
+      float: left;
+    }
+
+    .dataTables_filter {
+      float: right;
+    }
+
+    .dataTables_filter label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dataTables_filter input {
+      height: 32px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0 8px;
+    }
+
+    /* ======= 2️⃣ HÀNG DƯỚI: Info + Phân trang ======= */
+    .dataTables_info,
+    .dataTables_paginate {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dataTables_info {
+      float: left;
+      margin-left: 10px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .dataTables_paginate {
+      float: right;
+      margin-right: 10px;
+    }
+
+    /* ======= 3️⃣ BỐ CỤC CHUNG CHO WRAPPER ======= */
+    /* Fix: Bảng không còn bị expand khi ít dữ liệu */
+    .dataTables_wrapper {
+      min-height: auto !important;
+      height: auto !important;
+      padding-bottom: 0 !important;
+    }
+
+    /* Căn chỉnh phần info + paginate ở đáy vùng chứa */
+    .dataTables_wrapper .dataTables_info {
+      align-self: flex-start;
+    }
+
+    .dataTables_wrapper .dataTables_paginate {
+      align-self: flex-end;
+    }
+
+    /* ======= 4️⃣ NÚT PHÂN TRANG ======= */
+    .dataTables_wrapper .dataTables_paginate .paginate_button {
+      border-radius: 6px !important;
+      border: none !important;
+      background: #f8f9fa !important;
+      color: #333 !important;
+      margin: 0 3px;
+      padding: 4px 10px;
+      transition: all 0.2s ease;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+      background: #ff9800 !important;
+      color: #fff !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+      background: #ff9800 !important;
+      color: #fff !important;
+      border: none !important;
+    }
+
+
+    .btn-group {
+      display: flex;
+      justify-content: flex-end;
+      /* Đẩy nút sang phải */
+    }
+
+    .import-container {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .left-panel,
+    .right-panel {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      flex: 1;
+      min-width: 380px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    @media (max-width: 992px) {
+      .import-container {
+        flex-direction: column;
+      }
+
+      .left-panel,
+      .right-panel {
+        min-width: 100%;
+      }
+    }
+
     /* ===== POPUP STYLE ===== */
     .popup-overlay {
       position: fixed;
@@ -111,7 +313,7 @@
     }
 
     .btn-add {
-      background-color: #ff9800;
+      background-color: #e88f2a;
       color: white;
       border: none;
       border-radius: 6px;
@@ -124,7 +326,7 @@
     }
 
     .btn-action:hover {
-      background: linear-gradient(195deg, #ffa726, #fb8c00);
+      background: linear-gradient(195deg, #b16c1e, #b16c1e);
       transform: translateY(-1px);
       box-shadow: 0 3px 6px rgba(255, 152, 0, 0.3);
     }
@@ -224,11 +426,11 @@
     }
 
     .btn-success {
-      background: #28a745;
+      background: #e88f2a;
     }
 
     .btn-success:hover {
-      background: #218838;
+      background: #b16c1e;
     }
 
     .btn-danger {
@@ -552,88 +754,164 @@
   <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem;">
     <h1 style="margin-bottom: 1rem;">Tạo phiếu nhập</h1>
 
-    <style>
-      .import-container {
-        display: flex;
-        gap: 1.5rem;
-        flex-wrap: wrap;
-      }
+    <div class="import-container">
+      <!-- ===== VÙNG TRÁI: DANH SÁCH SẢN PHẨM ===== -->
+      <div class="left-panel">
+        <div class="section-title">Danh sách sản phẩm</div>
 
-      .left-panel,
-      .right-panel {
-        background: #fff;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 1rem;
-        flex: 1;
-        min-width: 380px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      }
+        <!-- <div class="search-box" style="display:flex; gap:0.5rem; margin-bottom:0.75rem;">
+          <input type="text" class="form-control" placeholder="Tìm kiếm sản phẩm...">
+          <select class="form-control" style="width:120px;">
+            <option value="id">Mã SP</option>
+            <option value="name">Tên SP</option>
+          </select>
+        </div> -->
 
-      .section-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        color: #333;
-      }
+        <table class="ingredient-table" id="productTable" style="margin-bottom: 20%;">
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Tên sản phẩm</th>
+              <th>Hình ảnh</th>
+              <th>Số lượng</th>
+              <th>Giá</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Bánh Sinh Nhật Socola Ngọt</td>
+              <td><img src="../img/bdcake-1.jpg" alt="Bánh Sinh Nhật Socola Ngọt" width="50"></td>
+              <td>80</td>
+              <td>18,000,000đ</td>
+              <td><button class="btn-add">+</button></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Bánh Sinh Nhật Vani Trái Cây</td>
+              <td><img src="../img/bdcake-2.jpg" alt="Bánh Sinh Nhật Socola Ngọt" width="50"></td>
+              <td>80</td>
+              <td>18,000,000đ</td>
+              <td><button class="btn-add">+</button></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Bánh Sinh Nhật Red Velvet</td>
+              <td><img src="../img/bdcake-3.jpg" alt="Bánh Sinh Nhật Socola Ngọt" width="50"></td>
+              <td>80</td>
+              <td>18,000,000đ</td>
+              <td><button class="btn-add">+</button></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Bánh Sinh Nhật Trà Xanh</td>
+              <td><img src="../img/bdcake-12.jpg" alt="Bánh Sinh Nhật Socola Ngọt" width="50"></td>
+              <td>80</td>
+              <td>18,000,000đ</td>
+              <td><button class="btn-add">+</button></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Bánh Sinh Nhật Vani Trái Cây</td>
+              <td><img src="../img/bdcake-5.jpg" alt="Bánh Sinh Nhật Socola Ngọt" width="50"></td>
+              <td>80</td>
+              <td>18,000,000đ</td>
+              <td><button class="btn-add">+</button></td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Bánh Sinh Nhật Red Velvet</td>
+              <td><img src="../img/bdcake-6.jpg" alt="Bánh Sinh Nhật Socola Ngọt" width="50"></td>
+              <td>80</td>
+              <td>18,000,000đ</td>
+              <td><button class="btn-add">+</button></td>
+            </tr>
 
-      .search-box input {
-        border-radius: 6px;
-      }
+            <tr>
+              <td>7</td>
+              <td>Bánh Sinh Nhật Trà Xanh</td>
+              <td><img src="../img/bdcake-7.jpg" alt="Bánh Sinh Nhật Socola Ngọt" width="50"></td>
+              <td>80</td>
+              <td>18,000,000đ</td>
+              <td><button class="btn-add">+</button></td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Bánh Sinh Nhật Caramel</td>
+              <td><img src="../img/bdcake-8.jpg" alt="Bánh Sinh Nhật Socola Ngọt" width="50"></td>
+              <td>80</td>
+              <td>18,000,000đ</td>
+              <td><button class="btn-add">+</button></td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Bánh Sinh Nhật Hoa Quả</td>
+              <td><img src="../img/bdcake-9.jpg" alt="Bánh Sinh Nhật Socola Ngọt" width="50"></td>
+              <td>80</td>
+              <td>18,000,000đ</td>
+              <td><button class="btn-add">+</button></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Bánh Sinh Nhật Matcha</td>
+              <td><img src="../img/bdcake-10.jpg" alt="Bánh Sinh Nhật Socola Ngọt" width="50"></td>
+              <td>80</td>
+              <td>18,000,000đ</td>
+              <td><button class="btn-add">+</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 1rem;
-      }
+      <!-- ===== VÙNG PHẢI: THÔNG TIN NHẬP HÀNG ===== -->
+      <div class="right-panel">
+        <div class="section-title">Thông tin phiếu nhập</div>
 
-      th,
-      td {
-        padding: 0.75rem;
-        text-align: center;
-        border-bottom: 1px solid #e5e5e5;
-      }
+        <div class="form-group">
+          <label class="form-label">Mã phiếu nhập</label>
+          <input type="text" class="form-control" value="PN0007" readonly>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Ngày nhập</label>
+          <input type="text" class="form-control" value="20/11/2025" readonly>
+        </div>
+
+        <div class="receipt-table-container">
+          <table class="ingredient-table" id="productTable">
+            <thead>
+              <tr>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Tổng</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Dòng sản phẩm được chọn sẽ thêm vào đây -->
+            </tbody>
+          </table>
+        </div>
+        <!-- Gộp phần tổng và nút Nhập hàng chung 1 dòng -->
+        <div class="summary-action">
+          <div class="order-summary">
+            <div><span>Tổng sản phẩm:</span><span>0</span></div>
+            <div><span>Tổng số lượng:</span><span>0</span></div>
+            <div><span>Tổng tiền:</span><strong>0đ</strong></div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-success" id="save-import">Nhập hàng</button>
+          </div>
+        </div>
+
+      </div>
 
 
-      td img {
-        width: 40px;
-        height: 40px;
-        border-radius: 4px;
-        object-fit: cover;
-      }
-
-      .btn-action {
-        padding: 0.25rem 0.75rem;
-        font-size: 0.9rem;
-      }
-
-      .form-control {
-        border-radius: 6px;
-      }
-
-      .order-summary {
-        margin-top: 1rem;
-        border-top: 1px solid #eee;
-        padding-top: 1rem;
-        font-size: 0.95rem;
-      }
-
-      .order-summary div {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.5rem;
-      }
-
-      .btn-group {
-        display: flex;
-        justify-content: flex-end;
-        gap: 0.5rem;
-        margin-top: 1rem;
-      }
-    </style>
-
-    
+    </div>
+    </div>
   </main>
+
 
   <!-- POPUP THÀNH CÔNG -->
   <div id="successPopup" class="popup-overlay">
@@ -688,8 +966,8 @@
       if (!btn) return;
 
       const row = btn.closest('tr');
-      const name = row.children[0].innerText.trim();
-      const price = parseInt(row.children[2].innerText.replace(/[^\d]/g, '')) || 0;
+      const name = row.children[1].innerText.trim();
+      const price = parseInt(row.children[4].innerText.replace(/[^\d]/g, '')) || 0;
 
       const rightTbody = document.querySelector('.right-panel tbody');
       const existing = Array.from(rightTbody.querySelectorAll('tr'))
@@ -777,6 +1055,27 @@
     });
     updateTotals();
   </script>
+
+  <!-- Pagination cho danh sách sản phẩm-->
+  <script>
+    $(document).ready(function () {
+      $('#productTable').DataTable({
+        dom: 'rt<"bottom"ip>',
+
+        pageLength: 5, // vẫn mặc định 5 sản phẩm mỗi trang
+        language: {
+          info: "Trang _PAGE_ / _PAGES_",
+          infoEmpty: "Không có sản phẩm nào",
+          paginate: {
+            next: "Sau",
+            previous: "Trước"
+          }
+        }
+      });
+    });
+  </script>
+
+
 
 </body>
 
