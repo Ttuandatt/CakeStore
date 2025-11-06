@@ -16,6 +16,45 @@
   <link href="assets/css/pure-style-optimized.css" rel="stylesheet" />
 
   <style>
+    .pagination-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .pagination-btn {
+      background-color: #e88f2a;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .pagination-btn:hover {
+      background-color: #e88f2a;
+    }
+
+    .pagination-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .pagination-info {
+      font-size: 16px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    td.product-stock {
+      text-align: center;
+      vertical-align: middle;
+    }
+
     #editImagePreview {
       width: 100%;
       height: 250px;
@@ -62,7 +101,7 @@
             color: white;
             text-decoration: none;
           ">
-        <span>TRUNG TÂM ĐIỀU KHIỂN</span>
+        <span>Cakezone Admin</span>
       </a>
     </div>
     <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0" />
@@ -234,99 +273,183 @@ Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="B
 
 
         <!-- Row 2 -->
-        <tr>
+        <tr
+          data-desc="Thưởng thức hương vị socola nguyên chất hòa quyện cùng lớp kem tươi mịn màng, trang trí bằng những quả dâu tây tươi mọng nước. Chiếc bánh hoàn hảo cho những buổi tiệc sinh nhật nhỏ, ấm cúng và ngọt ngào."
+          data-ingredients="Bột mì, trứng, đường, bột cacao, socola nguyên chất, bơ, kem tươi, dâu tây tươi"
+          data-flavor="Socola đậm đà, xen lẫn vị béo nhẹ của kem tươi" data-color="Nâu socola, điểm đỏ tươi từ dâu tây"
+          data-size="6 inch, 8 inch, 10 inch"
+          data-special="Trang trí bằng dâu tây tươi, có thể thêm chữ chúc mừng theo yêu cầu"
+          data-detaildesc="Bánh sinh nhật tại CakeZone có độ ngọt vừa phải, thanh mát, dịu nhẹ, tươi ngon 100%.                Đặc biệt, bánh tại CakeZone không dùng phụ gia, hương liệu, chất bảo quản. 
+Bánh tươi 100% sản xuất theo quy trình Nhật Bản, đảm bảo vệ sinh an toàn thực phẩm. 
+Các nguyên liệu được nhập khẩu từ các thương hiệu nổi tiếng của nước ngoài, mang đến cho khách hàng những hương vị bánh hào hạng, đẳng cấp. 
+CakeZone nhận đặt các loại bánh kem theo yêu cầu cho các dịp sinh nhật, tiệc hội nghị, liên hoan, các dịp kỷ niệm, ngày cưới...
+Bánh đi kèm hộp có tên và logo công ty được in trên vỏ hộp. Đồ tặng kèm theo bánh sinh nhật gồm: Dao cắt bánh + Thìa + Đĩa. 
+CakeZone nhận chuyển bánh tận nhà, miễn phí trong vòng bán kính 5km trong khu vực TP.HCM với đơn hàng từ 300k trở lên và hỗ trợ gửi bánh miễn phí đến cửa hàng CakeZone gần khách hàng nhất!"
+          data-additional="Kích thước: 16cm, 18cm, 22cm
+Thành phần: Bột mì, trứng, đường, bột cacao, socola, bơ, kem tươi, dâu tây tươi
+Xuất xứ: Việt Nam
+Bảo quản: Ngăn mát tủ lạnh (0°C - 5°C)
+Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="Bánh sinh nhật">
           <td>2</td>
-          <td>Bánh kem dâu tây phủ kem bơ</td>
-          <td><img class="prod-img" src="../img/bdcake-2.jpg" alt="bdcake-2"></td>
-          <td>Bánh sinh nhật</td>
-          <td>160.000đ</td>
-          <td>18</td>
+          <td class="product-name">Bánh kem dâu tây phủ kem bơ</td>
+          <td><img class="prod-img" src="../img/bdcake-2.jpg" alt="bdcake-1"></td>
+          <td class="product-category">Bánh sinh nhật</td>
+          <td class="product-price">280.000đ</td>
+          <td class="product-stock">25</td>
+
           <td class="status-cell">
             <div class="status-badge status-dangban">Đang bán</div>
           </td>
+
           <td>
-            <div class="actions">
-              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
-              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
-            </div>
+            <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+            <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
           </td>
         </tr>
 
+
         <!-- Row 3 -->
-        <tr>
+        <tr
+          data-desc="Thưởng thức hương vị socola nguyên chất hòa quyện cùng lớp kem tươi mịn màng, trang trí bằng những quả dâu tây tươi mọng nước. Chiếc bánh hoàn hảo cho những buổi tiệc sinh nhật nhỏ, ấm cúng và ngọt ngào."
+          data-ingredients="Bột mì, trứng, đường, bột cacao, socola nguyên chất, bơ, kem tươi, dâu tây tươi"
+          data-flavor="Socola đậm đà, xen lẫn vị béo nhẹ của kem tươi" data-color="Nâu socola, điểm đỏ tươi từ dâu tây"
+          data-size="6 inch, 8 inch, 10 inch"
+          data-special="Trang trí bằng dâu tây tươi, có thể thêm chữ chúc mừng theo yêu cầu"
+          data-detaildesc="Bánh sinh nhật tại CakeZone có độ ngọt vừa phải, thanh mát, dịu nhẹ, tươi ngon 100%.                Đặc biệt, bánh tại CakeZone không dùng phụ gia, hương liệu, chất bảo quản. 
+Bánh tươi 100% sản xuất theo quy trình Nhật Bản, đảm bảo vệ sinh an toàn thực phẩm. 
+Các nguyên liệu được nhập khẩu từ các thương hiệu nổi tiếng của nước ngoài, mang đến cho khách hàng những hương vị bánh hào hạng, đẳng cấp. 
+CakeZone nhận đặt các loại bánh kem theo yêu cầu cho các dịp sinh nhật, tiệc hội nghị, liên hoan, các dịp kỷ niệm, ngày cưới...
+Bánh đi kèm hộp có tên và logo công ty được in trên vỏ hộp. Đồ tặng kèm theo bánh sinh nhật gồm: Dao cắt bánh + Thìa + Đĩa. 
+CakeZone nhận chuyển bánh tận nhà, miễn phí trong vòng bán kính 5km trong khu vực TP.HCM với đơn hàng từ 300k trở lên và hỗ trợ gửi bánh miễn phí đến cửa hàng CakeZone gần khách hàng nhất!"
+          data-additional="Kích thước: 16cm, 18cm, 22cm
+Thành phần: Bột mì, trứng, đường, bột cacao, socola, bơ, kem tươi, dâu tây tươi
+Xuất xứ: Việt Nam
+Bảo quản: Ngăn mát tủ lạnh (0°C - 5°C)
+Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="Bánh sinh nhật">
           <td>3</td>
-          <td>Bánh tiramisu Ý</td>
-          <td><img class="prod-img" src="../img/bdcake-3.jpg" alt="bdcake-3"></td>
-          <td>Bánh ăn nhẹ</td>
-          <td>220.000đ</td>
-          <td>12</td>
+          <td class="product-name">Bánh kem dâu tây phủ kem bơ</td>
+          <td><img class="prod-img" src="../img/bdcake-3.jpg" alt="bdcake-1"></td>
+          <td class="product-category">Bánh sinh nhật</td>
+          <td class="product-price">220.000đ</td>
+          <td class="product-stock">25</td>
+
           <td class="status-cell">
-            <div class="status-badge status-hethang">Hết hàng</div>
+            <div class="status-badge status-dangban">Đang bán</div>
           </td>
+
           <td>
-            <div class="actions">
-              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
-              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
-            </div>
+            <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+            <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
           </td>
         </tr>
 
         <!-- Row 4 -->
-        <tr>
+        <tr
+          data-desc="Thưởng thức hương vị socola nguyên chất hòa quyện cùng lớp kem tươi mịn màng, trang trí bằng những quả dâu tây tươi mọng nước. Chiếc bánh hoàn hảo cho những buổi tiệc sinh nhật nhỏ, ấm cúng và ngọt ngào."
+          data-ingredients="Bột mì, trứng, đường, bột cacao, socola nguyên chất, bơ, kem tươi, dâu tây tươi"
+          data-flavor="Socola đậm đà, xen lẫn vị béo nhẹ của kem tươi" data-color="Nâu socola, điểm đỏ tươi từ dâu tây"
+          data-size="6 inch, 8 inch, 10 inch"
+          data-special="Trang trí bằng dâu tây tươi, có thể thêm chữ chúc mừng theo yêu cầu"
+          data-detaildesc="Bánh sinh nhật tại CakeZone có độ ngọt vừa phải, thanh mát, dịu nhẹ, tươi ngon 100%.                Đặc biệt, bánh tại CakeZone không dùng phụ gia, hương liệu, chất bảo quản. 
+Bánh tươi 100% sản xuất theo quy trình Nhật Bản, đảm bảo vệ sinh an toàn thực phẩm. 
+Các nguyên liệu được nhập khẩu từ các thương hiệu nổi tiếng của nước ngoài, mang đến cho khách hàng những hương vị bánh hào hạng, đẳng cấp. 
+CakeZone nhận đặt các loại bánh kem theo yêu cầu cho các dịp sinh nhật, tiệc hội nghị, liên hoan, các dịp kỷ niệm, ngày cưới...
+Bánh đi kèm hộp có tên và logo công ty được in trên vỏ hộp. Đồ tặng kèm theo bánh sinh nhật gồm: Dao cắt bánh + Thìa + Đĩa. 
+CakeZone nhận chuyển bánh tận nhà, miễn phí trong vòng bán kính 5km trong khu vực TP.HCM với đơn hàng từ 300k trở lên và hỗ trợ gửi bánh miễn phí đến cửa hàng CakeZone gần khách hàng nhất!"
+          data-additional="Kích thước: 16cm, 18cm, 22cm
+Thành phần: Bột mì, trứng, đường, bột cacao, socola, bơ, kem tươi, dâu tây tươi
+Xuất xứ: Việt Nam
+Bảo quản: Ngăn mát tủ lạnh (0°C - 5°C)
+Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="Bánh sinh nhật">
           <td>4</td>
-          <td>Bánh mousse xoài lạnh</td>
+          <td class="product-name">Bánh mousse xoài lạnh</td>
           <td><img class="prod-img" src="../img/bdcake-4.jpg" alt="bdcake-4"></td>
-          <td>Bánh ăn nhẹ</td>
-          <td>170.000đ</td>
-          <td>15</td>
+          <td class="product-category">Bánh sinh nhật</td>
+          <td class="product-price">170.000đ</td>
+          <td class="product-stock">25</td>
+
           <td class="status-cell">
             <div class="status-badge status-dangban">Đang bán</div>
           </td>
+
           <td>
-            <div class="actions">
-              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
-              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
-            </div>
+            <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+            <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
           </td>
         </tr>
+
 
         <!-- Row 5 -->
-        <tr>
+        <tr
+          data-desc="Thưởng thức hương vị socola nguyên chất hòa quyện cùng lớp kem tươi mịn màng, trang trí bằng những quả dâu tây tươi mọng nước. Chiếc bánh hoàn hảo cho những buổi tiệc sinh nhật nhỏ, ấm cúng và ngọt ngào."
+          data-ingredients="Bột mì, trứng, đường, bột cacao, socola nguyên chất, bơ, kem tươi, dâu tây tươi"
+          data-flavor="Socola đậm đà, xen lẫn vị béo nhẹ của kem tươi" data-color="Nâu socola, điểm đỏ tươi từ dâu tây"
+          data-size="6 inch, 8 inch, 10 inch"
+          data-special="Trang trí bằng dâu tây tươi, có thể thêm chữ chúc mừng theo yêu cầu"
+          data-detaildesc="Bánh sinh nhật tại CakeZone có độ ngọt vừa phải, thanh mát, dịu nhẹ, tươi ngon 100%.                Đặc biệt, bánh tại CakeZone không dùng phụ gia, hương liệu, chất bảo quản. 
+Bánh tươi 100% sản xuất theo quy trình Nhật Bản, đảm bảo vệ sinh an toàn thực phẩm. 
+Các nguyên liệu được nhập khẩu từ các thương hiệu nổi tiếng của nước ngoài, mang đến cho khách hàng những hương vị bánh hào hạng, đẳng cấp. 
+CakeZone nhận đặt các loại bánh kem theo yêu cầu cho các dịp sinh nhật, tiệc hội nghị, liên hoan, các dịp kỷ niệm, ngày cưới...
+Bánh đi kèm hộp có tên và logo công ty được in trên vỏ hộp. Đồ tặng kèm theo bánh sinh nhật gồm: Dao cắt bánh + Thìa + Đĩa. 
+CakeZone nhận chuyển bánh tận nhà, miễn phí trong vòng bán kính 5km trong khu vực TP.HCM với đơn hàng từ 300k trở lên và hỗ trợ gửi bánh miễn phí đến cửa hàng CakeZone gần khách hàng nhất!"
+          data-additional="Kích thước: 16cm, 18cm, 22cm
+Thành phần: Bột mì, trứng, đường, bột cacao, socola, bơ, kem tươi, dâu tây tươi
+Xuất xứ: Việt Nam
+Bảo quản: Ngăn mát tủ lạnh (0°C - 5°C)
+Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="Bánh sinh nhật">
           <td>5</td>
-          <td>Bánh red velvet kem phô mai</td>
-          <td><img class="prod-img" src="../img/bdcake-5.jpg" alt="bdcake-5"></td>
-          <td>Bánh ăn nhẹ</td>
-          <td>210.000đ</td>
-          <td>10</td>
+          <td class="product-name">Bánh kem dâu tây phủ kem bơ</td>
+          <td><img class="prod-img" src="../img/bdcake-5.jpg" alt="bdcake-1"></td>
+          <td class="product-category">Bánh ăn nhẹ</td>
+          <td class="product-price">210.000đ</td>
+          <td class="product-stock">25</td>
+
           <td class="status-cell">
             <div class="status-badge status-dangban">Đang bán</div>
           </td>
+
           <td>
-            <div class="actions">
-              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
-              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
-            </div>
+            <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+            <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
           </td>
         </tr>
 
+
         <!-- Row 6 -->
-        <tr>
-          <td>6</td>
-          <td>Bánh kem vani hạt dẻ</td>
-          <td><img class="prod-img" src="../img/bdcake-6.jpg" alt="bdcake-6"></td>
-          <td>Bánh sinh nhật</td>
-          <td>150.000đ</td>
-          <td>20</td>
+        <tr
+          data-desc="Thưởng thức hương vị socola nguyên chất hòa quyện cùng lớp kem tươi mịn màng, trang trí bằng những quả dâu tây tươi mọng nước. Chiếc bánh hoàn hảo cho những buổi tiệc sinh nhật nhỏ, ấm cúng và ngọt ngào."
+          data-ingredients="Bột mì, trứng, đường, bột cacao, socola nguyên chất, bơ, kem tươi, dâu tây tươi"
+          data-flavor="Socola đậm đà, xen lẫn vị béo nhẹ của kem tươi" data-color="Nâu socola, điểm đỏ tươi từ dâu tây"
+          data-size="6 inch, 8 inch, 10 inch"
+          data-special="Trang trí bằng dâu tây tươi, có thể thêm chữ chúc mừng theo yêu cầu"
+          data-detaildesc="Bánh sinh nhật tại CakeZone có độ ngọt vừa phải, thanh mát, dịu nhẹ, tươi ngon 100%.                Đặc biệt, bánh tại CakeZone không dùng phụ gia, hương liệu, chất bảo quản. 
+Bánh tươi 100% sản xuất theo quy trình Nhật Bản, đảm bảo vệ sinh an toàn thực phẩm. 
+Các nguyên liệu được nhập khẩu từ các thương hiệu nổi tiếng của nước ngoài, mang đến cho khách hàng những hương vị bánh hào hạng, đẳng cấp. 
+CakeZone nhận đặt các loại bánh kem theo yêu cầu cho các dịp sinh nhật, tiệc hội nghị, liên hoan, các dịp kỷ niệm, ngày cưới...
+Bánh đi kèm hộp có tên và logo công ty được in trên vỏ hộp. Đồ tặng kèm theo bánh sinh nhật gồm: Dao cắt bánh + Thìa + Đĩa. 
+CakeZone nhận chuyển bánh tận nhà, miễn phí trong vòng bán kính 5km trong khu vực TP.HCM với đơn hàng từ 300k trở lên và hỗ trợ gửi bánh miễn phí đến cửa hàng CakeZone gần khách hàng nhất!"
+          data-additional="Kích thước: 16cm, 18cm, 22cm
+Thành phần: Bột mì, trứng, đường, bột cacao, socola, bơ, kem tươi, dâu tây tươi
+Xuất xứ: Việt Nam
+Bảo quản: Ngăn mát tủ lạnh (0°C - 5°C)
+Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="Bánh sinh nhật">
+          <td>3</td>
+          <td class="product-name">Bánh kem vani hạt dẻ</td>
+          <td><img class="prod-img" src="../img/bdcake-6.jpg" alt="bdcake-1"></td>
+          <td class="product-category">Bánh sinh nhật</td>
+          <td class="product-price">150.000đ.000đ</td>
+          <td class="product-stock">25</td>
+
           <td class="status-cell">
-            <div class="status-badge status-ngungban">Ngưng bán</div>
+            <div class="status-badge status-dangban">Đang bán</div>
           </td>
+
           <td>
-            <div class="actions">
-              <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
-              <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
-            </div>
+            <button class="btn btn-edit"><i class="material-icons-round">edit</i>Sửa</button>
+            <button class="btn btn-delete"><i class="material-icons-round">delete</i>Xóa</button>
           </td>
         </tr>
+
 
         <!-- Row 7 -->
         <tr>
@@ -386,6 +509,13 @@ Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="B
         </tr>
       </tbody>
     </table>
+    <!-- Pagination -->
+    <div class="pagination-container">
+      <button id="prevPage" class="pagination-btn">« Trước</button>
+      <span id="pageInfo" class="pagination-info"></span>
+      <button id="nextPage" class="pagination-btn">Sau »</button>
+    </div>
+
   </main>
 
   <!-- Popup thêm sản phẩm -->
@@ -469,10 +599,10 @@ Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="B
   <!-- Popup thêm sản phẩm thành công -->
   <div class="modal" id="successModal">
     <div class="modal-content" style="max-width:400px; text-align:center; padding:30px;">
-      <h3 style="color:#28a745; margin-bottom:15px;">🎉 Thêm sản phẩm thành công!</h3>
+      <h3 style="color:#202021; margin-bottom:15px;">🎉 Thêm sản phẩm thành công!</h3>
       <p>Sản phẩm mới đã được lưu vào danh sách.</p>
       <button id="closeSuccessModal"
-        style="margin-top:20px; background-color:#28a745; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer;">Đóng</button>
+        style="margin-top:20px; background-color:#e88f2a; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer;">Đóng</button>
     </div>
   </div>
 
@@ -516,38 +646,45 @@ Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="B
             <option>Bánh ăn nhẹ</option>
             <option>Khác</option>
           </select>
+
+          <!-- ✅ Thêm dropdown Trạng thái -->
+          <label>Trạng thái</label>
+          <select id="editStatus">
+            <option value="Đang bán">Đang bán</option>
+            <option value="Hết hàng">Hết hàng</option>
+            <option value="Ngưng bán">Ngưng bán</option>
+          </select>
         </div>
 
         <!-- Cột phải -->
         <div style="flex: 1; min-width: 400px;">
           <label id="editImagePreview" style="
-        border:1px dashed #ccc;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        width:400px;
-        height:300px;
-        cursor:pointer;
-        overflow:hidden;
-        position:relative;
-      ">
+          border:1px dashed #ccc;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          width:400px;
+          height:300px;
+          cursor:pointer;
+          overflow:hidden;
+          position:relative;
+        ">
             <span id="editImgIcon" class="material-icons" style="font-size:40px;opacity:0.5;">
               add_a_photo
             </span>
 
             <img id="editPreviewImg" style="
-              width:100%;
-              height:100%;
-              object-fit:cover;
-              display:none;
-              position:absolute;
-              top:0;
-              left:0;
-            ">
+            width:100%;
+            height:100%;
+            object-fit:cover;
+            display:none;
+            position:absolute;
+            top:0;
+            left:0;
+          ">
           </label>
 
           <input type="file" id="editImageUpload" accept="image/*" style="display:none;">
-
 
           <label>Mô tả chi tiết</label>
           <textarea id="editDetailDesc" rows="8" style="white-space: pre-wrap;"></textarea>
@@ -570,10 +707,10 @@ Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="B
   <!-- Popup sửa sản phẩm thành công -->
   <div class="modal" id="successEditModal">
     <div class="modal-content" style="max-width:400px; text-align:center; padding:30px;">
-      <h3 style="color:#28a745; margin-bottom:15px;">Sửa sản phẩm thành công!</h3>
+      <h3 style="color:#202021; margin-bottom:15px;">Sửa sản phẩm thành công!</h3>
       <p>Đã lưu thông tin sửa sản phẩm.</p>
       <button id="closeSuccessEditModal"
-        style="margin-top:20px; background-color:#28a745; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer;">Đóng</button>
+        style="margin-top:20px; background-color:#e88f2a; color:white; border:none; padding:10px 20px; border-radius:6px; cursor:pointer;">Đóng</button>
     </div>
   </div>
 
@@ -593,37 +730,160 @@ Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="B
     </div>
   </div>
 
+  <!-- ======= CHUYỂN TEXT TRẠNG THÁI THÀNH BADGE ======= -->
   <script>
-    // ======= CHUYỂN TEXT TRẠNG THÁI THÀNH BADGE =======
+
     function applyStatusBadges() {
       document.querySelectorAll("table tbody tr").forEach((row) => {
-        const statusTd = row.querySelector("td:nth-child(6)");
+        const statusTd = row.querySelector("td:nth-child(7)"); // ✅ luôn là cột trạng thái
         if (!statusTd) return;
+
         const text = statusTd.textContent.trim();
+        statusTd.innerHTML = ""; // Xóa nội dung cũ
 
         const span = document.createElement("span");
         span.classList.add("status");
 
         if (text === "Đang bán") {
           span.classList.add("status-dangban");
-          span.textContent = text;
         } else if (text === "Hết hàng") {
           span.classList.add("status-hethang");
-          span.textContent = text;
-        } else if (text === "Ngừng bán" || text === "Ngưng bán") {
+        } else if (text === "Ngưng bán" || text === "Ngừng bán") {
           span.classList.add("status-ngungban");
-          span.textContent = "Ngừng bán";
-        } else {
-          span.textContent = text;
+          span.textContent = "Ngưng bán";
         }
 
-        statusTd.innerHTML = "";
-        statusTd.classList.add("status-cell");
+        span.textContent = text;
         statusTd.appendChild(span);
       });
     }
 
+
+    // Gọi ngay sau khi load trang
     applyStatusBadges();
+  </script>
+
+  <!-- ======= SCRIPT POPUP SỬA SẢN PHẨM ======= -->
+  <script>
+    let currentEditRow = null; // Dòng đang được chỉnh
+
+    const editModal = document.getElementById("editProductModal");
+    const closeEditModal = document.getElementById("closeEditModal");
+    const cancelEdit = document.getElementById("cancelEdit");
+
+    // ====== MỞ POPUP SỬA ========
+    document.querySelectorAll(".btn-edit").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const row = this.closest("tr");
+        currentEditRow = row; // Ghi nhớ dòng đang sửa
+
+        // Lấy dữ liệu từ bảng
+        document.getElementById("editName").value = row.querySelector(".product-name")?.innerText.trim() || "";
+        document.getElementById("editPrice").value = row.querySelector(".product-price")?.innerText.replace(/[^\d]/g, "") || "";
+
+        // Danh mục
+        const category = row.querySelector(".product-category")?.innerText.trim() || "";
+        const categorySelect = document.getElementById("editCategory");
+        Array.from(categorySelect.options).forEach(opt => {
+          opt.selected = (opt.text.trim() === category);
+        });
+
+        // Trạng thái
+        const statusText = row.querySelector(".status")?.innerText.trim() || "";
+        const statusSelect = document.getElementById("editStatus");
+        Array.from(statusSelect.options).forEach(opt => {
+          opt.selected = (opt.text.trim() === statusText);
+        });
+
+        // Dữ liệu khác
+        document.getElementById("editDesc").value = row.dataset.desc || "";
+        document.getElementById("editIngredients").value = row.dataset.ingredients || "";
+        document.getElementById("editFlavor").value = row.dataset.flavor || "";
+        document.getElementById("editColor").value = row.dataset.color || "";
+        document.getElementById("editSize").value = row.dataset.size || "";
+        document.getElementById("editSpecial").value = row.dataset.special || "";
+        document.getElementById("editDetailDesc").value = row.dataset.detaildesc || "";
+        document.getElementById("editAdditionalInfo").value = row.dataset.additional || "";
+
+        // Ảnh
+        const imgSrc = row.querySelector(".prod-img")?.src || "";
+        const preview = document.getElementById("editPreviewImg");
+        preview.src = imgSrc;
+        preview.style.display = imgSrc ? "block" : "none";
+
+        editModal.style.display = "flex";
+      });
+    });
+
+    // ======= ĐÓNG POPUP =======
+    closeEditModal.onclick = () => editModal.style.display = "none";
+    cancelEdit.onclick = () => editModal.style.display = "none";
+    window.addEventListener("click", (e) => {
+      if (e.target === editModal) editModal.style.display = "none";
+    });
+
+    // ======= CHỌN ẢNH MỚI =======
+    document.getElementById("editImagePreview").addEventListener("click", () => {
+      document.getElementById("editImageUpload").click();
+    });
+
+    document.getElementById("editImageUpload").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const preview = document.getElementById("editPreviewImg");
+          preview.src = e.target.result;
+          preview.style.display = "block";
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // ======= LƯU THAY ĐỔI =======
+    document.getElementById("editProductForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!currentEditRow) return;
+
+      // Cập nhật tên, giá, danh mục
+      currentEditRow.querySelector(".product-name").innerText = document.getElementById("editName").value;
+      currentEditRow.querySelector(".product-price").innerText =
+        new Intl.NumberFormat('vi-VN').format(document.getElementById("editPrice").value) + " đ";
+      currentEditRow.querySelector(".product-category").innerText = document.getElementById("editCategory").value;
+
+      // ✅ Cập nhật text trạng thái (cột 7)
+      const newStatus = document.getElementById("editStatus").value;
+      const statusTd = currentEditRow.querySelector("td:nth-child(7)");
+      statusTd.textContent = newStatus; // chỉ chèn text tạm thời
+
+      // Cập nhật ảnh
+      const newImgSrc = document.getElementById("editPreviewImg").src;
+      const imgEl = currentEditRow.querySelector(".prod-img");
+      if (imgEl && newImgSrc) imgEl.src = newImgSrc;
+
+      // Cập nhật data attributes
+      currentEditRow.dataset.desc = document.getElementById("editDesc").value;
+      currentEditRow.dataset.ingredients = document.getElementById("editIngredients").value;
+      currentEditRow.dataset.flavor = document.getElementById("editFlavor").value;
+      currentEditRow.dataset.color = document.getElementById("editColor").value;
+      currentEditRow.dataset.size = document.getElementById("editSize").value;
+      currentEditRow.dataset.special = document.getElementById("editSpecial").value;
+      currentEditRow.dataset.detaildesc = document.getElementById("editDetailDesc").value;
+      currentEditRow.dataset.additional = document.getElementById("editAdditionalInfo").value;
+
+      // ✅ Sau khi cập nhật text xong, gọi lại applyStatusBadges để gắn màu
+      applyStatusBadges();
+
+      // Hiển thị popup thành công
+      editModal.style.display = "none";
+      document.getElementById("successEditModal").style.display = "flex";
+
+      document.getElementById("closeSuccessEditModal").addEventListener("click", () => {
+        document.getElementById("successEditModal").style.display = "none";
+      });
+    });
+
+
   </script>
 
   <script>
@@ -713,88 +973,59 @@ Thời hạn sử dụng: 2 ngày kể từ ngày sản xuất" data-category="B
     });
   </script>
 
+  <!-- Script phân trang -->
   <script>
-    // ======= POPUP SỬA SẢN PHẨM =======
-    const editModal = document.getElementById("editProductModal");
-    const closeEditModal = document.getElementById("closeEditModal");
-    const cancelEdit = document.getElementById("cancelEdit");
+    // pagination.js
 
-    // Khi nhấn nút sửa
-    document.querySelectorAll(".btn-edit").forEach((btn) => {
-      btn.addEventListener("click", function () {
-        const row = this.closest("tr");
+    const rowsPerPage = 7;
+    let currentPage = 1;
 
-        // 📌 Lấy text từ bảng
-        document.getElementById("editName").value = row.querySelector(".product-name")?.innerText.trim() || "";
-        document.getElementById("editPrice").value = row.querySelector(".product-price")?.innerText.replace(/[^\d]/g, "") || "";
+    function showPage(page) {
+      const table = document.querySelector("table tbody");
+      const rows = table.querySelectorAll("tr");
+      const totalRows = rows.length;
+      const totalPages = Math.ceil(totalRows / rowsPerPage);
 
-        // ✅ Lấy danh mục và set vào select
-        const category = row.querySelector(".product-category")?.innerText.trim() || "";
-        const categorySelect = document.getElementById("editCategory");
-        Array.from(categorySelect.options).forEach(opt => {
-          opt.selected = (opt.text.trim() === category);
-        });
+      // Giới hạn page hợp lệ
+      if (page < 1) page = 1;
+      if (page > totalPages) page = totalPages;
 
-        // 📌 Lấy từ data attributes
-        document.getElementById("editDesc").value = row.dataset.desc || "";
-        document.getElementById("editIngredients").value = row.dataset.ingredients || "";
-        document.getElementById("editFlavor").value = row.dataset.flavor || "";
-        document.getElementById("editColor").value = row.dataset.color || "";
-        document.getElementById("editSize").value = row.dataset.size || "";
-        document.getElementById("editSpecial").value = row.dataset.special || "";
-        document.getElementById("editDetailDesc").value = row.dataset.detaildesc || "";
-        document.getElementById("editAdditionalInfo").value = row.dataset.additional || "";
-
-        // ✅ Load ảnh đúng selector `.prod-img`
-        const imgSrc = row.querySelector(".prod-img")?.src || "";
-        const preview = document.getElementById("editPreviewImg");
-        preview.src = imgSrc;
-        preview.style.display = imgSrc ? "block" : "none";
-
-        editModal.style.display = "flex";
+      // Ẩn tất cả hàng
+      rows.forEach((row, index) => {
+        row.style.display = "none";
       });
-    });
 
-    // Đóng popup
-    closeEditModal.onclick = () => editModal.style.display = "none";
-    cancelEdit.onclick = () => editModal.style.display = "none";
-    window.addEventListener("click", (e) => {
-      if (e.target === editModal) editModal.style.display = "none";
-    });
+      // Hiển thị các hàng thuộc trang hiện tại
+      const start = (page - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
 
-    // Chọn ảnh trong popup sửa
-    document.getElementById("editImagePreview").addEventListener("click", () => {
-      document.getElementById("editImageUpload").click();
-    });
-
-    document.getElementById("editImageUpload").addEventListener("change", function () {
-      const file = this.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const preview = document.getElementById("editPreviewImg");
-          preview.src = e.target.result;
-          preview.style.display = "block";
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    // Lưu thay đổi
-    document.getElementById("editProductForm").addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      // đóng popup sửa
-      editModal.style.display = "none";
-
-      // mở popup thành công
-      document.getElementById("successEditModal").style.display = "flex";
-      // Đóng popup thông báo
-      document.getElementById("closeSuccessEditModal").addEventListener("click", () => {
-        document.getElementById("successEditModal").style.display = "none";
+      rows.forEach((row, index) => {
+        if (index >= start && index < end) {
+          row.style.display = "";
+        }
       });
+
+      // Cập nhật nút và thông tin trang
+      document.getElementById("pageInfo").textContent = `Trang ${page}/${totalPages}`;
+      document.getElementById("prevPage").disabled = page === 1;
+      document.getElementById("nextPage").disabled = page === totalPages;
+
+      currentPage = page;
+    }
+
+    // Xử lý khi nhấn nút
+    document.getElementById("prevPage").addEventListener("click", () => {
+      showPage(currentPage - 1);
     });
 
+    document.getElementById("nextPage").addEventListener("click", () => {
+      showPage(currentPage + 1);
+    });
+
+    // Khởi tạo
+    document.addEventListener("DOMContentLoaded", () => {
+      showPage(1);
+    });
 
   </script>
 
