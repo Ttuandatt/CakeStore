@@ -5,54 +5,31 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="icon" type="image/png" href="../img/ryicon.jpg">
-  <title>BookStore - Quản lý phiếu nhập</title>
+  <title>BookStore - Chi tiết phiếu nhập</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link href="assets/css/pure-style-optimized.css" rel="stylesheet">
 
   <style>
-    /* Bố cục khối chứa 2 bảng */
-    main>div[style*="display: flex"] {
-      display: flex;
-      gap: 1.5rem;
-      height: calc(100vh - 200px);
-      /* Cân chỉnh chiều cao tổng thể */
-    }
-
-    /* Cấu trúc card chung */
-    .card {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-    }
-
-    /* Tiêu đề bảng */
-    /* .card-header {
-      background: linear-gradient(195deg, #202021, #202021);
-      color: white;
-      padding: 0.75rem 1.25rem;
-      font-weight: 600;
-    } */
-
-    /* Khu vực table có thể cuộn */
-    .card-body.table-wrapper {
-      flex: 1;
+    .table-wrapper {
+      max-height: 50vh;
+      /* Chiều cao tối đa = nửa màn hình */
       overflow-y: auto;
-      background: white;
+      /* Hiện scrollbar khi tràn */
+      overflow-x: hidden;
     }
 
-    /* Tổng kết — luôn nằm đáy */
-    #summaryRow {
-      flex-shrink: 0;
-      border-top: 1px solid #ddd;
-      background: #f9f9f9;
-      padding: 1rem 1.5rem;
-      line-height: 1.6;
-      font-size: 0.95rem;
+    /* Giữ header cố định khi cuộn */
+    .table-wrapper table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .table-wrapper thead th {
+      position: sticky;
+      top: 0;
+      background-color: #f8f8f8;
+      z-index: 2;
     }
 
     body {
@@ -63,6 +40,97 @@
       overflow-x: hidden;
     }
 
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background: linear-gradient(195deg, #2b2825, #2b2825);
+      color: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      border: none;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: #e88f2a;
+    }
+
+    .btn-primary:hover {
+      background: #ce7a1a;
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+    }
+
+    .btn-secondary:hover {
+      background: #5a6268;
+    }
+
+    .material-icons-round {
+      font-size: 18px;
+      vertical-align: middle;
+    }
+
+    /* Info sections */
+    .info-section {
+      margin-bottom: 2rem;
+    }
+
+    .info-section h3 {
+      color: #344767;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #e9ecef;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .info-item {
+      margin-bottom: 1rem;
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: #6c757d;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+      font-size: 1.1rem;
+      color: #344767;
+    }
+
+    /* Table styles */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -70,11 +138,12 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-top: 1rem;
     }
 
     thead {
-      background: linear-gradient(195deg, #202021, #202021);
-      color: white;
+      background: #f8f9fa;
+      color: #344767;
     }
 
     th,
@@ -82,16 +151,15 @@
       padding: 14px 16px;
       font-size: 14px;
       text-align: left;
+      border-bottom: 1px solid #e9ecef;
     }
 
-    th,
-    td {
-      text-align: center !important;
-      /* Căn giữa ngang */
-      vertical-align: middle !important;
-      /* Căn giữa dọc */
+    th {
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      font-weight: 600;
     }
-
 
     tbody tr:nth-child(even) {
       background-color: #fafafa;
@@ -102,66 +170,80 @@
       transition: 0.2s;
     }
 
-    th {
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 0.5px;
-    }
-
-    .material-icons-round {
-      font-size: 18px;
-      vertical-align: middle;
-    }
-
-    /* ==== Actions ==== */
-    .actions {
+    .product-info {
       display: flex;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .btn {
-      display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 6px 10px;
-      border-radius: 6px;
-      border: none;
-      color: white;
-      font-size: 13px;
-      cursor: pointer;
-      transition: 0.2s;
+      gap: 1rem;
     }
 
-    .btn-view {
-      background-color: #1976d2;
+    .product-image {
+      width: 50px;
+      height: 65px;
+      object-fit: cover;
+      border-radius: 4px;
+      flex-shrink: 0;
     }
 
-    .btn-view:hover {
-      background-color: #144f8a;
+    .product-details {
+      flex: 1;
     }
 
-    /* ==== Add Button ==== */
-    .btn-add {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #ff9800;
-      color: white;
-      padding: 10px 18px;
-      font-size: 14px;
+    .product-name {
       font-weight: 600;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 3px 6px rgba(255, 152, 0, 0.3);
-      transition: all 0.2s ease;
+      margin-bottom: 0.25rem;
     }
 
-    .btn-add:hover {
-      background: linear-gradient(195deg, #ffa726, #fb8c00);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 10px rgba(255, 152, 0, 0.4);
+    .product-author {
+      font-size: 0.85rem;
+      color: #6c757d;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* Summary section */
+    .summary-card {
+      background: #f8f9fa;
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #dee2e6;
+    }
+
+    .summary-total {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #e91e63;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      .product-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
     }
   </style>
 </head>
@@ -283,22 +365,15 @@
     </ul>
   </aside>
 
-  <!-- MAIN -->
   <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem;">
-    <h1 style="margin-bottom: 1rem">Quản lý nhập hàng</h1>
-    <!-- Button Add Import -->
-    <div style="margin-bottom:1.2rem;text-align:left;">
-      <button class="btn-add" onclick="window.location.href='import-add.html'">
-        <i class="material-icons-round">add_box</i> Thêm phiếu nhập
-      </button>
-    </div>
+    <h1 style="margin-bottom: 1rem;">Quản lý phiếu nhập</h1>
 
     <div style="display: flex; gap: 1.5rem; height: 80vh;">
       <!-- BẢNG BÊN TRÁI -->
       <div style="flex: 1; display: flex; flex-direction: column;">
-        <h3 style="margin: 0; font-size: 1.1rem;">Danh sách phiếu nhập</h3>
         <div class="card" style="flex: 1; height: 50%;">
           <div class="card-header">
+            <h3 style="margin: 0; font-size: 1.1rem;">Danh sách phiếu nhập</h3>
           </div>
           <div class="card-body table-wrapper">
             <table>
@@ -351,9 +426,9 @@
 
       <!-- BẢNG BÊN PHẢI -->
       <div style="flex: 1; display: flex; flex-direction: column;">
-        <h3 style="margin: 0; font-size: 1.1rem;">Chi tiết phiếu nhập</h3>
         <div class="card" style="flex: 1; height: 50%; display: flex; flex-direction: column;">
           <div class="card-header">
+            <h3 style="margin: 0; font-size: 1.1rem;">Chi tiết sản phẩm</h3>
           </div>
 
           <!-- Phần thân bảng: cho phép cuộn riêng -->
@@ -389,86 +464,85 @@
 
 
 
-    <script>
-      const productsData = {
-        "PN001": [
-          { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-1.jpg", price: "250,000 VNĐ", qty: 3 },
-          { name: "Bánh Sinh Nhật Vani Trái Cây", image: "../img/bdcake-2.jpg", price: "180,000 VNĐ", qty: 2 },
-          { name: "Bánh Sinh Nhật Red Velvet", image: "../img/bdcake-3.jpg", price: "220,000 VNĐ", qty: 4 },
-          { name: "Bánh Sinh Nhật Trà Xanh", image: "../img/bdcake-4.jpg", price: "190,000 VNĐ", qty: 3 }
-        ],
-        "PN002": [
-          { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-5.jpg", price: "210,000 VNĐ", qty: 3 },
-          { name: "Bánh Sinh Nhật Vani Trái Cây", image: "../img/bdcake-6.jpg", price: "250,000 VNĐ", qty: 3 },
-          { name: "Bánh Sinh Nhật Red Velvet", image: "../img/bdcake-7.jpg", price: "180,000 VNĐ", qty: 2 },
-          { name: "Bánh Sinh Nhật Trà Xanh", image: "../img/bdcake-8.jpg", price: "220,000 VNĐ", qty: 4 },
-          { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-9.jpg", price: "190,000 VNĐ", qty: 3 },
-                    { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-5.jpg", price: "210,000 VNĐ", qty: 3 },
-          { name: "Bánh Sinh Nhật Vani Trái Cây", image: "../img/bdcake-6.jpg", price: "250,000 VNĐ", qty: 3 },
-          { name: "Bánh Sinh Nhật Red Velvet", image: "../img/bdcake-7.jpg", price: "180,000 VNĐ", qty: 2 },
-          { name: "Bánh Sinh Nhật Trà Xanh", image: "../img/bdcake-8.jpg", price: "220,000 VNĐ", qty: 4 }
-        ],
-        "PN003": [
-          { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-5.jpg", price: "210,000 VNĐ", qty: 3 },
-          { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-9.jpg", price: "190,000 VNĐ", qty: 3 }
-        ],
-        "PN004": [
-          { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-9.jpg", price: "190,000 VNĐ", qty: 3 }
-        ],
-        "PN005": [
-          { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-12.jpg", price: "190,000 VNĐ", qty: 3 }
-        ]
-      };
+      <script>
+        const productsData = {
+          "PN001": [
+            { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-1.jpg", price: "250,000 VNĐ", qty: 3 },
+            { name: "Bánh Sinh Nhật Vani Trái Cây", image: "../img/bdcake-2.jpg", price: "180,000 VNĐ", qty: 2 },
+            { name: "Bánh Sinh Nhật Red Velvet", image: "../img/bdcake-3.jpg", price: "220,000 VNĐ", qty: 4 },
+            { name: "Bánh Sinh Nhật Trà Xanh", image: "../img/bdcake-4.jpg", price: "190,000 VNĐ", qty: 3 }
+          ],
+          "PN002": [
+            { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-5.jpg", price: "210,000 VNĐ", qty: 3 },
+            { name: "Bánh Sinh Nhật Vani Trái Cây", image: "../img/bdcake-6.jpg", price: "250,000 VNĐ", qty: 3 },
+            { name: "Bánh Sinh Nhật Red Velvet", image: "../img/bdcake-7.jpg", price: "180,000 VNĐ", qty: 2 },
+            { name: "Bánh Sinh Nhật Trà Xanh", image: "../img/bdcake-8.jpg", price: "220,000 VNĐ", qty: 4 },
+            { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-9.jpg", price: "190,000 VNĐ", qty: 3 }
+          ],
+          "PN003": [
+            { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-5.jpg", price: "210,000 VNĐ", qty: 3 },
+            { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-9.jpg", price: "190,000 VNĐ", qty: 3 }
+          ],
+          "PN004": [
+            { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-9.jpg", price: "190,000 VNĐ", qty: 3 }
+          ],
+          "PN005": [
+            { name: "Bánh Sinh Nhật Socola Ngọt", image: "../img/bdcake-12.jpg", price: "190,000 VNĐ", qty: 3 }
+          ]
+        };
 
-      function showProducts(noteId) {
-        const tbody = document.querySelector("#productTable tbody");
-        const summary = document.getElementById("summaryRow");
-        tbody.innerHTML = "";
-        const products = productsData[noteId] || [];
+        function showProducts(noteId) {
+          const tbody = document.querySelector("#productTable tbody");
+          const summary = document.getElementById("summaryRow");
+          tbody.innerHTML = "";
+          const products = productsData[noteId] || [];
 
-        if (products.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="5" class="text-center" style="color:#999;">Không có sản phẩm</td></tr>`;
-          summary.textContent = "Số sản phẩm: 0 | Tổng số lượng: 0 | Tổng tiền: 0 VNĐ";
-          return;
-        }
+          if (products.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="5" class="text-center" style="color:#999;">Không có sản phẩm</td></tr>`;
+            summary.textContent = "Số sản phẩm: 0 | Tổng số lượng: 0 | Tổng tiền: 0 VNĐ";
+            return;
+          }
 
-        let totalQty = 0;
-        let totalMoney = 0;
+          let totalQty = 0;
+          let totalMoney = 0;
 
-        products.forEach((p, index) => {
-          const price = parseFloat(p.price.replace(/[^\d]/g, "")); // lấy số từ chuỗi "250,000 VNĐ"
-          const qty = parseInt(p.qty);
-          const subtotal = price * qty;
-          totalQty += qty;
-          totalMoney += subtotal;
+          products.forEach((p, index) => {
+            const price = parseFloat(p.price.replace(/[^\d]/g, "")); // lấy số từ chuỗi "250,000 VNĐ"
+            const qty = parseInt(p.qty);
+            const subtotal = price * qty;
+            totalQty += qty;
+            totalMoney += subtotal;
 
-          const tr = document.createElement("tr");
-          tr.innerHTML = `
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
       <td>${index + 1}</td>
       <td>${p.name}</td>
       <td><img src="${p.image}" alt="${p.name}" style="width:50px; height:65px; object-fit:cover; border-radius:4px;"></td>
       <td>${p.price}</td>
       <td class="text-center">${qty}</td>
     `;
-          tbody.appendChild(tr);
-        });
+            tbody.appendChild(tr);
+          });
 
-        // Hiển thị tổng kết theo 3 dòng
-        summary.innerHTML = `
+          // Hiển thị tổng kết theo 3 dòng
+          summary.innerHTML = `
   <div>Số sản phẩm: <strong>${products.length}</strong></div>
   <div>Tổng số lượng: <strong>${totalQty}</strong></div>
   <div>Tổng tiền: <strong>${totalMoney.toLocaleString()} VNĐ</strong></div>
 `;
-      }
+        }
 
-    </script>
+      </script>
   </main>
 
+
+
   <script>
-    document.querySelectorAll('.btn-view').forEach(btn => {
-      btn.addEventListener('click', () => {
-        window.location.href = 'import-detail.html';
-      });
+    // Xử lý in phiếu nhập
+    document.querySelector('.btn-primary').addEventListener('click', function () {
+      alert('Chức năng in phiếu nhập đang được phát triển!');
+      // Trong thực tế, bạn sẽ mở cửa sổ in hoặc tạo PDF
+      // window.print();
     });
   </script>
 </body>
