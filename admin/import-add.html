@@ -16,10 +16,52 @@
   <!-- jQuery + DataTables JS -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+
+
+
 
 
 
   <style>
+    /* Ép modal Bootstrap hiển thị giữa màn hình */
+    .modal.fade .modal-dialog {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      /* chiếm toàn màn hình */
+    }
+
+    /* Đảm bảo modal nền bao phủ toàn màn hình */
+    .modal-backdrop.show {
+      opacity: 0.5;
+    }
+
+    .success-icon i {
+      font-size: 4rem;
+      color: #198754;
+      /* xanh lá */
+    }
+
+    .modal-content {
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-dark {
+      background-color: #000;
+      border: none;
+      font-weight: 600;
+    }
+
+    .btn-dark:hover {
+      background-color: #333;
+    }
+
     /* Căn giữa tiêu đề bảng */
     .ingredient-table th {
       text-align: center !important;
@@ -45,7 +87,7 @@
       /* căn trái */
       gap: 8px;
       /* khoảng cách giữa các phần */
-      margin-top: 15px;
+      margin-top: 75px;
     }
 
     /* Giữ format các dòng tổng */
@@ -123,6 +165,7 @@
     }
 
     .dataTables_info {
+      margin-top: 7%;
       float: left;
       margin-left: 10px;
       color: #555;
@@ -152,6 +195,11 @@
     }
 
     /* ======= 4️⃣ NÚT PHÂN TRANG ======= */
+    .dataTables_wrapper .dataTables_paginate {
+      margin-top: 7%;
+      /* Đẩy cụm phân trang xuống cách phần bảng 7% */
+    }
+
     .dataTables_wrapper .dataTables_paginate .paginate_button {
       border-radius: 6px !important;
       border: none !important;
@@ -313,7 +361,7 @@
     }
 
     .btn-add {
-      background-color: #e88f2a;
+      background-color: #ff9800;
       color: white;
       border: none;
       border-radius: 6px;
@@ -378,7 +426,7 @@
     }
 
     .form-control:focus {
-      border-color: #e91e63;
+      border-color: #FF9800;
       box-shadow: 0 0 0 2px rgba(233, 30, 99, 0.2);
       outline: none;
     }
@@ -426,7 +474,7 @@
     }
 
     .btn-success {
-      background: #e88f2a;
+      background: #ff9800;
     }
 
     .btn-success:hover {
@@ -434,11 +482,11 @@
     }
 
     .btn-danger {
-      background: #dc3545;
+      background: #FF9800;
     }
 
     .btn-danger:hover {
-      background: #c82333;
+      background: #FF9800;
     }
 
     .form-actions {
@@ -473,7 +521,7 @@
     .product-total {
       flex: 1;
       font-weight: 600;
-      color: #e91e63;
+      color: #FF9800;
     }
 
     .product-actions {
@@ -504,7 +552,7 @@
     .summary-total {
       font-weight: 700;
       font-size: 1.2rem;
-      color: #e91e63;
+      color: #FF9800;
     }
 
     /* Custom select with product info */
@@ -914,14 +962,21 @@
 
 
   <!-- POPUP THÀNH CÔNG -->
-  <div id="successPopup" class="popup-overlay">
-    <div class="popup-content">
-      <div class="popup-icon">✅</div>
-      <h2>Thành công!</h2>
-      <p>Phiếu nhập đã được tạo thành công.</p>
-      <button id="closePopupBtn" class="btn btn-primary">Đóng</button>
+  <div class="modal fade" id="importSuccessModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content text-center p-4 border-0">
+        <div class="modal-body">
+          <div class="success-icon mx-auto mb-3">
+            <i class="bi bi-check-circle-fill"></i>
+          </div>
+          <h3 class="fw-bold mb-2">Tạo phiếu nhập thành công!</h3>
+          <p>Phiếu nhập của bạn đã được lưu thành công.</p>
+          <button type="button" class="btn btn-primary mt-3" id="modalOkBtn">OK</button>
+        </div>
+      </div>
     </div>
   </div>
+
 
   <script>
     // ---------------------------
@@ -984,7 +1039,7 @@
       newRow.setAttribute('data-price', price);
       newRow.innerHTML = `
       <td>${name}</td>
-      <td><input type="number" min="0.1" step="0.1" value="1" class="form-control form-control-sm" style="width: 70px; margin: auto;"></td>
+      <td><input type="number" min="0.0" step="1.0" value="1" class="form-control form-control-sm" style="width: 70px; margin: auto;"></td>
       <td>${formatCurrency(price)}</td>
       <td class="total">${formatCurrency(price)}</td>
       <td><button class="btn btn-sm btn-outline-danger btn-action">x</button></td>
@@ -1024,27 +1079,20 @@
         return;
       }
 
-      const products = Array.from(rows).map(row => ({
-        name: row.children[0].textContent.trim(),
-        quantity: parseFloat(row.querySelector('input').value),
-        price: parseInt(row.getAttribute('data-price')),
-        total: row.querySelector('.total').textContent
-      }));
-      console.log("Dữ liệu phiếu nhập:", products);
-
-      const popup = document.getElementById("successPopup");
-      popup.style.display = "flex";
-
-      document.getElementById("closePopupBtn").onclick = () => {
-        popup.style.display = "none";
-        window.location.href = "import.html";
-      };
-
-      setTimeout(() => {
-        popup.style.display = "none";
-        window.location.href = "import.html";
-      }, 2000);
+      const importModal = new bootstrap.Modal(document.getElementById('importSuccessModal'));
+      importModal.show();
     });
+
+    // ---------------------------
+    // NÚT "OK" TRONG POPUP
+    // ---------------------------
+
+    document.getElementById('modalOkBtn').addEventListener('click', () => {
+      const modalElement = document.getElementById('importSuccessModal');
+      const modalInstance = bootstrap.Modal.getInstance(modalElement);
+      modalInstance.hide();
+    });
+
 
     // ---------------------------
     // KHỞI TẠO KHI LOAD
@@ -1055,14 +1103,13 @@
     });
     updateTotals();
   </script>
-
-  <!-- Pagination cho danh sách sản phẩm-->
+  <!-- Pagination cho danh sách sản phẩm -->
   <script>
     $(document).ready(function () {
-      $('#productTable').DataTable({
-        dom: 'rt<"bottom"ip>',
-
-        pageLength: 5, // vẫn mặc định 5 sản phẩm mỗi trang
+      // Tạo DataTable
+      const table = $('#productTable').DataTable({
+        dom: '<"pagination-wrapper"rt<"bottom"ip>>',
+        pageLength: 5,
         language: {
           info: "Trang _PAGE_ / _PAGES_",
           infoEmpty: "Không có sản phẩm nào",
@@ -1072,6 +1119,10 @@
           }
         }
       });
+
+      // Sau khi render, di chuyển cụm phân trang vào div riêng
+      const pagination = $('#productTable_wrapper .bottom');
+      $('.pagination-wrapper').append(pagination);
     });
   </script>
 
