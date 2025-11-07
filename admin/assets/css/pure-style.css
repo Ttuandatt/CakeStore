@@ -930,14 +930,14 @@ a:hover {
 
 .btn-success {
   color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
+  background-color: #fd7e14;
+  border-color: #fd7e14;
 }
 
 .btn-success:hover {
   color: #fff;
-  background-color: #1e7e34;
-  border-color: #1c7430;
+  background-color: #d4660c;
+  border-color: #d4660c;
 }
 
 .btn-secondary {
@@ -1251,13 +1251,13 @@ textarea.form-control {
 }
 
 .btn-success {
-  background-color: #4caf50;
+  background-color: #fd7e14;
   color: white;
   border: none;
 }
 
 .btn-success:hover {
-  background-color: #43a047;
+  background-color: #fd7e14;
 }
 
 .btn-secondary {

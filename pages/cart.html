@@ -78,11 +78,11 @@
 
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto mx-lg-auto py-0">
-          <a href="../index.html" class="nav-item nav-link">Trang chủ</a>
-          <a href="about.html" class="nav-item nav-link">Giới thiệu</a>
-          <a href="birthday-cake-1.html" class="nav-item nav-link active">Sản phẩm</a>
-          <a href="team.html" class="nav-item nav-link">Đầu bếp</a>
-          <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+          <a href="loggedin.html" class="nav-item nav-link active">Trang chủ</a>
+          <a href="about-logged.html" class="nav-item nav-link">Giới thiệu</a>
+          <a href="birthday-cake-1-logged.html" class="nav-item nav-link ">Sản phẩm</a>
+          <a href="team-logged.html" class="nav-item nav-link">Đầu bếp</a>
+          <a href="contact-logged.html" class="nav-item nav-link">Liên hệ</a>
         </div>
 
         <!-- Shopping cart + Avatar menu bên phải -->
@@ -231,12 +231,13 @@
                 <i class="fa fa-birthday-cake fs-1 text-dark me-3"></i>CakeZone
               </h1>
             </a>
-            <p class="mt-3">
-              Lorem diam sit erat dolor elitr et, diam lorem justo labore amet
-              clita labore stet eos magna sit. Elitr dolor eirmod duo tempor
-              lorem, elitr clita ipsum sea. Nonumy rebum et takimata ea
-              takimata amet gubergren, erat rebum magna lorem stet eos. Diam
-              amet et kasd eos duo dolore no.
+            <p class="mt-3" style="text-align: justify">
+              Chào mừng bạn đến với CakeZone – không gian của những hương vị
+              ngọt ngào và tinh tế. Chúng tôi mang đến những chiếc bánh sinh
+              nhật, bánh cưới và bánh ngọt cao cấp như mousse, flan, gato,
+              được chế biến tỉ mỉ từ nguyên liệu tươi ngon mỗi ngày. Tại
+              CakeZone, mỗi chiếc bánh không chỉ là món ăn, mà còn là món quà
+              mang theo niềm vui và sự yêu thương.
             </p>
           </div>
         </div>
@@ -269,25 +270,26 @@
               <h4 class="text-primary text-uppercase mb-4">Truy cập nhanh</h4>
               <div class="d-flex flex-column justify-content-start">
                 <a class="text-secondary mb-2" href="loggedin.html"><i
-                    class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                    class="bi bi-arrow-right text-primary me-2"></i>Trang
+                  chủ</a>
                 <a class="text-secondary mb-2" href="about-logged.html"><i
-                    class="bi bi-arrow-right text-primary me-2"></i>About
-                  Us</a>
+                    class="bi bi-arrow-right text-primary me-2"></i>Giới
+                  thiệu</a>
                 <a class="text-secondary mb-2" href="team-logged.html"><i
-                    class="bi bi-arrow-right text-primary me-2"></i>Master
-                  Chefs</a>
+                    class="bi bi-arrow-right text-primary me-2"></i>Đầu bếp
+                  chính</a>
                 <a class="text-secondary mb-2" href="contact-logged.html"><i
-                    class="bi bi-arrow-right text-primary me-2"></i>Contact
-                  Us</a>
+                    class="bi bi-arrow-right text-primary me-2"></i>Liên
+                  hệ</a>
               </div>
             </div>
             <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
-              <h4 class="text-primary text-uppercase mb-4">Newsletter</h4>
-              <p>Amet justo diam dolor rebum lorem sit stet sea justo kasd</p>
+              <h4 class="text-primary text-uppercase mb-4">Thông báo</h4>
+              <p></p>
               <form action="">
                 <div class="input-group">
-                  <input type="text" class="form-control border-white p-3" placeholder="Your Email" />
-                  <button class="btn btn-primary">Sign Up</button>
+                  <input type="text" class="form-control border-white p-3" placeholder="Email" />
+                  <button class="btn btn-primary">Đăng ký</button>
                 </div>
               </form>
             </div>
@@ -354,13 +356,10 @@
         const input = row.querySelector(".quantity input");
         const priceCell = row.querySelector("td:nth-child(2)");
         const totalCell = row.querySelector("td:nth-child(4)");
+        const deleteBtn = row.querySelector(".delete-btn");
 
-        // Lấy giá ban đầu (chuyển "280,000₫" -> 280000)
-        const basePrice = parseInt(
-          priceCell.textContent.replace(/[^\d]/g, "")
-        );
+        const basePrice = parseInt(priceCell.textContent.replace(/[^\d]/g, ""));
 
-        // Hàm cập nhật tổng từng dòng
         function updateRowTotal() {
           const quantity = parseInt(input.value);
           const total = basePrice * quantity;
@@ -368,7 +367,6 @@
           updateCartTotal();
         }
 
-        // Nút trừ
         minusBtn.addEventListener("click", () => {
           let val = parseInt(input.value);
           if (val > 1) {
@@ -377,38 +375,39 @@
           }
         });
 
-        // Nút cộng
         plusBtn.addEventListener("click", () => {
           let val = parseInt(input.value);
           input.value = val + 1;
           updateRowTotal();
         });
 
-        // Nếu người dùng nhập trực tiếp
         input.addEventListener("change", () => {
           let val = parseInt(input.value);
           if (isNaN(val) || val < 1) input.value = 1;
           updateRowTotal();
         });
+
+        // ✅ Xử lý xóa sản phẩm
+        deleteBtn.addEventListener("click", () => {
+          row.remove(); // Xóa dòng hiện tại
+          updateCartTotal(); // Cập nhật lại tổng tiền
+        });
       });
 
-      // Cập nhật tổng giỏ hàng
       function updateCartTotal() {
-        const totalCells = document.querySelectorAll(
-          "tbody tr td:nth-child(4)"
-        );
+        const totalCells = document.querySelectorAll("tbody tr td:nth-child(4)");
         let grandTotal = 0;
         totalCells.forEach((cell) => {
           grandTotal += parseInt(cell.textContent.replace(/[^\d]/g, ""));
         });
         document.getElementById("cart-total").textContent =
           grandTotal.toLocaleString("vi-VN") + "₫";
-
       }
 
       updateCartTotal();
     });
   </script>
+
 </body>
 
 </html>

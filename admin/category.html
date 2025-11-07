@@ -411,6 +411,49 @@
     </div>
   </div>
 
+  <!-- Popup xác nhận xóa -->
+  <div class="modal" id="confirmDeleteModal">
+    <div class="modal-content" style="width: 400px;">
+      <div class="modal-header">
+        <h3>Xác nhận xóa</h3>
+        <span class="modal-close" id="closeDeleteModal">&times;</span>
+      </div>
+      <p>Bạn có chắc chắn muốn xóa sản phẩm này không?</p>
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+        <button id="cancelDelete" style="background-color: #777;">Hủy</button>
+        <button id="confirmDelete" style="background-color: #e53935;">Xóa</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    // ======= XÓA VỚI POPUP XÁC NHẬN =======
+    let deleteTargetRow = null;
+
+    document.querySelectorAll(".btn-delete").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        deleteTargetRow = btn.closest("tr");
+        document.getElementById("confirmDeleteModal").style.display = "flex";
+      });
+    });
+
+    document.getElementById("cancelDelete").onclick = () => {
+      document.getElementById("confirmDeleteModal").style.display = "none";
+      deleteTargetRow = null;
+    };
+
+    document.getElementById("closeDeleteModal").onclick = () => {
+      document.getElementById("confirmDeleteModal").style.display = "none";
+      deleteTargetRow = null;
+    };
+
+    document.getElementById("confirmDelete").onclick = () => {
+      if (deleteTargetRow) {
+        deleteTargetRow.classList.add("fade-out");
+        setTimeout(() => deleteTargetRow.remove(), 400);
+      }
+      document.getElementById("confirmDeleteModal").style.display = "none";
+    };
+  </script>
 
   <script>
     // ======= NÚT SỬA MỞ MODAL =======
