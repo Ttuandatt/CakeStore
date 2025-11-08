@@ -1,270 +1,287 @@
 <!DOCTYPE html>
 <html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="icon" type="image/png" href="../img/ryicon.jpg" />
+    <title>CakeZone - Cập nhật khách hàng</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+      rel="stylesheet"
+    />
+    <link href="assets/css/pure-style.css" rel="stylesheet" />
+    <style>
+      /* === Responsive Form Layout === */
+      .form-container {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" type="image/png" href="../img/ryicon.jpg">
-  <title>CakeZone - Cập nhật khách hàng</title>
-  <link rel="stylesheet" type="text/css"
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-  <link href="assets/css/pure-style.css" rel="stylesheet" />
-  <style>
-    /* === Responsive Form Layout === */
-.form-container {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
+      /* Cột trái */
+      .form-left {
+        flex: 1 1 350px;
+        min-width: 280px;
+      }
 
-/* Cột trái */
-.form-left {
-  flex: 1 1 350px;
-  min-width: 280px;
-}
+      /* Cột phải (ảnh) */
+      .form-right {
+        flex: 0 1 250px;
+        display: flex;
+        justify-content: center;
+      }
 
-/* Cột phải (ảnh) */
-.form-right {
-  flex: 0 1 250px;
-  display: flex;
-  justify-content: center;
-}
+      /* Ảnh đại diện */
+      .avatar-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-/* Ảnh đại diện */
-.avatar-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+      /* Nút chọn ảnh */
+      #btnChooseImage {
+        margin-top: 10px;
+        width: 100%;
+        max-width: 180px;
+      }
 
-/* Nút chọn ảnh */
-#btnChooseImage {
-  margin-top: 10px;
-  width: 100%;
-  max-width: 180px;
-}
+      /* Tablet */
+      @media (max-width: 768px) {
+        .form-container {
+          flex-direction: column;
+          align-items: center;
+        }
 
-/* Tablet */
-@media(max-width: 768px) {
-  .form-container {
-    flex-direction: column;
-    align-items: center;
-  }
+        .form-left {
+          width: 100%;
+        }
 
-  .form-left {
-    width: 100%;
-  }
+        .form-right {
+          width: 100%;
+        }
+      }
 
-  .form-right {
-    width: 100%;
-  }
-}
+      /* Mobile */
+      @media (max-width: 480px) {
+        .card {
+          padding: 1rem;
+        }
 
-/* Mobile */
-@media(max-width: 480px) {
-  .card {
-    padding: 1rem;
-  }
+        button,
+        input,
+        select,
+        textarea {
+          font-size: 0.9rem !important;
+        }
 
-  button, input, select, textarea {
-    font-size: 0.9rem !important;
-  }
+        #imagePreview {
+          width: 150px !important;
+          height: 150px !important;
+        }
+      }
 
-  #imagePreview {
-    width: 150px !important;
-    height: 150px !important;
-  }
-}
+      select.form-control {
+        appearance: auto;
+        /* Cho phép trình duyệt hiện mũi tên mặc định */
+        -webkit-appearance: auto;
+        -moz-appearance: auto;
+        background-color: #fff;
+        cursor: pointer;
+      }
 
-    select.form-control {
-      appearance: auto;
-      /* Cho phép trình duyệt hiện mũi tên mặc định */
-      -webkit-appearance: auto;
-      -moz-appearance: auto;
-      background-color: #fff;
-      cursor: pointer;
-    }
+      /* Simple styling for password toggle */
+      .password-field {
+        position: relative;
+      }
 
-    /* Simple styling for password toggle */
-    .password-field {
-      position: relative;
-    }
+      .toggle-password {
+        position: absolute;
+        right: 0.75rem;
+        top: 73%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        color: #7b8794;
+        cursor: pointer;
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+      }
 
-    .toggle-password {
-      position: absolute;
-      right: 0.75rem;
-      top: 73%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      color: #7b8794;
-      cursor: pointer;
-      padding: 0.5rem;
-      font-size: 1.2rem;
-      transition: color 0.3s ease;
-    }
+      .toggle-password:hover {
+        color: #e88f2a;
+      }
 
-    .toggle-password:hover {
-      color: #e88f2a;
-    }
+      /* ==== Sidebar hover ==== */
+      aside ul li a:hover,
+      aside li a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        transition: background-color 0.2s ease;
+        color: white;
+      }
 
-    /* ==== Sidebar hover ==== */
-    aside ul li a:hover,
-    aside li a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      transition: background-color 0.2s ease;
-      color: white;
-    }
+      .logout-btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background: linear-gradient(195deg, #202021, #202021);
+        color: white;
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        border-radius: 0.25rem;
+        text-decoration: none;
+        width: 100%;
+        margin: 0 auto;
+        transition: all 0.3s ease;
+      }
 
-    .logout-btn {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      background: linear-gradient(195deg, #202021, #202021);
-      color: white;
-      padding: 0.75rem 1rem;
-      font-size: 0.875rem;
-      border-radius: 0.25rem;
-      text-decoration: none;
-      width: 100%;
-      margin: 0 auto;
-      transition: all 0.3s ease;
-    }
+      .logout-btn:hover {
+        background: linear-gradient(195deg, #2c2c2e, #2c2c2e);
+        cursor: pointer;
+      }
 
-    .logout-btn:hover {
-      background: linear-gradient(195deg, #2c2c2e, #2c2c2e);
-      cursor: pointer;
-    }
+      .card {
+        width: 90%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
 
-    .card {
-      width: 90%;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f0f2f5;
+        color: #344767;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
 
-    body {
+      .card {
+        width: 90%;
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        align-items: flex-start;
+      }
+
+      .form-group {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        font-weight: 500;
+        margin-bottom: 0.4rem;
+      }
+
+      input.form-control,
+      textarea.form-control,
+      select.form-control {
+        padding: 0.5rem 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        width: 100%;
+        background-color: #fff;
+      }
+
+      .img-upload {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px dashed #ccc;
+        border-radius: 6px;
+        padding: 1rem;
+        width: 180px;
+        height: 180px;
+        background-color: #fafafa;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .img-upload:hover {
+        border-color: #e88f2a;
+        background-color: #fff6ec;
+      }
+
+      .img-upload img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+
+      .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 70%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        color: #7b8794;
+        cursor: pointer;
+      }
+
+      .form-inline {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 6px;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        transition: 0.3s;
+        font-weight: 600;
+      }
+
+      .btn-secondary {
+        background-color: #ccc;
+      }
+
+      .btn-gradient {
+        background: #ff9800;
+        color: white;
+      }
+
+      .btn-gradient:hover {
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body
+    style="
       font-family: 'Roboto', sans-serif;
       background-color: #f0f2f5;
       color: #344767;
       line-height: 1.6;
       overflow-x: hidden;
-    }
-
-    .card {
-      width: 90%;
-      max-width: 800px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
-    }
-
-    .form-row {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      align-items: flex-start;
-    }
-
-    .form-group {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1rem;
-    }
-
-    .form-group label {
-      font-weight: 500;
-      margin-bottom: 0.4rem;
-    }
-
-    input.form-control,
-    textarea.form-control,
-    select.form-control {
-      padding: 0.5rem 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      width: 100%;
-      background-color: #fff;
-    }
-
-
-    .img-upload {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      border: 1px dashed #ccc;
-      border-radius: 6px;
-      padding: 1rem;
-      width: 180px;
-      height: 180px;
-      background-color: #fafafa;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .img-upload:hover {
-      border-color: #e88f2a;
-      background-color: #fff6ec;
-    }
-
-    .img-upload img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 6px;
-    }
-
-    .toggle-password {
-      position: absolute;
-      right: 10px;
-      top: 70%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      color: #7b8794;
-      cursor: pointer;
-    }
-
-    .form-inline {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .btn {
-      border: none;
-      border-radius: 6px;
-      padding: 0.75rem 1.5rem;
-      cursor: pointer;
-      transition: 0.3s;
-      font-weight: 600;
-    }
-
-    .btn-secondary {
-      background-color: #ccc;
-    }
-
-    .btn-gradient {
-      background: #ff9800;
-      color: white;
-    }
-
-    .btn-gradient:hover {
-      opacity: 0.9;
-    }
-  </style>
-</head>
-
-<body
-  style="font-family: 'Roboto', sans-serif; background-color: #f0f2f5; color: #344767; line-height: 1.6; overflow-x: hidden;">
-
-  <!-- SIDEBAR -->
-  <aside style="
+    "
+  >
+    <!-- SIDEBAR -->
+    <aside
+      style="
         position: fixed;
         top: 0;
         left: 0;
@@ -274,43 +291,58 @@
         background: linear-gradient(195deg, #202021, #202021);
         color: white;
         box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
-      ">
-    <div style="padding: 1.5em 1rem">
-      <a href="#" style="
+      "
+    >
+      <div style="padding: 1.5em 1rem">
+        <a
+          href="#"
+          style="
             display: flex;
             align-items: center;
             font-weight: 700;
             color: white;
             text-decoration: none;
-          ">
-        <span>Cakezone Admin</span>
-      </a>
-    </div>
-    <hr style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0" />
-    <ul style="list-style: none; padding: 0; margin: 0">
-      <li>
-        <a href="index.html" style="
+          "
+        >
+          <span>Cakezone Admin</span>
+        </a>
+      </div>
+      <hr
+        style="border-top: 1px solid rgba(255, 255, 255, 0.1); margin: 1rem 0"
+      />
+      <ul style="list-style: none; padding: 0; margin: 0">
+        <li>
+          <a
+            href="index.html"
+            style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-              
-            "><i class="material-icons" style="margin-right: 10px"></i>Tổng
-          quan</a>
-      </li>
-      <li>
-        <a href="user.html" style="
+            "
+            ><i class="material-icons" style="margin-right: 10px"></i>Tổng
+            quan</a
+          >
+        </li>
+        <li>
+          <a
+            href="user.html"
+            style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px"></i>Quản
-          lý khách hàng</a>
-      </li>
-      <li>
-        <a href="chef.html" style="
+            "
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý
+            khách hàng</a
+          >
+        </li>
+        <li>
+          <a
+            href="chef.html"
+            style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
@@ -318,48 +350,84 @@
               text-decoration: none;
               background: linear-gradient(195deg, #e88f2a, #e88f2a);
               box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2),
-            0 7px 10px -5px rgba(240, 163, 74, 0.6);
-            "><i class="material-icons" style="margin-right: 10px"></i>Quản
-          lý đầu bếp</a>
-      </li>
-      <li>
-        <a href="products.html" style="
+                0 7px 10px -5px rgba(240, 163, 74, 0.6);
+            "
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý
+            đầu bếp</a
+          >
+        </li>
+        <li>
+          <a
+            href="products.html"
+            style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý sản phẩm</a>
-      </li>
-      <li>
-        <a href="order.html" style="
+            "
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý
+            sản phẩm</a
+          >
+        </li>
+        <li>
+          <a
+            href="order.html"
+            style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý đơn hàng</a>
-      </li>
+            "
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý
+            đơn hàng</a
+          >
+        </li>
 
-      <li>
-        <a href="category.html" style="
+        <li>
+          <a
+            href="category.html"
+            style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý danh mục</a>
-      </li>
-      <li>
-        <a href="import.html" style="
+            "
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý
+            danh mục</a
+          >
+        </li>
+        <li>
+          <a
+            href="import.html"
+            style="
               display: flex;
               align-items: center;
               padding: 0.75rem 1rem;
               color: white;
               text-decoration: none;
-            "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nhập hàng</a>
-      </li>
-      <!-- <li>
+            "
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý
+            nhập hàng</a
+          >
+        </li>
+        <li>
+          <a
+            href="product-price.html"
+            style="
+              display: flex;
+              align-items: center;
+              padding: 0.75rem 1rem;
+              color: white;
+              text-decoration: none;
+            "
+            ><i class="material-icons" style="margin-right: 10px"></i>Quản lý
+            giá sản phẩm</a
+          >
+        </li>
+        <!-- <li>
         <a href="nguyenlieu.html" style="
               display: flex;
               align-items: center;
@@ -369,124 +437,202 @@
             "><i class="material-icons" style="margin-right: 10px"></i>Quản lý nguyên liệu</a>
       </li> -->
 
-      <!-- Đăng xuất -->
-      <li style="text-align:left;">
-        <a href="../index.html" class="logout-btn">
-          <i class="material-icons">logout</i><span>Đăng xuất</span>
-        </a>
-      </li>
-    </ul>
-  </aside>
+        <!-- Đăng xuất -->
+        <li style="text-align: left">
+          <a href="../index.html" class="logout-btn">
+            <i class="material-icons">logout</i><span>Đăng xuất</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
 
-  <!-- Main -->
-  <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem;">
-    <h1 style="margin-bottom: 1rem">Thông tin đầu bếp</h1>
+    <!-- Main -->
+    <main style="margin-left: 250px; min-height: 100vh; padding: 1.5rem">
+      <h1 style="margin-bottom: 1rem">Thông tin đầu bếp</h1>
 
-    <div class="card">
-      <form id="editForm" class="form-container">
+      <div class="card">
+        <form id="editForm" class="form-container">
+          <!-- Cột trái -->
+          <div class="form-left">
+            <div class="form-group">
+              <label for="fullname"
+                >Họ và tên <span style="color: #e88f2a">*</span></label
+              >
+              <input
+                type="text"
+                id="fullname"
+                class="form-control"
+                value="John Constatine"
+                required
+              />
+            </div>
 
-  <!-- Cột trái -->
-  <div class="form-left">
+            <div class="form-group">
+              <label for="email"
+                >Email <span style="color: #e88f2a">*</span></label
+              >
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                value="nguyenvana@example.com"
+                required
+              />
+            </div>
 
-    <div class="form-group">
-      <label for="fullname">Họ và tên <span style="color:#e88f2a">*</span></label>
-      <input type="text" id="fullname" class="form-control" value="John Constatine" required>
-    </div>
+            <div class="form-group" style="position: relative">
+              <label for="password"
+                >Mật khẩu <span style="color: #e88f2a">*</span></label
+              >
+              <input
+                type="text"
+                id="password"
+                class="form-control"
+                value="123456"
+                required
+              />
+            </div>
 
-    <div class="form-group">
-      <label for="email">Email <span style="color:#e88f2a">*</span></label>
-      <input type="email" id="email" class="form-control" value="nguyenvana@example.com" required>
-    </div>
+            <div class="form-row" style="display: flex; gap: 1rem">
+              <div class="form-group" style="flex: 1">
+                <label for="gender">Giới tính</label>
+                <select id="gender" class="form-control">
+                  <option value="nam" selected>Nam</option>
+                  <option value="nu">Nữ</option>
+                  <option value="khac">Khác</option>
+                </select>
+              </div>
 
-    <div class="form-group" style="position:relative;">
-      <label for="password">Mật khẩu <span style="color:#e88f2a">*</span></label>
-      <input type="text" id="password" class="form-control" value="123456" required>
-    </div>
+              <div class="form-group" style="flex: 1">
+                <label for="position">Vị trí</label>
+                <input
+                  type="text"
+                  id="position"
+                  class="form-control"
+                  value="Đầu bếp"
+                />
+              </div>
+            </div>
 
-    <div class="form-row" style="display:flex; gap:1rem;">
-      <div class="form-group" style="flex:1;">
-        <label for="gender">Giới tính</label>
-        <select id="gender" class="form-control">
-          <option value="nam" selected>Nam</option>
-          <option value="nu">Nữ</option>
-          <option value="khac">Khác</option>
-        </select>
+            <div class="form-group">
+              <label for="phone"
+                >Số điện thoại <span style="color: #e88f2a">*</span></label
+              >
+              <input
+                type="tel"
+                id="phone"
+                class="form-control"
+                value="0987654321"
+                pattern="[0-9]{10,11}"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="address"
+                >Địa chỉ <span style="color: #e88f2a">*</span></label
+              >
+              <textarea id="address" class="form-control" rows="3" required>
+123 Đường ABC, Quận 1, TP. HCM</textarea
+              >
+            </div>
+
+            <div
+              style="
+                display: flex;
+                gap: 1rem;
+                margin-top: 1rem;
+                justify-content: center;
+              "
+            >
+              <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="window.location.href='chef.html'"
+              >
+                Quay về
+              </button>
+              <button type="submit" class="btn btn-gradient">
+                <i
+                  class="material-icons"
+                  style="font-size: 1rem; margin-right: 5px"
+                  >save</i
+                >Lưu thay đổi
+              </button>
+            </div>
+          </div>
+
+          <!-- Cột phải: Avatar -->
+          <div class="form-right">
+            <div class="avatar-box">
+              <img
+                id="imagePreview"
+                src="../img/team-3.jpg"
+                style="
+                  border: 1px dashed #ccc;
+                  border-radius: 6px;
+                  width: 180px;
+                  height: 180px;
+                  object-fit: cover;
+                  cursor: pointer;
+                "
+              />
+              <input
+                type="file"
+                id="imageUpload"
+                accept="image/*"
+                style="display: none"
+              />
+              <button
+                type="button"
+                id="btnChooseImage"
+                class="btn btn-gradient"
+              >
+                Chọn hình ảnh
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
+    </main>
 
-      <div class="form-group" style="flex:1;">
-        <label for="position">Vị trí</label>
-        <input type="text" id="position" class="form-control" value="Đầu bếp">
-      </div>
-    </div>
+    <script>
+      // // Hiện/ẩn mật khẩu
+      // function togglePassword() {
+      //   const pwdInput = document.getElementById("password");
+      //   const eyeIcon = document.getElementById("eyeIcon");
+      //   if (pwdInput.type === "password") {
+      //     pwdInput.type = "text";
+      //     eyeIcon.textContent = "visibility";
+      //   } else {
+      //     pwdInput.type = "password";
+      //     eyeIcon.textContent = "visibility_off";
+      //   }
+      // }
 
-    <div class="form-group">
-      <label for="phone">Số điện thoại <span style="color:#e88f2a">*</span></label>
-      <input type="tel" id="phone" class="form-control" value="0987654321" pattern="[0-9]{10,11}" required>
-    </div>
+      // Xem trước ảnh
+      document
+        .getElementById("imageUpload")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              const preview = document.getElementById("imagePreview");
+              preview.innerHTML = `<img src="${e.target.result}" alt="Ảnh đại diện">`;
+            };
+            reader.readAsDataURL(file);
+          }
+        });
 
-    <div class="form-group">
-      <label for="address">Địa chỉ <span style="color:#e88f2a">*</span></label>
-      <textarea id="address" class="form-control" rows="3" required>123 Đường ABC, Quận 1, TP. HCM</textarea>
-    </div>
-
-    <div style="display:flex; gap:1rem; margin-top:1rem; justify-content:center;">
-      <button type="button" class="btn btn-secondary" onclick="window.location.href='chef.html'">Quay về</button>
-      <button type="submit" class="btn btn-gradient">
-        <i class="material-icons" style="font-size:1rem; margin-right:5px;">save</i>Lưu thay đổi
-      </button>
-    </div>
-
-  </div>
-
-  <!-- Cột phải: Avatar -->
-  <div class="form-right">
-    <div class="avatar-box">
-      <img id="imagePreview" src="../img/team-3.jpg" style="border:1px dashed #ccc;border-radius:6px;width:180px;height:180px;object-fit:cover;cursor:pointer;" />
-      <input type="file" id="imageUpload" accept="image/*" style="display:none;">
-      <button type="button" id="btnChooseImage" class="btn btn-gradient">Chọn hình ảnh</button>
-    </div>
-  </div>
-
-</form>
-
-    </div>
-  </main>
-
-
-  <script>
-    // // Hiện/ẩn mật khẩu
-    // function togglePassword() {
-    //   const pwdInput = document.getElementById("password");
-    //   const eyeIcon = document.getElementById("eyeIcon");
-    //   if (pwdInput.type === "password") {
-    //     pwdInput.type = "text";
-    //     eyeIcon.textContent = "visibility";
-    //   } else {
-    //     pwdInput.type = "password";
-    //     eyeIcon.textContent = "visibility_off";
-    //   }
-    // }
-
-    // Xem trước ảnh
-    document.getElementById("imageUpload").addEventListener("change", function (event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const preview = document.getElementById("imagePreview");
-          preview.innerHTML = `<img src="${e.target.result}" alt="Ảnh đại diện">`;
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    // Submit form
-    document.getElementById("editForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      alert("✅ Cập nhật thông tin đầu bếp thành công!");
-      window.location.href = "chef.html";
-    });
-  </script>
-</body>
-
+      // Submit form
+      document
+        .getElementById("editForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          alert("✅ Cập nhật thông tin đầu bếp thành công!");
+          window.location.href = "chef.html";
+        });
+    </script>
+  </body>
 </html>
