@@ -641,6 +641,49 @@
       document.getElementById("loginPopup").style.display = "none";
     }
   </script>
+  <!-- Tìm theo tên -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const filterBtn = document.querySelector(
+          ".btn.btn-primary i.fa-filter"
+        )?.parentElement;
+        const cakeCols = document.querySelectorAll(".col-12.col-sm-6.col-md-3");
+
+        if (filterBtn) {
+          filterBtn.addEventListener("click", function () {
+            const keyword = document
+              .getElementById("searchName")
+              .value.trim()
+              .toLowerCase();
+            const min =
+              parseInt(document.getElementById("priceMin").value) || 0;
+            const max =
+              parseInt(document.getElementById("priceMax").value) || Infinity;
+
+            cakeCols.forEach((col) => {
+              const nameElement = col.querySelector("h6 a");
+              const cakeName = nameElement
+                ? nameElement.textContent.toLowerCase()
+                : "";
+              const priceText =
+                col.querySelector("h5.fw-semibold.text-primary")?.textContent ||
+                "";
+              const price = parseInt(priceText.replace(/[^\d]/g, ""));
+
+              // Kiểm tra cả hai điều kiện
+              const matchName = keyword === "" || cakeName.includes(keyword);
+              const matchPrice = price >= min && price <= max;
+
+              if (matchName && matchPrice) {
+                col.style.display = "";
+              } else {
+                col.style.display = "none";
+              }
+            });
+          });
+        }
+      });
+    </script>
 </body>
 
 </html>

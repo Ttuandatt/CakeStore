@@ -259,7 +259,7 @@
               <img src="../img/wdcake-9.jpg" class="card-img-top" alt="Wedding Cake 1" />
               <div class="card-body d-flex flex-column">
                 <h6 class="fw-bold">
-                  <a href="wedding-cake-detail-1-logged.html">Bánh Sinh Nhật Socola Ngọt</a>
+                  <a href="wedding-cake-detail-1-logged.html">Bánh cưới Socola Ngọt</a>
                 </h6>
                 <p class="mb-3 flex-grow-1">
                   Bánh làm từ socola nguyên chất, kem tươi mịn màng, trang trí bằng dâu tây tươi.
@@ -281,7 +281,7 @@
               <img src="../img/wdcake-10.jpg" class="card-img-top" alt="Wedding Cake 2" />
               <div class="card-body d-flex flex-column">
                 <h6 class="fw-bold">
-                  <a href="wedding-cake-detail-1-logged.html">Bánh Sinh Nhật Vani Trái Cây</a>
+                  <a href="wedding-cake-detail-1-logged.html">Bánh cưới Vani Trái Cây</a>
                 </h6>
                 <p class="mb-3 flex-grow-1">
                   Bánh vani mềm xốp, kem bơ thơm ngậy, trang trí bằng trái cây tươi theo mùa.
@@ -303,7 +303,7 @@
               <img src="../img/wdcake-11.jpg" class="card-img-top" alt="Wedding Cake 3" />
               <div class="card-body d-flex flex-column">
                 <h6 class="fw-bold">
-                  <a href="wedding-cake-detail-1-logged.html">Bánh Sinh Nhật Red Velvet</a>
+                  <a href="wedding-cake-detail-1-logged.html">Bánh cưới Red Velvet</a>
                 </h6>
                 <p class="mb-3 flex-grow-1">
                   Bánh Red Velvet đỏ rực, kem phô mai béo ngậy — lựa chọn nổi bật và sang trọng.
@@ -325,7 +325,7 @@
               <img src="../img/wdcake-12.jpg" class="card-img-top" alt="Wedding Cake 4" />
               <div class="card-body d-flex flex-column">
                 <h6 class="fw-bold">
-                  <a href="wedding-cake-detail-1-logged.html">Bánh Sinh Nhật Trà Xanh</a>
+                  <a href="wedding-cake-detail-1-logged.html">Bánh cưới Trà Xanh</a>
                 </h6>
                 <p class="mb-3 flex-grow-1">
                   Bánh trà xanh nhẹ nhàng, kem tươi mát lạnh, trang trí bằng bột trà xanh.
@@ -347,7 +347,7 @@
               <img src="../img/wdcake-13.jpeg" class="card-img-top" alt="Wedding Cake 5" />
               <div class="card-body d-flex flex-column">
                 <h6 class="fw-bold">
-                  <a href="wedding-cake-detail-1-logged.html">Bánh Sinh Nhật Socola Ngọt</a>
+                  <a href="wedding-cake-detail-1-logged.html">Bánh cưới Socola Ngọt</a>
                 </h6>
                 <p class="mb-3 flex-grow-1">
                   Bánh làm từ socola nguyên chất, kem tươi mịn màng, trang trí bằng dâu tây tươi.
@@ -369,7 +369,7 @@
               <img src="../img/wdcake-14.jpeg" class="card-img-top" alt="Wedding Cake 6" />
               <div class="card-body d-flex flex-column">
                 <h6 class="fw-bold">
-                  <a href="wedding-cake-detail-1-logged.html">Bánh Sinh Nhật Vani Trái Cây</a>
+                  <a href="wedding-cake-detail-1-logged.html">Bánh cưới Vani Trái Cây</a>
                 </h6>
                 <p class="mb-3 flex-grow-1">
                   Bánh vani mềm xốp, kem bơ thơm ngậy, trang trí bằng trái cây tươi theo mùa.
@@ -391,7 +391,7 @@
               <img src="../img/wdcake-15.jpeg" class="card-img-top" alt="Wedding Cake 15" />
               <div class="card-body d-flex flex-column">
                 <h6 class="fw-bold">
-                  <a href="wedding-cake-detail-1-logged.html">Bánh Sinh Nhật Red Velvet</a>
+                  <a href="wedding-cake-detail-1-logged.html">Bánh cưới Red Velvet</a>
                 </h6>
                 <p class="mb-3 flex-grow-1">
                   Bánh Red Velvet đỏ rực, kem phô mai béo ngậy — lựa chọn nổi bật và sang trọng.
@@ -413,7 +413,7 @@
               <img src="../img/wdcake-16.jpeg" class="card-img-top" alt="Wedding Cake 16" />
               <div class="card-body d-flex flex-column">
                 <h6 class="fw-bold">
-                  <a href="wedding-cake-detail-1-logged.html">Bánh Sinh Nhật Trà Xanh</a>
+                  <a href="wedding-cake-detail-1-logged.html">Bánh cưới Trà Xanh</a>
                 </h6>
                 <p class="mb-3 flex-grow-1">
                   Bánh trà xanh nhẹ nhàng, kem tươi mát lạnh, trang trí bằng bột trà xanh.
@@ -639,6 +639,49 @@
       });
     });
   </script>
+  <!-- Tìm theo tên -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const filterBtn = document.querySelector(
+          ".btn.btn-primary i.fa-filter"
+        )?.parentElement;
+        const cakeCols = document.querySelectorAll(".col-12.col-sm-6.col-md-3");
+
+        if (filterBtn) {
+          filterBtn.addEventListener("click", function () {
+            const keyword = document
+              .getElementById("searchName")
+              .value.trim()
+              .toLowerCase();
+            const min =
+              parseInt(document.getElementById("priceMin").value) || 0;
+            const max =
+              parseInt(document.getElementById("priceMax").value) || Infinity;
+
+            cakeCols.forEach((col) => {
+              const nameElement = col.querySelector("h6 a");
+              const cakeName = nameElement
+                ? nameElement.textContent.toLowerCase()
+                : "";
+              const priceText =
+                col.querySelector("h5.fw-semibold.text-primary")?.textContent ||
+                "";
+              const price = parseInt(priceText.replace(/[^\d]/g, ""));
+
+              // Kiểm tra cả hai điều kiện
+              const matchName = keyword === "" || cakeName.includes(keyword);
+              const matchPrice = price >= min && price <= max;
+
+              if (matchName && matchPrice) {
+                col.style.display = "";
+              } else {
+                col.style.display = "none";
+              }
+            });
+          });
+        }
+      });
+    </script>
 </body>
 
 </html>
